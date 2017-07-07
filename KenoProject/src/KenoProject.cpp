@@ -1,50 +1,53 @@
-//============================================================================
-// Name        : KenoProject.cpp
-// Author      : 
-// Version     :
-// Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
-//============================================================================
-
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL_mixer.h>
-#include <iostream>
+#include "Include.h"
 #include "BaseObject.h"
 #include "GameKeno.h"
-using namespace std;
+#include "XML.h"
 
-int main(int argc, char* args[]) {
-
+int main(int argc, char* args[]) 
+{
 	bool quit = false;
+
 	GameKeno game;
 	SDL_Event e;
-	BaseObject introScreen;
+	
+	int flags[8][10] = {1, 0, 0, 0, 0, 0, 0, 1,
+			    1, 0, 0, 0, 0, 0, 0, 1,
+			    1, 0, 0, 0, 0, 0, 0, 1,
+ 			    1, 0, 0, 0, 0, 0, 0, 1,
+			    1, 0, 0, 0, 0, 0, 0, 1,
+			    1, 0, 0, 0, 0, 0, 0, 1,
+ 			    1, 0, 0, 0, 0, 0, 0, 1,
+ 			    1, 0, 0, 0, 0, 0, 0, 1,};
+	int credits = 1000;
 
-	if (!game.init()) {
-		cerr << "Problem with initializing" << endl;
-	} else {
-		if (!game.loadMedia()) {
-		} else {
-			while (!quit) {
-				while (SDL_PollEvent(&e) != 0) {
-					if (e.type == SDL_QUIT) {
+	XML xml;
+	xml.write(credits, flags);
+
+	if (!game.init()) 
+	{
+		std::cerr << "Problem with initializing" << std::endl;
+	} 
+	else 
+	{
+		if (!game.loadMedia()) 
+		{
+			std::cerr << "Error loading media" << std::endl;
+		}
+		else 
+		{
+			while (!quit) 
+			{
+				while (SDL_PollEvent(&e) != 0) 
+				{
+					if (e.type == SDL_QUIT) 
+					{
 						quit = true;
 					}
-					SDL_SetRenderDrawColor(game.kenoRenderer, 255, 255, 255,
-							255);
-					SDL_RenderClear(game.kenoRenderer);
-					introScreen.setColor(255, 16, 100);
-					SDL_RenderCopy(game.kenoRenderer, introScreen.getKTexture(),
-					NULL, introScreen.getKRect());
+					SDL_RenderClear(game.getKenoRenderer());
 				}
-
-				SDL_RenderPresent(game.kenoRenderer);
+				SDL_RenderPresent(game.getKenoRenderer());
 			}
-
 		}
 	}
-
-return 0;
+	return 0;
 }

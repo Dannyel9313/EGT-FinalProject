@@ -1,35 +1,44 @@
-/*
- * GameKeno.h
- *
- *  Created on: 05.07.2017
- *      Author: Danny
- */
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL_mixer.h>
-#include "Globals.h"
 #ifndef GAMEKENO_H_
 #define GAMEKENO_H_
+#include "Include.h"
+#include "Globals.h"
 
+class GameKeno 
+{
+	public:
+		//Constructor
+		GameKeno();
 
-class GameKeno {
-public:
+		//Destructor
+		virtual ~GameKeno();
 
-	SDL_Window* kenoWindow = NULL;
-	SDL_Renderer* kenoRenderer = NULL;
+		//Initialize SDL
+		bool init();
 
+		//Load media
+		bool loadMedia();
+		
+		//Free resources
+		void close();
+		
+		//Set keno window
+		void setKenoWindow(SDL_Window *);
 
-	GameKeno();
-	virtual ~GameKeno();
+		//Set keno renderer
+		void setKenoRenderer(SDL_Renderer *);
 
-	bool init();
-	bool loadMedia();
-	void close();
+		//Get keno window
+		SDL_Window * getKenoWindow();
 
+		//Get keno renderer
+		SDL_Renderer * getKenoRenderer();
+	private:
+		//Window
+		SDL_Window* kenoWindow;
 
-private:
+		//Renderer
+		SDL_Renderer* kenoRenderer;
 };
 
 #endif /* GAMEKENO_H_ */

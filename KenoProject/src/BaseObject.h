@@ -1,55 +1,48 @@
-/*
- * BaseObject.h
- *
- *  Created on: 06.07.2017
- *      Author: Danny
- */
-#include "Globals.h"
 #ifndef BASEOBJECT_H_
 #define BASEOBJECT_H_
 
+#include "Globals.h"
 #include "GameKeno.h"
 
-class BaseObject: public GameKeno {
-public:
-	BaseObject();
-	virtual ~BaseObject();
+class BaseObject 
+{
+	public:
+		//Constructor
+		BaseObject();
+	
+		//Destructor
+		virtual ~BaseObject();
 
-	//load image
-	SDL_Texture* loadTexture(std::string picPath);
+		//Load image from texture
+		SDL_Texture* loadTexture(std::string picPath, SDL_Renderer*);
 
-	//set rect position
-	void setPosition(int x, int y);
+		//Set rect position
+		void setPosition(int x, int y);
 
-	//Set color modulation
-	void setColor(Uint8 red, Uint8 green, Uint8 blue);
+		//Set rect dimensions
+		void setDimensions(int w, int h);
 
-	//Set blending
-	void setBlendMode(SDL_BlendMode blending);
+		//Set color modulation
+		void setColor(Uint8 red, Uint8 green, Uint8 blue);
 
-	//set alpha modulation
-	void setAlpha(Uint8 alpha );
+		//Set blending
+		void setBlendMode(SDL_BlendMode blending);
 
-	//Deallocates texture
-	void free();
+		//set alpha modulation
+		void setAlpha(Uint8 alpha);
 
-	int getHeight() const;
-	void setHeight(int height);
-	SDL_Rect*& getKRect();
+		//Deallocates texture
+		void free();
 
-	SDL_Texture*& getKTexture();
+		//Get m_KTexture
+		const SDL_Rect* getKRect();
 
-	int getWidth() const;
-	void setWidth(int width);
+		//Get m_KRect
+		const SDL_Texture* getKTexture();
 
-private:
-
-	SDL_Texture* m_KTexture;
-	SDL_Rect* m_KRect;
-
-	int m_Width;
-	int m_Height;
-
+	private:
+		SDL_Texture* m_KTexture;
+		SDL_Rect* m_KRect;
 };
 
 #endif /* BASEOBJECT_H_ */
