@@ -10,19 +10,6 @@ int main(int argc, char* args[])
 	GameKeno game;
 	SDL_Event e;
 	
-	int flags[8][10] = {1, 0, 0, 0, 0, 0, 0, 1,
-			    1, 0, 0, 0, 0, 0, 0, 1,
-			    1, 0, 0, 0, 0, 0, 0, 1,
- 			    1, 0, 0, 0, 0, 0, 0, 1,
-			    1, 0, 0, 0, 0, 0, 0, 1,
-			    1, 0, 0, 0, 0, 0, 0, 1,
- 			    1, 0, 0, 0, 0, 0, 0, 1,
- 			    1, 0, 0, 0, 0, 0, 0, 1,};
-	int credits = 1000;
-
-	XML xml;
-	xml.write(credits, flags);
-
 	if (!game.init()) 
 	{
 		std::cerr << "Problem with initializing" << std::endl;
