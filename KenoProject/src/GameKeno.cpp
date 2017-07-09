@@ -88,16 +88,6 @@ void GameKeno::close()
 	//TODO free music
 }
 
-void GameKeno::setKenoWindow(SDL_Window * window) 
-{
-	this->kenoWindow = window;
-}
-
-void GameKeno::setKenoRenderer(SDL_Renderer * renderer)
-{
-	this->kenoRenderer = renderer;
-}
-
 SDL_Window * GameKeno::getKenoWindow() 
 {
 	return this->kenoWindow;
@@ -106,4 +96,9 @@ SDL_Window * GameKeno::getKenoWindow()
 SDL_Renderer * GameKeno::getKenoRenderer() 
 {
 	return this->kenoRenderer;
+}
+
+Game & GameKeno::getGame() 
+{
+	return gameMode;
 }
