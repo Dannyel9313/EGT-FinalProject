@@ -1,8 +1,8 @@
 #ifndef BASEOBJECT_H_
 #define BASEOBJECT_H_
-
+#include "Include.h"
 #include "Globals.h"
-#include "GameKeno.h"
+
 
 class BaseObject 
 {
@@ -13,11 +13,14 @@ class BaseObject
 		//Destructor
 		virtual ~BaseObject();
 
+		// button renderer
+		void buttonRender(int xCut, int yCut, int x, int y, SDL_Texture* texture, SDL_Renderer* renderer);
+
 		//Load image from texture
-		SDL_Texture* loadTexture(std::string picPath, SDL_Renderer*);
+		void loadTexture(std::string picPath, SDL_Renderer*);
 
 		//Set rect position
-		void setPosition(int x, int y);
+		SDL_Rect* setPosition(int x, int y);
 
 		//Set rect dimensions
 		void setDimensions(int w, int h);
@@ -32,17 +35,23 @@ class BaseObject
 		void setAlpha(Uint8 alpha);
 
 		//Deallocates texture
-		void free();
+		void free(SDL_Texture* textureToFree);
 
 		//Get m_KTexture
-		const SDL_Rect* getKRect();
+		SDL_Rect* getKRect();
 
 		//Get m_KRect
-		const SDL_Texture* getKTexture();
+		SDL_Texture* getKTexture();
+
+		void setKTexture(SDL_Texture* kTexture);
+
+
 
 	private:
 		SDL_Texture* m_KTexture;
 		SDL_Rect* m_KRect;
+
+
 };
 
 #endif /* BASEOBJECT_H_ */
