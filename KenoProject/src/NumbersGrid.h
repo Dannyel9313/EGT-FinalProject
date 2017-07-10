@@ -14,12 +14,15 @@ class NumbersGrid: public BaseObject
 		//Function load TFF
 		void loadTTF();
 
-		//Change color if clicked
-		void changeColorIfClicked(SDL_Renderer *, const SDL_Event &);
+		//Do something if clicked
+		void doIfClicked(SDL_Renderer *, const SDL_Event &);
 
 		void pickRandomNumbers(SDL_Renderer *, const SDL_Event &);
 
 		void resetRandFlags();
+
+		//Loads clicking sound effect
+		bool loadSoundEffect(std:string);
 	private:
 		//Utility function load numbers in rectangles
 		void numbersInRects(SDL_Renderer *);
@@ -31,6 +34,9 @@ class NumbersGrid: public BaseObject
 		TTF_Font * m_font;
 		int isClickedFlags[8][10];
 		int randomNumbersFlags[8][10];
+
+		//Sound effect structure
+		Mix_Chunk* m_ClickEffect;
 };
 
 #endif

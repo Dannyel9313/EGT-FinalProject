@@ -91,27 +91,33 @@ void NumbersGrid::numbersInRects(SDL_Renderer * renderer)
 	}	
 }
 
-void NumbersGrid::changeColorIfClicked(SDL_Renderer * renderer, const SDL_Event & e) 
+void NumbersGrid::doIfClicked(SDL_Renderer * renderer, const SDL_Event & e) 
 {
 	for (int i = 0; i < 8; i++)
 	{
 		for (int j = 0; j < 10; j++)
 		{
-			if(isClicked(e, &m_numbers[i][j]) && isClickedFlags[i][j] == 0)
+			if(isClickedFlags[i][j] == 0 && isClicked(e, &m_numbers[i][j])) 
 			{
 				//Draw and fill rect
 				isClickedFlags[i][j] = 1;
 				roundedBoxRGBA(renderer, m_numbers[i][j].x, m_numbers[i][j].y, m_numbers[i][j].x+40, m_numbers[i][j].y+30, 5, 
 					255, 255, 0, 255);
 				numbersInRects(renderer);
+
+				//Play sound effect
+				Mix_PlayChannel(-1, m_ClickEffect, 0);
 			}
-			else if (isClicked(e, &m_numbers[i][j]) && isClickedFlags[i][j] == 1)
+			else if (isClickedFlags[i][j] == 1 && isClicked(e, &m_numbers[i][j]))
 			{
 				//Draw and fill rect
 				isClickedFlags[i][j] = 0;
 				roundedBoxRGBA(renderer, m_numbers[i][j].x, m_numbers[i][j].y, m_numbers[i][j].x+40, m_numbers[i][j].y+30, 5, 
 					225, 16, 16, 255);
 				numbersInRects(renderer);
+
+				//Play sound effect
+				Mix_PlayChannel(-1, m_ClickEffect, 0);
 			}	
 		}
 	}
@@ -169,4 +175,19 @@ void NumbersGrid::resetRandFlags()
 			randomNumbersFlags[i][j] = 0;
 		}
 	}
+}
+
+bool NumbersGrid::loadSoundEffect(str::string path)
+{
+	bool success = true;
+
+	//Load effect from wav
+	m_ClickEffect = Mix_LoadWAV(path.c_str());
+	if(m_ClickEffect == NULL)
+	{
+		std::cout << "Error loading clicking effect" << std:endl;
+		success = false;
+	}
+	
+	return success;
 }
