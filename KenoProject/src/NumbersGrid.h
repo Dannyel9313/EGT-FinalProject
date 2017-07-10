@@ -19,8 +19,6 @@ class NumbersGrid: public BaseObject
 
 		void pickRandomNumbers(SDL_Renderer *, const SDL_Event &);
 
-		void loadText(SDL_Renderer *);
-
 		void resetRandFlags();
 	private:
 		//Utility function load numbers in rectangles
