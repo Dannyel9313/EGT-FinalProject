@@ -5,7 +5,12 @@ BaseObject::BaseObject() {
 	this->m_KRect = NULL;
 }
 
+<<<<<<< HEAD
 BaseObject::~BaseObject() {
+=======
+BaseObject::~BaseObject() 
+{
+>>>>>>> 37632bf4ba0d482259692b9c2f55e758cd2eaba8
 }
 
 void BaseObject::loadTexture(std::string picPath, SDL_Renderer * renderer) {
@@ -33,7 +38,11 @@ void BaseObject::free(SDL_Texture* textureToFree) {
 		SDL_DestroyTexture(textureToFree);
 		textureToFree = NULL;
 	}
+<<<<<<< HEAD
 //	this->m_KRect = NULL;
+=======
+
+>>>>>>> 37632bf4ba0d482259692b9c2f55e758cd2eaba8
 }
 
 SDL_Rect* BaseObject::getKRect() {

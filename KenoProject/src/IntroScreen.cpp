@@ -68,8 +68,13 @@ void IntroScreen::setButtonsPositionDimension(SDL_Renderer* renderer) {
 }
 
 void IntroScreen::loadButtonFont(SDL_Renderer* renderer) {
+<<<<<<< HEAD
 	m_background.loadTexture("IntroKenoImage2.png", renderer);
 	SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
+=======
+
+	int offset = 130;
+>>>>>>> 37632bf4ba0d482259692b9c2f55e758cd2eaba8
 
 	m_startNewGameButton.setFont(TTF_OpenFont("Pozo.ttf", 50));
 	m_resumeGameButton.setFont(TTF_OpenFont("Pozo.ttf", 50));
@@ -77,6 +82,7 @@ void IntroScreen::loadButtonFont(SDL_Renderer* renderer) {
 	m_infoButton.setFont(TTF_OpenFont("Pozo.ttf", 50));
 //	m_volumeButton.setFont(TTF_OpenFont("Pozo.ttf", 50));
 
+<<<<<<< HEAD
 	m_startNewGameButton.LoadFromRenderedText("START GAME", renderer,
 			m_startNewGameButton.setButtonColor(255, 255, 255));
 	m_startNewGameButton.textRender(530, 130,
@@ -85,6 +91,58 @@ void IntroScreen::loadButtonFont(SDL_Renderer* renderer) {
 			m_resumeGameButton.setButtonColor(255, 255, 255));
 	m_resumeGameButton.textRender(530, 220, m_resumeGameButton.getKTexture(),
 			renderer);
+=======
+	m_startNewGameButton.LoadFromRenderedText("START NEW GAME", renderer,
+			m_startNewGameButton.setButtonColor(255, 255, 255));
+
+	m_resumeGameButton.LoadFromRenderedText("RESUME GAME", renderer,
+			m_resumeGameButton.setButtonColor(255, 255, 255));
+
+	m_infoButton.LoadFromRenderedText("INFO", renderer,
+			m_infoButton.setButtonColor(255, 255, 255));
+
+	for (int i = 640; i > offset; i -= 5) {
+
+		m_background.loadTexture("IntroKenoImage2.png", renderer);
+		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
+
+		m_startNewGameButton.textRender(530, i,
+				m_startNewGameButton.getKTexture(), renderer);
+
+		SDL_RenderPresent(renderer);
+	}
+	offset += 80;
+	for (int i = 640; i > offset; i -= 5) {
+
+		m_background.loadTexture("IntroKenoImage2.png", renderer);
+		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
+
+		m_startNewGameButton.textRender(530, 130,
+				m_startNewGameButton.getKTexture(), renderer);
+
+		m_resumeGameButton.textRender(530, i, m_resumeGameButton.getKTexture(),
+				renderer);
+		SDL_RenderPresent(renderer);
+
+	}
+	offset += 80;
+	for (int i = 640; i > offset; i -= 5) {
+		m_background.loadTexture("IntroKenoImage2.png", renderer);
+		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
+
+		m_startNewGameButton.textRender(530, 130,
+				m_startNewGameButton.getKTexture(), renderer);
+
+		m_resumeGameButton.textRender(530, 220,
+				m_resumeGameButton.getKTexture(), renderer);
+
+		m_infoButton.textRender(530, i, m_infoButton.getKTexture(),
+				renderer);
+
+		SDL_RenderPresent(renderer);
+
+	}
+>>>>>>> 37632bf4ba0d482259692b9c2f55e758cd2eaba8
 
 	m_volumeButtonPlus.loadTexture("volumeButton.png", renderer);
 	m_volumeButtonPlus.buttonRender(69, 76, 170, 490,
