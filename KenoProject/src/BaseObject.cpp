@@ -5,7 +5,8 @@ BaseObject::BaseObject() {
 	this->m_KRect = NULL;
 }
 
-BaseObject::~BaseObject() {
+BaseObject::~BaseObject() 
+{
 }
 
 void BaseObject::loadTexture(std::string picPath, SDL_Renderer * renderer) {
