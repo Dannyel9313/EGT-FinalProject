@@ -83,8 +83,6 @@ bool GameKeno::loadMedia()
 //				m_introMode.getStartNewGameButton().setButtonColor(255,255,255));
 //		m_introMode.getResumeGameButton().LoadFromRenderedText("RESUME GAME",kenoRenderer,
 //				m_introMode.getResumeGameButton().setButtonColor(255,255,255));
-
-
 	return success;
 }
 
@@ -103,10 +101,17 @@ void GameKeno::close()
 	SDL_DestroyWindow(kenoWindow);
 	kenoWindow = NULL;
 
-	TTF_Quit();
-	IMG_Quit();
+	//Quit SDL
 	SDL_Quit();
-	//TODO free music
+	
+	//Quit true type font
+	TTF_Quit();
+
+	//Quit image
+	IMG_Quit();
+
+	//Quit music
+	MIX_Quit();
 }
 
 void GameKeno::setKenoWindow(SDL_Window * window) 
