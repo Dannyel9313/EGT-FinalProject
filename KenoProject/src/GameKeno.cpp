@@ -36,7 +36,7 @@ bool GameKeno::init()
 			} 
 			else {
 				kenoRenderer = SDL_CreateRenderer(kenoWindow, -1,
-						SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+						 SDL_RENDERER_PRESENTVSYNC);
 				if (kenoRenderer == NULL) 
 				{
 					std::cerr << "Renderer could not be created !" << std::endl;
@@ -70,12 +70,33 @@ bool GameKeno::init()
 bool GameKeno::loadMedia() 
 {
 	bool success = true;
+
+//		m_introMode.getBackground().loadTexture("IntroKenoImage2.png",kenoRenderer);
+//
+//		m_introMode.getStartNewGameButton().setFont(TTF_OpenFont("Pozo.ttf",50));
+//		m_introMode.getResumeGameButton().setFont(TTF_OpenFont("Pozo.ttf",50));
+//		m_introMode.getInsertCredit().setFont(TTF_OpenFont("Pozo.ttf",50));
+//		m_introMode.getInfoButton().setFont(TTF_OpenFont("Pozo.ttf",50));
+//		m_introMode.getVolumeButton().setFont(TTF_OpenFont("Pozo.ttf",50));
+//
+//		m_introMode.getStartNewGameButton().LoadFromRenderedText("START GAME",kenoRenderer,
+//				m_introMode.getStartNewGameButton().setButtonColor(255,255,255));
+//		m_introMode.getResumeGameButton().LoadFromRenderedText("RESUME GAME",kenoRenderer,
+//				m_introMode.getResumeGameButton().setButtonColor(255,255,255));
+
+
 	return success;
 }
 
 //Free resources
 void GameKeno::close() 
 {
+	TTF_CloseFont(m_introMode.getStartNewGameButton().getFont());
+	TTF_CloseFont(m_introMode.getResumeGameButton().getFont());
+	TTF_CloseFont(m_introMode.getInfoButton().getFont());
+//	TTF_CloseFont(m_introMode.getVolumeButton().getFont());
+
+
 	SDL_DestroyRenderer(kenoRenderer);
 	kenoRenderer = NULL;
 
@@ -88,6 +109,16 @@ void GameKeno::close()
 	//TODO free music
 }
 
+void GameKeno::setKenoWindow(SDL_Window * window) 
+{
+	this->kenoWindow = window;
+}
+
+void GameKeno::setKenoRenderer(SDL_Renderer * renderer)
+{
+	this->kenoRenderer = renderer;
+}
+
 SDL_Window * GameKeno::getKenoWindow() 
 {
 	return this->kenoWindow;
@@ -98,7 +129,6 @@ SDL_Renderer * GameKeno::getKenoRenderer()
 	return this->kenoRenderer;
 }
 
-Game & GameKeno::getGame() 
-{
-	return gameMode;
+IntroScreen& GameKeno::getIntroMode(){
+	return m_introMode;
 }

@@ -3,7 +3,7 @@
 #define GAMEKENO_H_
 #include "Include.h"
 #include "Globals.h"
-#include "Game.h"
+#include "IntroScreen.h"
 
 class GameKeno 
 {
@@ -35,8 +35,11 @@ class GameKeno
 		//Get keno renderer
 		SDL_Renderer * getKenoRenderer();
 
-		//Get gameMode
-		Game & getGame();
+		//Get intro mode
+		IntroScreen& getIntroMode();
+
+
+
 	private:
 		//Window
 		SDL_Window* kenoWindow;
@@ -44,8 +47,8 @@ class GameKeno
 		//Renderer
 		SDL_Renderer* kenoRenderer;
 
-		//Game
-		Game gameMode;
+		//intro mode
+		IntroScreen m_introMode;
 };
 
 #endif /* GAMEKENO_H_ */

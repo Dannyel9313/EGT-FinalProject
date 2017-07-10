@@ -50,15 +50,6 @@ void NumbersGrid::loadTTF()
 	TTF_SetFontStyle(m_font, TTF_STYLE_BOLD);
 }
 
-void NumbersGrid::loadText(SDL_Renderer * renderer)
-{
-	SDL_Rect location = {100, 100, 200, 200};
-	SDL_Color white = {255, 255, 255};
-	std::string str = "Start new game";
-	loadTextureFromTTF(str.c_str(), renderer, m_font, white);
-	render(renderer, &location);
-}
-
 void NumbersGrid::numbersInRects(SDL_Renderer * renderer)
 {
 	SDL_Rect dst_rect = {0, 0, 0, 0};
