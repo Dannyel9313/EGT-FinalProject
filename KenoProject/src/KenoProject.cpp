@@ -38,14 +38,16 @@ int main(int argc, char* args[])
 					if(e.type == SDL_MOUSEBUTTONDOWN)
 					{
 						SDL_GetMouseState(&x,&y);
+
 						std::cout << "x -> " << x << " y -> " << y << std::endl;
 					}
+
 
 				}
 
 if(introMode == true)
 {
-				game.getIntroMode().loadButtonFont(game.getKenoRenderer());
+				game.getIntroMode().loadIntroScreen(game.getKenoRenderer());
 }
 //game.getIntroMode().setButtonsPositionDimension(game.getKenoRenderer());
 

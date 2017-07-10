@@ -19,7 +19,8 @@ public:
 	void LoadFromRenderedText(std::string textureText,SDL_Renderer* render,
 				SDL_Color textColor);
 
-	void textRender(int x, int y, SDL_Texture* textureText,SDL_Renderer* renderer);
+	// Text renderer
+	void textRender(SDL_Rect* rect, SDL_Texture* textureText,SDL_Renderer* renderer);
 
 	//get font
 	TTF_Font*& getFont();
@@ -33,8 +34,15 @@ public:
 	//set font
 	void setFont(TTF_Font* font);
 
+	//Get changed color
+	SDL_Color getChangedButtonColor();
+
+	// Change color
+	void changeColor();
+
 private:
 	SDL_Color m_buttonColor;
+	SDL_Color m_changedButtonColor = {181,230,29};
 	TTF_Font* m_font;
 };
 

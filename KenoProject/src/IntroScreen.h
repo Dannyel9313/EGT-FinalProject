@@ -9,43 +9,49 @@
 #define INTROSCREEN_H_
 #include "BaseObject.h"
 #include "Font.h"
+#include "Volume.h"
+#include "InsertCredit.h"
 
 class IntroScreen {
 public:
-//	m_vFont = { "-","V","O","L","U","M","E","+" };
+
 
 	IntroScreen();
 	virtual ~IntroScreen();
 
-	void loadButtonFont(SDL_Renderer* renderer);
 
-	void setButtonsPositionDimension(SDL_Renderer* renderer);
+	//Load intro screen
+	void loadIntroScreen(SDL_Renderer* renderer);
 
+	// Handle event
+//	void handleEvent( SDL_Event& e, int x,int y );
 
 
 	BaseObject& getBackground();
 	void setBackground(const BaseObject& background);
+
 	Font& getInfoButton();
 	void setInfoButton(const Font& infoButton);
-	Font& getInsertCredit() ;
-	void setInsertCredit(const Font& insertCredit);
+
 	Font& getResumeGameButton() ;
 	void setResumeGameButton(const Font& resumeGameButton);
+
 	Font& getStartNewGameButton();
 	void setStartNewGameButton(const Font& startNewGameButton);
 
-	BaseObject& getVolumeButtonMinus();
-	BaseObject& getVolumeButtonPlus();
+	Volume& getVolume();
+	void setVolume( Volume& volume);
+
+	InsertCredit& getInsertCredit();
+	void setInsertCredit(InsertCredit& insertCredit);
 
 private:
 	BaseObject m_background;
 
 	Font m_startNewGameButton;
 	Font m_resumeGameButton;
-	Font m_insertCredit;
-//	std::vector <Font> m_vFont;
-	BaseObject m_volumeButtonPlus;
-	BaseObject m_volumeButtonMinus;
+	InsertCredit m_insertCredit;
+	Volume m_volume;
 	Font m_infoButton;
 
 };

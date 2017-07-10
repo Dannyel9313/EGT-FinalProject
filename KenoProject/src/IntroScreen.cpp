@@ -32,14 +32,6 @@ void IntroScreen::setInfoButton(const Font& infoButton) {
 	m_infoButton = infoButton;
 }
 
-Font& IntroScreen::getInsertCredit() {
-	return m_insertCredit;
-}
-
-void IntroScreen::setInsertCredit(const Font& insertCredit) {
-	m_insertCredit = insertCredit;
-}
-
 Font& IntroScreen::getResumeGameButton() {
 	return m_resumeGameButton;
 }
@@ -56,42 +48,14 @@ void IntroScreen::setStartNewGameButton(const Font& startNewGameButton) {
 	m_startNewGameButton = startNewGameButton;
 }
 
-//Font& IntroScreen::getVolumeButton() {
-//	return m_volumeButton;
-//}
-
-void IntroScreen::setButtonsPositionDimension(SDL_Renderer* renderer) {
-
-	m_startNewGameButton.setPosition(530, 130);
-	m_startNewGameButton.setDimensions(introButton_width, introButton_height);
-
-}
-
-void IntroScreen::loadButtonFont(SDL_Renderer* renderer) {
-<<<<<<< HEAD
-	m_background.loadTexture("IntroKenoImage2.png", renderer);
-	SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
-=======
+void IntroScreen::loadIntroScreen(SDL_Renderer* renderer) {
 
 	int offset = 130;
->>>>>>> 37632bf4ba0d482259692b9c2f55e758cd2eaba8
 
 	m_startNewGameButton.setFont(TTF_OpenFont("Pozo.ttf", 50));
 	m_resumeGameButton.setFont(TTF_OpenFont("Pozo.ttf", 50));
-	m_insertCredit.setFont(TTF_OpenFont("Pozo.ttf", 50));
 	m_infoButton.setFont(TTF_OpenFont("Pozo.ttf", 50));
-//	m_volumeButton.setFont(TTF_OpenFont("Pozo.ttf", 50));
 
-<<<<<<< HEAD
-	m_startNewGameButton.LoadFromRenderedText("START GAME", renderer,
-			m_startNewGameButton.setButtonColor(255, 255, 255));
-	m_startNewGameButton.textRender(530, 130,
-			m_startNewGameButton.getKTexture(), renderer);
-	m_resumeGameButton.LoadFromRenderedText("RESUME GAME", renderer,
-			m_resumeGameButton.setButtonColor(255, 255, 255));
-	m_resumeGameButton.textRender(530, 220, m_resumeGameButton.getKTexture(),
-			renderer);
-=======
 	m_startNewGameButton.LoadFromRenderedText("START NEW GAME", renderer,
 			m_startNewGameButton.setButtonColor(255, 255, 255));
 
@@ -106,7 +70,9 @@ void IntroScreen::loadButtonFont(SDL_Renderer* renderer) {
 		m_background.loadTexture("IntroKenoImage2.png", renderer);
 		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
 
-		m_startNewGameButton.textRender(530, i,
+		m_startNewGameButton.setPosition(530, i, introButton_width,
+				introButton_height);
+		m_startNewGameButton.textRender(m_startNewGameButton.getKRect(),
 				m_startNewGameButton.getKTexture(), renderer);
 
 		SDL_RenderPresent(renderer);
@@ -117,11 +83,15 @@ void IntroScreen::loadButtonFont(SDL_Renderer* renderer) {
 		m_background.loadTexture("IntroKenoImage2.png", renderer);
 		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
 
-		m_startNewGameButton.textRender(530, 130,
+		m_startNewGameButton.setPosition(530, 130, introButton_width,
+				introButton_height);
+		m_startNewGameButton.textRender(m_startNewGameButton.getKRect(),
 				m_startNewGameButton.getKTexture(), renderer);
 
-		m_resumeGameButton.textRender(530, i, m_resumeGameButton.getKTexture(),
-				renderer);
+		m_resumeGameButton.setPosition(530, i, introButton_width,
+				introButton_height);
+		m_resumeGameButton.textRender(m_resumeGameButton.getKRect(),
+				m_resumeGameButton.getKTexture(), renderer);
 		SDL_RenderPresent(renderer);
 
 	}
@@ -130,37 +100,113 @@ void IntroScreen::loadButtonFont(SDL_Renderer* renderer) {
 		m_background.loadTexture("IntroKenoImage2.png", renderer);
 		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
 
-		m_startNewGameButton.textRender(530, 130,
+		m_startNewGameButton.setPosition(530, 130, introButton_width,
+				introButton_height);
+		m_startNewGameButton.textRender(m_startNewGameButton.getKRect(),
 				m_startNewGameButton.getKTexture(), renderer);
 
-		m_resumeGameButton.textRender(530, 220,
+		m_resumeGameButton.setPosition(530, 220, introButton_width,
+				introButton_height);
+		m_resumeGameButton.textRender(m_resumeGameButton.getKRect(),
 				m_resumeGameButton.getKTexture(), renderer);
 
-		m_infoButton.textRender(530, i, m_infoButton.getKTexture(),
-				renderer);
+		m_infoButton.setPosition(530, i, introButton_width, introButton_height);
+		m_infoButton.textRender(m_infoButton.getKRect(),
+				m_infoButton.getKTexture(), renderer);
 
 		SDL_RenderPresent(renderer);
 
 	}
->>>>>>> 37632bf4ba0d482259692b9c2f55e758cd2eaba8
+	m_volume.LoadVolumeElements(renderer);
+	m_insertCredit.loadCreditElements(renderer);
 
-	m_volumeButtonPlus.loadTexture("volumeButton.png", renderer);
-	m_volumeButtonPlus.buttonRender(69, 76, 170, 490,
-			m_volumeButtonPlus.getKTexture(), renderer);
-	m_volumeButtonMinus.loadTexture("volumeButton.png", renderer);
-	m_volumeButtonMinus.buttonRender(366, 78, 11, 490,
-			m_volumeButtonMinus.getKTexture(), renderer);
-
+	SDL_RenderPresent(renderer);
 }
 
-//void IntroScreen::setVolumeButton(const Font& volumeButton) {
-//	m_volumeButton = volumeButton;
-//}
-
-BaseObject& IntroScreen::getVolumeButtonMinus() {
-	return m_volumeButtonMinus;
+Volume& IntroScreen::getVolume() {
+	return m_volume;
 }
 
-BaseObject& IntroScreen::getVolumeButtonPlus() {
-	return m_volumeButtonPlus;
+void IntroScreen::setVolume(Volume& volume) {
+	m_volume = volume;
 }
+
+InsertCredit& IntroScreen::getInsertCredit() {
+	return m_insertCredit;
+}
+
+void IntroScreen::setInsertCredit(InsertCredit& insertCredit) {
+	m_insertCredit = insertCredit;
+}
+
+//void IntroScreen::handleEvent( SDL_Event& e,int x, int y)
+//{
+//
+//
+//
+//	if( e.type == SDL_MOUSEMOTION ){
+//		if(m_infoButton.isClicked(x,y)){
+//
+//		m_infoButton.changeColor();
+//		}
+//	}
+//
+//
+//
+//
+//
+//
+////
+////		switch( e.window.event )
+////		{
+////
+////			case SDL_WINDOWEVENT_SIZE_CHANGED:
+////			mWidth = e.window.data1;
+////			mHeight = e.window.data2;
+////			SDL_RenderPresent( gRenderer );
+////			break;
+////
+////
+////			case SDL_WINDOWEVENT_EXPOSED:
+////			SDL_RenderPresent( gRenderer );
+////			break;
+////
+////
+////			case SDL_WINDOWEVENT_ENTER:
+////			mMouseFocus = true;
+////			updateCaption = true;
+////			break;
+////
+////
+////			case SDL_WINDOWEVENT_LEAVE:
+////			mMouseFocus = false;
+////			updateCaption = true;
+////			break;
+////
+////			//Window has keyboard focus
+////			case SDL_WINDOWEVENT_FOCUS_GAINED:
+////			mKeyboardFocus = true;
+////			updateCaption = true;
+////			break;
+////
+////			//Window lost keyboard focus
+////			case SDL_WINDOWEVENT_FOCUS_LOST:
+////			mKeyboardFocus = false;
+////			updateCaption = true;
+////			break;
+////
+////			//Window minimized
+////			case SDL_WINDOWEVENT_MINIMIZED:
+////            mMinimized = true;
+////            break;
+////
+////			//Window maxized
+////			case SDL_WINDOWEVENT_MAXIMIZED:
+////			mMinimized = false;
+////            break;
+////
+////			//Window restored
+////			case SDL_WINDOWEVENT_RESTORED:
+////			mMinimized = false;
+////            break;
+//		}

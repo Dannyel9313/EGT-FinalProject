@@ -7,4 +7,5 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
 #include <vector>
+#include "Globals.h"
 #endif //Include.h

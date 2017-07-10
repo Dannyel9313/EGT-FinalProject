@@ -16,11 +16,14 @@ class BaseObject
 		// button renderer
 		void buttonRender(int xCut, int yCut, int x, int y, SDL_Texture* texture, SDL_Renderer* renderer);
 
+		// verify if is click
+		bool isClicked(int x, int y);
+
 		//Load image from texture
 		void loadTexture(std::string picPath, SDL_Renderer*);
 
 		//Set rect position
-		SDL_Rect* setPosition(int x, int y);
+		SDL_Rect setPosition(int x, int y,int w, int h);
 
 		//Set rect dimensions
 		void setDimensions(int w, int h);
@@ -49,7 +52,7 @@ class BaseObject
 
 	private:
 		SDL_Texture* m_KTexture;
-		SDL_Rect* m_KRect;
+		SDL_Rect m_KRect;
 
 
 };

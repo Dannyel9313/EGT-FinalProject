@@ -19,11 +19,7 @@ Font::~Font() {
 void Font::LoadFromRenderedText(std::string textureText, SDL_Renderer* render,
 		SDL_Color textColor) {
 
-<<<<<<< HEAD
-	SDL_Surface* textSurface = TTF_RenderText_Solid(m_font, textureText.c_str(),
-=======
 	SDL_Surface* textSurface = TTF_RenderText_Blended(m_font, textureText.c_str(),
->>>>>>> 37632bf4ba0d482259692b9c2f55e758cd2eaba8
 			textColor);
 	if (textSurface == NULL) {
 		std::cerr << "Problem with create text surface !" << std::endl;
@@ -55,26 +51,21 @@ void Font::setFont(TTF_Font* font) {
 	m_font = font;
 }
 
-void Font::textRender(int x, int y, SDL_Texture* textureText,
-<<<<<<< HEAD
-		SDL_Renderer* renderer) {
-	for (int i = 640; i > y; i-=5) {
-		SDL_Rect buttonRect = { x, i, introButton_width, introButton_height };
-		SDL_RenderCopy(renderer, textureText, NULL, &buttonRect);
-		SDL_RenderPresent(renderer);
-		if(i == y)
-		{
-			break;
-		}
-
-
-	}
-=======
+void Font::textRender(SDL_Rect* rect, SDL_Texture* textureText,
 	SDL_Renderer* renderer) {
 
-			SDL_Rect buttonRect = { x, y, introButton_width, introButton_height };
 
-			SDL_RenderCopy(renderer, textureText, NULL, &buttonRect);
->>>>>>> 37632bf4ba0d482259692b9c2f55e758cd2eaba8
 
+			SDL_RenderCopy(renderer, textureText, NULL, rect);
+
+}
+
+SDL_Color Font::getChangedButtonColor(){
+	return m_changedButtonColor;
+}
+
+void Font::changeColor() {
+	this->m_buttonColor.r = m_changedButtonColor.r;
+	this->m_buttonColor.g = m_changedButtonColor.g;
+	this->m_buttonColor.b = m_changedButtonColor.b;
 }

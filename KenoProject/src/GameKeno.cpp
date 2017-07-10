@@ -36,7 +36,7 @@ bool GameKeno::init()
 			} 
 			else {
 				kenoRenderer = SDL_CreateRenderer(kenoWindow, -1,
-						 SDL_RENDERER_PRESENTVSYNC);
+					SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 				if (kenoRenderer == NULL) 
 				{
 					std::cerr << "Renderer could not be created !" << std::endl;
@@ -83,6 +83,8 @@ bool GameKeno::loadMedia()
 //				m_introMode.getStartNewGameButton().setButtonColor(255,255,255));
 //		m_introMode.getResumeGameButton().LoadFromRenderedText("RESUME GAME",kenoRenderer,
 //				m_introMode.getResumeGameButton().setButtonColor(255,255,255));
+
+
 	return success;
 }
 
@@ -101,17 +103,10 @@ void GameKeno::close()
 	SDL_DestroyWindow(kenoWindow);
 	kenoWindow = NULL;
 
-	//Quit SDL
-	SDL_Quit();
-	
-	//Quit true type font
 	TTF_Quit();
-
-	//Quit image
 	IMG_Quit();
-
-	//Quit music
-	MIX_Quit();
+	SDL_Quit();
+	//TODO free music
 }
 
 void GameKeno::setKenoWindow(SDL_Window * window) 
