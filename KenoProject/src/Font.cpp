@@ -19,7 +19,7 @@ Font::~Font() {
 void Font::LoadFromRenderedText(std::string textureText, SDL_Renderer* render,
 		SDL_Color textColor) {
 
-	SDL_Surface* textSurface = TTF_RenderText_Solid(m_font, textureText.c_str(),
+	SDL_Surface* textSurface = TTF_RenderText_Blended(m_font, textureText.c_str(),
 			textColor);
 	if (textSurface == NULL) {
 		std::cerr << "Problem with create text surface !" << std::endl;
@@ -52,17 +52,10 @@ void Font::setFont(TTF_Font* font) {
 }
 
 void Font::textRender(int x, int y, SDL_Texture* textureText,
-		SDL_Renderer* renderer) {
-	for (int i = 640; i > y; i-=5) {
-		SDL_Rect buttonRect = { x, i, introButton_width, introButton_height };
-		SDL_RenderCopy(renderer, textureText, NULL, &buttonRect);
-		SDL_RenderPresent(renderer);
-		if(i == y)
-		{
-			break;
-		}
+	SDL_Renderer* renderer) {
 
+			SDL_Rect buttonRect = { x, y, introButton_width, introButton_height };
 
-	}
+			SDL_RenderCopy(renderer, textureText, NULL, &buttonRect);
 
 }

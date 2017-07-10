@@ -33,7 +33,7 @@ void BaseObject::free(SDL_Texture* textureToFree) {
 		SDL_DestroyTexture(textureToFree);
 		textureToFree = NULL;
 	}
-//	this->m_KRect = NULL;
+
 }
 
 SDL_Rect* BaseObject::getKRect() {
