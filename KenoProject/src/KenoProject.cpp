@@ -24,7 +24,7 @@ int main(int argc, char* args[]) {
 					if (e.type == SDL_QUIT) {
 						quit = true;
 					}
-					int x, y;
+					game.getIntroMode().getVolume().moveVolumeDot(&e);
 
 
 
@@ -37,17 +37,6 @@ int main(int argc, char* args[]) {
 
 				}
 game.getIntroMode().introScreenPresent(game.getKenoRenderer());
-//				if(game.getIntroMode().getInfoButton().isClicked(game.getIntroMode().getInfoButton().getKRect()))
-//										{
-//											//std::cout << "->" <<game.getIntroMode().getInfoButton().isClicked(game.getIntroMode().getInfoButton().getKRect())<< "<-" << std::endl;
-//											game.getIntroMode().getInfoButton().setChangeButtonColor(255,0,39);
-//											game.getIntroMode().getInfoButton().LoadFromRenderedText("INFO",game.getKenoRenderer(),game.getIntroMode().getInfoButton().getChangedButtonColor());
-//											game.getIntroMode().introScreenPresent(game.getKenoRenderer());
-//										}else{
-//											game.getIntroMode().getInfoButton().setChangeButtonColor(255,255,255);
-//																						game.getIntroMode().getInfoButton().LoadFromRenderedText("INFO",game.getKenoRenderer(),game.getIntroMode().getInfoButton().getChangedButtonColor());
-//																						game.getIntroMode().introScreenPresent(game.getKenoRenderer());
-//										}
 
 //				SDL_RenderPresent(game.getKenoRenderer());
 				introMode = false;

@@ -94,7 +94,17 @@ void GameKeno::close()
 	TTF_CloseFont(m_introMode.getStartNewGameButton().getFont());
 	TTF_CloseFont(m_introMode.getResumeGameButton().getFont());
 	TTF_CloseFont(m_introMode.getInfoButton().getFont());
-//	TTF_CloseFont(m_introMode.getVolumeButton().getFont());
+	TTF_CloseFont(m_introMode.getVolume().getFontPlus().getFont());
+	TTF_CloseFont(m_introMode.getVolume().getFontVolume().getFont());
+	TTF_CloseFont(m_introMode.getVolume().getFontMinus().getFont());
+	TTF_CloseFont(m_introMode.getInsertCredit().getFontPlus().getFont());
+	TTF_CloseFont(m_introMode.getInsertCredit().getFontMinus().getFont());
+	TTF_CloseFont(m_introMode.getInsertCredit().getFontInsertCredit().getFont());
+
+	SDL_DestroyTexture(m_introMode.getBackground().getKTexture());
+	SDL_DestroyTexture(m_introMode.getInsertCredit().getFontCreditRect().getKTexture());
+	SDL_DestroyTexture(m_introMode.getVolume().getFontDot().getKTexture());
+	SDL_DestroyTexture(m_introMode.getVolume().getFontDotLine().getKTexture());
 
 
 	SDL_DestroyRenderer(kenoRenderer);
@@ -103,6 +113,7 @@ void GameKeno::close()
 	SDL_DestroyWindow(kenoWindow);
 	kenoWindow = NULL;
 
+	Mix_Quit();
 	TTF_Quit();
 	IMG_Quit();
 	SDL_Quit();

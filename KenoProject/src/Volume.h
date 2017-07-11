@@ -18,7 +18,7 @@ public:
 	// Load volume elements
 	void LoadVolumeElements(SDL_Renderer* renderer);
 
-	void moveVolumeDot(int x, int y);
+	void moveVolumeDot(SDL_Event* e);
 
 	// Get elements
 	Font& getFontDot();
@@ -26,14 +26,8 @@ public:
 	Font& getFontMinus();
 	Font& getFontPlus();
 	Font& getFontVolume();
-
-	int getMovingPoint() const {
-		return m_movingPoint;
-	}
-
-	void setMovingPoint(int movingPoint) {
-		m_movingPoint = movingPoint;
-	}
+	int getMovingPoint() const;
+	void setMovingPoint(int movingPoint);
 
 private:
 
@@ -47,6 +41,7 @@ private:
 	void setElementsColor();
 
 	int m_movingPoint;
+	int m_volumePoint ;
 
 	Font m_FontPlus;
 	Font m_FontMinus;

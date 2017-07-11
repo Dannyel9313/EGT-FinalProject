@@ -56,6 +56,8 @@ void IntroScreen::loadIntroScreen(SDL_Renderer* renderer) {
 			Mix_LoadMUS(
 					"Deya Dova - Footsteps In The Stars Temple Step Project  DJ Dakini Remix.mp3");
 
+
+
 	setElementsFont();
 	setElementsColor();
 
@@ -122,8 +124,8 @@ void IntroScreen::loadIntroScreen(SDL_Renderer* renderer) {
 	}
 	m_volume.LoadVolumeElements(renderer);
 	m_insertCredit.loadCreditElements(renderer);
-
-	SDL_RenderPresent(renderer);
+//
+//	SDL_RenderPresent(renderer);
 }
 
 Volume& IntroScreen::getVolume() {
@@ -176,6 +178,8 @@ void IntroScreen::introScreenPresent(SDL_Renderer* renderer) {
 	setPositionDimension();
 	setElementsColor();
 
+//	Mix_PlayMusic(m_introSong,-1);
+
 	m_startNewGameButton.LoadFromRenderedText("START NEW GAME", renderer,
 				m_startNewGameButton.getButtonColor());
 
@@ -217,74 +221,3 @@ Mix_Chunk*& IntroScreen::getChunkClic() {
 Mix_Music*& IntroScreen::getIntroSong() {
 	return m_introSong;
 }
-//void IntroScreen::handleEvent( SDL_Event& e,int x, int y)
-//{
-//
-//
-//
-//	if( e.type == SDL_MOUSEMOTION ){
-//		if(m_infoButton.isClicked(x,y)){
-//
-//		m_infoButton.changeColor();
-//		}
-//	}
-//
-//
-//
-//
-//
-//
-////
-////		switch( e.window.event )
-////		{
-////
-////			case SDL_WINDOWEVENT_SIZE_CHANGED:
-////			mWidth = e.window.data1;
-////			mHeight = e.window.data2;
-////			SDL_RenderPresent( gRenderer );
-////			break;
-////
-////
-////			case SDL_WINDOWEVENT_EXPOSED:
-////			SDL_RenderPresent( gRenderer );
-////			break;
-////
-////
-////			case SDL_WINDOWEVENT_ENTER:
-////			mMouseFocus = true;
-////			updateCaption = true;
-////			break;
-////
-////
-////			case SDL_WINDOWEVENT_LEAVE:
-////			mMouseFocus = false;
-////			updateCaption = true;
-////			break;
-////
-////			//Window has keyboard focus
-////			case SDL_WINDOWEVENT_FOCUS_GAINED:
-////			mKeyboardFocus = true;
-////			updateCaption = true;
-////			break;
-////
-////			//Window lost keyboard focus
-////			case SDL_WINDOWEVENT_FOCUS_LOST:
-////			mKeyboardFocus = false;
-////			updateCaption = true;
-////			break;
-////
-////			//Window minimized
-////			case SDL_WINDOWEVENT_MINIMIZED:
-////            mMinimized = true;
-////            break;
-////
-////			//Window maxized
-////			case SDL_WINDOWEVENT_MAXIMIZED:
-////			mMinimized = false;
-////            break;
-////
-////			//Window restored
-////			case SDL_WINDOWEVENT_RESTORED:
-////			mMinimized = false;
-////            break;
-//		}

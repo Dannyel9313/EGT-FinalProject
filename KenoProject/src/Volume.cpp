@@ -10,6 +10,7 @@
 Volume::Volume() {
 	// TODO Auto-generated constructor stub
 	m_movingPoint = 59;
+	m_volumePoint = 0;
 }
 
 Volume::~Volume() {
@@ -71,13 +72,15 @@ void Volume::setElementsPositionDimension() {
 	m_FontDotLine.setPosition(63, 481, introVolumeSlider_width,
 			introVolumeSlider_height);
 
-	m_FontDot.setPosition(m_movingPoint, 498, introVolumeDot_width, introVolumeDot_height);
+	m_FontDot.setPosition(m_movingPoint, 498, introVolumeDot_width,
+			introVolumeDot_height);
 
 	m_FontPlus.setPosition(183, 495, introVolumeButtons_width,
 			introVolumeButtons_height);
 
 	m_FontMinus.setPosition(23, 495, introVolumeButtons_width,
-			introVolumeButtons_height);
+
+	introVolumeButtons_height);
 
 	m_FontVolume.setPosition(23, 395, introButton_width, introButton_height);
 }
@@ -89,35 +92,53 @@ void Volume::setElementsFont() {
 	m_FontVolume.setFont(TTF_OpenFont("Pozo.ttf", 40));
 }
 
-//void Volume::moveVolumeDot(int x, int y) {
-//
-//	int volumePoint = 0;
-//	if (m_FontPlus.isClicked(x, y, m_FontPlus.getKRect())) {
-//
-//		volumePoint++;
-//		Mix_VolumeMusic(volumePoint);
-//		m_FontDot.setPosition(movingPoint, 498, introVolumeDot_width,
-//				introVolumeDot_height);
-//
-//	}
-//
-//}
+void Volume::moveVolumeDot(SDL_Event* e) {
+
+	if (e->type == SDL_MOUSEBUTTONDOWN) {
+		if (m_FontPlus.isClicked(m_FontPlus.getKRect())) {
+			if (m_volumePoint > -1 && m_volumePoint < 101 && m_movingPoint > 58
+					&& m_movingPoint < 158) {
+				m_volumePoint+=10;
+				m_movingPoint+=10;
+				std::cout << "->" << m_movingPoint << "<-" << "->" << m_volumePoint << "<-" << std::endl;
+				Mix_VolumeMusic(m_volumePoint);
+			}
+		}
+		if(m_FontMinus.isClicked(m_FontMinus.getKRect())) {
+			if (m_volumePoint > -1 && m_volumePoint < 101 && m_movingPoint > 58
+					&& m_movingPoint < 158) {
+				m_volumePoint-=10;
+				m_movingPoint-=10;
+				std::cout << "->" << m_movingPoint << "<-" << std::endl;
+				Mix_VolumeMusic(m_volumePoint);
+			}
+		}
+		std::cout << "->" << m_movingPoint << "<-" << "->" << m_volumePoint << "<-" << std::endl;
+	}
+}
 
 void Volume::setElementsColor() {
-	if(m_FontPlus.isClicked(m_FontPlus.getKRect())){
+	if (m_FontPlus.isClicked(m_FontPlus.getKRect())) {
 		m_FontPlus.setButtonColor(255, 0, 39);
-	}else{
-	m_FontPlus.setButtonColor(255, 255, 255);
+	} else {
+		m_FontPlus.setButtonColor(255, 255, 255);
 	}
-	if(m_FontMinus.isClicked(m_FontMinus.getKRect())){
+	if (m_FontMinus.isClicked(m_FontMinus.getKRect())) {
 		m_FontMinus.setButtonColor(255, 0, 39);
-	}else{
+	} else {
 		m_FontMinus.setButtonColor(255, 255, 255);
 	}
-		m_FontVolume.setButtonColor(255, 255, 255);
+	m_FontVolume.setButtonColor(255, 255, 255);
 }
 
 Font& Volume::getFontVolume() {
 	return m_FontVolume;
 }
 
+int Volume::getMovingPoint() const {
+	return m_movingPoint;
+}
+
+void Volume::setMovingPoint(int movingPoint) {
+	m_movingPoint = movingPoint;
+}
