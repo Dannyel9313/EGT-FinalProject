@@ -7,7 +7,7 @@
 
 #ifndef BONUS_H_
 #define BONUS_H_
-#include"Game.h"
+
 
 #include "BaseObject.h"
 
@@ -15,6 +15,7 @@ class Bonus: public BaseObject {
 public:
 	Bonus();
 	virtual ~Bonus();
+	void bonusWindow(SDL_Renderer *,double);
 	void addBonusPercent(double );
 
 private:
