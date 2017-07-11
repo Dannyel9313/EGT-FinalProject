@@ -29,20 +29,14 @@ public:
 	SDL_Color getButtonColor();
 
 	//set color
-	SDL_Color setButtonColor(int red, int green, int blue);
+	void setButtonColor(int red, int green, int blue);
 
 	//set font
 	void setFont(TTF_Font* font);
 
-	//Get changed color
-	SDL_Color getChangedButtonColor();
-
-	// Change color
-	void changeColor();
 
 private:
 	SDL_Color m_buttonColor;
-	SDL_Color m_changedButtonColor = {181,230,29};
 	TTF_Font* m_font;
 };
 

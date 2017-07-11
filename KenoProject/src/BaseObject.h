@@ -17,7 +17,7 @@ class BaseObject
 		void buttonRender(int xCut, int yCut, int x, int y, SDL_Texture* texture, SDL_Renderer* renderer);
 
 		// verify if is click
-		bool isClicked(int x, int y);
+		bool isClicked(SDL_Rect* rect);
 
 		//Load image from texture
 		void loadTexture(std::string picPath, SDL_Renderer*);

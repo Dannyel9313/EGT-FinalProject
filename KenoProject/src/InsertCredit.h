@@ -17,12 +17,6 @@ public:
 	// Load credit elements
 	void loadCreditElements(SDL_Renderer* renderer);
 
-	// Set font of elements
-	void setElementsFont();
-
-	// Set position and dimension of elements
-	void setElementsPositionDimension();
-
 	int getCredit() const;
 	void setCredit(int credit);
 
@@ -33,6 +27,15 @@ public:
 	Font& getFontCreditRect();
 
 private:
+
+	// Set font of elements
+	void setElementsFont();
+
+	// Set position and dimension of elements
+	void setElementsPositionDimension();
+
+	// Set Color
+	void setElementsColor();
 
 	int credit;
 

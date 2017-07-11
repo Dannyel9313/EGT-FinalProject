@@ -44,25 +44,26 @@ void InsertCredit::loadCreditElements(SDL_Renderer* renderer) {
 
 	setElementsFont();
 	setElementsPositionDimension();
+	setElementsColor();
 
 	m_FontCreditRect.loadTexture("creditRect.png",renderer);
 	SDL_RenderCopy(renderer,m_FontCreditRect.getKTexture(),
 			NULL,m_FontCreditRect.getKRect());
 
 	m_FontInsertCredit.LoadFromRenderedText("INSERT CREDIT", renderer,
-			m_FontInsertCredit.setButtonColor(255, 255, 255));
+			m_FontInsertCredit.getButtonColor());
 
 	m_FontInsertCredit.textRender(m_FontInsertCredit.getKRect(),
 			m_FontInsertCredit.getKTexture(), renderer);
 
 	m_FontPlus.LoadFromRenderedText("+", renderer,
-			m_FontPlus.setButtonColor(255, 255, 255));
+			m_FontPlus.getButtonColor());
 
 	m_FontPlus.textRender(m_FontPlus.getKRect(), m_FontPlus.getKTexture(),
 			renderer);
 
 	m_FontMinus.LoadFromRenderedText("-", renderer,
-			m_FontMinus.setButtonColor(255, 255, 255));
+			m_FontMinus.getButtonColor());
 
 	m_FontMinus.textRender(m_FontMinus.getKRect(), m_FontMinus.getKTexture(),
 			renderer);
@@ -90,6 +91,26 @@ void InsertCredit::setElementsPositionDimension() {
 			introVolumeButtons_height);
 	m_FontCreditRect.setPosition(562, 481, introVolumeSlider_width,
 			introVolumeSlider_height);
+
+}
+
+void InsertCredit::setElementsColor() {
+	m_FontCredit.setButtonColor(255,255,255);
+	if(m_FontPlus.isClicked(m_FontPlus.getKRect())){
+		m_FontPlus.setButtonColor(255,0,39);
+	}else
+	{
+	m_FontPlus.setButtonColor(255,255,255);
+	}
+	if(m_FontMinus.isClicked(m_FontMinus.getKRect())){
+		m_FontMinus.setButtonColor(255,0,39);
+	}else
+	{
+	m_FontMinus.setButtonColor(255,255,255);
+	}
+	m_FontInsertCredit.setButtonColor(255,255,255);
+
+
 
 }
 

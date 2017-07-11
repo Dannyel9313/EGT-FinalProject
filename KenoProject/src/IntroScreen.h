@@ -23,6 +23,11 @@ public:
 	//Load intro screen
 	void loadIntroScreen(SDL_Renderer* renderer);
 
+
+	bool loadMusic();
+
+	void introScreenPresent(SDL_Renderer* renderer);
+
 	// Handle event
 //	void handleEvent( SDL_Event& e, int x,int y );
 
@@ -42,10 +47,22 @@ public:
 	Volume& getVolume();
 	void setVolume( Volume& volume);
 
+	void setPositionDimension();
+
 	InsertCredit& getInsertCredit();
 	void setInsertCredit(InsertCredit& insertCredit);
 
+
+	Mix_Chunk*& getChunkClic();
+	Mix_Music*& getIntroSong();
+
 private:
+	// Set elements font
+	void setElementsFont();
+
+	// Set elements color
+	void setElementsColor();
+
 	BaseObject m_background;
 
 	Font m_startNewGameButton;
@@ -53,6 +70,9 @@ private:
 	InsertCredit m_insertCredit;
 	Volume m_volume;
 	Font m_infoButton;
+
+	Mix_Music* m_introSong;
+	Mix_Chunk* m_chunkClic;
 
 };
 
