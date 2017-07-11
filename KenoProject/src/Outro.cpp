@@ -9,55 +9,47 @@
 
 Outro::Outro()
 {
-	setWinningMoney(0);
+
 }
 
 Outro::~Outro() {
 	// TODO Auto-generated destructor stub
 }
 
-void Outro::setWinningMoney(double count)
-{
-	winningMoney = count;
-}
 
-int Outro::getWinningMoney()
-{
-	return winningMoney;
-}
 
 
 void Outro::winingWindow(SDL_Renderer * renderer) {
 	SDL_Rect Message_rect;
-		Message_rect.x = 200;
-		Message_rect.y = 200;
-		Message_rect.w = 400;
-		Message_rect.h = 400;
+		Message_rect.x = 0;
+		Message_rect.y = 0;
+		Message_rect.w = 800;
+		Message_rect.h = 800;
 
 		render(renderer, &Message_rect);
 
 }
 
-void Outro::writingOnScreen(SDL_Renderer * renderer) {
-
-
-
-/*	int count=0;
-	if (winningMoney>0){
-			count++;
-
-	}
-
-	TTF_Font* Sans = TTF_OpenFont("Sans.ttf", 24);
-
-	SDL_Color White = {255, 255, 255};
-	//SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Sans, count, White);
-	//SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
-	SDL_Rect Message_rect;
-	Message_rect.x = 0;
-	Message_rect.y = 0;
-	Message_rect.w = 100;
-	Message_rect.h = 100;
-
-	//SDL_RenderCopy(renderer, Message, NULL, &Message_rect); */
+void Outro::loadFromTTF() {
+	font = TTF_OpenFont("Italic.ttf", 24);
+	TTF_SetFontStyle(font, TTF_STYLE_ITALIC);
 }
+
+
+
+void Outro::writingOnScreen(SDL_Renderer * renderer,double money) {
+	//std::string str = money;
+	SDL_Color color={0,0,0};
+	SDL_Rect rect = {400,500 , 100, 100};
+
+	loadTextureFromFont(doubleToString(money), renderer, font, color);
+	render(renderer, &rect);
+
+}
+
+std::string Outro::doubleToString(double var)
+{
+	std::string str = boost::lexical_cast<std::string> (var);
+	return str.c_str();
+}
+

@@ -16,13 +16,13 @@ class Outro: public BaseObject
 public:
 	Outro();
 	virtual ~Outro();
-	void setWinningMoney(double);
-	int getWinningMoney();
+	void loadFromTTF();
 	void winingWindow(SDL_Renderer *);
-	void writingOnScreen(SDL_Renderer *);
+	void writingOnScreen(SDL_Renderer *,double);
 private:
-	double winningMoney;
 
+	TTF_Font *  font;
+	std::string doubleToString(double);
 };
 
 #endif /* OUTRO_H_ */
