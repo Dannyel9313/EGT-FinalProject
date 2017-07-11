@@ -23,6 +23,9 @@ class NumbersGrid: public BaseObject
 
 		//Loads clicking sound effect
 		bool loadSoundEffect(std:string);
+
+		//Number of hits
+		int numberOfHits();
 	private:
 		//Utility function load numbers in rectangles
 		void numbersInRects(SDL_Renderer *);

@@ -144,7 +144,6 @@ void NumbersGrid::pickRandomNumbers(SDL_Renderer * renderer, const SDL_Event & e
 	int r2;
 	if (isClicked(e, &rect))
 	{
-		createRects(renderer);
 		resetRandFlags();
 		for (int i = 0; i < 10; i++)
 		{
@@ -190,4 +189,21 @@ bool NumbersGrid::loadSoundEffect(str::string path)
 	}
 	
 	return success;
+}
+
+int NumbersGrid::numberOfHits()
+{
+	int count = 0;
+	for (int i = 0; i < 8; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			if (isClickedFlags[i][j] == 1 && 
+				isClickedFlags[i][j] == randomNumbersFlags[i][j])
+			{
+				count++;
+			}
+		}
+	}
+	return count;
 }
