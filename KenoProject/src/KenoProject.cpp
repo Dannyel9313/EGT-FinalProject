@@ -17,28 +17,31 @@ int main(int argc, char* args[]) {
 		} else {
 			SDL_SetRenderDrawColor(game.getKenoRenderer(), 255, 255, 255, 255);
 			SDL_RenderClear(game.getKenoRenderer());
-			SDL_Color color = {255, 0, 19};
+
 			game.getIntroMode().loadIntroScreen(game.getKenoRenderer());
+			int x,y;
 			while (!quit) {
 				while (SDL_PollEvent(&e) != 0) {
 					if (e.type == SDL_QUIT) {
 						quit = true;
 					}
 					game.getIntroMode().getVolume().moveVolumeDot(&e);
+					game.getIntroMode().getInsertCredit().setCreditToGame(&e);
+					SDL_GetMouseState(&x,&y);
 
-
+					std::cout << "x -> " << x << " y -> " << y << std::endl;
 
 
 
 //							SDL_RenderPresent(game.getKenoRenderer());
 				}
-//						std::cout << "x -> " << x << " y -> " << y << std::endl;
+
 				if (introMode) {
 
 				}
-game.getIntroMode().introScreenPresent(game.getKenoRenderer());
 
-//				SDL_RenderPresent(game.getKenoRenderer());
+				game.getIntroMode().introScreenPresent(game.getKenoRenderer());
+				SDL_RenderPresent(game.getKenoRenderer());
 				introMode = false;
 			}
 		}

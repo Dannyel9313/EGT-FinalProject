@@ -55,7 +55,7 @@ void IntroScreen::loadIntroScreen(SDL_Renderer* renderer) {
 	m_introSong =
 			Mix_LoadMUS(
 					"Deya Dova - Footsteps In The Stars Temple Step Project  DJ Dakini Remix.mp3");
-
+	Mix_PlayMusic(m_introSong,-1);
 
 
 	setElementsFont();
@@ -75,8 +75,8 @@ void IntroScreen::loadIntroScreen(SDL_Renderer* renderer) {
 		m_background.loadTexture("IntroKenoImage2.png", renderer);
 		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
 
-		m_startNewGameButton.setPosition(530, i, introButton_width,
-				introButton_height);
+		m_startNewGameButton.setPosition(430, i, introStartResumeButton_width,
+				introStartResumeButton_height);
 		m_startNewGameButton.textRender(m_startNewGameButton.getKRect(),
 				m_startNewGameButton.getKTexture(), renderer);
 
@@ -88,13 +88,13 @@ void IntroScreen::loadIntroScreen(SDL_Renderer* renderer) {
 		m_background.loadTexture("IntroKenoImage2.png", renderer);
 		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
 
-		m_startNewGameButton.setPosition(530, 130, introButton_width,
-				introButton_height);
+//		m_startNewGameButton.setPosition(430, 130, introStartResumeButton_width,
+//				introStartResumeButton_height);
 		m_startNewGameButton.textRender(m_startNewGameButton.getKRect(),
 				m_startNewGameButton.getKTexture(), renderer);
 
-		m_resumeGameButton.setPosition(530, i, introButton_width,
-				introButton_height);
+		m_resumeGameButton.setPosition(430, i, introStartResumeButton_width,
+				introStartResumeButton_height);
 		m_resumeGameButton.textRender(m_resumeGameButton.getKRect(),
 				m_resumeGameButton.getKTexture(), renderer);
 		SDL_RenderPresent(renderer);
@@ -105,13 +105,13 @@ void IntroScreen::loadIntroScreen(SDL_Renderer* renderer) {
 		m_background.loadTexture("IntroKenoImage2.png", renderer);
 		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
 
-		m_startNewGameButton.setPosition(530, 130, introButton_width,
-				introButton_height);
+//		m_startNewGameButton.setPosition(430, 130, introStartButton_width,
+//				introStartButton_height);
 		m_startNewGameButton.textRender(m_startNewGameButton.getKRect(),
 				m_startNewGameButton.getKTexture(), renderer);
 
-		m_resumeGameButton.setPosition(530, 220, introButton_width,
-				introButton_height);
+//		m_resumeGameButton.setPosition(530, 220, introButton_width,
+//				introButton_height);
 		m_resumeGameButton.textRender(m_resumeGameButton.getKRect(),
 				m_resumeGameButton.getKTexture(), renderer);
 
@@ -141,27 +141,35 @@ InsertCredit& IntroScreen::getInsertCredit() {
 }
 
 void IntroScreen::setPositionDimension() {
-	m_startNewGameButton.setPosition(530, 130, introButton_width,
-			introButton_height);
-	m_resumeGameButton.setPosition(530, 220, introButton_width,
-				introButton_height);
+	m_startNewGameButton.setPosition(430, 130, introStartResumeButton_width,
+			introStartResumeButton_height);
+	m_resumeGameButton.setPosition(430, 220, introStartResumeButton_width,
+				introStartResumeButton_height);
 	m_infoButton.setPosition(530, 300, introButton_width, introButton_height);
 
+}
+
+void IntroScreen::introScreenButtonsEffects() {
 }
 
 void IntroScreen::setElementsColor() {
 	if (m_startNewGameButton.isClicked(m_startNewGameButton.getKRect())) {
 		m_startNewGameButton.setButtonColor(255, 0, 39);
+
+
 	} else {
 		m_startNewGameButton.setButtonColor(255, 255, 255);
+
 	}
 	if (m_resumeGameButton.isClicked(m_resumeGameButton.getKRect())) {
 		m_resumeGameButton.setButtonColor(255, 0, 39);
+
 	} else {
 		m_resumeGameButton.setButtonColor(255, 255, 255);
 	}
 	if (m_infoButton.isClicked(m_infoButton.getKRect())) {
 		m_infoButton.setButtonColor(255, 0, 39);
+
 	} else {
 		m_infoButton.setButtonColor(255, 255, 255);
 	}
@@ -178,7 +186,7 @@ void IntroScreen::introScreenPresent(SDL_Renderer* renderer) {
 	setPositionDimension();
 	setElementsColor();
 
-//	Mix_PlayMusic(m_introSong,-1);
+
 
 	m_startNewGameButton.LoadFromRenderedText("START NEW GAME", renderer,
 				m_startNewGameButton.getButtonColor());
@@ -207,7 +215,7 @@ void IntroScreen::introScreenPresent(SDL_Renderer* renderer) {
 	m_volume.LoadVolumeElements(renderer);
 	m_insertCredit.loadCreditElements(renderer);
 
-	SDL_RenderPresent(renderer);
+
 }
 
 void IntroScreen::setInsertCredit(InsertCredit& insertCredit) {

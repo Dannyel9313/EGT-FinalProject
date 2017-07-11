@@ -9,8 +9,8 @@
 
 Volume::Volume() {
 	// TODO Auto-generated constructor stub
-	m_movingPoint = 59;
-	m_volumePoint = 0;
+	m_movingPoint = 109;
+	m_volumePoint = 50;
 }
 
 Volume::~Volume() {
@@ -113,7 +113,12 @@ void Volume::moveVolumeDot(SDL_Event* e) {
 				Mix_VolumeMusic(m_volumePoint);
 			}
 		}
-		std::cout << "->" << m_movingPoint << "<-" << "->" << m_volumePoint << "<-" << std::endl;
+//		m_FontDotLine.setPosition(63, 481, introVolumeSlider_width,
+//				introVolumeSlider_height);
+//
+//		m_FontDot.setPosition(m_movingPoint, 498, introVolumeDot_width,
+//				introVolumeDot_height);
+//		std::cout << "->" <<  << "<-" << "->" <<  << "<-" << std::endl;
 	}
 }
 

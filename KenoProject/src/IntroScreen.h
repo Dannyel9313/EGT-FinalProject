@@ -28,9 +28,7 @@ public:
 
 	void introScreenPresent(SDL_Renderer* renderer);
 
-	// Handle event
-//	void handleEvent( SDL_Event& e, int x,int y );
-
+	void introScreenButtonsEffects();
 
 	BaseObject& getBackground();
 	void setBackground(const BaseObject& background);

@@ -26,6 +26,8 @@ bool BaseObject::isClicked(SDL_Rect* rect) {
 
 void BaseObject::loadTexture(std::string picPath, SDL_Renderer * renderer) {
 
+	free();
+
 	SDL_Texture* newTexture = NULL;
 
 	SDL_Surface* loadedSurface = IMG_Load(picPath.c_str());
@@ -43,11 +45,11 @@ void BaseObject::loadTexture(std::string picPath, SDL_Renderer * renderer) {
 	m_KTexture = newTexture;
 }
 
-void BaseObject::free(SDL_Texture* textureToFree) {
+void BaseObject::free() {
 	//Free texture if it exists
-	if (textureToFree != NULL) {
-		SDL_DestroyTexture(textureToFree);
-		textureToFree = NULL;
+	if (m_KTexture != NULL) {
+		SDL_DestroyTexture(m_KTexture);
+		m_KTexture = NULL;
 	}
 
 }

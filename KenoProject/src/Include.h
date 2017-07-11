@@ -8,4 +8,6 @@
 #include <SDL2/SDL_mixer.h>
 #include <vector>
 #include "Globals.h"
+#include <boost/lexical_cast.hpp>
+
 #endif //Include.h

@@ -38,7 +38,7 @@ class BaseObject
 		void setAlpha(Uint8 alpha);
 
 		//Deallocates texture
-		void free(SDL_Texture* textureToFree);
+		void free();
 
 		//Get m_KTexture
 		SDL_Rect* getKRect();

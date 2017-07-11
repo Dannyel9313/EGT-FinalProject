@@ -17,6 +17,8 @@ public:
 	// Load credit elements
 	void loadCreditElements(SDL_Renderer* renderer);
 
+	void setCreditToGame(SDL_Event* e);
+
 	int getCredit() const;
 	void setCredit(int credit);
 
@@ -28,6 +30,8 @@ public:
 
 private:
 
+	const char * toString(int);
+
 	// Set font of elements
 	void setElementsFont();
 
@@ -37,7 +41,7 @@ private:
 	// Set Color
 	void setElementsColor();
 
-	int credit;
+	int m_credit;
 
 	Font m_FontInsertCredit;
 	Font m_FontPlus;
