@@ -31,7 +31,7 @@ void NumbersGrid::createRects(SDL_Renderer * renderer)
 			tempRect.x = xPos;
 		}
 		xPos = getKRect().x;
-		yPos += 32;
+		yPos += 33;
 		tempRect.y = yPos;
 		tempRect.x = xPos;
 	}
