@@ -9,17 +9,24 @@ const int SCREEN_HEIGHT = 640;
 const int introStartResumeButton_width = 300;
 const int introStartResumeButton_height = 80;
 
+// Size of info, volume, insert credit
 const int introButton_width = 200;
 const int introButton_height = 80;
 
+// Size of +,-
 const int introVolumeButtons_width = 40;
 const int introVolumeButtons_height = 40;
 
+// Size of volume slider
 const int introVolumeSlider_width = 120;
 const int introVolumeSlider_height = 80;
 
+// Size of volume dot
 const int introVolumeDot_width = 55;
 const int introVolumeDot_height = 40;
 
+// Size of info text
+const int infoText_width = 720;
+const int infoText_height = 480;
 
 #endif /* GLOBALS_H_ */

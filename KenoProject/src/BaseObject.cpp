@@ -54,6 +54,14 @@ void BaseObject::free() {
 
 }
 
+void BaseObject::loadChunkEfect() {
+	m_chunkClic = Mix_LoadWAV("Select.wav");
+}
+
+Mix_Chunk*& BaseObject::getChunkClic() {
+	return m_chunkClic;
+}
+
 SDL_Rect* BaseObject::getKRect() {
 	return &m_KRect;
 }

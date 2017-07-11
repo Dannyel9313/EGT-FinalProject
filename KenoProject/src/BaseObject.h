@@ -49,11 +49,15 @@ class BaseObject
 		void setKTexture(SDL_Texture* kTexture);
 
 
+		void loadChunkEfect();
+
+		Mix_Chunk*& getChunkClic();
 
 	private:
 		SDL_Texture* m_KTexture;
 		SDL_Rect m_KRect;
 
+		Mix_Chunk* m_chunkClic;
 
 };
 

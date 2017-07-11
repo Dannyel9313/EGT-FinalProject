@@ -24,11 +24,11 @@ public:
 	void loadIntroScreen(SDL_Renderer* renderer);
 
 
-	bool loadMusic();
 
+	// Present intro screen
 	void introScreenPresent(SDL_Renderer* renderer);
 
-	void introScreenButtonsEffects();
+
 
 	BaseObject& getBackground();
 	void setBackground(const BaseObject& background);
@@ -51,7 +51,6 @@ public:
 	void setInsertCredit(InsertCredit& insertCredit);
 
 
-	Mix_Chunk*& getChunkClic();
 	Mix_Music*& getIntroSong();
 
 private:
@@ -70,7 +69,7 @@ private:
 	Font m_infoButton;
 
 	Mix_Music* m_introSong;
-	Mix_Chunk* m_chunkClic;
+
 
 };
 

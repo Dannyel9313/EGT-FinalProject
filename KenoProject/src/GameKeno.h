@@ -4,6 +4,7 @@
 #include "Include.h"
 #include "Globals.h"
 #include "IntroScreen.h"
+#include "Info.h"
 
 class GameKeno 
 {
@@ -38,17 +39,21 @@ class GameKeno
 		//Get intro mode
 		IntroScreen& getIntroMode();
 
-
+		//Get info mode
+		Info& getInfoMode();
 
 	private:
-		//Window
+		// Window
 		SDL_Window* kenoWindow;
 
-		//Renderer
+		// Renderer
 		SDL_Renderer* kenoRenderer;
 
-		//intro mode
+		// Intro mode
 		IntroScreen m_introMode;
+
+		// Info mode
+		Info m_InfoMode;
 };
 
 #endif /* GAMEKENO_H_ */

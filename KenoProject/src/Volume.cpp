@@ -98,10 +98,12 @@ void Volume::moveVolumeDot(SDL_Event* e) {
 		if (m_FontPlus.isClicked(m_FontPlus.getKRect())) {
 			if (m_volumePoint > -1 && m_volumePoint < 101 && m_movingPoint > 58
 					&& m_movingPoint < 158) {
+				Mix_PlayChannel(-1,m_FontChanelClick.getChunkClic(),-1);
 				m_volumePoint+=10;
 				m_movingPoint+=10;
 				std::cout << "->" << m_movingPoint << "<-" << "->" << m_volumePoint << "<-" << std::endl;
 				Mix_VolumeMusic(m_volumePoint);
+
 			}
 		}
 		if(m_FontMinus.isClicked(m_FontMinus.getKRect())) {
@@ -111,14 +113,9 @@ void Volume::moveVolumeDot(SDL_Event* e) {
 				m_movingPoint-=10;
 				std::cout << "->" << m_movingPoint << "<-" << std::endl;
 				Mix_VolumeMusic(m_volumePoint);
+				Mix_PlayChannel(-1,m_FontChanelClick.getChunkClic(),0);
 			}
 		}
-//		m_FontDotLine.setPosition(63, 481, introVolumeSlider_width,
-//				introVolumeSlider_height);
-//
-//		m_FontDot.setPosition(m_movingPoint, 498, introVolumeDot_width,
-//				introVolumeDot_height);
-//		std::cout << "->" <<  << "<-" << "->" <<  << "<-" << std::endl;
 	}
 }
 
@@ -146,4 +143,8 @@ int Volume::getMovingPoint() const {
 
 void Volume::setMovingPoint(int movingPoint) {
 	m_movingPoint = movingPoint;
+}
+
+Font& Volume::getFontChanelClick() {
+	return m_FontChanelClick;
 }

@@ -52,10 +52,11 @@ void IntroScreen::loadIntroScreen(SDL_Renderer* renderer) {
 
 	int offset = 130;
 
-	m_introSong =
-			Mix_LoadMUS(
+	m_introSong =Mix_LoadMUS(
 					"Deya Dova - Footsteps In The Stars Temple Step Project  DJ Dakini Remix.mp3");
 	Mix_PlayMusic(m_introSong,-1);
+
+
 
 
 	setElementsFont();
@@ -88,8 +89,7 @@ void IntroScreen::loadIntroScreen(SDL_Renderer* renderer) {
 		m_background.loadTexture("IntroKenoImage2.png", renderer);
 		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
 
-//		m_startNewGameButton.setPosition(430, 130, introStartResumeButton_width,
-//				introStartResumeButton_height);
+
 		m_startNewGameButton.textRender(m_startNewGameButton.getKRect(),
 				m_startNewGameButton.getKTexture(), renderer);
 
@@ -105,13 +105,10 @@ void IntroScreen::loadIntroScreen(SDL_Renderer* renderer) {
 		m_background.loadTexture("IntroKenoImage2.png", renderer);
 		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
 
-//		m_startNewGameButton.setPosition(430, 130, introStartButton_width,
-//				introStartButton_height);
 		m_startNewGameButton.textRender(m_startNewGameButton.getKRect(),
 				m_startNewGameButton.getKTexture(), renderer);
 
-//		m_resumeGameButton.setPosition(530, 220, introButton_width,
-//				introButton_height);
+
 		m_resumeGameButton.textRender(m_resumeGameButton.getKRect(),
 				m_resumeGameButton.getKTexture(), renderer);
 
@@ -122,8 +119,8 @@ void IntroScreen::loadIntroScreen(SDL_Renderer* renderer) {
 		SDL_RenderPresent(renderer);
 
 	}
-	m_volume.LoadVolumeElements(renderer);
-	m_insertCredit.loadCreditElements(renderer);
+//	m_volume.LoadVolumeElements(renderer);
+//	m_insertCredit.loadCreditElements(renderer);
 //
 //	SDL_RenderPresent(renderer);
 }
@@ -149,8 +146,7 @@ void IntroScreen::setPositionDimension() {
 
 }
 
-void IntroScreen::introScreenButtonsEffects() {
-}
+
 
 void IntroScreen::setElementsColor() {
 	if (m_startNewGameButton.isClicked(m_startNewGameButton.getKRect())) {
@@ -222,9 +218,7 @@ void IntroScreen::setInsertCredit(InsertCredit& insertCredit) {
 	m_insertCredit = insertCredit;
 }
 
-Mix_Chunk*& IntroScreen::getChunkClic() {
-	return m_chunkClic;
-}
+
 
 Mix_Music*& IntroScreen::getIntroSong() {
 	return m_introSong;

@@ -29,6 +29,8 @@ public:
 	int getMovingPoint() const;
 	void setMovingPoint(int movingPoint);
 
+	Font& getFontChanelClick();
+
 private:
 
 	// Set position and dimension of elements
@@ -48,6 +50,7 @@ private:
 	Font m_FontVolume;
 	Font m_FontDot;
 	Font m_FontDotLine;
+	Font m_FontChanelClick;
 
 };
 
