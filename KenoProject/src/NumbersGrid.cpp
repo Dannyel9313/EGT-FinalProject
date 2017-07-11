@@ -132,7 +132,8 @@ void NumbersGrid::doIfClicked(SDL_Renderer * renderer, const SDL_Event & e)
 		for (int j = 0; j < 10; j++)
 		{
 			if(isClickedFlags[i][j] == 0 && 
-				isClicked(e, &m_numbers[i][j])) 
+				isClicked(e, &m_numbers[i][j]) &&
+				numbersClicked() < 10) 
 			{
 				//Draw and fill rect
 				isClickedFlags[i][j] = 1;
@@ -268,3 +269,18 @@ int NumbersGrid::numberOfHits()
 	}
 	return count;		
 }
+
+int NumbersGrid::numbersClicked()
+{
+        int sum = 0;
+        for (int i = 0; i < 8; i++)
+        {
+                for (int j = 0; j < 10; j++)
+                {
+                        sum += isClickedFlags[i][j];
+                }
+        }
+        return sum;
+}
+
+

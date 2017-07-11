@@ -26,6 +26,9 @@ class NumbersGrid: public BaseObject
 
 		//Number of hits
 		int numberOfHits();
+
+		//How many numbers are clicked
+                int numbersClicked();
 	private:
 		//Utility function load numbers in rectangles
 		void numbersInRects(SDL_Renderer *);
