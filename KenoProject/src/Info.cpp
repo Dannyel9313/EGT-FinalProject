@@ -38,10 +38,10 @@ void Info::loadInfoScreen(SDL_Renderer* renderer) {
 	setElementsFont();
 	setElementsPositionDimension();
 
-	m_backgroundInfo.loadTexture("InfoBackground.png",renderer);
+	m_backgroundInfo.loadTextureFromFile("InfoBackground.png",renderer);
 	SDL_RenderCopy(renderer, m_backgroundInfo.getKTexture(),NULL,NULL);
 
-	m_secondBackgroundInfo.loadTexture("introBackgroundMoney.png",renderer);
+	m_secondBackgroundInfo.loadTextureFromFile("introBackgroundMoney.png",renderer);
 
 	m_textInfo.LoadFromRenderedText("Write the rules of game keno",renderer,m_textInfo.getButtonColor());
 	m_textInfo.textRender(m_textInfo.getKRect(),m_textInfo.getKTexture(),renderer);

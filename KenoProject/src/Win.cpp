@@ -1,10 +1,3 @@
-/*
- * Win.cpp
- *
- *  Created on: Jul 11, 2017
- *      Author: Memmory Of Tomorrow
- */
-
 #include "Win.h"
 
 Win::Win()
@@ -19,28 +12,34 @@ Win::~Win()
 
 void Win::writeOnScreen(SDL_Renderer* renderer)
 {
-	loadTexture("blueScreen.gif", renderer);
+	loadTextureFromFile("blueScreen.gif", renderer);
 	render(renderer, NULL);
+
+	firstText.setButtonColor(255, 0, 0);
+	secondText.setButtonColor(255, 0, 0);
+	thirdText.setButtonColor(255, 0, 0);
+	fourthText.setButtonColor(255, 0, 0);
+	fifthText.setButtonColor(255, 0, 0);
 
 	firstText.setFont(TTF_OpenFont("Pozo.ttf", 50));
 	firstText.LoadFromRenderedText("YOU HAVE WON!", renderer,
-				firstText.setButtonColor(255, 0, 0));
+				firstText.getButtonColor());
 	secondText.setFont(TTF_OpenFont("Pozo.ttf", 50));
 	secondText.LoadFromRenderedText("YOU HAVE WON!", renderer,
-				secondText.setButtonColor(255, 0, 0));
+				secondText.getButtonColor());
 	thirdText.setFont(TTF_OpenFont("Pozo.ttf", 50));
 	thirdText.LoadFromRenderedText("YOU HAVE WON!", renderer,
-			thirdText.setButtonColor(255, 0, 0));
+			thirdText.getButtonColor());
 	fourthText.setFont(TTF_OpenFont("Pozo.ttf", 50));
 	fourthText.LoadFromRenderedText("YOU HAVE WON!", renderer,
-			fourthText.setButtonColor(255, 0, 0));
+			fourthText.getButtonColor());
 	fifthText.setFont(TTF_OpenFont("Pozo.ttf", 50));
 	fifthText.LoadFromRenderedText("YOU HAVE WON!", renderer,
-			fifthText.setButtonColor(255, 0, 0));
+			fifthText.getButtonColor());
 
 	for(int i = 0; i < 300; i += 5){
-			mBackground.loadTexture("blueScreen.gif", renderer);
-			SDL_RenderCopy(renderer, mBackground.getKTexture(), NULL, NULL);
+			loadTextureFromFile("blueScreen.gif", renderer);
+			SDL_RenderCopy(renderer, getKTexture(), NULL, NULL);
 
 			firstText.setPosition(i, i, introButton_width, introButton_height);
 			firstText.textRender(firstText.getKRect(), firstText.getKTexture(), renderer);
@@ -48,8 +47,8 @@ void Win::writeOnScreen(SDL_Renderer* renderer)
 		SDL_RenderPresent(renderer);
 	}
 	for(int i = 0; i < 300; i += 5){
-			mBackground.loadTexture("blueScreen.gif", renderer);
-			SDL_RenderCopy(renderer, mBackground.getKTexture(), NULL, NULL);
+			loadTextureFromFile("blueScreen.gif", renderer);
+			SDL_RenderCopy(renderer, getKTexture(), NULL, NULL);
 
 			firstText.setPosition(300, 300, introButton_width, introButton_height);
 			firstText.textRender(firstText.getKRect(), firstText.getKTexture(), renderer);
@@ -60,8 +59,8 @@ void Win::writeOnScreen(SDL_Renderer* renderer)
 		SDL_RenderPresent(renderer);
 	}
 	for(int i = 0; i < 300; i += 5){
-				mBackground.loadTexture("blueScreen.gif", renderer);
-				SDL_RenderCopy(renderer, mBackground.getKTexture(), NULL, NULL);
+				loadTextureFromFile("blueScreen.gif", renderer);
+				SDL_RenderCopy(renderer, getKTexture(), NULL, NULL);
 
 				firstText.setPosition(300, 300, introButton_width, introButton_height);
 				firstText.textRender(firstText.getKRect(), firstText.getKTexture(), renderer);
@@ -76,8 +75,8 @@ void Win::writeOnScreen(SDL_Renderer* renderer)
 			SDL_RenderPresent(renderer);
 		}
 	for(int i = 0; i < 300; i += 5){
-					mBackground.loadTexture("blueScreen.gif", renderer);
-					SDL_RenderCopy(renderer, mBackground.getKTexture(), NULL, NULL);
+					loadTextureFromFile("blueScreen.gif", renderer);
+					SDL_RenderCopy(renderer, getKTexture(), NULL, NULL);
 
 					firstText.setPosition(300, 300, introButton_width, introButton_height);
 					firstText.textRender(firstText.getKRect(), firstText.getKTexture(), renderer);
@@ -95,8 +94,8 @@ void Win::writeOnScreen(SDL_Renderer* renderer)
 				SDL_RenderPresent(renderer);
 			}
 	for(int i = 0; i < 300; i += 5){
-						mBackground.loadTexture("blueScreen.gif", renderer);
-						SDL_RenderCopy(renderer, mBackground.getKTexture(), NULL, NULL);
+						loadTextureFromFile("blueScreen.gif", renderer);
+						SDL_RenderCopy(renderer, getKTexture(), NULL, NULL);
 
 						firstText.setPosition(300, 300, introButton_width, introButton_height);
 						firstText.textRender(firstText.getKRect(), firstText.getKTexture(), renderer);
@@ -116,3 +115,4 @@ void Win::writeOnScreen(SDL_Renderer* renderer)
 					SDL_RenderPresent(renderer);
 				}
 }
+

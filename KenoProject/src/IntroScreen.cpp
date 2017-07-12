@@ -1,10 +1,3 @@
-/*
- * IntroScreen.cpp
- *
- *  Created on: 08.07.2017
- *      Author: Danny
- */
-
 #include "IntroScreen.h"
 
 IntroScreen::IntroScreen() {
@@ -50,12 +43,11 @@ void IntroScreen::setStartNewGameButton(const Font& startNewGameButton) {
 // to do a function
 void IntroScreen::loadIntroScreen(SDL_Renderer* renderer) {
 
-	m_introSong =
-			Mix_LoadMUS(
-					"Deya Dova - Footsteps In The Stars Temple Step Project  DJ Dakini Remix.mp3");
-	Mix_PlayMusic(m_introSong, -1);
+//	m_introSong = Mix_LoadMUS("Deya Dova - Footsteps In The Stars Temple 
+//					Step Project  DJ Dakini Remix.mp3");
+//	Mix_PlayMusic(m_introSong, -1);
 
-	m_background.loadTexture("IntroKenoImage2.png", renderer);
+	m_background.loadTextureFromFile("IntroKenoImage2.png", renderer);
 
 	loadIntroElements(renderer);
 	moveStarNewGame(30, renderer);
@@ -89,7 +81,7 @@ void IntroScreen::loadIntroElements(SDL_Renderer* renderer) {
 	setElementsFont();
 	setPositionDimension();
 	setElementsColor();
-	m_background.loadTexture("InfoBackground.png", renderer);
+	m_background.loadTextureFromFile("InfoBackground.jpg", renderer);
 	m_startNewGameButton.LoadFromRenderedText("START NEW GAME", renderer,
 			m_startNewGameButton.getButtonColor());
 
@@ -210,4 +202,12 @@ void IntroScreen::setInsertCredit(InsertCredit& insertCredit) {
 
 Mix_Music*& IntroScreen::getIntroSong() {
 	return m_introSong;
+}
+
+void IntroScreen::startNewGameClicked(bool* gameMode, const SDL_Event& e)
+{
+	if(m_startNewGameButton.isClicked(e, m_startNewGameButton.getKRect())) 
+	{
+		*gameMode = true;	
+	}	
 }

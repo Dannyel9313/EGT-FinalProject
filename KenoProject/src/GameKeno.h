@@ -5,6 +5,7 @@
 #include "Globals.h"
 #include "IntroScreen.h"
 #include "Info.h"
+#include "Game.h"
 
 class GameKeno 
 {
@@ -25,16 +26,16 @@ class GameKeno
 		void close();
 		
 		//Set keno window
-		void setKenoWindow(SDL_Window *);
+		void setKenoWindow(SDL_Window*);
 
 		//Set keno renderer
-		void setKenoRenderer(SDL_Renderer *);
+		void setKenoRenderer(SDL_Renderer*);
 
 		//Get keno window
-		SDL_Window * getKenoWindow();
+		SDL_Window* getKenoWindow();
 
 		//Get keno renderer
-		SDL_Renderer * getKenoRenderer();
+		SDL_Renderer* getKenoRenderer();
 
 		//Get intro mode
 		IntroScreen& getIntroMode();
@@ -42,18 +43,23 @@ class GameKeno
 		//Get info mode
 		Info& getInfoMode();
 
+		//Get game mode
+		Game& getGameMode();
 	private:
-		// Window
+		//Window
 		SDL_Window* kenoWindow;
 
-		// Renderer
+		//Renderer
 		SDL_Renderer* kenoRenderer;
 
-		// Intro mode
+		//Intro mode
 		IntroScreen m_introMode;
 
-		// Info mode
+		//Info mode
 		Info m_InfoMode;
+
+		//Game mode
+		Game m_GameMode;
 };
 
 #endif /* GAMEKENO_H_ */

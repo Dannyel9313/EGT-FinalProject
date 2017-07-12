@@ -1,16 +1,10 @@
-/*
- * Font.h
- *
- *  Created on: 08.07.2017
- *      Author: Danny
- */
-
 #ifndef FONT_H_
 #define FONT_H_
 
 #include "BaseObject.h"
 
-class Font: public BaseObject {
+class Font: public BaseObject 
+{
 public:
 	Font();
 	virtual ~Font();
@@ -20,10 +14,10 @@ public:
 				SDL_Color textColor);
 
 	// Text renderer
-	void textRender(SDL_Rect* rect, SDL_Texture* textureText,SDL_Renderer* renderer);
+	void textRender(SDL_Rect* rect, SDL_Texture* textureText, SDL_Renderer* renderer);
 
 	//get font
-	TTF_Font*& getFont();
+	TTF_Font* getFont();
 
 	//get color
 	SDL_Color getButtonColor();
@@ -33,7 +27,6 @@ public:
 
 	//set font
 	void setFont(TTF_Font* font);
-
 
 private:
 	SDL_Color m_buttonColor;

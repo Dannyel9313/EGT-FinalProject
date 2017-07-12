@@ -70,6 +70,19 @@ bool GameKeno::loadMedia() {
 //		m_introMode.getResumeGameButton().LoadFromRenderedText("RESUME GAME",kenoRenderer,
 //				m_introMode.getResumeGameButton().setButtonColor(255,255,255));
 
+        m_GameMode.loadTextureFromFile("mini.jpg", kenoRenderer);
+
+        //Load clicking effect on number grid
+        m_GameMode.getNumbersGrid().loadSoundEffect("floop2_x.wav");
+
+        //Loads ttf for number grid
+        m_GameMode.getNumbersGrid().loadTTF();
+
+        m_GameMode.getBetButton().loadTextureFromFile("BetButton.png", kenoRenderer);
+
+        TTF_Font* betButtonFont = TTF_OpenFont("AUDI.TTF", 24);
+        m_GameMode.getBetButton().getFont().setFont(betButtonFont);
+
 	return success;
 }
 
@@ -131,3 +144,9 @@ IntroScreen& GameKeno::getIntroMode() {
 Info& GameKeno::getInfoMode() {
 	return m_InfoMode;
 }
+
+Game& GameKeno::getGameMode()
+{
+        return m_GameMode;
+}
+

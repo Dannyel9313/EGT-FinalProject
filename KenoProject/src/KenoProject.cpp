@@ -7,7 +7,9 @@ int main(int argc, char* args[]) {
 
 	GameKeno game;
 	SDL_Event e;
+
 	bool introMode = true;
+	bool gameMode = false;
 
 	if (!game.init()) {
 		std::cerr << "Problem with initializing" << std::endl;
@@ -19,30 +21,44 @@ int main(int argc, char* args[]) {
 			SDL_RenderClear(game.getKenoRenderer());
 //			game.getInfoMode().loadInfoScreen(game.getKenoRenderer());
 			game.getIntroMode().loadIntroScreen(game.getKenoRenderer());
-			int x,y;
-			while (!quit) {
-				while (SDL_PollEvent(&e) != 0) {
-					if (e.type == SDL_QUIT) {
+			while (!quit && introMode == 1) 
+			{
+				while (SDL_PollEvent(&e) != 0) 
+				{
+					if (e.type == SDL_QUIT) 
+					{
 						quit = true;
 					}
 					game.getIntroMode().getVolume().moveVolumeDot(&e);
 					game.getIntroMode().getInsertCredit().setCreditToGame(&e);
-					SDL_GetMouseState(&x,&y);
-
-//					std::cout << "x -> " << x << " y -> " << y << std::endl;
-
-
-
-
+					game.getIntroMode().startNewGameClicked(&gameMode, e);
 				}
-
-				if (introMode) {
-
+				if (gameMode)
+				{
+					introMode = false;
 				}
-
-				game.getIntroMode().introScreenPresent(game.getKenoRenderer());
+				else if (introMode) 
+				{
+					game.getIntroMode().introScreenPresent(game.getKenoRenderer());
+				}
 				SDL_RenderPresent(game.getKenoRenderer());
-				introMode = false;
+			}
+			game.getGameMode().renderGame(game.getKenoRenderer(), e);
+			while (!quit && gameMode == 1)
+			{
+				while(SDL_PollEvent(&e) != 0)
+				{
+					if(e.type == SDL_QUIT)
+					{
+						quit = true;
+					}
+					else if (e.type == SDL_MOUSEBUTTONDOWN)
+                                        {
+                                                game.getGameMode().getNumbersGrid().doIfClicked(game.getKenoRenderer(), e);
+                                                game.getGameMode().renderGame(game.getKenoRenderer(), e);
+                                        }
+				}
+				SDL_RenderPresent(game.getKenoRenderer());
 			}
 		}
 	}

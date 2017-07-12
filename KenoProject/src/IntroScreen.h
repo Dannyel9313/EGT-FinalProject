@@ -1,12 +1,6 @@
-/*
- * IntroScreen.h
- *
- *  Created on: 08.07.2017
- *      Author: Danny
- */
-
 #ifndef INTROSCREEN_H_
 #define INTROSCREEN_H_
+
 #include "BaseObject.h"
 #include "Font.h"
 #include "Volume.h"
@@ -49,6 +43,8 @@ public:
 
 	Mix_Music*& getIntroSong();
 
+	//Start new game button
+	void startNewGameClicked(bool*, const SDL_Event&);
 private:
 	// moving elements
 	void moveStarNewGame(int yPos, SDL_Renderer* renderer);

@@ -1,10 +1,3 @@
-/*
- * InsertCredit.cpp
- *
- *  Created on: 10.07.2017
- *      Author: Danny
- */
-
 #include "InsertCredit.h"
 
 InsertCredit::InsertCredit() {
@@ -46,7 +39,7 @@ void InsertCredit::loadCreditElements(SDL_Renderer* renderer) {
 	setElementsPositionDimension();
 	setElementsColor();
 
-	m_FontCreditRect.loadTexture("creditRect.png", renderer);
+	m_FontCreditRect.loadTextureFromFile("creditRect.png", renderer);
 	SDL_RenderCopy(renderer, m_FontCreditRect.getKTexture(),
 	NULL, m_FontCreditRect.getKRect());
 

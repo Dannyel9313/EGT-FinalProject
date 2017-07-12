@@ -1,10 +1,3 @@
-/*
- * InsertCredit.h
- *
- *  Created on: 10.07.2017
- *      Author: Danny
- */
-
 #ifndef INSERTCREDIT_H_
 #define INSERTCREDIT_H_
 #include "Font.h"

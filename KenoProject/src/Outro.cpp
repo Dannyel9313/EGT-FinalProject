@@ -1,10 +1,3 @@
-/*
- * Outro.cpp
- *
- *  Created on: 8.07.2017 ã.
- *      Author: ddada
- */
-
 #include "Outro.h"
 
 Outro::Outro()
@@ -42,7 +35,7 @@ void Outro::writingOnScreen(SDL_Renderer * renderer,double money) {
 	SDL_Color color={0,0,0};
 	SDL_Rect rect = {400,500 , 100, 100};
 
-	loadTextureFromFont(doubleToString(money), renderer, font, color);
+	loadTextureFromTTF(doubleToString(money), renderer, font, color);
 	render(renderer, &rect);
 
 }

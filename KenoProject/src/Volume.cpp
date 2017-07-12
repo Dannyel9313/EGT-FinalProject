@@ -1,10 +1,3 @@
-/*
- * Volume.cpp
- *
- *  Created on: 10.07.2017
- *      Author: Danny
- */
-
 #include "Volume.h"
 
 Volume::Volume() {
@@ -39,12 +32,12 @@ void Volume::LoadVolumeElements(SDL_Renderer* renderer) {
 	setElementsPositionDimension();
 	setElementsColor();
 
-	m_FontDotLine.loadTexture("volumeSlider.png", renderer);
+	m_FontDotLine.loadTextureFromFile("volumeSlider.png", renderer);
 
 	SDL_RenderCopy(renderer, m_FontDotLine.getKTexture(), NULL,
 			m_FontDotLine.getKRect());
 
-	m_FontDot.loadTexture("volumeDot.png", renderer);
+	m_FontDot.loadTextureFromFile("volumeDot.png", renderer);
 
 	SDL_RenderCopy(renderer, m_FontDot.getKTexture(), NULL,
 			m_FontDot.getKRect());
@@ -158,3 +151,4 @@ void Volume::setMovingPoint(int movingPoint) {
 Font& Volume::getFontChanelClick() {
 	return m_FontChanelClick;
 }
+

@@ -10,17 +10,17 @@ BetButton::BetButton()
 void BetButton::betText(SDL_Renderer* renderer)
 {
 	//Set color
-	m_font.setFontColor(0, 0, 0);
+	m_font.setButtonColor(0, 0, 0);
 
 	//Set bet text position and dimensions
-	m_font.setPosition(getKRect().x+betText_xIndent, getKRect().y+betText_yIndent);
+	m_font.setPosition(getKRect()->x+betText_xIndent, getKRect()->y+betText_yIndent);
 	m_font.setDimensions(betText_width, betText_height);
 
 	//Load bet text
-	m_font.loadTextureFromTTF("Bet", renderer, m_font.getFont(), m_font.getFontColor());
+	m_font.loadTextureFromTTF("Bet", renderer, m_font.getFont(), m_font.getButtonColor());
 
 	//Render bet text
-	m_font.render(renderer, &m_font.getKRect());
+	m_font.render(renderer, m_font.getKRect());
 }
 
 bool BetButton::buttonCondition(int condition, SDL_Renderer* renderer)
@@ -30,14 +30,14 @@ bool BetButton::buttonCondition(int condition, SDL_Renderer* renderer)
 	if (condition < minimumSpots) 
 	{
 		setAlpha(50);
-		render(renderer, &getKRect()); 
+		render(renderer, getKRect()); 
 		betText(renderer);
 		success = false;
 	}
 	else if (condition >= minimumSpots) 
 	{
 		setAlpha(255);
-		render(renderer, &getKRect());
+		render(renderer, getKRect());
 		betText(renderer);
 		success = true;
 	}

@@ -1,10 +1,3 @@
-/*
- * Info.h
- *
- *  Created on: 12.07.2017
- *      Author: Danny
- */
-
 #ifndef INFO_H_
 #define INFO_H_
 #include "Font.h"

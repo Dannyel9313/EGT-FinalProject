@@ -13,17 +13,27 @@ class BaseObject
 		//Destructor
 		virtual ~BaseObject();
 
+		//TODO RENDERER!!!
 		// button renderer
 		void buttonRender(int xCut, int yCut, int x, int y, SDL_Texture* texture, SDL_Renderer* renderer);
 
+		void render(SDL_Renderer *, SDL_Rect*);
+
+		//TODO IS CLICKED!!!
 		// verify if is click
 		bool isClicked(SDL_Rect* rect);
+		bool isClicked(const SDL_Event&, SDL_Rect*) const;
 
 		//Load image from texture
-		void loadTexture(std::string picPath, SDL_Renderer*);
+		bool loadTextureFromFile(std::string picPath, SDL_Renderer*);
 
+		//TODO !!
+		bool loadTextureFromTTF(std::string, SDL_Renderer*, TTF_Font*,const SDL_Color&);
+
+		//TODO SETPOSITION!!!
 		//Set rect position
 		SDL_Rect setPosition(int x, int y,int w, int h);
+		void setPosition(int x, int y);
 
 		//Set rect dimensions
 		void setDimensions(int w, int h);
@@ -47,7 +57,6 @@ class BaseObject
 		SDL_Texture* getKTexture();
 
 		void setKTexture(SDL_Texture* kTexture);
-
 
 		void loadChunkEfect();
 

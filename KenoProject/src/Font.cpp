@@ -1,19 +1,11 @@
-/*
- * Font.cpp
- *
- *  Created on: 08.07.2017
- *      Author: Danny
- */
-
 #include "Font.h"
 
-Font::Font() {
-	// TODO Auto-generated constructor stub
-
+Font::Font() 
+{
 }
 
-Font::~Font() {
-	// TODO Auto-generated destructor stub
+Font::~Font() 
+{
 }
 //Load font
 void Font::LoadFromRenderedText(std::string textureText, SDL_Renderer* render,
@@ -36,7 +28,7 @@ void Font::LoadFromRenderedText(std::string textureText, SDL_Renderer* render,
 	}
 }
 
-TTF_Font*& Font::getFont() {
+TTF_Font* Font::getFont() {
 	return m_font;
 }
 
@@ -45,7 +37,9 @@ SDL_Color Font::getButtonColor() {
 }
 
 void Font::setButtonColor(int red, int green, int blue) {
-	m_buttonColor = {red,green,blue};
+	m_buttonColor.r = red;
+	m_buttonColor.g = green;
+	m_buttonColor.b = blue;
 }
 
 void Font::setFont(TTF_Font* font) {

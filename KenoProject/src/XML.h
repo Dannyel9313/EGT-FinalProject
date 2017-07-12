@@ -1,9 +1,8 @@
 #ifndef XML_H_
 #define XML_H_
-#include <iostream>
-#include "pugixml.hpp"
+
+#include "Include.h"
 #include <fstream>
-#include <boost/lexical_cast.hpp>
 
 class XML {
 	public:
@@ -20,7 +19,7 @@ class XML {
 		void write(int, int [8][10]);
 	private:
 		//Utility function to convert int to string
-		const char* ToString(int) const;
+		const char* ToString(int);
 
 		//Documents
 		pugi::xml_document doc;	

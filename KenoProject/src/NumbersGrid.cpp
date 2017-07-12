@@ -18,7 +18,7 @@ NumbersGrid::NumbersGrid()
 
 void NumbersGrid::createRects(SDL_Renderer * renderer, int alpha)
 {
-	int xPos = getKRect().x, yPos = getKRect().y;
+	int xPos = getKRect()->x, yPos = getKRect()->y;
 	SDL_Rect tempRect = {xPos, yPos, numbersRect_width, numbersRect_height};
 	for (int i = 0; i < 8; i++)
 	{
@@ -38,7 +38,7 @@ void NumbersGrid::createRects(SDL_Renderer * renderer, int alpha)
 			xPos += numbersRect_width + 2;
 			tempRect.x = xPos;
 		}
-		xPos = getKRect().x;
+		xPos = getKRect()->x;
 		yPos += numbersRect_height + 3;
 		tempRect.y = yPos;
 		tempRect.x = xPos;

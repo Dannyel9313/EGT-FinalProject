@@ -2,7 +2,7 @@
 
 XML::XML() {}
 
-const char* XML::ToString(int in_val) const;
+const char* XML::ToString(int in_val)
 {
 	std::string s = boost::lexical_cast<std::string> (in_val);
 	return s.c_str();
