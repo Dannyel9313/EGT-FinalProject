@@ -4,18 +4,19 @@ NumbersGrid::NumbersGrid()
 {
 	//TODO NULL FONT, SOUND EFFECT
 	setPosition(100, 100);
-	setDimensions(250, 250);
+	setDimensions(42*10, 33*8);
 	for (int i = 0; i < 8; i++)
 	{
 		for (int j = 0; j < 10; j++)
 		{
 			isClickedFlags[i][j] = 0;
 			randomNumbersFlags[i][j] = 0;
+			numberOfHitsFlags[i][j] = 0;
 		}
 	}
 }
 
-void NumbersGrid::createRects(SDL_Renderer * renderer)
+void NumbersGrid::createRects(SDL_Renderer * renderer, int alpha)
 {
 	int xPos = getKRect().x, yPos = getKRect().y;
 	SDL_Rect tempRect = {xPos, yPos, 40, 30};
@@ -31,7 +32,7 @@ void NumbersGrid::createRects(SDL_Renderer * renderer)
 				m_numbers[i][j].y, 
 				m_numbers[i][j].x+40, 
 				m_numbers[i][j].y+30, 
-				5, 225, 16, 16, 255);
+				5, 225, 16, 16, alpha);
 
 			//Set new position
 			xPos += 42;
@@ -61,7 +62,6 @@ void NumbersGrid::numbersInRects(SDL_Renderer * renderer)
 {
 	SDL_Rect dst_rect = {0, 0, 0, 0};
 	SDL_Color white = {255, 255, 255};
-	SDL_Color black = {0, 0, 0};
 	int number = 1;
 	for (int i = 0; i < 8; i++) 
 	{
@@ -76,9 +76,6 @@ void NumbersGrid::numbersInRects(SDL_Renderer * renderer)
 				dst_rect.w = 24;	
 				dst_rect.h = 22;
 
-				//Sets outline to no outline
-				TTF_SetFontOutline(m_font, 0);
-
 				//Load text from font
 				loadTextureFromTTF(toStringPlusSpace(number), 
 					renderer, m_font, white);
@@ -86,15 +83,6 @@ void NumbersGrid::numbersInRects(SDL_Renderer * renderer)
 				//Render
 				render(renderer, &dst_rect);  
 				
-				//Sets outline to 1
-				TTF_SetFontOutline(m_font, 1);
-
-				//Load text from font for outline
-				loadTextureFromTTF(toStringPlusSpace(number), 
-					renderer, m_font, black);
-				
-				//Render
-				render(renderer, &dst_rect); 
 			}
 			else 
 			{
@@ -104,23 +92,12 @@ void NumbersGrid::numbersInRects(SDL_Renderer * renderer)
 				dst_rect.w = 24;	
 				dst_rect.h = 22;
 
-				//Set outline to no outline
-				TTF_SetFontOutline(m_font, 0);
-
 				//Load number from font
 				loadTextureFromTTF(toString(number), renderer, m_font, white);
 
 				//Render
 				render(renderer, &dst_rect);  
 
-				//Set outline to 1
-				TTF_SetFontOutline(m_font, 1);
-
-				//Load number from font
-				loadTextureFromTTF(toString(number), renderer, m_font, black);
-
-				//Render
-				render(renderer, &dst_rect); 
 			}
 			number++;			
 		}
@@ -144,7 +121,7 @@ void NumbersGrid::doIfClicked(SDL_Renderer * renderer, const SDL_Event & e)
 					m_numbers[i][j].y, 
 					m_numbers[i][j].x+40,
 					m_numbers[i][j].y+30, 
-					5, 255, 255, 0, 255);
+					5, 200, 200, 0, 255);
 
 				//Reapply numbers in rects
 				numbersInRects(renderer);
@@ -189,44 +166,23 @@ const char * NumbersGrid::toStringPlusSpace(int in_val)
 }
 
 void NumbersGrid::pickRandomNumbers(SDL_Renderer* renderer, 
-					const SDL_Event& e,
-					SDL_Rect* rect)
+					const SDL_Event& e)
 {
 	int rand_1;
 	int rand_2;
-	if (isClicked(e, rect))
+	for (int i = 0; i < 20; i++)
 	{
-		//createRects(renderer);
-		resetRandFlags();
-		for (int i = 0; i < 20; i++)
+		rand_1 = rand()%8;
+		rand_2 = rand()%10;
+		if (randomNumbersFlags[rand_1][rand_2] == 0) 
 		{
-			rand_1 = rand()%8;
-			rand_2 = rand()%10;
-			if (randomNumbersFlags[rand_1][rand_2] == 0) 
-			{
-				randomNumbersFlags[rand_1][rand_2] = 1;
-
-				//Draw diagonal lines
-				thickLineRGBA (renderer, 
-					m_numbers[rand_1][rand_2].x,
-					m_numbers[rand_1][rand_2].y+28,
-					m_numbers[rand_1][rand_2].x+38,
-					m_numbers[rand_1][rand_2].y, 
-					3, 0, 0, 0, 50);
-
-				thickLineRGBA (renderer, 
-					m_numbers[rand_1][rand_2].x,
-					m_numbers[rand_1][rand_2].y,
-					m_numbers[rand_1][rand_2].x+38, 
-					m_numbers[rand_1][rand_2].y+28,
-					3, 0, 0, 0, 50);
-			}
-			//If already flag up increase loop by 1 time
-			else	
-			{
-				i--;
-			}			
+			randomNumbersFlags[rand_1][rand_2] = 1;
 		}
+		//If already flag up increase loop by 1 time
+		else	
+		{
+			i--;
+		}			
 	}
 }
 
@@ -266,6 +222,7 @@ int NumbersGrid::numberOfHits()
 			if (isClickedFlags[i][j] == 1 && 
 				isClickedFlags[i][j] == randomNumbersFlags[i][j])
 			{
+				numberOfHitsFlags[i][j] = 1;
 				count++;
 			}
 		}
@@ -286,9 +243,9 @@ int NumbersGrid::numbersClicked()
 	return sum;
 }
 
-void NumbersGrid::reRenderClickedNumbers(SDL_Renderer* renderer)
+void NumbersGrid::reRenderClickedNumbers(SDL_Renderer* renderer, int alpha)
 {
-	createRects(renderer);
+	createRects(renderer, alpha);
 	for (int i = 0; i < 8; i++)
 	{
 		for (int j = 0; j < 10; j++)
@@ -300,9 +257,84 @@ void NumbersGrid::reRenderClickedNumbers(SDL_Renderer* renderer)
 					m_numbers[i][j].y,
 					m_numbers[i][j].x+40,
 					m_numbers[i][j].y+30, 
-					5, 255, 255, 0, 255);	
+					5, 200, 200, 0, alpha);	
 				//Reapply numbers in rects
 				numbersInRects(renderer);
+			}
+		}
+	}
+}
+
+void NumbersGrid::blinkingSuccessHits(SDL_Renderer* renderer)
+{
+	reRenderClickedNumbers(renderer, 50);
+	renderRandomNumbers(renderer);
+	numberOfHits();	
+	int flag = 0;
+	for (int k = 0; k < 8; k++) 
+	{
+		int timeout = SDL_GetTicks() + 1000;
+		for (int i = 0; i < 8; i++)
+		{
+			for (int j = 0; j < 10; j++)
+			{
+				if(numberOfHitsFlags[i][j] == 1)
+				{
+					if(flag == 0)
+					{
+						roundedBoxRGBA(renderer,
+							m_numbers[i][j].x, 
+							m_numbers[i][j].y,
+							m_numbers[i][j].x+40,
+							m_numbers[i][j].y+30, 
+							5, 225, 16, 16, 255);
+						//Reapply numbers in rects
+						numbersInRects(renderer);
+					}
+					else if (flag == 1)
+					{
+						roundedBoxRGBA(renderer,
+							m_numbers[i][j].x, 
+							m_numbers[i][j].y,
+							m_numbers[i][j].x+40,
+							m_numbers[i][j].y+30, 
+							5, 200, 200, 0, 255);
+						//Reapply numbers in rects
+						numbersInRects(renderer);
+					}
+				}
+			}
+		}
+		if (flag == 0) 
+		{
+			flag = 1;
+		}
+		else if (flag == 1)
+		{
+			flag = 0;
+		}
+		SDL_RenderPresent(renderer);	
+		while(!SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {};
+	}	
+}
+
+void NumbersGrid::renderRandomNumbers(SDL_Renderer* renderer)
+{	
+	for (int i = 0; i < 8; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			if(randomNumbersFlags[i][j] == 1)
+			{
+				//Draw diagonal lines
+				if(filledCircleRGBA(renderer, 
+					m_numbers[i][j].x+20,
+					m_numbers[i][j].y+15,
+					15, 0, 0, 0, 255)!=0) 
+				{
+					std::cout << "Error drawing circle" 
+						<< std::endl;
+				}
 			}
 		}
 	}

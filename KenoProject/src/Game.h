@@ -13,6 +13,9 @@ class Game: public BaseObject
 
 		//Render the whole game screen
 		void renderGame(SDL_Renderer*,const SDL_Event&);
+
+		//
+		void ifBetButtonClicked(SDL_Renderer*, const SDL_Event&);
 	private:
 		NumbersGrid mGrid;
 		BetButton mBetButton;

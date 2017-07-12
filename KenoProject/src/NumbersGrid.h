@@ -8,7 +8,7 @@ class NumbersGrid: public BaseObject
 	public:
 		NumbersGrid();
 	
-		void createRects(SDL_Renderer*);
+		void createRects(SDL_Renderer*, int);
 		void setNumbersGridRect(int x, int y, int w, int h);		
 
 		//Function load TFF
@@ -17,7 +17,7 @@ class NumbersGrid: public BaseObject
 		//Change color if clicked
 		void doIfClicked(SDL_Renderer*, const SDL_Event&);
 
-		void pickRandomNumbers(SDL_Renderer*, const SDL_Event&, SDL_Rect*);
+		void pickRandomNumbers(SDL_Renderer*, const SDL_Event&);
 
 		void resetRandFlags();
 
@@ -31,7 +31,14 @@ class NumbersGrid: public BaseObject
 		int numbersClicked();
 
 		//Re-render rect
-		void reRenderClickedNumbers(SDL_Renderer*);
+		void reRenderClickedNumbers(SDL_Renderer*, int);
+
+		//Blinking successful hits
+		void blinkingSuccessHits(SDL_Renderer*);
+
+		//Render random numbers
+		void renderRandomNumbers(SDL_Renderer*);
+
 	private:
 		//Utility function load numbers in rectangles
 		void numbersInRects(SDL_Renderer*);
@@ -43,6 +50,7 @@ class NumbersGrid: public BaseObject
 		TTF_Font* m_font;
 		int isClickedFlags[8][10];
 		int randomNumbersFlags[8][10];
+		int numberOfHitsFlags[8][10];
 
 		//Variable for sound effect
 		Mix_Chunk* m_ClickEffect;
