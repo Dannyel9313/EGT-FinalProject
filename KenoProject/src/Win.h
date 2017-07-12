@@ -17,7 +17,7 @@ class Win: public BaseObject
       		Font thirdText;
        		Font fourthText;
         	Font fifthText;
-		BaseObject mBackGround;
+		BaseObject mBackground;
 		std::string StringToDouble();
 };
 
