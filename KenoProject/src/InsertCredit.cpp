@@ -84,33 +84,33 @@ void InsertCredit::setElementsFont() {
 
 void InsertCredit::setElementsPositionDimension() {
 
-	m_FontInsertCredit.setPosition(522, 395, introButton_width,
+	m_FontInsertCredit.setPosition(542, 445, introButton_width,
 			introButton_height);
-	m_FontPlus.setPosition(682, 495, introVolumeButtons_width,
+	m_FontPlus.setPosition(722, 545, introVolumeButtons_width,
 			introVolumeButtons_height);
-	m_FontMinus.setPosition(522, 495, introVolumeButtons_width,
+	m_FontMinus.setPosition(542, 545, introVolumeButtons_width,
 			introVolumeButtons_height);
-	m_FontCredit.setPosition(603, 498, introVolumeButtons_width,
+	m_FontCredit.setPosition(623, 548, introVolumeButtons_width,
 			introVolumeButtons_height);
-	m_FontCreditRect.setPosition(562, 481, introVolumeSlider_width,
+	m_FontCreditRect.setPosition(582, 531, introVolumeSlider_width,
 			introVolumeSlider_height);
 
 }
 
 void InsertCredit::setElementsColor() {
-	m_FontCredit.setButtonColor(255, 255, 255);
+	m_FontCredit.setButtonColor(24, 236, 19);
 	if (m_FontPlus.isClicked(m_FontPlus.getKRect())) {
 		m_FontPlus.setButtonColor(255, 0, 39);
 	} else {
-		m_FontPlus.setButtonColor(255, 255, 255);
+		m_FontPlus.setButtonColor(24, 236, 19);
 	}
 	if (m_FontMinus.isClicked(m_FontMinus.getKRect())) {
 		m_FontMinus.setButtonColor(255, 0, 39);
 	} else {
-		m_FontMinus.setButtonColor(255, 255, 255);
+		m_FontMinus.setButtonColor(24, 236, 19);
 	}
-	m_FontInsertCredit.setButtonColor(255, 255, 255);
-	m_FontCredit.setButtonColor(255, 255, 255);
+	m_FontInsertCredit.setButtonColor(24, 236, 19);
+	m_FontCredit.setButtonColor(24, 236, 19);
 
 }
 

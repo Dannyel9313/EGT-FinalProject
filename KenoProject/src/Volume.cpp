@@ -9,8 +9,8 @@
 
 Volume::Volume() {
 	// TODO Auto-generated constructor stub
-	m_movingPoint = 109;
-	m_volumePoint = 50;
+	m_movingPoint = 129;
+	m_volumePoint = 69;
 }
 
 Volume::~Volume() {
@@ -69,20 +69,20 @@ void Volume::LoadVolumeElements(SDL_Renderer* renderer) {
 }
 
 void Volume::setElementsPositionDimension() {
-	m_FontDotLine.setPosition(63, 481, introVolumeSlider_width,
+	m_FontDotLine.setPosition(83, 531, introVolumeSlider_width,
 			introVolumeSlider_height);
 
-	m_FontDot.setPosition(m_movingPoint, 498, introVolumeDot_width,
+	m_FontDot.setPosition(m_movingPoint, 548, introVolumeDot_width,
 			introVolumeDot_height);
 
-	m_FontPlus.setPosition(183, 495, introVolumeButtons_width,
+	m_FontPlus.setPosition(203, 545, introVolumeButtons_width,
 			introVolumeButtons_height);
 
-	m_FontMinus.setPosition(23, 495, introVolumeButtons_width,
+	m_FontMinus.setPosition(43, 545, introVolumeButtons_width,
 
 	introVolumeButtons_height);
 
-	m_FontVolume.setPosition(23, 395, introButton_width, introButton_height);
+	m_FontVolume.setPosition(43, 445, introButton_width, introButton_height);
 }
 
 void Volume::setElementsFont() {
@@ -95,17 +95,17 @@ void Volume::setElementsFont() {
 void Volume::moveVolumeDot(SDL_Event* e) {
 
 	if (e->type == SDL_MOUSEBUTTONDOWN) {
-		if(m_movingPoint < 58 && m_volumePoint < 0){
-				m_movingPoint = 59;
+		if(m_movingPoint < 80 || m_volumePoint < 9){
+				m_movingPoint = 79;
 				m_volumePoint = 0;
 			}
-			if(m_movingPoint > 150 || m_volumePoint > 128){
-				m_movingPoint = 150;
+			if(m_movingPoint > 169 || m_volumePoint > 108){
+				m_movingPoint = 169;
 				m_volumePoint = 100;
 			}
 		if (m_FontPlus.isClicked(m_FontPlus.getKRect())) {
-			if (m_volumePoint > -1 && m_volumePoint < 101 && m_movingPoint > 58
-					&& m_movingPoint < 149) {
+			if (m_volumePoint > -1 && m_volumePoint < 101 && m_movingPoint > 78
+					&& m_movingPoint < 169) {
 
 				m_volumePoint+=10;
 				m_movingPoint+=10;
@@ -115,8 +115,8 @@ void Volume::moveVolumeDot(SDL_Event* e) {
 			}
 		}
 		if(m_FontMinus.isClicked(m_FontMinus.getKRect())) {
-			if (m_volumePoint > -1 && m_volumePoint < 101 && m_movingPoint > 60
-					&& m_movingPoint < 158) {
+			if (m_volumePoint > 9 && m_volumePoint < 101 && m_movingPoint > 78
+					&& m_movingPoint < 178) {
 
 				m_volumePoint-=10;
 				m_movingPoint-=10;
@@ -133,14 +133,14 @@ void Volume::setElementsColor() {
 	if (m_FontPlus.isClicked(m_FontPlus.getKRect())) {
 		m_FontPlus.setButtonColor(255, 0, 39);
 	} else {
-		m_FontPlus.setButtonColor(255, 255, 255);
+		m_FontPlus.setButtonColor(24, 236, 19);
 	}
 	if (m_FontMinus.isClicked(m_FontMinus.getKRect())) {
 		m_FontMinus.setButtonColor(255, 0, 39);
 	} else {
-		m_FontMinus.setButtonColor(255, 255, 255);
+		m_FontMinus.setButtonColor(24, 236, 19);
 	}
-	m_FontVolume.setButtonColor(255, 255, 255);
+	m_FontVolume.setButtonColor(24, 236, 19);
 }
 
 Font& Volume::getFontVolume() {

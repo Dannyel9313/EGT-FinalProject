@@ -58,9 +58,9 @@ void IntroScreen::loadIntroScreen(SDL_Renderer* renderer) {
 	m_background.loadTexture("IntroKenoImage2.png", renderer);
 
 	loadIntroElements(renderer);
-	moveStarNewGame(130, renderer);
-	moveResumeGame(210, renderer);
-	moveInfoGame(290, renderer);
+	moveStarNewGame(30, renderer);
+	moveResumeGame(110, renderer);
+	moveInfoGame(190, renderer);
 	SDL_RenderPresent(renderer);
 }
 
@@ -77,11 +77,11 @@ InsertCredit& IntroScreen::getInsertCredit() {
 }
 
 void IntroScreen::setPositionDimension() {
-	m_startNewGameButton.setPosition(430, 130, introStartResumeButton_width,
+	m_startNewGameButton.setPosition(450, 30, introStartResumeButton_width,
 			introStartResumeButton_height);
-	m_resumeGameButton.setPosition(430, 210, introStartResumeButton_width,
+	m_resumeGameButton.setPosition(450, 110, introStartResumeButton_width,
 			introStartResumeButton_height);
-	m_infoButton.setPosition(530, 290, introButton_width, introButton_height);
+	m_infoButton.setPosition(550, 190, introButton_width, introButton_height);
 
 }
 
@@ -89,7 +89,7 @@ void IntroScreen::loadIntroElements(SDL_Renderer* renderer) {
 	setElementsFont();
 	setPositionDimension();
 	setElementsColor();
-	m_background.loadTexture("IntroKenoImage2.png", renderer);
+	m_background.loadTexture("InfoBackground.png", renderer);
 	m_startNewGameButton.LoadFromRenderedText("START NEW GAME", renderer,
 			m_startNewGameButton.getButtonColor());
 
@@ -108,7 +108,7 @@ void IntroScreen::moveStarNewGame(int yPos, SDL_Renderer* renderer) {
 
 		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
 
-		m_startNewGameButton.setPosition(430, i, introStartResumeButton_width,
+		m_startNewGameButton.setPosition(450, i, introStartResumeButton_width,
 				introStartResumeButton_height);
 		m_startNewGameButton.textRender(m_startNewGameButton.getKRect(),
 				m_startNewGameButton.getKTexture(), renderer);
@@ -125,7 +125,7 @@ void IntroScreen::moveResumeGame(int yPos, SDL_Renderer* renderer) {
 		m_startNewGameButton.textRender(m_startNewGameButton.getKRect(),
 				m_startNewGameButton.getKTexture(), renderer);
 
-		m_resumeGameButton.setPosition(430, i, introStartResumeButton_width,
+		m_resumeGameButton.setPosition(450, i, introStartResumeButton_width,
 				introStartResumeButton_height);
 		m_resumeGameButton.textRender(m_resumeGameButton.getKRect(),
 				m_resumeGameButton.getKTexture(), renderer);
@@ -145,7 +145,7 @@ void IntroScreen::moveInfoGame(int yPos, SDL_Renderer* renderer) {
 		m_resumeGameButton.textRender(m_resumeGameButton.getKRect(),
 				m_resumeGameButton.getKTexture(), renderer);
 
-		m_infoButton.setPosition(530, i, introButton_width, introButton_height);
+		m_infoButton.setPosition(550, i, introButton_width, introButton_height);
 		m_infoButton.textRender(m_infoButton.getKRect(),
 				m_infoButton.getKTexture(), renderer);
 
@@ -162,23 +162,23 @@ void IntroScreen::setElementsColor() {
 			m_startNewGameButton.setButtonColor(255, 0, 39);
 
 		} else {
-			m_startNewGameButton.setButtonColor(255, 255, 255);
+			m_startNewGameButton.setButtonColor(24, 236, 19);
 
 		}
 	} else {
-		m_startNewGameButton.setButtonColor(0, 0, 0);
+		m_startNewGameButton.setButtonColor(127, 127, 127);
 	}
 	if (m_resumeGameButton.isClicked(m_resumeGameButton.getKRect())) {
 		m_resumeGameButton.setButtonColor(255, 0, 39);
 
 	} else {
-		m_resumeGameButton.setButtonColor(255, 255, 255);
+		m_resumeGameButton.setButtonColor(24, 236, 19);
 	}
 	if (m_infoButton.isClicked(m_infoButton.getKRect())) {
 		m_infoButton.setButtonColor(255, 0, 39);
 
 	} else {
-		m_infoButton.setButtonColor(255, 255, 255);
+		m_infoButton.setButtonColor(24, 236, 19);
 	}
 }
 
