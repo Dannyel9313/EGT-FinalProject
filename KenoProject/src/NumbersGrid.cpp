@@ -3,6 +3,8 @@
 NumbersGrid::NumbersGrid()
 {
 	//TODO NULL FONT, SOUND EFFECT
+	setPosition(100, 100);
+	setDimensions(250, 250);
 	for (int i = 0; i < 8; i++)
 	{
 		for (int j = 0; j < 10; j++)
@@ -132,8 +134,8 @@ void NumbersGrid::doIfClicked(SDL_Renderer * renderer, const SDL_Event & e)
 		for (int j = 0; j < 10; j++)
 		{
 			if(isClickedFlags[i][j] == 0 && 
-				isClicked(e, &m_numbers[i][j]) &&
-				numbersClicked() < 10) 
+				isClicked(e, &m_numbers[i][j]) 
+				&& numbersClicked() < 10) 
 			{
 				//Draw and fill rect
 				isClickedFlags[i][j] = 1;
@@ -186,22 +188,23 @@ const char * NumbersGrid::toStringPlusSpace(int in_val)
 	return str.c_str();
 }
 
-void NumbersGrid::pickRandomNumbers(SDL_Renderer * renderer, 
-					const SDL_Event & e)
+void NumbersGrid::pickRandomNumbers(SDL_Renderer* renderer, 
+					const SDL_Event& e,
+					SDL_Rect* rect)
 {
-	SDL_Rect rect = {0, 0, 30, 30};
 	int rand_1;
 	int rand_2;
-	if (isClicked(e, &rect))
+	if (isClicked(e, rect))
 	{
+		//createRects(renderer);
 		resetRandFlags();
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 20; i++)
 		{
 			rand_1 = rand()%8;
 			rand_2 = rand()%10;
-			if (randomNumbersFlags[r1][r2] == 0) 
+			if (randomNumbersFlags[rand_1][rand_2] == 0) 
 			{
-				randomNumbersFlags[r1][r2] = 1;
+				randomNumbersFlags[rand_1][rand_2] = 1;
 
 				//Draw diagonal lines
 				thickLineRGBA (renderer, 
@@ -272,15 +275,35 @@ int NumbersGrid::numberOfHits()
 
 int NumbersGrid::numbersClicked()
 {
-        int sum = 0;
-        for (int i = 0; i < 8; i++)
-        {
-                for (int j = 0; j < 10; j++)
-                {
-                        sum += isClickedFlags[i][j];
-                }
-        }
-        return sum;
+	int sum = 0;
+	for (int i = 0; i < 8; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			sum += isClickedFlags[i][j];
+		}
+	}
+	return sum;
 }
 
-
+void NumbersGrid::reRenderClickedNumbers(SDL_Renderer* renderer)
+{
+	createRects(renderer);
+	for (int i = 0; i < 8; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			if(isClickedFlags[i][j]==1)
+			{
+				roundedBoxRGBA(renderer,
+					m_numbers[i][j].x, 
+					m_numbers[i][j].y,
+					m_numbers[i][j].x+40,
+					m_numbers[i][j].y+30, 
+					5, 255, 255, 0, 255);	
+				//Reapply numbers in rects
+				numbersInRects(renderer);
+			}
+		}
+	}
+}
