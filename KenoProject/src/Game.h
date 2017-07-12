@@ -11,6 +11,7 @@ class Game: public BaseObject
 		NumbersGrid & getNumbersGrid();
 		BetButton & getBetButton();
 
+		//Render the whole game screen
 		void renderGame(SDL_Renderer*,const SDL_Event&);
 	private:
 		NumbersGrid mGrid;
