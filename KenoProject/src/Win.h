@@ -18,7 +18,12 @@ public:
 
 	void writeOnScreen(SDL_Renderer*);
 private:
-	Font f;
+	Font firstText;
+	Font secondText;
+	Font thirdText;
+	Font fourthText;
+	Font fifthText;
+	BaseObject mBackground;
 	std::string StringToDouble();
 };
 
