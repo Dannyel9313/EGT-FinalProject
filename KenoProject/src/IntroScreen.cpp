@@ -47,82 +47,21 @@ Font& IntroScreen::getStartNewGameButton() {
 void IntroScreen::setStartNewGameButton(const Font& startNewGameButton) {
 	m_startNewGameButton = startNewGameButton;
 }
-
+// to do a function
 void IntroScreen::loadIntroScreen(SDL_Renderer* renderer) {
 
-	int offset = 130;
-
-	m_introSong =Mix_LoadMUS(
+	m_introSong =
+			Mix_LoadMUS(
 					"Deya Dova - Footsteps In The Stars Temple Step Project  DJ Dakini Remix.mp3");
-	Mix_PlayMusic(m_introSong,-1);
+	Mix_PlayMusic(m_introSong, -1);
 
+	m_background.loadTexture("IntroKenoImage2.png", renderer);
 
-
-
-	setElementsFont();
-	setElementsColor();
-
-	m_startNewGameButton.LoadFromRenderedText("START NEW GAME", renderer,
-			m_startNewGameButton.getButtonColor());
-
-	m_resumeGameButton.LoadFromRenderedText("RESUME GAME", renderer,
-			m_resumeGameButton.getButtonColor());
-
-	m_infoButton.LoadFromRenderedText("INFO", renderer,
-			m_infoButton.getButtonColor());
-
-	for (int i = 640; i > offset; i -= 5) {
-
-		m_background.loadTexture("IntroKenoImage2.png", renderer);
-		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
-
-		m_startNewGameButton.setPosition(430, i, introStartResumeButton_width,
-				introStartResumeButton_height);
-		m_startNewGameButton.textRender(m_startNewGameButton.getKRect(),
-				m_startNewGameButton.getKTexture(), renderer);
-
-		SDL_RenderPresent(renderer);
-	}
-	offset += 80;
-	for (int i = 640; i > offset; i -= 5) {
-
-		m_background.loadTexture("IntroKenoImage2.png", renderer);
-		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
-
-
-		m_startNewGameButton.textRender(m_startNewGameButton.getKRect(),
-				m_startNewGameButton.getKTexture(), renderer);
-
-		m_resumeGameButton.setPosition(430, i, introStartResumeButton_width,
-				introStartResumeButton_height);
-		m_resumeGameButton.textRender(m_resumeGameButton.getKRect(),
-				m_resumeGameButton.getKTexture(), renderer);
-		SDL_RenderPresent(renderer);
-
-	}
-	offset += 80;
-	for (int i = 640; i > offset; i -= 5) {
-		m_background.loadTexture("IntroKenoImage2.png", renderer);
-		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
-
-		m_startNewGameButton.textRender(m_startNewGameButton.getKRect(),
-				m_startNewGameButton.getKTexture(), renderer);
-
-
-		m_resumeGameButton.textRender(m_resumeGameButton.getKRect(),
-				m_resumeGameButton.getKTexture(), renderer);
-
-		m_infoButton.setPosition(530, i, introButton_width, introButton_height);
-		m_infoButton.textRender(m_infoButton.getKRect(),
-				m_infoButton.getKTexture(), renderer);
-
-		SDL_RenderPresent(renderer);
-
-	}
-//	m_volume.LoadVolumeElements(renderer);
-//	m_insertCredit.loadCreditElements(renderer);
-//
-//	SDL_RenderPresent(renderer);
+	loadIntroElements(renderer);
+	moveStarNewGame(130, renderer);
+	moveResumeGame(210, renderer);
+	moveInfoGame(290, renderer);
+	SDL_RenderPresent(renderer);
 }
 
 Volume& IntroScreen::getVolume() {
@@ -140,22 +79,94 @@ InsertCredit& IntroScreen::getInsertCredit() {
 void IntroScreen::setPositionDimension() {
 	m_startNewGameButton.setPosition(430, 130, introStartResumeButton_width,
 			introStartResumeButton_height);
-	m_resumeGameButton.setPosition(430, 220, introStartResumeButton_width,
-				introStartResumeButton_height);
-	m_infoButton.setPosition(530, 300, introButton_width, introButton_height);
+	m_resumeGameButton.setPosition(430, 210, introStartResumeButton_width,
+			introStartResumeButton_height);
+	m_infoButton.setPosition(530, 290, introButton_width, introButton_height);
 
 }
 
+void IntroScreen::loadIntroElements(SDL_Renderer* renderer) {
+	setElementsFont();
+	setPositionDimension();
+	setElementsColor();
+	m_background.loadTexture("IntroKenoImage2.png", renderer);
+	m_startNewGameButton.LoadFromRenderedText("START NEW GAME", renderer,
+			m_startNewGameButton.getButtonColor());
 
+	m_resumeGameButton.LoadFromRenderedText("RESUME GAME", renderer,
+			m_resumeGameButton.getButtonColor());
+
+	m_infoButton.LoadFromRenderedText("INFO", renderer,
+			m_infoButton.getButtonColor());
+	m_volume.LoadVolumeElements(renderer);
+	m_insertCredit.loadCreditElements(renderer);
+
+}
+
+void IntroScreen::moveStarNewGame(int yPos, SDL_Renderer* renderer) {
+	for (int i = 640; i > yPos; i -= 5) {
+
+		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
+
+		m_startNewGameButton.setPosition(430, i, introStartResumeButton_width,
+				introStartResumeButton_height);
+		m_startNewGameButton.textRender(m_startNewGameButton.getKRect(),
+				m_startNewGameButton.getKTexture(), renderer);
+
+		SDL_RenderPresent(renderer);
+	}
+}
+
+void IntroScreen::moveResumeGame(int yPos, SDL_Renderer* renderer) {
+	for (int i = 640; i > yPos; i -= 5) {
+
+		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
+
+		m_startNewGameButton.textRender(m_startNewGameButton.getKRect(),
+				m_startNewGameButton.getKTexture(), renderer);
+
+		m_resumeGameButton.setPosition(430, i, introStartResumeButton_width,
+				introStartResumeButton_height);
+		m_resumeGameButton.textRender(m_resumeGameButton.getKRect(),
+				m_resumeGameButton.getKTexture(), renderer);
+		SDL_RenderPresent(renderer);
+
+	}
+}
+
+void IntroScreen::moveInfoGame(int yPos, SDL_Renderer* renderer) {
+	for (int i = 640; i > yPos; i -= 5) {
+
+		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
+
+		m_startNewGameButton.textRender(m_startNewGameButton.getKRect(),
+				m_startNewGameButton.getKTexture(), renderer);
+
+		m_resumeGameButton.textRender(m_resumeGameButton.getKRect(),
+				m_resumeGameButton.getKTexture(), renderer);
+
+		m_infoButton.setPosition(530, i, introButton_width, introButton_height);
+		m_infoButton.textRender(m_infoButton.getKRect(),
+				m_infoButton.getKTexture(), renderer);
+
+		SDL_RenderPresent(renderer);
+
+	}
+}
 
 void IntroScreen::setElementsColor() {
-	if (m_startNewGameButton.isClicked(m_startNewGameButton.getKRect())) {
-		m_startNewGameButton.setButtonColor(255, 0, 39);
 
+	if (m_insertCredit.getCredit() > 0) {
 
+		if (m_startNewGameButton.isClicked(m_startNewGameButton.getKRect())) {
+			m_startNewGameButton.setButtonColor(255, 0, 39);
+
+		} else {
+			m_startNewGameButton.setButtonColor(255, 255, 255);
+
+		}
 	} else {
-		m_startNewGameButton.setButtonColor(255, 255, 255);
-
+		m_startNewGameButton.setButtonColor(0, 0, 0);
 	}
 	if (m_resumeGameButton.isClicked(m_resumeGameButton.getKRect())) {
 		m_resumeGameButton.setButtonColor(255, 0, 39);
@@ -178,47 +189,24 @@ void IntroScreen::setElementsFont() {
 }
 
 void IntroScreen::introScreenPresent(SDL_Renderer* renderer) {
-	setElementsFont();
-	setPositionDimension();
-	setElementsColor();
 
-
-
-	m_startNewGameButton.LoadFromRenderedText("START NEW GAME", renderer,
-				m_startNewGameButton.getButtonColor());
-
-		m_resumeGameButton.LoadFromRenderedText("RESUME GAME", renderer,
-				m_resumeGameButton.getButtonColor());
-
-		m_infoButton.LoadFromRenderedText("INFO", renderer,
-				m_infoButton.getButtonColor());
-
-	m_background.loadTexture("IntroKenoImage2.png", renderer);
 	SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
-
 
 	m_startNewGameButton.textRender(m_startNewGameButton.getKRect(),
 			m_startNewGameButton.getKTexture(), renderer);
 
-
 	m_resumeGameButton.textRender(m_resumeGameButton.getKRect(),
 			m_resumeGameButton.getKTexture(), renderer);
 
-
 	m_infoButton.textRender(m_infoButton.getKRect(), m_infoButton.getKTexture(),
 			renderer);
-
-	m_volume.LoadVolumeElements(renderer);
-	m_insertCredit.loadCreditElements(renderer);
-
+	loadIntroElements(renderer);
 
 }
 
 void IntroScreen::setInsertCredit(InsertCredit& insertCredit) {
 	m_insertCredit = insertCredit;
 }
-
-
 
 Mix_Music*& IntroScreen::getIntroSong() {
 	return m_introSong;

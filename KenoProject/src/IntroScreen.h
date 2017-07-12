@@ -15,20 +15,17 @@
 class IntroScreen {
 public:
 
-
 	IntroScreen();
 	virtual ~IntroScreen();
-
 
 	//Load intro screen
 	void loadIntroScreen(SDL_Renderer* renderer);
 
-
-
 	// Present intro screen
 	void introScreenPresent(SDL_Renderer* renderer);
 
-
+	//Load intro elements
+	void loadIntroElements(SDL_Renderer* renderer);
 
 	BaseObject& getBackground();
 	void setBackground(const BaseObject& background);
@@ -36,24 +33,30 @@ public:
 	Font& getInfoButton();
 	void setInfoButton(const Font& infoButton);
 
-	Font& getResumeGameButton() ;
+	Font& getResumeGameButton();
 	void setResumeGameButton(const Font& resumeGameButton);
 
 	Font& getStartNewGameButton();
 	void setStartNewGameButton(const Font& startNewGameButton);
 
 	Volume& getVolume();
-	void setVolume( Volume& volume);
+	void setVolume(Volume& volume);
 
 	void setPositionDimension();
 
 	InsertCredit& getInsertCredit();
 	void setInsertCredit(InsertCredit& insertCredit);
 
-
 	Mix_Music*& getIntroSong();
 
 private:
+	// moving elements
+	void moveStarNewGame(int yPos, SDL_Renderer* renderer);
+
+	void moveResumeGame(int yPos, SDL_Renderer* renderer);
+
+	void moveInfoGame(int yPos, SDL_Renderer* renderer);
+
 	// Set elements font
 	void setElementsFont();
 
@@ -69,7 +72,6 @@ private:
 	Font m_infoButton;
 
 	Mix_Music* m_introSong;
-
 
 };
 

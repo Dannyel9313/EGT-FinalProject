@@ -6,8 +6,8 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
-#include <SDL2/SDL2_gfxPrimitives.h>
-#include <boost/lexical_cast.hpp>
+#include <vector>
 #include "Globals.h"
+#include <boost/lexical_cast.hpp>
 
 #endif //Include.h

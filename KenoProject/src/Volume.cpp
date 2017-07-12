@@ -95,10 +95,18 @@ void Volume::setElementsFont() {
 void Volume::moveVolumeDot(SDL_Event* e) {
 
 	if (e->type == SDL_MOUSEBUTTONDOWN) {
+		if(m_movingPoint < 58 && m_volumePoint < 0){
+				m_movingPoint = 59;
+				m_volumePoint = 0;
+			}
+			if(m_movingPoint > 150 || m_volumePoint > 128){
+				m_movingPoint = 150;
+				m_volumePoint = 100;
+			}
 		if (m_FontPlus.isClicked(m_FontPlus.getKRect())) {
 			if (m_volumePoint > -1 && m_volumePoint < 101 && m_movingPoint > 58
-					&& m_movingPoint < 158) {
-				Mix_PlayChannel(-1,m_FontChanelClick.getChunkClic(),-1);
+					&& m_movingPoint < 149) {
+
 				m_volumePoint+=10;
 				m_movingPoint+=10;
 				std::cout << "->" << m_movingPoint << "<-" << "->" << m_volumePoint << "<-" << std::endl;
@@ -107,15 +115,17 @@ void Volume::moveVolumeDot(SDL_Event* e) {
 			}
 		}
 		if(m_FontMinus.isClicked(m_FontMinus.getKRect())) {
-			if (m_volumePoint > -1 && m_volumePoint < 101 && m_movingPoint > 58
+			if (m_volumePoint > -1 && m_volumePoint < 101 && m_movingPoint > 60
 					&& m_movingPoint < 158) {
+
 				m_volumePoint-=10;
 				m_movingPoint-=10;
-				std::cout << "->" << m_movingPoint << "<-" << std::endl;
+				std::cout << "->" << m_movingPoint << "<-" << "->" << m_volumePoint << "<-" << std::endl;
 				Mix_VolumeMusic(m_volumePoint);
-				Mix_PlayChannel(-1,m_FontChanelClick.getChunkClic(),0);
+
 			}
 		}
+
 	}
 }
 

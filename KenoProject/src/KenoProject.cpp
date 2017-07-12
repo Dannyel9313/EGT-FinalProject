@@ -17,19 +17,19 @@ int main(int argc, char* args[]) {
 		} else {
 			SDL_SetRenderDrawColor(game.getKenoRenderer(), 255, 255, 255, 255);
 			SDL_RenderClear(game.getKenoRenderer());
-
-//			game.getIntroMode().loadIntroScreen(game.getKenoRenderer());
+//			game.getInfoMode().loadInfoScreen(game.getKenoRenderer());
+			game.getIntroMode().loadIntroScreen(game.getKenoRenderer());
 			int x,y;
 			while (!quit) {
 				while (SDL_PollEvent(&e) != 0) {
 					if (e.type == SDL_QUIT) {
 						quit = true;
 					}
-//					game.getIntroMode().getVolume().moveVolumeDot(&e);
-//					game.getIntroMode().getInsertCredit().setCreditToGame(&e);
+					game.getIntroMode().getVolume().moveVolumeDot(&e);
+					game.getIntroMode().getInsertCredit().setCreditToGame(&e);
 					SDL_GetMouseState(&x,&y);
 
-					std::cout << "x -> " << x << " y -> " << y << std::endl;
+//					std::cout << "x -> " << x << " y -> " << y << std::endl;
 
 
 
@@ -39,13 +39,13 @@ int main(int argc, char* args[]) {
 				if (introMode) {
 
 				}
-				game.getInfoMode().loadInfoScreen(game.getKenoRenderer());
-//				game.getIntroMode().introScreenPresent(game.getKenoRenderer());
+
+				game.getIntroMode().introScreenPresent(game.getKenoRenderer());
 				SDL_RenderPresent(game.getKenoRenderer());
 				introMode = false;
 			}
 		}
 	}
-	game.close();
+//	game.close();
 	return 0;
 }

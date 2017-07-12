@@ -49,19 +49,26 @@ void Info::loadInfoScreen(SDL_Renderer* renderer) {
 }
 
 void Info::setElementsFont() {
-	m_textInfo.setFont(TTF_OpenFont("Disko.ttf",20));
+	m_textInfo.setFont(TTF_OpenFont("Disko.ttf",40));
+	m_textInformation.setFont(TTF_OpenFont("Disko.ttf",40));
 }
 
 void Info::setElementsPositionDimension() {
 
 	m_textInfo.setPosition(40,40,infoText_width,infoText_height);
+//	m_textInformation.setPosition(190,38,)
 
 }
 
 void Info::setElementsColor() {
-	m_textInfo.setButtonColor(255,255,255);
+	m_textInfo.setButtonColor(129,268,69);
+	m_textInformation.setButtonColor(129,268,69);
 }
 
 Font& Info::getTextInfo() {
 	return m_textInfo;
+}
+
+Font& Info::getTextInformation(){
+	return m_textInformation;
 }
