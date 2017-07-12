@@ -29,4 +29,59 @@ const int introVolumeDot_height = 40;
 const int infoText_width = 720;
 const int infoText_height = 480;
 
+//Position of numbers grid
+const int numbersGrid_x = 100;
+const int numbersGrid_y = 100;
+
+//Dimensions of numbers grid
+const int numbersGrid_width = 420;
+const int numbersGrid_height = 264;
+
+//Numbers rect dimensions
+const int numbersRect_width = 40;
+const int numbersRect_height = 30;
+
+//numbers text dimensions
+const int numbers_width = 24;
+const int numbers_height = 22;
+
+//Positioning in rect of 1-digit numbers
+const int oneDigit_xIndent = 13;
+const int oneDigit_yIndent = 5;
+
+//Positioning in rect of 2-digit numbers
+const int twoDigit_xIndent = 9;
+const int twoDigit_yIndent = 5;
+
+//Miliseconds to seconds
+const int oneSecond = 1000;
+
+//Size of numbers
+const int numbersText_size = 24;
+
+//Radius of catch circle
+const int radiusOfCircle = 15;
+
+//Catch circle rect indent
+const int circle_xIndent = 20;
+const int circle_yIndent = 15;
+
+//Bet button position
+const int betButton_x = 0;
+const int betButton_y = 0;
+
+//Bet button dimensions
+const int betButton_width = 100;
+const int betButton_height = 100;
+
+//Bet button text indent
+const int betText_xIndent = 25;
+const int betText_yIndent = 25;
+
+//Bet button text size
+const int betText_width = 50;
+const int betText_height = 50;
+
+//Minimum numbers to be chosen
+const int minimumSpots = 2;
 #endif /* GLOBALS_H_ */

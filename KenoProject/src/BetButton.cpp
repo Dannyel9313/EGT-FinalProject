@@ -3,8 +3,8 @@
 BetButton::BetButton()
 {
 	//Set bet button position and dimensions
-	setPosition(0, 0);
-	setDimensions(100, 100);
+	setPosition(betButton_x, betButton_y);
+	setDimensions(betButton_width, betButton_height);
 }
 
 void BetButton::betText(SDL_Renderer* renderer)
@@ -13,8 +13,8 @@ void BetButton::betText(SDL_Renderer* renderer)
 	m_font.setFontColor(0, 0, 0);
 
 	//Set bet text position and dimensions
-	m_font.setPosition(25, 25);
-	m_font.setDimensions(50, 50);
+	m_font.setPosition(getKRect().x+betText_xIndent, getKRect().y+betText_yIndent);
+	m_font.setDimensions(betText_width, betText_height);
 
 	//Load bet text
 	m_font.loadTextureFromTTF("Bet", renderer, m_font.getFont(), m_font.getFontColor());
@@ -27,14 +27,14 @@ bool BetButton::buttonCondition(int condition, SDL_Renderer* renderer)
 {
 	bool success = false;
 	//If less than 2 numbers clicked transperent button nothing happens if clicked
-	if (condition < 2) 
+	if (condition < minimumSpots) 
 	{
 		setAlpha(50);
 		render(renderer, &getKRect()); 
 		betText(renderer);
 		success = false;
 	}
-	else if (condition >= 2) 
+	else if (condition >= minimumSpots) 
 	{
 		setAlpha(255);
 		render(renderer, &getKRect());

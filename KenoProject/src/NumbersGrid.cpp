@@ -3,8 +3,8 @@
 NumbersGrid::NumbersGrid()
 {
 	//TODO NULL FONT, SOUND EFFECT
-	setPosition(100, 100);
-	setDimensions(42*10, 33*8);
+	setPosition(numbersGrid_x, numbersGrid_y);
+	setDimensions(numbersGrid_width, numbersGrid_height);
 	for (int i = 0; i < 8; i++)
 	{
 		for (int j = 0; j < 10; j++)
@@ -19,7 +19,7 @@ NumbersGrid::NumbersGrid()
 void NumbersGrid::createRects(SDL_Renderer * renderer, int alpha)
 {
 	int xPos = getKRect().x, yPos = getKRect().y;
-	SDL_Rect tempRect = {xPos, yPos, 40, 30};
+	SDL_Rect tempRect = {xPos, yPos, numbersRect_width, numbersRect_height};
 	for (int i = 0; i < 8; i++)
 	{
 		for (int j = 0; j < 10; j++)
@@ -30,16 +30,16 @@ void NumbersGrid::createRects(SDL_Renderer * renderer, int alpha)
 			roundedBoxRGBA(renderer, 
 				m_numbers[i][j].x, 
 				m_numbers[i][j].y, 
-				m_numbers[i][j].x+40, 
-				m_numbers[i][j].y+30, 
+				m_numbers[i][j].x+numbersRect_width, 
+				m_numbers[i][j].y+numbersRect_height, 
 				5, 225, 16, 16, alpha);
 
 			//Set new position
-			xPos += 42;
+			xPos += numbersRect_width + 2;
 			tempRect.x = xPos;
 		}
 		xPos = getKRect().x;
-		yPos += 33;
+		yPos += numbersRect_height + 3;
 		tempRect.y = yPos;
 		tempRect.x = xPos;
 	}
@@ -54,7 +54,7 @@ void NumbersGrid::setNumbersGridRect(int x, int y, int w, int h)
 
 void NumbersGrid::loadTTF()
 {
-	m_font = TTF_OpenFont("AUDI.TTF", 24);
+	m_font = TTF_OpenFont("AUDI.TTF", numbersText_size);
 	TTF_SetFontStyle(m_font, TTF_STYLE_BOLD);
 }
 
@@ -71,10 +71,10 @@ void NumbersGrid::numbersInRects(SDL_Renderer * renderer)
 			if(number < 10) 
 			{
 				//Set the destination rect
-				dst_rect.x = m_numbers[i][j].x+13;
-				dst_rect.y = m_numbers[i][j].y+5;	
-				dst_rect.w = 24;	
-				dst_rect.h = 22;
+				dst_rect.x = m_numbers[i][j].x+oneDigit_xIndent;
+				dst_rect.y = m_numbers[i][j].y+oneDigit_yIndent;	
+				dst_rect.w = numbers_width;	
+				dst_rect.h = numbers_height;
 
 				//Load text from font
 				loadTextureFromTTF(toStringPlusSpace(number), 
@@ -87,10 +87,10 @@ void NumbersGrid::numbersInRects(SDL_Renderer * renderer)
 			else 
 			{
 				//Set destination rect	
-				dst_rect.x = m_numbers[i][j].x+9;
-				dst_rect.y = m_numbers[i][j].y+5;	
-				dst_rect.w = 24;	
-				dst_rect.h = 22;
+				dst_rect.x = m_numbers[i][j].x+twoDigit_xIndent;
+				dst_rect.y = m_numbers[i][j].y+twoDigit_yIndent;	
+				dst_rect.w = numbers_width;	
+				dst_rect.h = numbers_height;
 
 				//Load number from font
 				loadTextureFromTTF(toString(number), renderer, m_font, white);
@@ -117,11 +117,11 @@ void NumbersGrid::doIfClicked(SDL_Renderer * renderer, const SDL_Event & e)
 				//Draw and fill rect
 				isClickedFlags[i][j] = 1;
 				roundedBoxRGBA(renderer, 
-					m_numbers[i][j].x, 
-					m_numbers[i][j].y, 
-					m_numbers[i][j].x+40,
-					m_numbers[i][j].y+30, 
-					5, 200, 200, 0, 255);
+				m_numbers[i][j].x, 
+				m_numbers[i][j].y, 
+				m_numbers[i][j].x+numbersRect_width, 
+				m_numbers[i][j].y+numbersRect_height, 
+				5, 200, 200, 0, 255);
 
 				//Reapply numbers in rects
 				numbersInRects(renderer);
@@ -137,8 +137,8 @@ void NumbersGrid::doIfClicked(SDL_Renderer * renderer, const SDL_Event & e)
 				roundedBoxRGBA(renderer,
 					m_numbers[i][j].x, 
 					m_numbers[i][j].y,
-					m_numbers[i][j].x+40,
-					m_numbers[i][j].y+30, 
+					m_numbers[i][j].x+numbersRect_width,
+					m_numbers[i][j].y+numbersRect_height, 
 					5, 225, 16, 16, 255);
 
 				//Reapply numbers in rects
@@ -255,8 +255,8 @@ void NumbersGrid::reRenderClickedNumbers(SDL_Renderer* renderer, int alpha)
 				roundedBoxRGBA(renderer,
 					m_numbers[i][j].x, 
 					m_numbers[i][j].y,
-					m_numbers[i][j].x+40,
-					m_numbers[i][j].y+30, 
+					m_numbers[i][j].x+numbersRect_width,
+					m_numbers[i][j].y+numbersRect_height, 
 					5, 200, 200, 0, alpha);	
 				//Reapply numbers in rects
 				numbersInRects(renderer);
@@ -273,7 +273,7 @@ void NumbersGrid::blinkingSuccessHits(SDL_Renderer* renderer)
 	int flag = 0;
 	for (int k = 0; k < 8; k++) 
 	{
-		int timeout = SDL_GetTicks() + 1000;
+		int timeout = SDL_GetTicks() + oneSecond;
 		for (int i = 0; i < 8; i++)
 		{
 			for (int j = 0; j < 10; j++)
@@ -285,8 +285,8 @@ void NumbersGrid::blinkingSuccessHits(SDL_Renderer* renderer)
 						roundedBoxRGBA(renderer,
 							m_numbers[i][j].x, 
 							m_numbers[i][j].y,
-							m_numbers[i][j].x+40,
-							m_numbers[i][j].y+30, 
+							m_numbers[i][j].x+numbersRect_width,
+							m_numbers[i][j].y+numbersRect_height, 
 							5, 225, 16, 16, 255);
 						//Reapply numbers in rects
 						numbersInRects(renderer);
@@ -296,8 +296,8 @@ void NumbersGrid::blinkingSuccessHits(SDL_Renderer* renderer)
 						roundedBoxRGBA(renderer,
 							m_numbers[i][j].x, 
 							m_numbers[i][j].y,
-							m_numbers[i][j].x+40,
-							m_numbers[i][j].y+30, 
+							m_numbers[i][j].x+numbersRect_width,
+							m_numbers[i][j].y+numbersRect_height, 
 							5, 200, 200, 0, 255);
 						//Reapply numbers in rects
 						numbersInRects(renderer);
@@ -328,9 +328,9 @@ void NumbersGrid::renderRandomNumbers(SDL_Renderer* renderer)
 			{
 				//Draw diagonal lines
 				if(filledCircleRGBA(renderer, 
-					m_numbers[i][j].x+20,
-					m_numbers[i][j].y+15,
-					15, 0, 0, 0, 255)!=0) 
+					m_numbers[i][j].x+circle_xIndent,
+					m_numbers[i][j].y+circle_yIndent,
+					radiusOfCircle, 0, 0, 0, 255)!=0) 
 				{
 					std::cout << "Error drawing circle" 
 						<< std::endl;
