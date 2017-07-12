@@ -38,8 +38,8 @@ void Win::writeOnScreen(SDL_Renderer* renderer)
 			fifthText.getButtonColor());
 
 	for(int i = 0; i < 300; i += 5){
-			loadTextureFromFile("blueScreen.gif", renderer);
-			SDL_RenderCopy(renderer, getKTexture(), NULL, NULL);
+			mBackground.loadTextureFromFile("blueScreen.gif", renderer);
+			SDL_RenderCopy(renderer, mBackground.getKTexture(), NULL, NULL);
 
 			firstText.setPosition(i, i, introButton_width, introButton_height);
 			firstText.textRender(firstText.getKRect(), firstText.getKTexture(), renderer);
@@ -47,8 +47,8 @@ void Win::writeOnScreen(SDL_Renderer* renderer)
 		SDL_RenderPresent(renderer);
 	}
 	for(int i = 0; i < 300; i += 5){
-			loadTextureFromFile("blueScreen.gif", renderer);
-			SDL_RenderCopy(renderer, getKTexture(), NULL, NULL);
+			mBackground.loadTextureFromFile("blueScreen.gif", renderer);
+			SDL_RenderCopy(renderer, mBackground.getKTexture(), NULL, NULL);
 
 			firstText.setPosition(300, 300, introButton_width, introButton_height);
 			firstText.textRender(firstText.getKRect(), firstText.getKTexture(), renderer);
@@ -59,8 +59,8 @@ void Win::writeOnScreen(SDL_Renderer* renderer)
 		SDL_RenderPresent(renderer);
 	}
 	for(int i = 0; i < 300; i += 5){
-				loadTextureFromFile("blueScreen.gif", renderer);
-				SDL_RenderCopy(renderer, getKTexture(), NULL, NULL);
+				mBackground.loadTextureFromFile("blueScreen.gif", renderer);
+				SDL_RenderCopy(renderer, mBackground.getKTexture(), NULL, NULL);
 
 				firstText.setPosition(300, 300, introButton_width, introButton_height);
 				firstText.textRender(firstText.getKRect(), firstText.getKTexture(), renderer);
@@ -75,8 +75,8 @@ void Win::writeOnScreen(SDL_Renderer* renderer)
 			SDL_RenderPresent(renderer);
 		}
 	for(int i = 0; i < 300; i += 5){
-					loadTextureFromFile("blueScreen.gif", renderer);
-					SDL_RenderCopy(renderer, getKTexture(), NULL, NULL);
+					mBackground.loadTextureFromFile("blueScreen.gif", renderer);
+					SDL_RenderCopy(renderer, mBackground.getKTexture(), NULL, NULL);
 
 					firstText.setPosition(300, 300, introButton_width, introButton_height);
 					firstText.textRender(firstText.getKRect(), firstText.getKTexture(), renderer);
@@ -94,7 +94,7 @@ void Win::writeOnScreen(SDL_Renderer* renderer)
 				SDL_RenderPresent(renderer);
 			}
 	for(int i = 0; i < 300; i += 5){
-						loadTextureFromFile("blueScreen.gif", renderer);
+						mBackground.loadTextureFromFile("blueScreen.gif", renderer);
 						SDL_RenderCopy(renderer, getKTexture(), NULL, NULL);
 
 						firstText.setPosition(300, 300, introButton_width, introButton_height);
