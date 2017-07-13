@@ -46,10 +46,9 @@ class NumbersGrid: public BaseObject
 		void resetFlags();
 	private:
 		//Utility function load numbers in rectangles
-		void numbersInRects(SDL_Renderer*);
+		void printNumbers(SDL_Renderer*);
 
 		const char* toString(int);
-		const char* toStringPlusSpace(int);
 
 		SDL_Rect m_numbers[8][10];
 		TTF_Font* m_font;

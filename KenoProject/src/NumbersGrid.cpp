@@ -43,7 +43,7 @@ void NumbersGrid::createRects(SDL_Renderer * renderer, int alpha)
 		tempRect.y = yPos;
 		tempRect.x = xPos;
 	}
-	numbersInRects(renderer);
+	printNumbers(renderer);
 }
 
 void NumbersGrid::setNumbersGridRect(int x, int y, int w, int h)
@@ -58,7 +58,7 @@ void NumbersGrid::loadTTF()
 	TTF_SetFontStyle(m_font, TTF_STYLE_BOLD);
 }
 
-void NumbersGrid::numbersInRects(SDL_Renderer * renderer)
+void NumbersGrid::printNumbers(SDL_Renderer * renderer)
 {
 	SDL_Rect dst_rect = {0, 0, 0, 0};
 	SDL_Color white = {255, 255, 255};
@@ -73,11 +73,11 @@ void NumbersGrid::numbersInRects(SDL_Renderer * renderer)
 				//Set the destination rect
 				dst_rect.x = m_numbers[i][j].x+oneDigit_xIndent;
 				dst_rect.y = m_numbers[i][j].y+oneDigit_yIndent;	
-				dst_rect.w = numbers_width;	
-				dst_rect.h = numbers_height;
+				dst_rect.w = oneDigit_width;	
+				dst_rect.h = oneDigit_height;
 
 				//Load text from font
-				loadTextureFromTTF(toStringPlusSpace(number), 
+				loadTextureFromTTF(toString(number), 
 					renderer, m_font, white);
 				
 				//Render
@@ -89,8 +89,8 @@ void NumbersGrid::numbersInRects(SDL_Renderer * renderer)
 				//Set destination rect	
 				dst_rect.x = m_numbers[i][j].x+twoDigit_xIndent;
 				dst_rect.y = m_numbers[i][j].y+twoDigit_yIndent;	
-				dst_rect.w = numbers_width;	
-				dst_rect.h = numbers_height;
+				dst_rect.w = twoDigit_width;	
+				dst_rect.h = twoDigit_height;
 
 				//Load number from font
 				loadTextureFromTTF(toString(number), renderer, m_font, white);
@@ -124,7 +124,7 @@ void NumbersGrid::doIfClicked(SDL_Renderer * renderer, const SDL_Event & e)
 				5, 200, 200, 0, 255);
 
 				//Reapply numbers in rects
-				numbersInRects(renderer);
+				printNumbers(renderer);
 
 				//Play sound effect
 				Mix_PlayChannel(-1, m_ClickEffect, 0);
@@ -142,7 +142,7 @@ void NumbersGrid::doIfClicked(SDL_Renderer * renderer, const SDL_Event & e)
 					5, 225, 16, 16, 255);
 
 				//Reapply numbers in rects
-				numbersInRects(renderer);
+				printNumbers(renderer);
 
 				//Play sound effect	
 				Mix_PlayChannel(-1, m_ClickEffect, 0);
@@ -157,13 +157,6 @@ const char * NumbersGrid::toString(int in_val)
 	return str.c_str();
 }
 
-
-const char * NumbersGrid::toStringPlusSpace(int in_val)
-{
-	std::string str = boost::lexical_cast<std::string> (in_val);
-	str = str + ' ';
-	return str.c_str();
-}
 
 void NumbersGrid::pickRandomNumbers(SDL_Renderer* renderer, 
 					const SDL_Event& e)
@@ -259,7 +252,7 @@ void NumbersGrid::reRenderClickedNumbers(SDL_Renderer* renderer, int alpha)
 					m_numbers[i][j].y+numbersRect_height, 
 					5, 200, 200, 0, alpha);	
 				//Reapply numbers in rects
-				numbersInRects(renderer);
+				printNumbers(renderer);
 			}
 		}
 	}
@@ -269,6 +262,7 @@ void NumbersGrid::blinkingSuccessHits(SDL_Renderer* renderer)
 {
 	reRenderClickedNumbers(renderer, 50);
 	renderRandomNumbers(renderer);
+	printNumbers(renderer);
 	numberOfHits();	
 	int flag = 0;
 	for (int k = 0; k < 8; k++) 
@@ -289,7 +283,7 @@ void NumbersGrid::blinkingSuccessHits(SDL_Renderer* renderer)
 							m_numbers[i][j].y+numbersRect_height, 
 							5, 225, 16, 16, 255);
 						//Reapply numbers in rects
-						numbersInRects(renderer);
+						printNumbers(renderer);
 					}
 					else if (flag == 1)
 					{
@@ -300,7 +294,7 @@ void NumbersGrid::blinkingSuccessHits(SDL_Renderer* renderer)
 							m_numbers[i][j].y+numbersRect_height, 
 							5, 200, 200, 0, 255);
 						//Reapply numbers in rects
-						numbersInRects(renderer);
+						printNumbers(renderer);
 					}
 				}
 			}
@@ -344,7 +338,7 @@ void NumbersGrid::resetNumbersGrid(SDL_Renderer* renderer)
 {
 	resetFlags();
 	createRects(renderer, 255);
-	numbersInRects(renderer);
+	printNumbers(renderer);
 }
 
 void NumbersGrid::resetFlags()

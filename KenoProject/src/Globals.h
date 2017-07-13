@@ -42,8 +42,11 @@ const int numbersRect_width = 40;
 const int numbersRect_height = 30;
 
 //numbers text dimensions
-const int numbers_width = 24;
-const int numbers_height = 22;
+const int oneDigit_width = 13;
+const int oneDigit_height = 22;
+
+const int twoDigit_width = 24;
+const int twoDigit_height = 22;
 
 //Positioning in rect of 1-digit numbers
 const int oneDigit_xIndent = 13;
