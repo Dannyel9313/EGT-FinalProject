@@ -41,6 +41,7 @@ void Info::renderInfoScreen(SDL_Renderer* renderer) {
 
 
 	m_backgroundInfo.render(renderer, NULL);
+	m_textInfo.render(renderer,m_textInfo.getKRect());
 if(m_buttonBack.isClicked(m_buttonBack.getKRect())){
 
 	m_buttonBack.render(renderer, m_buttonBack.getKRect());
@@ -65,14 +66,14 @@ if(m_buttonBack.isClicked(m_buttonBack.getKRect())){
 }
 
 void Info::setElementsFont() {
-//	m_textInfo.setFont(TTF_OpenFont("Disko.ttf",40));
+
 	m_textInformation.setFont(TTF_OpenFont("Disko.ttf", 40));
 	m_buttonBackText.setFont(TTF_OpenFont("Disko.ttf", 40));
 }
 
 void Info::setElementsPositionDimension() {
 
-//	m_textInfo.setPosition(40,40,infoText_width,infoText_height);
+	m_textInfo.setPosition(40,140,infoText_width,infoText_height);
 	m_textInformation.setPosition(210, 40, infoLogo_Width, infoLogo_height);
 	m_buttonBack.setPosition(30, 560, infoButtonBack_width,
 			infoButtonBack_height);
@@ -83,7 +84,7 @@ void Info::setElementsPositionDimension() {
 }
 
 void Info::setElementsColor() {
-	m_textInfo.setButtonColor(129, 268, 69);
+
 	m_textInformation.setButtonColor(129, 268, 69);
 	m_buttonBackText.setButtonColor(129,268,69);
 
@@ -97,9 +98,12 @@ void Info::loadInfoElements(SDL_Renderer* renderer) {
 	m_backgroundInfo.loadTextureFromFile("infoBackground2.png", renderer);
 	m_buttonBack.loadTextureFromFile("buttonArrowBackIntro.png", renderer);
 	m_buttonBackPushed.loadTextureFromFile("buttonArrowBackIntropushed.png",renderer);
+	m_textInfo.loadTextureFromFile("kenoInfoText.png",renderer);
+
 	m_textInformation.LoadFromRenderedText("Information", renderer,
 			m_textInformation.getButtonColor());
 	m_buttonBackText.LoadFromRenderedText("BACK",renderer,m_buttonBackText.getButtonColor());
+
 }
 
 Font& Info::getTextInformation() {
