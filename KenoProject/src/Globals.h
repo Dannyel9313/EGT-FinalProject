@@ -27,7 +27,19 @@ const int introVolumeDot_height = 40;
 
 // Size of info text
 const int infoText_width = 720;
-const int infoText_height = 480;
+const int infoText_height = 400;
+
+// Size of info logo
+const int infoLogo_Width = 400;
+const int infoLogo_height = 150;
+
+//Size of back arrow
+const int infoButtonBack_width = 50;
+const int infoButtonBack_height = 50;
+
+//Size of text "back"
+const int infoButtonBackText_width = 100;
+const int infoButtonBackText_height = 30;
 
 //Position of numbers grid
 const int numbersGrid_x = 100;
@@ -88,4 +100,7 @@ const int minimumSpots = 2;
 //Size of text "information"
 const int informationLogo_width = 300;
 const int informationLogo_height = 80;
+
+// Number of frames
+const int framesNumber = 199;
 #endif /* GLOBALS_H_ */
