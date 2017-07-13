@@ -8,17 +8,7 @@ public:
 	virtual ~Info();
 
 	// Load info screen
-	void loadInfoScreen(SDL_Renderer* renderer);
-
-	// Set font elements
-	void setElementsFont();
-
-	// Set Elements position and dimension
-	void setElementsPositionDimension();
-
-	// Set elements color
-	void setElementsColor();
-
+	void renderInfoScreen(SDL_Renderer* renderer);
 
 	// Get background
 	Font& getBackgroundInfo();
@@ -38,16 +28,30 @@ public:
 	// Get text "Information"
 	Font& getTextInformation();
 
+	// Get back text
+	Font& getButtonBackText();
+
 private:
 
 	Font m_backgroundInfo;
 	Font m_secondBackgroundInfo;
+	Font m_buttonBackText;
 	Font m_buttonBack;
 	Font m_buttonBackPushed;
 	Font m_textInformation;
 	Font m_textInfo;
 
+	// Set font elements
+	void setElementsFont();
 
+	// Set Elements position and dimension
+	void setElementsPositionDimension();
+
+	// Set elements color
+	void setElementsColor();
+
+	// Load info elements
+	void loadInfoElements(SDL_Renderer* renderer);
 
 };
 
