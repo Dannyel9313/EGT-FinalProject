@@ -39,6 +39,11 @@ class NumbersGrid: public BaseObject
 		//Render random numbers
 		void renderRandomNumbers(SDL_Renderer*);
 
+		//Reset
+		void resetNumbersGrid(SDL_Renderer*);
+
+		//Reset all glags
+		void resetFlags();
 	private:
 		//Utility function load numbers in rectangles
 		void numbersInRects(SDL_Renderer*);

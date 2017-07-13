@@ -36,6 +36,11 @@ void Game::renderGame(SDL_Renderer* renderer,const SDL_Event& e)
 			mBetButton.betText(renderer);
 			mGrid.pickRandomNumbers(renderer, e);
 			mGrid.blinkingSuccessHits(renderer);
+
+			//Reset numbersgrid and button
+			render(renderer, NULL);
+			mGrid.resetNumbersGrid(renderer);
+			mBetButton.buttonCondition(mGrid.numbersClicked(), renderer);
 		}
 	}
 

@@ -339,3 +339,23 @@ void NumbersGrid::renderRandomNumbers(SDL_Renderer* renderer)
 		}
 	}
 }
+
+void NumbersGrid::resetNumbersGrid(SDL_Renderer* renderer)
+{
+	resetFlags();
+	createRects(renderer, 255);
+	numbersInRects(renderer);
+}
+
+void NumbersGrid::resetFlags()
+{
+	for (int i = 0; i < 8; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			isClickedFlags[i][j] = 0;
+			randomNumbersFlags[i][j] = 0;
+			numberOfHitsFlags[i][j] = 0;
+		}
+	}
+}
