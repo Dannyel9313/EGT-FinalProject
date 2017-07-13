@@ -38,10 +38,10 @@ void Info::loadInfoScreen(SDL_Renderer* renderer) {
 	setElementsFont();
 	setElementsPositionDimension();
 
-	m_backgroundInfo.loadTextureFromFile("InfoBackground.png",renderer);
+	m_backgroundInfo.loadTextureFromFile("Resources/Images/InfoBackground.png",renderer);
 	SDL_RenderCopy(renderer, m_backgroundInfo.getKTexture(),NULL,NULL);
 
-	m_secondBackgroundInfo.loadTextureFromFile("introBackgroundMoney.png",renderer);
+	m_secondBackgroundInfo.loadTextureFromFile("Resources/Images/introBackgroundMoney.png",renderer);
 
 	m_textInfo.LoadFromRenderedText("Write the rules of game keno",renderer,m_textInfo.getButtonColor());
 	m_textInfo.textRender(m_textInfo.getKRect(),m_textInfo.getKTexture(),renderer);
@@ -49,8 +49,8 @@ void Info::loadInfoScreen(SDL_Renderer* renderer) {
 }
 
 void Info::setElementsFont() {
-	m_textInfo.setFont(TTF_OpenFont("Disko.ttf",40));
-	m_textInformation.setFont(TTF_OpenFont("Disko.ttf",40));
+	m_textInfo.setFont(TTF_OpenFont("Resources/Fonts/Disko.ttf",40));
+	m_textInformation.setFont(TTF_OpenFont("Resources/Fonts/Disko.ttf",40));
 }
 
 void Info::setElementsPositionDimension() {

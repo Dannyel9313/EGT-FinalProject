@@ -47,7 +47,7 @@ void IntroScreen::loadIntroScreen(SDL_Renderer* renderer) {
 //					Step Project  DJ Dakini Remix.mp3");
 //	Mix_PlayMusic(m_introSong, -1);
 
-	m_background.loadTextureFromFile("IntroKenoImage2.png", renderer);
+	m_background.loadTextureFromFile("Resources/Images/IntroKenoImage2.png", renderer);
 
 	loadIntroElements(renderer);
 	moveStarNewGame(30, renderer);
@@ -81,7 +81,7 @@ void IntroScreen::loadIntroElements(SDL_Renderer* renderer) {
 	setElementsFont();
 	setPositionDimension();
 	setElementsColor();
-	m_background.loadTextureFromFile("InfoBackground.jpg", renderer);
+	m_background.loadTextureFromFile("Resources/Images/InfoBackground.jpg", renderer);
 	m_startNewGameButton.LoadFromRenderedText("START NEW GAME", renderer,
 			m_startNewGameButton.getButtonColor());
 
@@ -175,9 +175,9 @@ void IntroScreen::setElementsColor() {
 }
 
 void IntroScreen::setElementsFont() {
-	m_startNewGameButton.setFont(TTF_OpenFont("Pozo.ttf", 50));
-	m_resumeGameButton.setFont(TTF_OpenFont("Pozo.ttf", 50));
-	m_infoButton.setFont(TTF_OpenFont("Pozo.ttf", 50));
+	m_startNewGameButton.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 50));
+	m_resumeGameButton.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 50));
+	m_infoButton.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 50));
 }
 
 void IntroScreen::introScreenPresent(SDL_Renderer* renderer) {

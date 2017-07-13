@@ -54,7 +54,7 @@ void NumbersGrid::setNumbersGridRect(int x, int y, int w, int h)
 
 void NumbersGrid::loadTTF()
 {
-	m_font = TTF_OpenFont("AUDI.TTF", numbersText_size);
+	m_font = TTF_OpenFont("Resources/Fonts/AUDI.TTF", numbersText_size);
 	TTF_SetFontStyle(m_font, TTF_STYLE_BOLD);
 }
 

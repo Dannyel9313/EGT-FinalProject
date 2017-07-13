@@ -39,7 +39,7 @@ void InsertCredit::loadCreditElements(SDL_Renderer* renderer) {
 	setElementsPositionDimension();
 	setElementsColor();
 
-	m_FontCreditRect.loadTextureFromFile("creditRect.png", renderer);
+	m_FontCreditRect.loadTextureFromFile("Resources/Images/creditRect.png", renderer);
 	SDL_RenderCopy(renderer, m_FontCreditRect.getKTexture(),
 	NULL, m_FontCreditRect.getKRect());
 
@@ -68,10 +68,10 @@ void InsertCredit::loadCreditElements(SDL_Renderer* renderer) {
 
 void InsertCredit::setElementsFont() {
 
-	m_FontInsertCredit.setFont(TTF_OpenFont("Pozo.ttf", 40));
-	m_FontPlus.setFont(TTF_OpenFont("Pozo.ttf", 40));
-	m_FontMinus.setFont(TTF_OpenFont("Pozo.ttf", 40));
-	m_FontCredit.setFont(TTF_OpenFont("Blazed.ttf", 40));
+	m_FontInsertCredit.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 40));
+	m_FontPlus.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 40));
+	m_FontMinus.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 40));
+	m_FontCredit.setFont(TTF_OpenFont("Resources/Fonts/Blazed.ttf", 40));
 
 }
 

@@ -24,7 +24,7 @@ void Outro::winingWindow(SDL_Renderer * renderer) {
 }
 
 void Outro::loadFromTTF() {
-	font = TTF_OpenFont("Italic.ttf", 24);
+	font = TTF_OpenFont("Resources/Fonts/Italic.ttf", 24);
 	TTF_SetFontStyle(font, TTF_STYLE_ITALIC);
 }
 

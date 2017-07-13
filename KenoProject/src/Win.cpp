@@ -12,7 +12,7 @@ Win::~Win()
 
 void Win::writeOnScreen(SDL_Renderer* renderer)
 {
-	loadTextureFromFile("blueScreen.gif", renderer);
+	loadTextureFromFile("Resources/Images/blueScreen.gif", renderer);
 	render(renderer, NULL);
 
 	firstText.setButtonColor(255, 0, 0);
@@ -21,24 +21,24 @@ void Win::writeOnScreen(SDL_Renderer* renderer)
 	fourthText.setButtonColor(255, 0, 0);
 	fifthText.setButtonColor(255, 0, 0);
 
-	firstText.setFont(TTF_OpenFont("Pozo.ttf", 50));
+	firstText.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 50));
 	firstText.LoadFromRenderedText("YOU HAVE WON!", renderer,
 				firstText.getButtonColor());
-	secondText.setFont(TTF_OpenFont("Pozo.ttf", 50));
+	secondText.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 50));
 	secondText.LoadFromRenderedText("YOU HAVE WON!", renderer,
 				secondText.getButtonColor());
-	thirdText.setFont(TTF_OpenFont("Pozo.ttf", 50));
+	thirdText.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 50));
 	thirdText.LoadFromRenderedText("YOU HAVE WON!", renderer,
 			thirdText.getButtonColor());
-	fourthText.setFont(TTF_OpenFont("Pozo.ttf", 50));
+	fourthText.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 50));
 	fourthText.LoadFromRenderedText("YOU HAVE WON!", renderer,
 			fourthText.getButtonColor());
-	fifthText.setFont(TTF_OpenFont("Pozo.ttf", 50));
+	fifthText.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 50));
 	fifthText.LoadFromRenderedText("YOU HAVE WON!", renderer,
 			fifthText.getButtonColor());
 
 	for(int i = 0; i < 300; i += 5){
-			mBackground.loadTextureFromFile("blueScreen.gif", renderer);
+			mBackground.loadTextureFromFile("Resources/Images/blueScreen.gif", renderer);
 			SDL_RenderCopy(renderer, mBackground.getKTexture(), NULL, NULL);
 
 			firstText.setPosition(i, i, introButton_width, introButton_height);
@@ -47,7 +47,7 @@ void Win::writeOnScreen(SDL_Renderer* renderer)
 		SDL_RenderPresent(renderer);
 	}
 	for(int i = 0; i < 300; i += 5){
-			mBackground.loadTextureFromFile("blueScreen.gif", renderer);
+			mBackground.loadTextureFromFile("Resources/Images/blueScreen.gif", renderer);
 			SDL_RenderCopy(renderer, mBackground.getKTexture(), NULL, NULL);
 
 			firstText.setPosition(300, 300, introButton_width, introButton_height);
@@ -59,7 +59,7 @@ void Win::writeOnScreen(SDL_Renderer* renderer)
 		SDL_RenderPresent(renderer);
 	}
 	for(int i = 0; i < 300; i += 5){
-				mBackground.loadTextureFromFile("blueScreen.gif", renderer);
+				mBackground.loadTextureFromFile("Resources/Images/blueScreen.gif", renderer);
 				SDL_RenderCopy(renderer, mBackground.getKTexture(), NULL, NULL);
 
 				firstText.setPosition(300, 300, introButton_width, introButton_height);
@@ -75,7 +75,7 @@ void Win::writeOnScreen(SDL_Renderer* renderer)
 			SDL_RenderPresent(renderer);
 		}
 	for(int i = 0; i < 300; i += 5){
-					mBackground.loadTextureFromFile("blueScreen.gif", renderer);
+					mBackground.loadTextureFromFile("Resources/Images/blueScreen.gif", renderer);
 					SDL_RenderCopy(renderer, mBackground.getKTexture(), NULL, NULL);
 
 					firstText.setPosition(300, 300, introButton_width, introButton_height);
@@ -94,7 +94,7 @@ void Win::writeOnScreen(SDL_Renderer* renderer)
 				SDL_RenderPresent(renderer);
 			}
 	for(int i = 0; i < 300; i += 5){
-						mBackground.loadTextureFromFile("blueScreen.gif", renderer);
+						mBackground.loadTextureFromFile("Resurces/Images/blueScreen.gif", renderer);
 						SDL_RenderCopy(renderer, getKTexture(), NULL, NULL);
 
 						firstText.setPosition(300, 300, introButton_width, introButton_height);

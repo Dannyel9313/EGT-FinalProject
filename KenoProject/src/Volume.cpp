@@ -32,12 +32,12 @@ void Volume::LoadVolumeElements(SDL_Renderer* renderer) {
 	setElementsPositionDimension();
 	setElementsColor();
 
-	m_FontDotLine.loadTextureFromFile("volumeSlider.png", renderer);
+	m_FontDotLine.loadTextureFromFile("Resources/Images/volumeSlider.png", renderer);
 
 	SDL_RenderCopy(renderer, m_FontDotLine.getKTexture(), NULL,
 			m_FontDotLine.getKRect());
 
-	m_FontDot.loadTextureFromFile("volumeDot.png", renderer);
+	m_FontDot.loadTextureFromFile("Resources/Images/volumeDot.png", renderer);
 
 	SDL_RenderCopy(renderer, m_FontDot.getKTexture(), NULL,
 			m_FontDot.getKRect());
@@ -80,9 +80,9 @@ void Volume::setElementsPositionDimension() {
 
 void Volume::setElementsFont() {
 
-	m_FontPlus.setFont(TTF_OpenFont("Pozo.ttf", 40));
-	m_FontMinus.setFont(TTF_OpenFont("Pozo.ttf", 40));
-	m_FontVolume.setFont(TTF_OpenFont("Pozo.ttf", 40));
+	m_FontPlus.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 40));
+	m_FontMinus.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 40));
+	m_FontVolume.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 40));
 }
 
 void Volume::moveVolumeDot(SDL_Event* e) {
