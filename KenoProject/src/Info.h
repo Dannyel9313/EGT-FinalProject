@@ -20,7 +20,7 @@ public:
 	Font& getButtonBackPushed();
 
 	// Get Second
-	Font& getSecondBackgroundInfo();
+//	Font& getSecondBackgroundInfo();
 
 	// Get info text
 	Font& getTextInfo();
@@ -34,7 +34,7 @@ public:
 private:
 
 	Font m_backgroundInfo;
-	Font m_secondBackgroundInfo;
+//	Font m_secondBackgroundInfo;
 	Font m_buttonBackText;
 	Font m_buttonBack;
 	Font m_buttonBackPushed;
