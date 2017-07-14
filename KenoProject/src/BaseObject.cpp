@@ -3,10 +3,12 @@
 BaseObject::BaseObject() 
 {
 	this->m_KTexture = NULL;
+	this->m_chunkClick = NULL;
 }
 
 BaseObject::~BaseObject() 
 {
+	free();
 }
 
 bool BaseObject::isClicked(SDL_Rect* rect) {
@@ -85,6 +87,8 @@ bool BaseObject::loadTextureFromFile(std::string picPath, SDL_Renderer * rendere
 bool BaseObject::loadTextureFromTTF(std::string text, SDL_Renderer* renderer,
                                         TTF_Font* font, const SDL_Color& textColor)
 {
+	free();
+
         //Success flag  
         bool success = true;
 
@@ -95,7 +99,7 @@ bool BaseObject::loadTextureFromTTF(std::string text, SDL_Renderer* renderer,
         SDL_Surface * textSurface = TTF_RenderText_Blended(font, text.c_str(), textColor);
         if (textSurface == NULL)
         {
-                std::cout << "Unable to load image from file! " << text.c_str() << " "
+                std::cout << "Unable to load image from file! " << text << " "
                         << IMG_GetError() << std::endl;
         }
         else
@@ -118,32 +122,42 @@ bool BaseObject::loadTextureFromTTF(std::string text, SDL_Renderer* renderer,
 }
 
 
-void BaseObject::free() {
+void BaseObject::free() 
+{
 	//Free texture if it exists
-	if (m_KTexture != NULL) {
+	if (m_KTexture != NULL) 
+	{
 		SDL_DestroyTexture(m_KTexture);
 		m_KTexture = NULL;
 	}
-
+	if (m_chunkClick != NULL)
+	{
+		Mix_FreeChunk(m_chunkClick);
+	}
 }
 
-void BaseObject::loadChunkEfect() {
-	m_chunkClic = Mix_LoadWAV("Select.wav");
+void BaseObject::loadChunkEfect() 
+{
+	m_chunkClick = Mix_LoadWAV("Select.wav");
 }
 
-Mix_Chunk*& BaseObject::getChunkClic() {
-	return m_chunkClic;
+Mix_Chunk*& BaseObject::getChunkClick() 
+{
+	return m_chunkClick;
 }
 
-SDL_Rect* BaseObject::getKRect() {
+SDL_Rect* BaseObject::getKRect() 
+{
 	return &m_KRect;
 }
 
-SDL_Texture* BaseObject::getKTexture() {
+SDL_Texture* BaseObject::getKTexture() 
+{
 	return m_KTexture;
 }
 
-SDL_Rect BaseObject::setPosition(int x, int y,int w, int h) {
+SDL_Rect BaseObject::setPosition(int x, int y,int w, int h) 
+{
 	this->m_KRect.x = x;
 	this->m_KRect.y = y;
 	this->m_KRect.w = w;
@@ -158,29 +172,35 @@ void BaseObject::setPosition(int x, int y)
 	this->m_KRect.y = y;
 }
 
-void BaseObject::setDimensions(int w, int h) {
+void BaseObject::setDimensions(int w, int h) 
+{
 	this->m_KRect.w = w;
 	this->m_KRect.h = h;
 }
 
-void BaseObject::setColor(Uint8 red, Uint8 green, Uint8 blue) {
+void BaseObject::setColor(Uint8 red, Uint8 green, Uint8 blue) 
+{
 	//Modulate texture rgb
 	SDL_SetTextureColorMod(m_KTexture, red, green, blue);
 }
 
-void BaseObject::setBlendMode(SDL_BlendMode blending) {
+void BaseObject::setBlendMode(SDL_BlendMode blending) 
+{
 	//Set blending function
 	SDL_SetTextureBlendMode(m_KTexture, blending);
 }
 
-void BaseObject::setAlpha(Uint8 alpha) {
+void BaseObject::setAlpha(Uint8 alpha) 
+{
 	//Modulate texture alpha
 	SDL_SetTextureAlphaMod(m_KTexture, alpha);
 }
 
-void BaseObject::setKTexture(SDL_Texture* kTexture) {
+void BaseObject::setKTexture(SDL_Texture* kTexture) 
+{
 	m_KTexture = kTexture;
 }
+
 //void BaseObject::buttonRender(int xCut, int yCut, int x, int y,
 //		SDL_Texture* texture, SDL_Renderer* renderer) {
 //	SDL_Rect buttonRect = { x, y, introVolumeButtons_width,

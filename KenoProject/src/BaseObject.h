@@ -3,7 +3,6 @@
 #include "Include.h"
 #include "Globals.h"
 
-
 class BaseObject 
 {
 	public:
@@ -60,14 +59,14 @@ class BaseObject
 
 		void loadChunkEfect();
 
-		Mix_Chunk*& getChunkClic();
+		Mix_Chunk*& getChunkClick();
 
 	private:
 		SDL_Texture* m_KTexture;
 		SDL_Rect m_KRect;
 
-		Mix_Chunk* m_chunkClic;
+		Mix_Chunk* m_chunkClick;
 
 };
 
-#endif /* BASEOBJECT_H_ */
+#endif

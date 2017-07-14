@@ -28,6 +28,8 @@ public:
 	//set font
 	void setFont(TTF_Font* font);
 
+	//Free font
+	void freeFont();
 private:
 	SDL_Color m_buttonColor;
 	TTF_Font* m_font;
