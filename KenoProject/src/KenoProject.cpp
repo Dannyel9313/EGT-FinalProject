@@ -10,6 +10,7 @@ int main(int argc, char* args[]) {
 
 	bool introMode = true;
 	bool gameMode = false;
+	bool infoMode = false;
 
 	if (!game.init()) {
 		std::cerr << "Problem with initializing" << std::endl;
@@ -19,7 +20,7 @@ int main(int argc, char* args[]) {
 		} else {
 			SDL_SetRenderDrawColor(game.getKenoRenderer(), 255, 255, 255, 255);
 			SDL_RenderClear(game.getKenoRenderer());
-//			game.getInfoMode().loadInfoScreen(game.getKenoRenderer());
+//			game.getInfoMode().renderInfoScreen(game.getKenoRenderer());
 			game.getIntroMode().loadIntroScreen(game.getKenoRenderer());
 			while (!quit && introMode == 1) 
 			{
@@ -32,8 +33,9 @@ int main(int argc, char* args[]) {
 					game.getIntroMode().getVolume().moveVolumeDot(&e);
 					game.getIntroMode().getInsertCredit().setCreditToGame(&e);
 					game.getIntroMode().startNewGameClicked(&gameMode, e);
+					game.getIntroMode().startInfoClicked(&infoMode, e);
 				}
-				if (gameMode)
+				if (gameMode || infoMode)
 				{
 					introMode = false;
 				}
@@ -58,6 +60,10 @@ int main(int argc, char* args[]) {
                                                 game.getGameMode().renderGame(game.getKenoRenderer(), e);
                                         }
 				}
+				SDL_RenderPresent(game.getKenoRenderer());
+			}
+			if(infoMode){
+				game.getInfoMode().renderInfoScreen(game.getKenoRenderer());
 				SDL_RenderPresent(game.getKenoRenderer());
 			}
 		}

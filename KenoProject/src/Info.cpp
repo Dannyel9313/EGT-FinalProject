@@ -28,11 +28,12 @@ Font& Info::getButtonBackPushed() {
 	return m_buttonBackPushed;
 }
 
-Font& Info::getSecondBackgroundInfo() {
-	return m_secondBackgroundInfo;
-}
+//Font& Info::getSecondBackgroundInfo() {
+//	return m_secondBackgroundInfo;
+//}
 
 void Info::renderInfoScreen(SDL_Renderer* renderer) {
+
 
 	setElementsColor();
 	setElementsFont();
@@ -41,34 +42,32 @@ void Info::renderInfoScreen(SDL_Renderer* renderer) {
 
 
 	m_backgroundInfo.render(renderer, NULL);
+
 	m_textInfo.render(renderer,m_textInfo.getKRect());
+
 if(m_buttonBack.isClicked(m_buttonBack.getKRect())){
 
 	m_buttonBack.render(renderer, m_buttonBack.getKRect());
+
 }else{
 
 	m_buttonBackPushed.render(renderer,m_buttonBackPushed.getKRect());
+
 }
-	m_secondBackgroundInfo.loadTextureFromFile("introBackgroundMoney.png",
-			renderer);
-
-
-
-//	m_textInfo.LoadFromRenderedText("Write the rules of game keno",renderer,m_textInfo.getButtonColor());
-//	m_textInfo.textRender(m_textInfo.getKRect(),m_textInfo.getKTexture(),renderer);
-
 
 	m_textInformation.textRender(m_textInformation.getKRect(),
 			m_textInformation.getKTexture(), renderer);
 
 	m_buttonBackText.textRender(m_buttonBackText.getKRect(),m_buttonBackText.getKTexture(),renderer);
 
+	SDL_RenderPresent(renderer);
+
 }
 
 void Info::setElementsFont() {
 
-	m_textInformation.setFont(TTF_OpenFont("Disko.ttf", 40));
-	m_buttonBackText.setFont(TTF_OpenFont("Disko.ttf", 40));
+	m_textInformation.setFont(TTF_OpenFont("Resources/Fonts/AUDI.TTF", 40));
+	m_buttonBackText.setFont(TTF_OpenFont("Resources/Fonts/AUDI.TTF", 40));
 }
 
 void Info::setElementsPositionDimension() {
@@ -95,13 +94,14 @@ Font& Info::getTextInfo() {
 }
 
 void Info::loadInfoElements(SDL_Renderer* renderer) {
-	m_backgroundInfo.loadTextureFromFile("infoBackground2.png", renderer);
-	m_buttonBack.loadTextureFromFile("buttonArrowBackIntro.png", renderer);
-	m_buttonBackPushed.loadTextureFromFile("buttonArrowBackIntropushed.png",renderer);
-	m_textInfo.loadTextureFromFile("kenoInfoText.png",renderer);
+	m_backgroundInfo.loadTextureFromFile("Resources/Images/infoBackground2.png", renderer);
+	m_buttonBack.loadTextureFromFile("Resources/Images/buttonArrowBackIntro.png", renderer);
+	m_buttonBackPushed.loadTextureFromFile("Resources/Images/buttonArrowBackIntropushed.png",renderer);
+	m_textInfo.loadTextureFromFile("Resources/Images/kenoInfoText.png",renderer);
 
 	m_textInformation.LoadFromRenderedText("Information", renderer,
 			m_textInformation.getButtonColor());
+
 	m_buttonBackText.LoadFromRenderedText("BACK",renderer,m_buttonBackText.getButtonColor());
 
 }
