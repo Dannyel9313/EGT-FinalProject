@@ -29,6 +29,18 @@ const int introVolumeDot_height = 40;
 const int infoText_width = 720;
 const int infoText_height = 480;
 
+// Size of info logo
+const int infoLogo_Width = 400;
+const int infoLogo_height = 150;
+
+//Size of back arrow
+const int infoButtonBack_width = 50;
+const int infoButtonBack_height = 50;
+
+//Size of text "back"
+const int infoButtonBackText_width = 100;
+const int infoButtonBackText_height = 30;
+
 //Position of numbers grid
 const int numbersGrid_x = 100;
 const int numbersGrid_y = 100;
@@ -105,4 +117,52 @@ const int HitTable_Width = HistoryBox_Width/2;
 const int HitTable_Height = HistoryBox_Height;
 const int HitTable_X = HistoryBox_X+(HistoryBox_Width/2);
 const int HitTable_Y = HistoryBox_Y;
+
+// Number of frames
+const int framesNumber = 199;
+
+// Bet numbers size
+const int betNumbers_width = 18;
+const int betNumbers_height = 30;
+
+// Bet number size max
+const int betNumbersMax_width = 23;
+const int betNumbersMax_height = 35;
+
+// Size of circle min/max
+const int minMaxBetCircle_width = 60;
+const int minMaxBetCircle_height = 60;
+
+// Bet numbers rectangle size
+const int minMaxBetRectangle_width = 200;
+const int minMaxBetRectangle_height = 40;
+
+// Size of min/max text
+const int minMaxBetText_width = 40;
+const int minMaxBetText_height = 40;
+
+// Size of button clear/quick pick text
+const int buttonClearQuickPickText_width = 80;
+const int buttonClearQuickPickText_height = 35;
+
+//Size of button clear/quick pick rectangle
+const int buttonClearQuickPickRect_width = 100;
+const int buttonClearQuickPickRect_height = 40;
+
+// Credits and win rectangle
+const int creditsInGameWinRect_width = 200;
+const int creditsInGameWinRect_height = 40;
+
+// Size of circle credits and winning
+const int creditsInGameWinCircle_width = 60;
+const int creditsInGameWInCircle_height = 60;
+
+// Size of text in circle credits/win
+const int creditsInGameWinTextInCircle_width = 30;
+const int creditsInGameWinTextInCircle_height = 40;
+
+// Size of text credit/win in rectangle
+const int creditsInGameWinTextInRect_width = 120;
+const int creditsInGameWinTextInRect_height = 35;
+
 #endif /* GLOBALS_H_ */
