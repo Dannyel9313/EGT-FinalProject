@@ -83,6 +83,8 @@ bool GameKeno::loadMedia() {
         TTF_Font* betButtonFont = TTF_OpenFont("Resources/Fonts/AUDI.TTF", 24);
         m_GameMode.getBetButton().getFont().setFont(betButtonFont);
 
+	m_GameMode.getClearButton().getButtonClear().setFont(TTF_OpenFont("Resources/Fonts/Candles_.TTF", 30));
+
 	return success;
 }
 

@@ -16,10 +16,12 @@ class Game: public BaseObject
 	public:
 		//Get Number grid
 		NumbersGrid & getNumbersGrid();
+
+		//Get bet button
 		BetButton & getBetButton();
 
 		//Render the whole game screen
-		void renderGame(SDL_Renderer*,const SDL_Event&);
+		void renderGame(SDL_Renderer*);
 
 		//
 		void ifBetButtonClicked(SDL_Renderer*, const SDL_Event&);
@@ -30,7 +32,7 @@ class Game: public BaseObject
 		//Get max bet button
 		MaxBet& getMaxBetButton();
 
-		// Get clear button
+		//Get clear button
 		ClearButton& getClearButton();
 
 		//Get quick pick button
@@ -39,22 +41,28 @@ class Game: public BaseObject
 		//Get credit in game
 		CreditInGame& getCreditInGame();
 
-		// Get win in game
+		//Get win in game
 		Win& getWinInGame();
 
-//		BackgroundGame& getBackground();
+		//Render on mousebuttondown
+		void mouseButtonDownRender(SDL_Renderer*, const SDL_Event&);
+
+		//Render on mouseover
+		void mouseOnButtonRender(SDL_Renderer*, const SDL_Event&);
+
+		//BackgroundGame& getBackground();
 
 	private:
 		NumbersGrid mGrid;
 		BetButton mBetButton;
-//		BackgroundGame m_background;
-
 		MinBet m_minBetButton;
 		MaxBet m_maxBetButton;
 		ClearButton m_clearButton;
 		QuickPick m_quickPickButton;
 		CreditInGame m_creditInGame;
 		Win m_winInGame;
+
+		//BackgroundGame m_BackgroundGame;
 };
 
 #endif

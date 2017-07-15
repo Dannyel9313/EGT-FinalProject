@@ -1,56 +1,42 @@
-/*
- * ClearButton.h
- *
- *  Created on: 14.07.2017
- *      Author: Danny
- */
-
 #ifndef CLEARBUTTON_H_
 #define CLEARBUTTON_H_
 #include "Font.h"
 #include "Include.h"
 #include "BaseObject.h"
 
-class ClearButton {
-public:
-	ClearButton();
-	virtual ~ClearButton();
+class ClearButton 
+{
+	public:
+		ClearButton();
+		virtual ~ClearButton();
 
-	// Render
-	void renderClearButton(SDL_Renderer* renderer);
+		//Render
+		void renderClearButton(SDL_Renderer* renderer);
+	
+ 		void isClickedClearButton(SDL_Renderer* renderer,const SDL_Event& e);
 
-    bool isClickedClearButton(SDL_Renderer* renderer,const SDL_Event& e);
+		//Get button clear
+		Font& getButtonClear();
 
-	// Get button clear
-	Font& getButtonClear();
+		//Get button rect
+		BaseObject& getButtonRect();
 
-	// Get button rect
-	BaseObject& getButtonRect();
+		//Get pushed button rect
+		BaseObject& getButtonRectPushed();
 
-	// Get pushed button rect
-	BaseObject& getButtonRectPushed();
+		//Set numbers Color
+		void changeColorOnMouseover(SDL_Renderer* renderer);
+	private:
+		Font m_buttonClear;
 
-private:
+		BaseObject m_buttonRect;
+		BaseObject m_buttonRectPushed;
 
-	Font m_buttonClear;
+		//Set elements position and dimension
+		void setElementsPositionDimension();
 
-	BaseObject m_buttonRect;
-	BaseObject m_buttonRectPushed;
-
-	// Set numbers Color
-	void setColor(SDL_Renderer* renderer);
-
-	// Set elements position and dimension
-	void setElementsPositionDimension();
-
-	// Load elements
-	void loadElements(SDL_Renderer* renderer);
-
-	// Set font
-	void setFont();
-
-
-
+		//Load elements
+		void loadElements(SDL_Renderer* renderer);
 
 };
 

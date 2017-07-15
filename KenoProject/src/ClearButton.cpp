@@ -1,70 +1,59 @@
-/*
- * ClearButton.cpp
- *
- *  Created on: 14.07.2017
- *      Author: Danny
- */
-
 #include "ClearButton.h"
 
-ClearButton::ClearButton() {
-	// TODO Auto-generated constructor stub
+ClearButton::ClearButton() {}
 
-}
+ClearButton::~ClearButton() {}
 
-ClearButton::~ClearButton() {
-	// TODO Auto-generated destructor stub
-}
-
-Font& ClearButton::getButtonClear() {
+Font& ClearButton::getButtonClear() 
+{
 	return m_buttonClear;
 }
 
-void ClearButton::renderClearButton(SDL_Renderer* renderer) {
-	setFont();
+void ClearButton::renderClearButton(SDL_Renderer* renderer) 
+{
 	loadElements(renderer);
-
-	setElementsPositionDimension();
-	setColor(renderer);
-
-
 	m_buttonRect.render(renderer, m_buttonRect.getKRect());
 	m_buttonClear.textRender(m_buttonClear.getKRect(),
-			m_buttonClear.getKTexture(), renderer);
-
-
+				m_buttonClear.getKTexture(), renderer);
 }
 
-void ClearButton::setColor(SDL_Renderer* renderer) {
+void ClearButton::changeColorOnMouseover(SDL_Renderer* renderer) 
+{
 	if(m_buttonClear.onMouseOver(m_buttonClear.getKRect()))
 	{
-	m_buttonClear.setButtonColor(24, 236, 19);
-	m_buttonClear.textRender(m_buttonClear.getKRect(),m_buttonClear.getKTexture(),renderer);
-
+		m_buttonClear.setButtonColor(102, 0, 0);
+		m_buttonClear.LoadFromRenderedText("CLEAR", renderer,
+				m_buttonClear.getButtonColor());
+		m_buttonRectPushed.render(renderer, m_buttonRectPushed.getKRect());
+		m_buttonClear.textRender(m_buttonClear.getKRect(),
+				m_buttonClear.getKTexture(), renderer);
 	}
 	else
 	{
 		m_buttonClear.setButtonColor(254,0,0);
+		m_buttonClear.LoadFromRenderedText("CLEAR", renderer,
+				m_buttonClear.getButtonColor());
 		m_buttonClear.textRender(m_buttonClear.getKRect(),m_buttonClear.getKTexture(),renderer);
-
+		m_buttonRect.render(renderer, m_buttonRect.getKRect());
+		m_buttonClear.textRender(m_buttonClear.getKRect(),
+				m_buttonClear.getKTexture(), renderer);
 	}
+}
 
-
-	}
-
-void ClearButton::setElementsPositionDimension() {
-
+void ClearButton::setElementsPositionDimension() 
+{
 	m_buttonClear.setPosition(304, 578, buttonClearQuickPickText_width,
 			buttonClearQuickPickText_height);
 	m_buttonRect.setPosition(294, 573, buttonClearQuickPickRect_width,
 			buttonClearQuickPickRect_height);
 	m_buttonRectPushed.setPosition(294, 573, buttonClearQuickPickRect_width,
 			buttonClearQuickPickRect_height);
-
 }
 
-void ClearButton::loadElements(SDL_Renderer* renderer) {
-	setColor(renderer);
+void ClearButton::loadElements(SDL_Renderer* renderer) 
+{
+	setElementsPositionDimension();
+	m_buttonClear.setColor(254, 0, 0);
 	m_buttonClear.LoadFromRenderedText("CLEAR", renderer,
 			m_buttonClear.getButtonColor());
 	m_buttonRect.loadTextureFromFile("Resources/Images/clearButtonYewoll.png",
@@ -73,30 +62,22 @@ void ClearButton::loadElements(SDL_Renderer* renderer) {
 			"Resources/Images/clearButtonyewollPushed.png", renderer);
 }
 
-bool ClearButton::isClickedClearButton(SDL_Renderer* renderer,
-		const SDL_Event& e) {
-
-	bool success = false;
-
-	if(m_buttonRect.isClicked(e,m_buttonRect.getKRect())){
+void ClearButton::isClickedClearButton(SDL_Renderer* renderer,
+		const SDL_Event& e) 
+{
+	if(m_buttonRect.isClicked(e,m_buttonRect.getKRect()))
+	{
 		m_buttonRectPushed.render(renderer,m_buttonRectPushed.getKRect());
-//		m_buttonClear.textRender(m_buttonClear.getKRect(),m_buttonClear.getKTexture(),renderer);
-	//	SDL_RenderPresent(renderer);
-		success = true;
+		m_buttonClear.textRender(m_buttonClear.getKRect(),m_buttonClear.getKTexture(),renderer);
 	}
-
-	return success;
 }
 
-void ClearButton::setFont() {
-	m_buttonClear.setFont(TTF_OpenFont("Resources/Fonts/Candles_.TTF", 30));
-
-}
-
-BaseObject& ClearButton::getButtonRect() {
+BaseObject& ClearButton::getButtonRect() 
+{
 	return m_buttonRect;
 }
 
-BaseObject& ClearButton::getButtonRectPushed() {
+BaseObject& ClearButton::getButtonRectPushed() 
+{
 	return m_buttonRectPushed;
 }

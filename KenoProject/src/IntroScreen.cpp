@@ -206,11 +206,12 @@ Mix_Music*& IntroScreen::getIntroSong() {
 
 void IntroScreen::startNewGameClicked(bool* gameMode, const SDL_Event& e)
 {
-	if(m_insertCredit.getCredit() > 0){
-	if(m_startNewGameButton.isClicked(e, m_startNewGameButton.getKRect())) 
+	if(m_insertCredit.getCredit() > 0)
 	{
+		if(m_startNewGameButton.isClicked(e, m_startNewGameButton.getKRect())) 
+		{
 		*gameMode = true;	
-	}	
+		}	
 	}
 }
 

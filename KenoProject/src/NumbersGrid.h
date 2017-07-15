@@ -44,6 +44,9 @@ class NumbersGrid: public BaseObject
 
 		//Reset all glags
 		void resetFlags();
+
+		//Get random numbers
+		int* getRandomNumbers();
 	private:
 		//Utility function load numbers in rectangles
 		void printNumbers(SDL_Renderer*);

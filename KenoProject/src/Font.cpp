@@ -12,8 +12,8 @@ Font::~Font()
 
 //Load font
 void Font::LoadFromRenderedText(std::string textureText, SDL_Renderer* render,
-		SDL_Color textColor) {
-
+		SDL_Color textColor) 
+	{
 	BaseObject::free();
 
 	SDL_Surface* textSurface = TTF_RenderText_Blended(m_font,

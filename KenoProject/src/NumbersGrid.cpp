@@ -251,11 +251,11 @@ void NumbersGrid::reRenderClickedNumbers(SDL_Renderer* renderer, int alpha)
 					m_numbers[i][j].x+numbersRect_width,
 					m_numbers[i][j].y+numbersRect_height, 
 					5, 200, 200, 0, alpha);	
-				//Reapply numbers in rects
-				printNumbers(renderer);
 			}
 		}
 	}
+	//Reapply numbers in rects
+	printNumbers(renderer);
 }
 
 void NumbersGrid::blinkingSuccessHits(SDL_Renderer* renderer)
@@ -282,8 +282,6 @@ void NumbersGrid::blinkingSuccessHits(SDL_Renderer* renderer)
 							m_numbers[i][j].x+numbersRect_width,
 							m_numbers[i][j].y+numbersRect_height, 
 							5, 225, 16, 16, 255);
-						//Reapply numbers in rects
-						printNumbers(renderer);
 					}
 					else if (flag == 1)
 					{
@@ -293,8 +291,6 @@ void NumbersGrid::blinkingSuccessHits(SDL_Renderer* renderer)
 							m_numbers[i][j].x+numbersRect_width,
 							m_numbers[i][j].y+numbersRect_height, 
 							5, 200, 200, 0, 255);
-						//Reapply numbers in rects
-						printNumbers(renderer);
 					}
 				}
 			}
@@ -307,6 +303,8 @@ void NumbersGrid::blinkingSuccessHits(SDL_Renderer* renderer)
 		{
 			flag = 0;
 		}
+		//Reapply numbers in rects
+		printNumbers(renderer);
 		SDL_RenderPresent(renderer);	
 		while(!SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {};
 	}	
