@@ -41,6 +41,9 @@ void Game::renderGame(SDL_Renderer* renderer)
 
 	//Render bet text
 	mBetButton.betText(renderer);
+
+	//Render history
+	m_History.printHistory(renderer, 0);
 }
 
 void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
@@ -94,6 +97,9 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 			render(renderer, NULL);
 			mGrid.resetNumbersGrid(renderer);
 			mBetButton.buttonCondition(mGrid.numbersClicked(), renderer);
+
+			//Render history
+			m_History.printHistory(renderer, 0);
 		}
 	}	
 
@@ -105,16 +111,6 @@ void Game::mouseOnButtonRender(SDL_Renderer* renderer, const SDL_Event& e)
 {
 	//Mouse over stuff	
 	m_clearButton.changeColorOnMouseover(renderer);	
-	
-/*	////Update screen
-	//Render background
-	render(renderer, NULL);
-			
-	//Render button
-	mBetButton.render(renderer, mBetButton.getKRect());
-
-	//Render bet text
-	mBetButton.betText(renderer);*/
 }
 
 MinBet& Game::getMinBetButton()
@@ -145,6 +141,11 @@ CreditInGame& Game::getCreditInGame()
 Win& Game::getWinInGame() 
 {
 	return m_winInGame;
+}
+
+History& Game::getHistory()
+{
+	return m_History;	
 }
 //BackgroundGame& Game::getBackground() {
 //	return m_background;

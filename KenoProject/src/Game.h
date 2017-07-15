@@ -10,6 +10,7 @@
 #include "QuickPick.h"
 #include "CreditInGame.h"
 #include "Win.h"
+#include "History.h"
 
 class Game: public BaseObject
 {
@@ -44,6 +45,9 @@ class Game: public BaseObject
 		//Get win in game
 		Win& getWinInGame();
 
+		//Get history
+		History& getHistory();		
+
 		//Render on mousebuttondown
 		void mouseButtonDownRender(SDL_Renderer*, const SDL_Event&);
 
@@ -61,6 +65,7 @@ class Game: public BaseObject
 		QuickPick m_quickPickButton;
 		CreditInGame m_creditInGame;
 		Win m_winInGame;
+		History m_History;
 
 		//BackgroundGame m_BackgroundGame;
 };
