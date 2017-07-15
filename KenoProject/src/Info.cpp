@@ -45,7 +45,7 @@ void Info::renderInfoScreen(SDL_Renderer* renderer) {
 
 	m_textInfo.render(renderer,m_textInfo.getKRect());
 
-if(m_buttonBack.isClicked(m_buttonBack.getKRect())){
+if(m_buttonBack.onMouseOver(m_buttonBack.getKRect())){
 
 	m_buttonBack.render(renderer, m_buttonBack.getKRect());
 

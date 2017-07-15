@@ -31,11 +31,11 @@ void MaxBet::setNumbersColor() {
 
 void MaxBet::setElementsPositionDimension() {
 
-	m_buttonStartCircleMax.setPosition(20, 560, minMaxBetCircle_width,
+	m_buttonStartCircleMax.setPosition(20, 562, minMaxBetCircle_width,
 			minMaxBetCircle_height);
-	m_buttonRectMax.setPosition(70, 570, minMaxBetRectangle_width,
+	m_buttonRectMax.setPosition(67, 573, minMaxBetRectangle_width,
 			minMaxBetRectangle_height);
-	m_maxBet.setPosition(30, 573, minMaxBetText_width,
+	m_maxBet.setPosition(30, 575, minMaxBetText_width,
 			minMaxBetText_height);
 	m_numFiveMax.setPosition(82,579,betNumbers_width,betNumbersMax_height);
 	m_numTenMax.setPosition(110,579,betNumbersMax_width,betNumbersMax_height);
@@ -50,7 +50,7 @@ void MaxBet::loadElements(SDL_Renderer* renderer) {
 
 	setNumbersColor();
 
-	m_buttonRectMax.loadTextureFromFile("Resources/Images/buttonRectRed.png",
+	m_buttonRectMax.loadTextureFromFile("Resources/Images/minMaxNumberRect.png",
 			renderer);
 	m_buttonStartCircleMax.loadTextureFromFile(
 			"Resources/Images/buttonCircleRed.png", renderer);

@@ -96,7 +96,7 @@ void Volume::moveVolumeDot(SDL_Event* e) {
 				m_movingPoint = 169;
 				m_volumePoint = 100;
 			}
-		if (m_FontPlus.isClicked(m_FontPlus.getKRect())) {
+		if (m_FontPlus.onMouseOver(m_FontPlus.getKRect())) {
 			if (m_volumePoint > -1 && m_volumePoint < 101 && m_movingPoint > 78
 					&& m_movingPoint < 169) {
 
@@ -107,7 +107,7 @@ void Volume::moveVolumeDot(SDL_Event* e) {
 
 			}
 		}
-		if(m_FontMinus.isClicked(m_FontMinus.getKRect())) {
+		if(m_FontMinus.onMouseOver(m_FontMinus.getKRect())) {
 			if (m_volumePoint > 9 && m_volumePoint < 101 && m_movingPoint > 78
 					&& m_movingPoint < 178) {
 
@@ -123,12 +123,12 @@ void Volume::moveVolumeDot(SDL_Event* e) {
 }
 
 void Volume::setElementsColor() {
-	if (m_FontPlus.isClicked(m_FontPlus.getKRect())) {
+	if (m_FontPlus.onMouseOver(m_FontPlus.getKRect())) {
 		m_FontPlus.setButtonColor(255, 0, 39);
 	} else {
 		m_FontPlus.setButtonColor(24, 236, 19);
 	}
-	if (m_FontMinus.isClicked(m_FontMinus.getKRect())) {
+	if (m_FontMinus.onMouseOver(m_FontMinus.getKRect())) {
 		m_FontMinus.setButtonColor(255, 0, 39);
 	} else {
 		m_FontMinus.setButtonColor(24, 236, 19);

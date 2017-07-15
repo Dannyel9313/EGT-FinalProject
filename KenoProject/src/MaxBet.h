@@ -16,34 +16,18 @@ public:
 	MaxBet();
 	virtual ~MaxBet();
 
+	// Render min bet
+	void renderMaxBet(SDL_Renderer* renderer);
 
-
-
-	// Set numbers Color
-		void setNumbersColor();
-
-		// Set elements position and dimension
-		void setElementsPositionDimension();
-
-		// Load elements
-		void loadElements(SDL_Renderer* renderer);
-
-		// Render min bet
-		void renderMaxBet(SDL_Renderer* renderer);
-
-		// Set font
-		void setFont();
-
-
-		BaseObject& getButtonRectMax();
-		BaseObject& getButtonStartCircleMax();
-		Font& getMaxBet();
-		Font& getNumFiftyMax();
-		Font& getNumFiveMax();
-		Font& getNumFourtyMax();
-		Font& getNumTenMax();
-		Font& getNumThirtyMax();
-		Font& getNumTwentyMax();
+	BaseObject& getButtonRectMax();
+	BaseObject& getButtonStartCircleMax();
+	Font& getMaxBet();
+	Font& getNumFiftyMax();
+	Font& getNumFiveMax();
+	Font& getNumFourtyMax();
+	Font& getNumTenMax();
+	Font& getNumThirtyMax();
+	Font& getNumTwentyMax();
 
 private:
 
@@ -58,6 +42,18 @@ private:
 
 	BaseObject m_buttonRectMax;
 	BaseObject m_buttonStartCircleMax;
+
+	// Set numbers Color
+	void setNumbersColor();
+
+	// Set elements position and dimension
+	void setElementsPositionDimension();
+
+	// Load elements
+	void loadElements(SDL_Renderer* renderer);
+
+	// Set font
+	void setFont();
 };
 
 #endif /* MAXBET_H_ */

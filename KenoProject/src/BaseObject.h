@@ -20,7 +20,7 @@ class BaseObject
 
 		//TODO IS CLICKED!!!
 		// verify if is click
-		bool isClicked(SDL_Rect* rect);
+		bool onMouseOver(SDL_Rect* rect);
 		bool isClicked(const SDL_Event&, SDL_Rect*) const;
 
 		//Load image from texture

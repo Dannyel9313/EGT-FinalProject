@@ -11,7 +11,7 @@ BaseObject::~BaseObject()
 	free();
 }
 
-bool BaseObject::isClicked(SDL_Rect* rect) {
+bool BaseObject::onMouseOver(SDL_Rect* rect) {
 	int x,y;
 	SDL_GetMouseState(&x, &y);
 

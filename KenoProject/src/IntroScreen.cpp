@@ -150,7 +150,7 @@ void IntroScreen::setElementsColor() {
 
 	if (m_insertCredit.getCredit() > 0) {
 
-		if (m_startNewGameButton.isClicked(m_startNewGameButton.getKRect())) {
+		if (m_startNewGameButton.onMouseOver(m_startNewGameButton.getKRect())) {
 			m_startNewGameButton.setButtonColor(255, 0, 39);
 
 		} else {
@@ -160,13 +160,13 @@ void IntroScreen::setElementsColor() {
 	} else {
 		m_startNewGameButton.setButtonColor(127, 127, 127);
 	}
-	if (m_resumeGameButton.isClicked(m_resumeGameButton.getKRect())) {
+	if (m_resumeGameButton.onMouseOver(m_resumeGameButton.getKRect())) {
 		m_resumeGameButton.setButtonColor(255, 0, 39);
 
 	} else {
 		m_resumeGameButton.setButtonColor(24, 236, 19);
 	}
-	if (m_infoButton.isClicked(m_infoButton.getKRect())) {
+	if (m_infoButton.onMouseOver(m_infoButton.getKRect())) {
 		m_infoButton.setButtonColor(255, 0, 39);
 
 	} else {
@@ -206,8 +206,18 @@ Mix_Music*& IntroScreen::getIntroSong() {
 
 void IntroScreen::startNewGameClicked(bool* gameMode, const SDL_Event& e)
 {
+	if(m_insertCredit.getCredit() > 0){
 	if(m_startNewGameButton.isClicked(e, m_startNewGameButton.getKRect())) 
 	{
 		*gameMode = true;	
 	}	
+	}
+}
+
+void IntroScreen::startInfoClicked(bool* infoMode, const SDL_Event& e) {
+
+	if(m_infoButton.isClicked(e,m_infoButton.getKRect()))
+	{
+		*infoMode = true;
+	}
 }

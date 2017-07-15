@@ -33,6 +33,8 @@ public:
 	Font& getStartNewGameButton();
 	void setStartNewGameButton(const Font& startNewGameButton);
 
+
+
 	Volume& getVolume();
 	void setVolume(Volume& volume);
 
@@ -45,6 +47,9 @@ public:
 
 	//Start new game button
 	void startNewGameClicked(bool*, const SDL_Event&);
+
+	//start info screen
+	void startInfoClicked(bool*, const SDL_Event&);
 private:
 	// moving elements
 	void moveStarNewGame(int yPos, SDL_Renderer* renderer);

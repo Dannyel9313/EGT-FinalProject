@@ -62,11 +62,11 @@ void MinBet::setNumbersColor() {
 
 void MinBet::setElementsPositionDimension() {
 
-	m_buttonStartCircle.setPosition(20, 500, minMaxBetCircle_width,
+	m_buttonStartCircle.setPosition(20, 502, minMaxBetCircle_width,
 			minMaxBetCircle_height);
-	m_buttonRect.setPosition(70, 510, minMaxBetRectangle_width,
+	m_buttonRect.setPosition(67, 513, minMaxBetRectangle_width,
 			minMaxBetRectangle_height);
-	m_minBet.setPosition(30, 513, minMaxBetText_width,
+	m_minBet.setPosition(30, 515, minMaxBetText_width,
 			minMaxBetText_height);
 	m_numOne.setPosition(82,519,betNumbers_width,betNumbers_height);
 	m_numTwo.setPosition(110,519,betNumbers_width,betNumbers_height);
@@ -81,7 +81,7 @@ void MinBet::loadElements(SDL_Renderer* renderer) {
 
 	setNumbersColor();
 
-	m_buttonRect.loadTextureFromFile("Resources/Images/buttonRectRed.png",
+	m_buttonRect.loadTextureFromFile("Resources/Images/minMaxNumberRect.png",
 			renderer);
 	m_buttonStartCircle.loadTextureFromFile(
 			"Resources/Images/buttonCircleRed.png", renderer);

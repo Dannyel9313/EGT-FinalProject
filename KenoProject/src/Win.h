@@ -1,32 +1,64 @@
-/*
- * Win.h
- *
- *  Created on: Jul 11, 2017
- *      Author: Memmory Of Tomorrow
- */
-
 #ifndef WIN_H_
 #define WIN_H_
-
+#include "Include.h"
 #include "BaseObject.h"
 #include "Font.h"
-#include <boost/lexical_cast.hpp>
 
-class Win: public BaseObject{
-public:
-	Win();
-	virtual ~Win();
+class Win: public BaseObject
+{
+	public:
+		Win();
+		virtual ~Win();
 
-	void writeOnScreen(SDL_Renderer*);
-private:
-	Font firstText;
-	Font secondText;
-	Font thirdText;
-	Font fourthText;
-	Font fifthText;
-	BaseObject mBackground;
-	std::string floatToString(float var);
+		// render wining
+		void renderWinInGame(SDL_Renderer* renderer);
 
+		// Get circle of win
+		BaseObject& getWinGameCircle();
+
+		// Get win rectangle
+		BaseObject& getWinGameRect();
+
+		// Get win text in circle
+		Font& getWinInGame();
+	
+		// Get win text in rectangle
+		Font& getWinTextRect() ;
+
+//		void writeOnScreen(SDL_Renderer*);
+	private:
+
+		int m_winCredits;
+
+		Font m_winInGame;
+		Font m_winTextRect;
+
+		BaseObject m_winGameRect;
+		BaseObject m_winGameCircle;
+
+		// cast to string
+		const char * toString(int);
+
+		// Set numbers Color
+			void setColor();
+
+			// Set elements position and dimension
+			void setElementsPositionDimension();
+
+			// Load elements
+			void loadElements(SDL_Renderer* renderer);
+
+			// Set font
+			void setFont();
+
+
+//		Font firstText;
+//      	 	Font secondText;
+//      		Font thirdText;
+//       		Font fourthText;
+//        	Font fifthText;
+//		BaseObject mBackground;
+//		std::string StringToDouble();
 };
 
 #endif /* WIN_H_ */
