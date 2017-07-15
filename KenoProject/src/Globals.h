@@ -82,8 +82,8 @@ const int circle_xIndent = 20;
 const int circle_yIndent = 15;
 
 //Bet button position
-const int betButton_x = 0;
-const int betButton_y = 0;
+const int betButton_x = 690;
+const int betButton_y = 460;
 
 //Bet button dimensions
 const int betButton_width = 100;
