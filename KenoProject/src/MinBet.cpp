@@ -77,6 +77,45 @@ void MinBet::setElementsPositionDimension() {
 
 }
 
+void MinBet::activateMinButton(SDL_Renderer* renderer) {
+	m_buttonRect.loadTextureFromFile("Resources/Images/minMaxNumberRect.png",
+					renderer);
+	m_buttonRect.setPosition(67, 513, minMaxBetRectangle_width,
+				minMaxBetRectangle_height);
+	m_buttonRect.render(renderer,m_buttonRect.getKRect());
+
+m_buttonStartCircle.loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",
+		renderer);
+m_buttonStartCircle.render(renderer,m_buttonStartCircle.getKRect());
+
+m_minBet.render(renderer,m_minBet.getKRect());
+m_numOne.render(renderer,m_numOne.getKRect());
+m_numTwo.render(renderer,m_numTwo.getKRect());
+m_numThree.render(renderer,m_numThree.getKRect());
+m_numFour.render(renderer,m_numFour.getKRect());
+m_numFive.render(renderer,m_numFive.getKRect());
+m_numTen.render(renderer,m_numTen.getKRect());
+
+
+
+}
+
+void MinBet::deactivateMinButton(SDL_Renderer* renderer) {
+
+	m_buttonRect.setPosition(66, 513, minMaxBetRectangleGrey_width,
+				minMaxBetRectangleGrey_height);
+	m_buttonRect.loadTextureFromFile("Resources/Images/greyMinMaxButton.png",
+				renderer);
+	m_buttonRect.render(renderer,m_buttonRect.getKRect());
+
+
+		m_buttonStartCircle.loadTextureFromFile(
+				"Resources/Images/buttonCircleGrey.png", renderer);
+		m_buttonStartCircle.render(renderer,m_buttonStartCircle.getKRect());
+		m_minBet.textRender(m_minBet.getKRect(),m_minBet.getKTexture(),renderer);
+
+}
+
 void MinBet::loadElements(SDL_Renderer* renderer) {
 
 	setNumbersColor();

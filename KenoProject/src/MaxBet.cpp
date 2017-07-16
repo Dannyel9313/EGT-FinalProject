@@ -138,7 +138,7 @@ void MaxBet::changeColorOnMouseOver(SDL_Renderer* renderer)
 	if(m_buttonStartCircleMax.onMouseOver(m_buttonStartCircleMax.getKRect()))
 	{
 		m_maxBet.setButtonColor(24, 236, 19);
-		m_maxBet.LoadFromRenderedText("MIN", renderer, m_maxBet.getButtonColor());
+		m_maxBet.LoadFromRenderedText("MAX", renderer, m_maxBet.getButtonColor());
 		m_buttonStartCircleMax.render(renderer, m_buttonStartCircleMax.getKRect());
 		m_maxBet.textRender(m_maxBet.getKRect(),
 				m_maxBet.getKTexture(), renderer);
@@ -146,12 +146,52 @@ void MaxBet::changeColorOnMouseOver(SDL_Renderer* renderer)
 	else
 	{
 		m_maxBet.setButtonColor(0, 0, 0);
-		m_maxBet.LoadFromRenderedText("MIN", renderer, m_maxBet.getButtonColor());
+		m_maxBet.LoadFromRenderedText("MAX", renderer, m_maxBet.getButtonColor());
 			m_buttonStartCircleMax.render(renderer, m_buttonStartCircleMax.getKRect());
 			m_maxBet.textRender(m_maxBet.getKRect(),
 					m_maxBet.getKTexture(), renderer);
 	}
 
 
+
+}
+
+void MaxBet::activateMaxButton(SDL_Renderer* renderer) {
+	m_buttonRectMax.loadTextureFromFile("Resources/Images/minMaxNumberRect.png",
+						renderer);
+	m_buttonRectMax.setPosition(67, 573, minMaxBetRectangle_width,
+				minMaxBetRectangle_height);
+	m_buttonRectMax.render(renderer,m_buttonRectMax.getKRect());
+
+m_buttonStartCircleMax.loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",
+		renderer);
+m_buttonStartCircleMax.render(renderer,m_buttonStartCircleMax.getKRect());
+
+m_maxBet.render(renderer,m_maxBet.getKRect());
+m_numFiveMax.render(renderer,m_numFiveMax.getKRect());
+m_numTenMax.render(renderer,m_numTenMax.getKRect());
+m_numTwentyMax.render(renderer,m_numTwentyMax.getKRect());
+m_numThirtyMax.render(renderer,m_numThirtyMax.getKRect());
+m_numFourtyMax.render(renderer,m_numFourtyMax.getKRect());
+m_numFiftyMax.render(renderer,m_numFiftyMax.getKRect());
+
+
+
+
+}
+
+void MaxBet::deactivateMaxButton(SDL_Renderer* renderer) {
+
+	m_buttonRectMax.setPosition(65, 573, minMaxBetRectangleGrey_width,
+				minMaxBetRectangleGrey_height);
+	m_buttonRectMax.loadTextureFromFile("Resources/Images/greyMinMaxButton.png",
+				renderer);
+	m_buttonRectMax.render(renderer,m_buttonRectMax.getKRect());
+
+
+		m_buttonStartCircleMax.loadTextureFromFile(
+				"Resources/Images/buttonCircleGrey.png", renderer);
+		m_buttonStartCircleMax.render(renderer,m_buttonStartCircleMax.getKRect());
+		m_maxBet.textRender(m_maxBet.getKRect(),m_maxBet.getKTexture(),renderer);
 
 }

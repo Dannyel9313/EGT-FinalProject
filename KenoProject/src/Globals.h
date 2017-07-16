@@ -137,6 +137,10 @@ const int minMaxBetCircle_height = 60;
 const int minMaxBetRectangle_width = 200;
 const int minMaxBetRectangle_height = 40;
 
+// Grey rectangle width
+const int minMaxBetRectangleGrey_width = 204;
+const int minMaxBetRectangleGrey_height = 42;
+
 // Size of min/max text
 const int minMaxBetText_width = 40;
 const int minMaxBetText_height = 40;

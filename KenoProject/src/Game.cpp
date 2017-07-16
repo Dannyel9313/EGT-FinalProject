@@ -63,6 +63,16 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 
 			}
 
+	if(m_maxBetButton.getMaxBet().isClicked(e,m_maxBetButton.getMaxBet().getKRect()))
+	{
+	m_maxBetButton.activateMaxButton(renderer);
+	m_minBetButton.deactivateMinButton(renderer);
+	}
+if(m_minBetButton.getMinBet().isClicked(e,m_minBetButton.getMinBet().getKRect()))
+{
+	m_minBetButton.activateMinButton(renderer);
+	m_maxBetButton.deactivateMaxButton(renderer);
+}
 
 	//If button condition true show random numbers
 	if(mBetButton.buttonCondition(mGrid.numbersClicked(), renderer))
