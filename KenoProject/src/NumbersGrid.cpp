@@ -16,7 +16,15 @@ NumbersGrid::NumbersGrid()
 	}
 }
 
-void NumbersGrid::createRects(SDL_Renderer * renderer, int alpha)
+void NumbersGrid::renderBackground(SDL_Renderer* renderer)
+{
+	//Set background of rects
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 200);
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+	SDL_RenderFillRect(renderer, getKRect());
+}
+
+void NumbersGrid::createRects(SDL_Renderer* renderer, int alpha)
 {
 	int xPos = getKRect()->x, yPos = getKRect()->y;
 	SDL_Rect tempRect = {xPos, yPos, numbersRect_width, numbersRect_height};
@@ -43,7 +51,6 @@ void NumbersGrid::createRects(SDL_Renderer * renderer, int alpha)
 		tempRect.y = yPos;
 		tempRect.x = xPos;
 	}
-	printNumbers(renderer);
 }
 
 void NumbersGrid::setNumbersGridRect(int x, int y, int w, int h)
@@ -114,6 +121,7 @@ void NumbersGrid::doIfClicked(SDL_Renderer * renderer, const SDL_Event & e)
 				isClicked(e, &m_numbers[i][j]) 
 				&& numbersClicked() < 10) 
 			{
+			
 				//Draw and fill rect
 				isClickedFlags[i][j] = 1;
 				roundedBoxRGBA(renderer, 
@@ -122,9 +130,6 @@ void NumbersGrid::doIfClicked(SDL_Renderer * renderer, const SDL_Event & e)
 				m_numbers[i][j].x+numbersRect_width, 
 				m_numbers[i][j].y+numbersRect_height, 
 				5, 200, 200, 0, 255);
-
-				//Reapply numbers in rects
-				printNumbers(renderer);
 
 				//Play sound effect
 				Mix_PlayChannel(-1, m_ClickEffect, 0);
@@ -141,17 +146,14 @@ void NumbersGrid::doIfClicked(SDL_Renderer * renderer, const SDL_Event & e)
 					m_numbers[i][j].y+numbersRect_height, 
 					5, 225, 16, 16, 255);
 
-				//Reapply numbers in rects
-				printNumbers(renderer);
-
-				//Play sound effect	
+				//Play sound effect
 				Mix_PlayChannel(-1, m_ClickEffect, 0);
 			}	
 		}
 	}
 }
 
-const char * NumbersGrid::toString(int in_val)
+const char* NumbersGrid::toString(int in_val)
 {
 	std::string str = boost::lexical_cast<std::string> (in_val);
 	return str.c_str();
@@ -238,7 +240,6 @@ int NumbersGrid::numbersClicked()
 
 void NumbersGrid::reRenderClickedNumbers(SDL_Renderer* renderer, int alpha)
 {
-	createRects(renderer, alpha);
 	for (int i = 0; i < 8; i++)
 	{
 		for (int j = 0; j < 10; j++)
@@ -254,20 +255,13 @@ void NumbersGrid::reRenderClickedNumbers(SDL_Renderer* renderer, int alpha)
 			}
 		}
 	}
-	//Reapply numbers in rects
-	printNumbers(renderer);
 }
 
 void NumbersGrid::blinkingSuccessHits(SDL_Renderer* renderer)
 {
-	reRenderClickedNumbers(renderer, 50);
-	renderRandomNumbers(renderer);
-	printNumbers(renderer);
-	numberOfHits();	
 	int flag = 0;
 	for (int k = 0; k < 8; k++) 
 	{
-		int timeout = SDL_GetTicks() + oneSecond;
 		for (int i = 0; i < 8; i++)
 		{
 			for (int j = 0; j < 10; j++)
@@ -306,7 +300,8 @@ void NumbersGrid::blinkingSuccessHits(SDL_Renderer* renderer)
 		//Reapply numbers in rects
 		printNumbers(renderer);
 		SDL_RenderPresent(renderer);	
-		while(!SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {};
+		//int timeout = SDL_GetTicks() + 500;
+		//while(!SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {};
 	}	
 }
 
@@ -351,3 +346,4 @@ void NumbersGrid::resetFlags()
 		}
 	}
 }
+

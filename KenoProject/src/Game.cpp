@@ -10,16 +10,25 @@ BetButton& Game::getBetButton()
 	return mBetButton;
 }
 
-void Game::renderGame(SDL_Renderer* renderer) 
+void Game::renderGame(SDL_Renderer* renderer, int alpha) 
 {
 	//Render background
 	render(renderer, NULL);
-	
-	//Render numbers	
-	mGrid.reRenderClickedNumbers(renderer, 255);
 
+	//Render numbers grid background
+	mGrid.renderBackground(renderer);
+	
+	//Create number rects
+	mGrid.createRects(renderer, alpha);
+
+	//Print the numbers
+	mGrid.printNumbers(renderer);
+	
 	//Render bet button
 	mBetButton.buttonCondition(mGrid.numbersClicked(), renderer);
+	
+	//Render bet text
+	mBetButton.betText(renderer);
 
 	//Render min bet button
 	m_minBetButton.renderMinBet(renderer);
@@ -39,78 +48,58 @@ void Game::renderGame(SDL_Renderer* renderer)
 	//Render win in game
 	m_winInGame.renderWinInGame(renderer);
 
-	//Render bet text
-	mBetButton.betText(renderer);
-
 	//Render history
-	m_History.printHistory(renderer, 0);
+	m_History.initializeHistory(renderer);
 }
 
 void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 {
-	mGrid.doIfClicked(renderer, e);
-
 	//If button condition true show random numbers
 	if(mBetButton.buttonCondition(mGrid.numbersClicked(), renderer))
 	{		
 		if (mBetButton.isClicked(e, mBetButton.getKRect())) 
 		{
-			render(renderer, NULL);
-		
-			//Render button
-			mBetButton.render(renderer, mBetButton.getKRect());
-
-			//Render bet text
-			mBetButton.betText(renderer);
-
 			//Pick 10 random numbers
 			mGrid.pickRandomNumbers(renderer, e);
+
+			renderGame(renderer, 150);
+
+			mGrid.reRenderClickedNumbers(renderer, 50);
+
+			mGrid.renderRandomNumbers(renderer);
 	
-			//Render bet button
-			mBetButton.buttonCondition(mGrid.numbersClicked(), renderer);
+			mGrid.printNumbers(renderer);
 
-			//Render min bet button
-			m_minBetButton.renderMinBet(renderer);
+			mGrid.numberOfHits();
 
-			//Render max bet button
-			m_maxBetButton.renderMaxBet(renderer);
+			m_History.printHits(renderer, mGrid.numberOfHits(), 0);
 
-			//Render clear button
-			m_clearButton.renderClearButton(renderer);
-
-			//Render quick pick button
-			m_quickPickButton.renderQuickPickButton(renderer);
-
-			//Render credit in game
-			m_creditInGame.renderCreditsInGame(renderer);
-
-			//Render win in game
-			m_winInGame.renderWinInGame(renderer);
-
-			//Render bet text
-			mBetButton.betText(renderer);
-
-			//Blinking 4 times
 			mGrid.blinkingSuccessHits(renderer);
 
-			//Reset numbersgrid and button
-			render(renderer, NULL);
-			mGrid.resetNumbersGrid(renderer);
-			mBetButton.buttonCondition(mGrid.numbersClicked(), renderer);
+			History::currentRound++;
 
-			//Render history
-			m_History.printHistory(renderer, 0);
+			renderGame(renderer, 255);
+
+			m_History.printHits(renderer, mGrid.numberOfHits(), 1);
+
+			mGrid.resetNumbersGrid(renderer);
+
 		}
 	}	
-
-	mGrid.reRenderClickedNumbers(renderer, 255);
-	renderGame(renderer);
 }
 
 void Game::mouseOnButtonRender(SDL_Renderer* renderer, const SDL_Event& e) 
 {
 	//Mouse over stuff	
 	m_clearButton.changeColorOnMouseover(renderer);	
+}
+
+void Game::changeColorOfClickedNumbers(SDL_Renderer* renderer, const SDL_Event& e)
+{
+	mGrid.createRects(renderer, 255);
+	mGrid.reRenderClickedNumbers(renderer, 255);
+	mGrid.doIfClicked(renderer, e);
+	mGrid.printNumbers(renderer);
 }
 
 MinBet& Game::getMinBetButton()

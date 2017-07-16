@@ -46,11 +46,14 @@ class NumbersGrid: public BaseObject
 		void resetFlags();
 
 		//Get random numbers
-		int* getRandomNumbers();
-	private:
-		//Utility function load numbers in rectangles
-		void printNumbers(SDL_Renderer*);
+		//int* getRandomNumbers();
 
+		//Render background of numbersGrid;
+		void renderBackground(SDL_Renderer*);
+
+		//Load numbers in rectangles
+		void printNumbers(SDL_Renderer*);
+	private:
 		const char* toString(int);
 
 		SDL_Rect m_numbers[8][10];

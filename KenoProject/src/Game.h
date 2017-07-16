@@ -22,7 +22,7 @@ class Game: public BaseObject
 		BetButton & getBetButton();
 
 		//Render the whole game screen
-		void renderGame(SDL_Renderer*);
+		void renderGame(SDL_Renderer*, int alpha);
 
 		//
 		void ifBetButtonClicked(SDL_Renderer*, const SDL_Event&);
@@ -53,6 +53,9 @@ class Game: public BaseObject
 
 		//Render on mouseover
 		void mouseOnButtonRender(SDL_Renderer*, const SDL_Event&);
+
+		//Changes color of clicked numbers
+		void changeColorOfClickedNumbers(SDL_Renderer*, const SDL_Event&);
 
 		//BackgroundGame& getBackground();
 

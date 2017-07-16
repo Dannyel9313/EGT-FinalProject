@@ -9,9 +9,11 @@ int main(int argc, char* args[])
 	GameKeno game;
 	SDL_Event e;
 
-	bool introMode = true;
-	bool gameMode = false;
+	bool introMode = false;
+	bool gameMode = true;
 	bool infoMode = false;
+
+	int x, y;
 
 	if (!game.init()) 
 	{
@@ -22,10 +24,11 @@ int main(int argc, char* args[])
 		if (!game.loadMedia()) 
 		{
 			std::cerr << "Error loading media" << std::endl;
-		} else 
+		} 
+		else 
 			{
 			SDL_RenderClear(game.getKenoRenderer());
-			game.getIntroMode().loadIntroScreen(game.getKenoRenderer());
+			//game.getIntroMode().loadIntroScreen(game.getKenoRenderer());
 			while (!quit && introMode == 1) 
 			{
 				while (SDL_PollEvent(&e) != 0) 
@@ -54,7 +57,7 @@ int main(int argc, char* args[])
 			}
 			if(gameMode)
 			{	
-				game.getGameMode().renderGame(game.getKenoRenderer());
+				game.getGameMode().renderGame(game.getKenoRenderer(), 255);
 				quit = false;
 			}
 			while (!quit && gameMode == 1)
@@ -67,7 +70,10 @@ int main(int argc, char* args[])
 					}
 					else if (e.type == SDL_MOUSEBUTTONDOWN)
                                 	{
+						game.getGameMode().changeColorOfClickedNumbers(game.getKenoRenderer(), e);
 						game.getGameMode().mouseButtonDownRender(game.getKenoRenderer(), e);
+						SDL_GetMouseState(&x, &y);
+						std::cout << "X: " << x << " " << "Y: " << y << std::endl;
                                         }
 					else if (e.type == SDL_MOUSEMOTION)
 					{
