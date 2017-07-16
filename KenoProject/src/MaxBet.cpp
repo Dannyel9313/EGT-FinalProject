@@ -132,3 +132,26 @@ Font& MaxBet::getNumTenMax() {
 Font& MaxBet::getNumTwentyMax() {
 	return m_numTwentyMax;
 }
+
+void MaxBet::changeColorOnMouseover(SDL_Renderer* renderer)
+{
+	if(m_buttonStartCircleMax.onMouseOver(m_buttonStartCircleMax.getKRect()))
+	{
+		m_maxBet.setButtonColor(24, 236, 19);
+		m_maxBet.LoadFromRenderedText("MIN", renderer, m_maxBet.getButtonColor());
+		m_buttonStartCircleMax.render(renderer, m_buttonStartCircleMax.getKRect());
+		m_maxBet.textRender(m_maxBet.getKRect(),
+				m_maxBet.getKTexture(), renderer);
+	}
+	else
+	{
+		m_maxBet.setButtonColor(0, 0, 0);
+		m_maxBet.LoadFromRenderedText("MIN", renderer, m_maxBet.getButtonColor());
+			m_buttonStartCircleMax.render(renderer, m_buttonStartCircleMax.getKRect());
+			m_maxBet.textRender(m_maxBet.getKRect(),
+					m_maxBet.getKTexture(), renderer);
+	}
+
+
+
+}

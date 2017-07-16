@@ -42,7 +42,7 @@ void QuickPick::renderQuickPickButton(SDL_Renderer* renderer) {
 }
 
 void QuickPick::setColor() {
-	m_quickPickText.setButtonColor(0, 0, 0);
+	m_quickPickText.setButtonColor(254, 0, 0);
 }
 
 void QuickPick::setElementsPositionDimension() {
@@ -68,5 +68,30 @@ void QuickPick::loadElements(SDL_Renderer* renderer) {
 
 void QuickPick::setFont() {
 	m_quickPickText.setFont(TTF_OpenFont("Resources/Fonts/Candles_.TTF", 30));
+
+}
+
+void QuickPick::changeColorOnMouseover(SDL_Renderer* renderer)
+{
+	if(m_quickPickText.onMouseOver(m_quickPickText.getKRect()))
+	{
+		m_quickPickText.setButtonColor(102, 0, 0);
+		m_quickPickText.LoadFromRenderedText("QUICK PICK", renderer,
+				m_quickPickText.getButtonColor());
+		m_quickPickRectPushed.render(renderer, m_quickPickRectPushed.getKRect());
+		m_quickPickText.textRender(m_quickPickText.getKRect(),
+				m_quickPickText.getKTexture(), renderer);
+	}
+	else
+	{
+		m_quickPickText.setButtonColor(254,0,0);
+		m_quickPickText.LoadFromRenderedText("QUICK PICK", renderer,
+				m_quickPickText.getButtonColor());
+		m_quickPickText.textRender(m_quickPickText.getKRect(),m_quickPickText.getKTexture(),renderer);
+		m_quickPickRect.render(renderer, m_quickPickRect.getKRect());
+		m_quickPickText.textRender(m_quickPickText.getKRect(),
+				m_quickPickText.getKTexture(), renderer);
+	}
+
 
 }

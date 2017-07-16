@@ -131,3 +131,26 @@ void MinBet::renderMinBet(SDL_Renderer* renderer) {
 BaseObject& MinBet::getButtonStartCircle() {
 	return m_buttonStartCircle;
 }
+
+void MinBet::changeColorOnMouseover(SDL_Renderer* renderer)
+{
+	if(m_buttonStartCircle.onMouseOver(m_buttonStartCircle.getKRect()))
+	{
+		m_minBet.setButtonColor(24, 236, 19);
+		m_minBet.LoadFromRenderedText("MIN", renderer, m_minBet.getButtonColor());
+		m_buttonStartCircle.render(renderer, m_buttonStartCircle.getKRect());
+		m_minBet.textRender(m_minBet.getKRect(),
+				m_minBet.getKTexture(), renderer);
+	}
+	else
+	{
+		m_minBet.setButtonColor(0, 0, 0);
+			m_minBet.LoadFromRenderedText("MIN", renderer, m_minBet.getButtonColor());
+			m_buttonStartCircle.render(renderer, m_buttonStartCircle.getKRect());
+			m_minBet.textRender(m_minBet.getKRect(),
+					m_minBet.getKTexture(), renderer);
+	}
+
+
+
+}
