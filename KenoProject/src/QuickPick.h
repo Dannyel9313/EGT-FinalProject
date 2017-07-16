@@ -31,6 +31,8 @@ public:
 	// Set font
 	void setFont();
 
+	//Set numbers Color
+	void changeColorOnMouseover(SDL_Renderer* renderer);
 
 	//Get quick pick button rect
 	BaseObject& getQuickPickRect();

@@ -18,6 +18,8 @@ public:
 	// Render min bet
 	void renderMinBet(SDL_Renderer* renderer);
 
+	void changeColorOnMouseover(SDL_Renderer* renderer);
+
 	Font& getMinBet();
 	Font& getNumFive();
 	Font& getNumFour();
@@ -40,6 +42,7 @@ private:
 
 	BaseObject m_buttonRect;
 	BaseObject m_buttonStartCircle;
+	BaseObject m_buttonMinBetCirclePushed;
 
 	// Set font
 	void setFont();
