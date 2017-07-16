@@ -25,8 +25,11 @@ class ClearButton
 		BaseObject& getButtonRectPushed();
 
 		//Set numbers Color
-		void changeColorOnMouseover(SDL_Renderer* renderer);
+		void changeColorOnMouseOver(SDL_Renderer* renderer);
+
 	private:
+
+
 		Font m_buttonClear;
 
 		BaseObject m_buttonRect;

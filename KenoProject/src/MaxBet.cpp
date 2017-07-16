@@ -133,7 +133,7 @@ Font& MaxBet::getNumTwentyMax() {
 	return m_numTwentyMax;
 }
 
-void MaxBet::changeColorOnMouseover(SDL_Renderer* renderer)
+void MaxBet::changeColorOnMouseOver(SDL_Renderer* renderer)
 {
 	if(m_buttonStartCircleMax.onMouseOver(m_buttonStartCircleMax.getKRect()))
 	{

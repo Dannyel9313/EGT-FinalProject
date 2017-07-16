@@ -165,4 +165,16 @@ const int creditsInGameWinTextInCircle_height = 40;
 const int creditsInGameWinTextInRect_width = 120;
 const int creditsInGameWinTextInRect_height = 35;
 
+//Size of cash out button
+const int cashOutRect_width = 100;
+const int cashOutRect_height = 40;
+
+//Size of cash out button text
+const int cashOutButtonText_width = 80;
+const int cashOutButtonText_height = 35;
+
+
+
+
+
 #endif /* GLOBALS_H_ */

@@ -17,7 +17,7 @@ void ClearButton::renderClearButton(SDL_Renderer* renderer)
 				m_buttonClear.getKTexture(), renderer);
 }
 
-void ClearButton::changeColorOnMouseover(SDL_Renderer* renderer) 
+void ClearButton::changeColorOnMouseOver(SDL_Renderer* renderer)
 {
 	if(m_buttonClear.onMouseOver(m_buttonClear.getKRect()))
 	{

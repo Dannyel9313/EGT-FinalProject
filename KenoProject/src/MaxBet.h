@@ -19,7 +19,7 @@ public:
 	// Render min bet
 	void renderMaxBet(SDL_Renderer* renderer);
 
-	void changeColorOnMouseover(SDL_Renderer* renderer);
+	void changeColorOnMouseOver(SDL_Renderer* renderer);
 
 	BaseObject& getButtonRectMax();
 	BaseObject& getButtonStartCircleMax();

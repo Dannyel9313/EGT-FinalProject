@@ -19,20 +19,8 @@ public:
 	// Render
 	void renderQuickPickButton(SDL_Renderer* renderer);
 
-	// Set numbers Color
-	void setColor();
-
-	// Set elements position and dimension
-	void setElementsPositionDimension();
-
-	// Load elements
-	void loadElements(SDL_Renderer* renderer);
-
-	// Set font
-	void setFont();
-
 	//Set numbers Color
-	void changeColorOnMouseover(SDL_Renderer* renderer);
+	void changeColorOnMouseOver(SDL_Renderer* renderer);
 
 	//Get quick pick button rect
 	BaseObject& getQuickPickRect();
@@ -50,6 +38,17 @@ private:
 	BaseObject m_quickPickRect;
 	BaseObject m_quickPickRectPushed;
 
+	// Set numbers Color
+	void setColor();
+
+	// Set elements position and dimension
+	void setElementsPositionDimension();
+
+	// Load elements
+	void loadElements(SDL_Renderer* renderer);
+
+	// Set font
+	void setFont();
 };
 
 #endif /* QUICKPICK_H_ */

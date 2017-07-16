@@ -132,7 +132,7 @@ BaseObject& MinBet::getButtonStartCircle() {
 	return m_buttonStartCircle;
 }
 
-void MinBet::changeColorOnMouseover(SDL_Renderer* renderer)
+void MinBet::changeColorOnMouseOver(SDL_Renderer* renderer)
 {
 	if(m_buttonStartCircle.onMouseOver(m_buttonStartCircle.getKRect()))
 	{
@@ -154,3 +154,7 @@ void MinBet::changeColorOnMouseover(SDL_Renderer* renderer)
 
 
 }
+
+
+
+

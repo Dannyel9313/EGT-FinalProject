@@ -48,12 +48,22 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha)
 	//Render win in game
 	m_winInGame.renderWinInGame(renderer);
 
-	//Render history
+	//Render cash out button
+	m_cashOutButton.renderCashOutButton(renderer);
+
+//	Render history
 	m_History.initializeHistory(renderer);
 }
 
 void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 {
+	if(m_clearButton.getButtonRect().isClicked(e,m_clearButton.getButtonRect().getKRect()))
+			{
+		mGrid.resetNumbersGrid(renderer);
+
+			}
+
+
 	//If button condition true show random numbers
 	if(mBetButton.buttonCondition(mGrid.numbersClicked(), renderer))
 	{		
@@ -91,7 +101,15 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 void Game::mouseOnButtonRender(SDL_Renderer* renderer, const SDL_Event& e) 
 {
 	//Mouse over stuff	
-	m_clearButton.changeColorOnMouseover(renderer);	
+	m_clearButton.changeColorOnMouseOver(renderer);
+
+	m_quickPickButton.changeColorOnMouseOver(renderer);
+
+	m_minBetButton.changeColorOnMouseOver(renderer);
+
+	m_maxBetButton.changeColorOnMouseOver(renderer);
+
+	m_cashOutButton.changeColorOnMouseOver(renderer);
 }
 
 void Game::changeColorOfClickedNumbers(SDL_Renderer* renderer, const SDL_Event& e)
@@ -134,8 +152,13 @@ Win& Game::getWinInGame()
 
 History& Game::getHistory()
 {
-	return m_History;	
+	return m_History;
+}
+
+CashOut& Game::getCashOutButton() {
+	return m_cashOutButton;
 }
 //BackgroundGame& Game::getBackground() {
 //	return m_background;
 //}
+

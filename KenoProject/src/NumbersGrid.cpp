@@ -300,8 +300,8 @@ void NumbersGrid::blinkingSuccessHits(SDL_Renderer* renderer)
 		//Reapply numbers in rects
 		printNumbers(renderer);
 		SDL_RenderPresent(renderer);	
-		int timeout = SDL_GetTicks() + 500;
-		while(!SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {};
+		//int timeout = SDL_GetTicks() + 500;
+		//while(!SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {};
 	}	
 }
 

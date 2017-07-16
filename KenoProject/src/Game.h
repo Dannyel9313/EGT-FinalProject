@@ -11,6 +11,7 @@
 #include "CreditInGame.h"
 #include "Win.h"
 #include "History.h"
+#include "CashOut.h"
 
 class Game: public BaseObject
 {
@@ -46,7 +47,7 @@ class Game: public BaseObject
 		Win& getWinInGame();
 
 		//Get history
-		History& getHistory();		
+		History& getHistory();
 
 		//Render on mousebuttondown
 		void mouseButtonDownRender(SDL_Renderer*, const SDL_Event&);
@@ -56,6 +57,9 @@ class Game: public BaseObject
 
 		//Changes color of clicked numbers
 		void changeColorOfClickedNumbers(SDL_Renderer*, const SDL_Event&);
+
+		//Get cash out button
+		CashOut& getCashOutButton();
 
 		//BackgroundGame& getBackground();
 
@@ -68,6 +72,7 @@ class Game: public BaseObject
 		QuickPick m_quickPickButton;
 		CreditInGame m_creditInGame;
 		Win m_winInGame;
+		CashOut m_cashOutButton;
 		History m_History;
 
 		//BackgroundGame m_BackgroundGame;
