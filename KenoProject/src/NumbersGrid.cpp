@@ -165,6 +165,7 @@ void NumbersGrid::pickRandomNumbers(SDL_Renderer* renderer,
 {
 	int rand_1;
 	int rand_2;
+	srand(SDL_GetTicks());
 	for (int i = 0; i < 20; i++)
 	{
 		rand_1 = rand()%8;
