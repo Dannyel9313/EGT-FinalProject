@@ -220,6 +220,261 @@ void Game::drawAnimation(SDL_Renderer* renderer, int* numbers, SDL_Rect* rects)
 	flags.reset();
 	delete[] numbers;
 	delete[] rects;
+
+}
+
+int Game::calculateBetForTwoNumbers(int credits)
+{
+	int userWin = 1;
+	if(mGrid.numberOfHits() == 1){
+		return userWin *= credits;
+	}
+	else if(mGrid.numberOfHits() == 2){
+		return userWin *= credits * 9;
+	}
+	return userWin;
+}
+
+int Game::calculateBetForThreeNumbers(int credits)
+{
+	int userWin = 1;
+	if(mGrid.numberOfHits() == 1){
+		return userWin *= credits;
+	}
+	else if(mGrid.numberOfHits() == 2){
+		return userWin *= credits * 2;
+	}
+	else if(mGrid.numberOfHits() == 3){
+		return userWin *= credits * 16;
+	}
+	return userWin;
+}
+
+int Game::calculateBetForFourNumbers(int credits)
+{
+	int userWin = 1;
+	if(mGrid.numberOfHits() == 1){
+		return 0;
+	}
+	else if(mGrid.numberOfHits() == 2){
+		return userWin *= credits * 2;
+	}
+	else if(mGrid.numberOfHits() == 3){
+		return userWin *= credits * 6;
+	}
+	else if(mGrid.numberOfHits() == 4){
+		return userWin *= credits * 12;
+	}
+	return userWin;
+}
+
+int Game::calculateBetForFiveNumbers(int credits)
+{
+	int userWin = 1;
+	if(mGrid.numberOfHits() == 1){
+		return 0;
+	}
+	else if(mGrid.numberOfHits() == 2){
+		return userWin *= credits;
+	}
+	else if(mGrid.numberOfHits() == 3){
+		return userWin *= credits * 3;
+	}
+	else if(mGrid.numberOfHits() == 4){
+		return userWin *= credits * 15;
+	}
+	else if(mGrid.numberOfHits() == 5){
+		return userWin *= credits * 50;
+	}
+	return userWin;
+}
+
+int Game::calculateBetForSixNumbers(int credits)
+{
+	int userWin = 1;
+	if(mGrid.numberOfHits() == 1){
+		return 0;
+	}
+	else if(mGrid.numberOfHits() == 2){
+		return userWin *= credits;
+	}
+	else if(mGrid.numberOfHits() == 3){
+		return userWin *= credits * 2;
+	}
+	else if(mGrid.numberOfHits() == 4){
+		return userWin *= credits * 3;
+	}
+	else if(mGrid.numberOfHits() == 5){
+		return userWin *= credits * 30;
+	}
+	else if(mGrid.numberOfHits() == 6){
+		return userWin *= credits * 75;
+	}
+	return userWin;
+}
+
+int Game::calculateBetForSevenNumbers(int credits)
+{
+	int userWin = 1;
+	if(mGrid.numberOfHits() == 1){
+		return 0;
+	}
+	else if(mGrid.numberOfHits() == 2){
+		return 0;
+	}
+	else if(mGrid.numberOfHits() == 3){
+		return userWin *= credits;
+	}
+	else if(mGrid.numberOfHits() == 4){
+		return userWin *= credits * 6;
+	}
+	else if(mGrid.numberOfHits() == 5){
+		return userWin *= credits * 12;
+	}
+	else if(mGrid.numberOfHits() == 6){
+		return userWin *= credits * 36;
+	}
+	else if(mGrid.numberOfHits() == 7){
+		return userWin *= credits * 100;
+	}
+	return userWin;
+}
+
+int Game::calculateBetForEightNumbers(int credits)
+{
+	int userWin = 1;
+	if(mGrid.numberOfHits() == 1){
+		return 0;
+	}
+	else if(mGrid.numberOfHits() == 2){
+		return 0;
+	}
+	else if(mGrid.numberOfHits() == 3){
+		return userWin *= credits;
+	}
+	else if(mGrid.numberOfHits() == 4){
+		return userWin *= credits * 3;
+	}
+	else if(mGrid.numberOfHits() == 5){
+		return userWin *= credits * 6;
+	}
+	else if(mGrid.numberOfHits() == 6){
+		return userWin *= credits * 19;
+	}
+	else if(mGrid.numberOfHits() == 7){
+		return userWin *= credits * 90;
+	}
+	else if(mGrid.numberOfHits() == 8){
+		return userWin *= credits * 720;
+	}
+	return userWin;
+}
+
+int Game::calculateBetForNineNumbers(int credits)
+{
+	int userWin = 1;
+	if(mGrid.numberOfHits() == 1){
+		return 0;
+	}
+	else if(mGrid.numberOfHits() == 2){
+		return 0;
+	}
+	else if(mGrid.numberOfHits() == 3){
+		return userWin *= credits;
+	}
+	else if(mGrid.numberOfHits() == 4){
+		return userWin *= credits * 2;
+	}
+	else if(mGrid.numberOfHits() == 5){
+		return userWin *= credits * 4;
+	}
+	else if(mGrid.numberOfHits() == 6){
+		return userWin *= credits * 8;
+	}
+	else if(mGrid.numberOfHits() == 7){
+		return userWin *= credits * 20;
+	}
+	else if(mGrid.numberOfHits() == 8){
+		return userWin *= credits * 80;
+	}
+	else if(mGrid.numberOfHits() == 9){
+		return userWin *= credits * 1200;
+	}
+	return userWin;
+}
+
+int Game::calculateBetForTenNumbers(int credits)
+{
+	int userWin = 1;
+	if(mGrid.numberOfHits() == 1){
+		return 0;
+	}
+	else if(mGrid.numberOfHits() == 2){
+		return 0;
+	}
+	else if(mGrid.numberOfHits() == 3){
+		return userWin *= credits;
+	}
+	else if(mGrid.numberOfHits() == 4){
+		return userWin *= credits * 2;
+	}
+	else if(mGrid.numberOfHits() == 5){
+		return userWin *= credits * 3;
+	}
+	else if(mGrid.numberOfHits() == 6){
+		return userWin *= credits * 5;
+	}
+	else if(mGrid.numberOfHits() == 7){
+		return userWin *= credits * 10;
+	}
+	else if(mGrid.numberOfHits() == 8){
+		return userWin *= credits * 30;
+	}
+	else if(mGrid.numberOfHits() == 9){
+		return userWin *= credits * 600;
+	}
+	else if(mGrid.numberOfHits() == 10){
+		return userWin *= credits * 1800;
+	}
+	return userWin;
+}
+int Game::moneyWon(int credits){
+	int userWin = 1;
+	if(mGrid.numbersClicked() == 2){
+		calculateBetForTwoNumbers(credits);
+	}
+
+	if(mGrid.numbersClicked() == 3){
+		calculateBetForThreeNumbers(credits);
+	}
+
+	if(mGrid.numbersClicked() == 4){
+		calculateBetForFourNumbers(credits);
+	}
+
+	if(mGrid.numbersClicked() == 5){
+		calculateBetForFiveNumbers(credits);
+	}
+
+	if(mGrid.numbersClicked() == 6){
+		calculateBetForSixNumbers(credits);
+	}
+
+	if(mGrid.numbersClicked() == 7){
+		calculateBetForSevenNumbers(credits);
+	}
+
+	if(mGrid.numbersClicked() == 8){
+		calculateBetForEightNumbers(credits);
+	}
+
+	if(mGrid.numbersClicked() == 9){
+		calculateBetForNineNumbers(credits);
+	}
+
+	if(mGrid.numbersClicked() == 10){
+		calculateBetForTenNumbers(credits);
+	}
 }
 
 MinBet& Game::getMinBetButton()

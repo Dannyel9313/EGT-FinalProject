@@ -75,6 +75,8 @@ class Game: public BaseObject
 		int getBet() const;
 		void setBet(int bet);
 
+		//How much the user won
+		int moneyWon(int credits);
 	private:
 		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
 
@@ -92,6 +94,16 @@ class Game: public BaseObject
 		History m_History;
 		KenoDrawAnimation m_DrawAnimation;		
 		CashOut m_cashOutButton;
+
+		int calculateBetForTwoNumbers(int);
+		int calculateBetForThreeNumbers(int);
+		int calculateBetForFourNumbers(int);
+		int calculateBetForFiveNumbers(int);
+		int calculateBetForSixNumbers(int);
+		int calculateBetForSevenNumbers(int);
+		int calculateBetForEightNumbers(int);
+		int calculateBetForNineNumbers(int);
+		int calculateBetForTenNumbers(int);
 };
 
 #endif
