@@ -13,69 +13,80 @@
 #include "History.h"
 #include "CashOut.h"
 
-class Game: public BaseObject
-{
-	public:
-		//Get Number grid
-		NumbersGrid & getNumbersGrid();
+class Game: public BaseObject {
+public:
 
-		//Get bet button
-		BetButton & getBetButton();
 
-		//Render the whole game screen
-		void renderGame(SDL_Renderer*, int alpha);
 
-		//
-		void ifBetButtonClicked(SDL_Renderer*, const SDL_Event&);
+	//Get Number grid
+	NumbersGrid & getNumbersGrid();
 
-		//Get min bet button
-		MinBet& getMinBetButton();
+	//Get bet button
+	BetButton & getBetButton();
 
-		//Get max bet button
-		MaxBet& getMaxBetButton();
+	//Render the whole game screen
+	void renderGame(SDL_Renderer*, int alpha);
 
-		//Get clear button
-		ClearButton& getClearButton();
+	//
+	void ifBetButtonClicked(SDL_Renderer*, const SDL_Event&);
 
-		//Get quick pick button
-		QuickPick& getQuickPickButton();
+	//Get min bet button
+	MinBet& getMinBetButton();
 
-		//Get credit in game
-		CreditInGame& getCreditInGame();
+	//Get max bet button
+	MaxBet& getMaxBetButton();
 
-		//Get win in game
-		Win& getWinInGame();
+	//Get clear button
+	ClearButton& getClearButton();
 
-		//Get history
-		History& getHistory();
+	//Get quick pick button
+	QuickPick& getQuickPickButton();
 
-		//Render on mousebuttondown
-		void mouseButtonDownRender(SDL_Renderer*, const SDL_Event&);
+	//Get credit in game
+	CreditInGame& getCreditInGame();
 
-		//Render on mouseover
-		void mouseOnButtonRender(SDL_Renderer*, const SDL_Event&);
+	//Get win in game
+	Win& getWinInGame();
 
-		//Changes color of clicked numbers
-		void changeColorOfClickedNumbers(SDL_Renderer*, const SDL_Event&);
+	//Get history
+	History& getHistory();
 
-		//Get cash out button
-		CashOut& getCashOutButton();
+	//Render on mousebuttondown
+	void mouseButtonDownRender(SDL_Renderer*, const SDL_Event&);
 
-		//BackgroundGame& getBackground();
+	//Render on mouseover
+	void mouseOnButtonRender(SDL_Renderer*, const SDL_Event&);
 
-	private:
-		NumbersGrid mGrid;
-		BetButton mBetButton;
-		MinBet m_minBetButton;
-		MaxBet m_maxBetButton;
-		ClearButton m_clearButton;
-		QuickPick m_quickPickButton;
-		CreditInGame m_creditInGame;
-		Win m_winInGame;
-		CashOut m_cashOutButton;
-		History m_History;
+	//Changes color of clicked numbers
+	void changeColorOfClickedNumbers(SDL_Renderer*, const SDL_Event&);
 
-		//BackgroundGame m_BackgroundGame;
+	//Get cash out button
+	CashOut& getCashOutButton();
+
+	// Set and Get method
+	int getBet() const;
+	void setBet(int bet);
+
+private:
+
+	bool m_minBetFlag;
+	bool m_maxBetFlag;
+	int m_bet;
+
+	NumbersGrid mGrid;
+	BetButton mBetButton;
+	MinBet m_minBetButton;
+	MaxBet m_maxBetButton;
+	ClearButton m_clearButton;
+	QuickPick m_quickPickButton;
+	CreditInGame m_creditInGame;
+	Win m_winInGame;
+	CashOut m_cashOutButton;
+	History m_History;
+
+	// Activate min/max bet
+	void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
+
 };
 
 #endif

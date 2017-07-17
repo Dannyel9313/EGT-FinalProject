@@ -66,8 +66,7 @@ void MaxBet::loadElements(SDL_Renderer* renderer) {
 
 }
 
-void MaxBet::choiceNumberFive(SDL_Renderer* renderer, const SDL_Event& e,
-		int bet) {
+void MaxBet::choiceNumberFive(SDL_Renderer* renderer, const SDL_Event& e) {
 	if(m_numFiveMax.isClicked(e,m_numFiveMax.getKRect()))
 			{
 
@@ -99,14 +98,13 @@ void MaxBet::choiceNumberFive(SDL_Renderer* renderer, const SDL_Event& e,
 				m_numTenMax.setButtonColor(0, 0, 0);
 				m_numTenMax.LoadFromRenderedText("10",renderer,m_numTenMax.getButtonColor());
 				m_numTenMax.render(renderer,m_numTenMax.getKRect());
-				bet = 5;
+				setMaximalBet(5);
 			}
 
 
 }
 
-void MaxBet::choiceNumberTwenty(SDL_Renderer* renderer, const SDL_Event& e,
-		int bet)
+void MaxBet::choiceNumberTwenty(SDL_Renderer* renderer, const SDL_Event& e)
 {
 	if(m_numTwentyMax.isClicked(e,m_numTwentyMax.getKRect()))
 			{
@@ -139,12 +137,11 @@ void MaxBet::choiceNumberTwenty(SDL_Renderer* renderer, const SDL_Event& e,
 				m_numTenMax.setButtonColor(0, 0, 0);
 				m_numTenMax.LoadFromRenderedText("10",renderer,m_numTenMax.getButtonColor());
 				m_numTenMax.render(renderer,m_numTenMax.getKRect());
-				bet = 20;
+				setMaximalBet(20);
 			}
 }
 
-void MaxBet::choiceNumberThirty(SDL_Renderer* renderer, const SDL_Event& e,
-		int bet)
+void MaxBet::choiceNumberThirty(SDL_Renderer* renderer, const SDL_Event& e)
 {
 	if(m_numThirtyMax.isClicked(e,m_numThirtyMax.getKRect()))
 				{
@@ -177,12 +174,11 @@ void MaxBet::choiceNumberThirty(SDL_Renderer* renderer, const SDL_Event& e,
 					m_numTenMax.setButtonColor(0, 0, 0);
 					m_numTenMax.LoadFromRenderedText("10",renderer,m_numTenMax.getButtonColor());
 					m_numTenMax.render(renderer,m_numTenMax.getKRect());
-					bet = 30;
+					setMaximalBet(30);
 				}
 }
 
-void MaxBet::choiceNumberFourty(SDL_Renderer* renderer, const SDL_Event& e,
-		int bet)
+void MaxBet::choiceNumberFourty(SDL_Renderer* renderer, const SDL_Event& e)
 {
 	if(m_numFourtyMax.isClicked(e,m_numFourtyMax.getKRect()))
 				{
@@ -215,23 +211,30 @@ void MaxBet::choiceNumberFourty(SDL_Renderer* renderer, const SDL_Event& e,
 					m_numTenMax.setButtonColor(0, 0, 0);
 					m_numTenMax.LoadFromRenderedText("10",renderer,m_numTenMax.getButtonColor());
 					m_numTenMax.render(renderer,m_numTenMax.getKRect());
-					bet = 40;
+					setMaximalBet(40);
 				}
 }
 
-void MaxBet::betChoiceMax(SDL_Renderer* renderer, const SDL_Event& e, int bet)
+void MaxBet::betChoiceMax(SDL_Renderer* renderer, const SDL_Event& e)
 {
-choiceNumberFive(renderer, e, bet);
-choiceNumberTen(renderer, e, bet);
-choiceNumberTwenty(renderer, e, bet);
-choiceNumberThirty(renderer, e, bet);
-choiceNumberFourty(renderer, e, bet);
-choiceNumberFifty(renderer, e, bet);
+choiceNumberFive(renderer, e);
+choiceNumberTen(renderer, e);
+choiceNumberTwenty(renderer, e);
+choiceNumberThirty(renderer, e);
+choiceNumberFourty(renderer, e);
+choiceNumberFifty(renderer, e);
 
 }
 
-void MaxBet::choiceNumberFifty(SDL_Renderer* renderer, const SDL_Event& e,
-		int bet)
+int MaxBet::getMaximalBet() const {
+	return m_maximalBet;
+}
+
+void MaxBet::setMaximalBet(int maximalBet) {
+	m_maximalBet = maximalBet;
+}
+
+void MaxBet::choiceNumberFifty(SDL_Renderer* renderer, const SDL_Event& e)
 {
 	if(m_numFiftyMax.isClicked(e,m_numFiftyMax.getKRect()))
 				{
@@ -264,12 +267,11 @@ void MaxBet::choiceNumberFifty(SDL_Renderer* renderer, const SDL_Event& e,
 					m_numTenMax.setButtonColor(0, 0, 0);
 					m_numTenMax.LoadFromRenderedText("10",renderer,m_numTenMax.getButtonColor());
 					m_numTenMax.render(renderer,m_numTenMax.getKRect());
-					bet = 50;
+					setMaximalBet(50);
 				}
 }
 
-void MaxBet::choiceNumberTen(SDL_Renderer* renderer, const SDL_Event& e,
-		int bet)
+void MaxBet::choiceNumberTen(SDL_Renderer* renderer, const SDL_Event& e)
 {
 	if(m_numTenMax.isClicked(e,m_numTenMax.getKRect()))
 				{
@@ -302,7 +304,7 @@ void MaxBet::choiceNumberTen(SDL_Renderer* renderer, const SDL_Event& e,
 					m_numTenMax.setButtonColor(254, 254, 254);
 					m_numTenMax.LoadFromRenderedText("10",renderer,m_numTenMax.getButtonColor());
 					m_numTenMax.render(renderer,m_numTenMax.getKRect());
-					bet = 10;
+					setMaximalBet(10);
 				}
 }
 

@@ -116,22 +116,21 @@ void MinBet::deactivateMinButton(SDL_Renderer* renderer) {
 
 }
 
-void MinBet::betChoiceMin(SDL_Renderer* renderer, const SDL_Event& e, int bet) {
+void MinBet::betChoiceMin(SDL_Renderer* renderer, const SDL_Event& e) {
 
-choiceNumberOne(renderer, e, bet);
-choiceNumberTwo(renderer, e, bet);
-choiceNumberThree(renderer, e, bet);
-choiceNumberFour(renderer, e, bet);
-choiceNumberFive(renderer, e, bet);
-choiceNumberTen(renderer, e, bet);
+choiceNumberOne(renderer, e);
+choiceNumberTwo(renderer, e);
+choiceNumberThree(renderer, e);
+choiceNumberFour(renderer, e);
+choiceNumberFive(renderer, e);
+choiceNumberTen(renderer, e);
 
 
 
 
 }
 
-void MinBet::choiceNumberOne(SDL_Renderer* renderer, const SDL_Event& e,
-		int bet) {
+void MinBet::choiceNumberOne(SDL_Renderer* renderer, const SDL_Event& e) {
 	if(m_numOne.isClicked(e,m_numOne.getKRect()))
 		{
 			std::cout << m_numOne.isClicked(e,m_numOne.getKRect()) << std::endl;
@@ -163,12 +162,11 @@ void MinBet::choiceNumberOne(SDL_Renderer* renderer, const SDL_Event& e,
 			m_numTen.setButtonColor(0, 0, 0);
 			m_numTen.LoadFromRenderedText("10",renderer,m_numTen.getButtonColor());
 			m_numTen.render(renderer,m_numTen.getKRect());
-			bet = 1;
+			setMinimalBet(1);
 		}
 }
 
-void MinBet::choiceNumberTwo(SDL_Renderer* renderer, const SDL_Event& e,
-		int bet) {
+void MinBet::choiceNumberTwo(SDL_Renderer* renderer, const SDL_Event& e) {
 	if(m_numTwo.isClicked(e,m_numTwo.getKRect()))
 		{
 			std::cout << m_numOne.isClicked(e,m_numOne.getKRect()) << std::endl;
@@ -200,12 +198,11 @@ void MinBet::choiceNumberTwo(SDL_Renderer* renderer, const SDL_Event& e,
 			m_numTen.setButtonColor(0, 0, 0);
 			m_numTen.LoadFromRenderedText("10",renderer,m_numTen.getButtonColor());
 			m_numTen.render(renderer,m_numTen.getKRect());
-			bet = 2;
+			setMinimalBet(2);
 		}
 }
 
-void MinBet::choiceNumberThree(SDL_Renderer* renderer, const SDL_Event& e,
-		int bet) {
+void MinBet::choiceNumberThree(SDL_Renderer* renderer, const SDL_Event& e) {
 	if(m_numThree.isClicked(e,m_numThree.getKRect()))
 		{
 			std::cout << m_numOne.isClicked(e,m_numOne.getKRect()) << std::endl;
@@ -237,12 +234,11 @@ void MinBet::choiceNumberThree(SDL_Renderer* renderer, const SDL_Event& e,
 			m_numTen.setButtonColor(0, 0, 0);
 			m_numTen.LoadFromRenderedText("10",renderer,m_numTen.getButtonColor());
 			m_numTen.render(renderer,m_numTen.getKRect());
-			bet = 4;
+			setMinimalBet(3);
 		}
 }
 
-void MinBet::choiceNumberFour(SDL_Renderer* renderer, const SDL_Event& e,
-		int bet)
+void MinBet::choiceNumberFour(SDL_Renderer* renderer, const SDL_Event& e)
 {
 	if(m_numFour.isClicked(e,m_numFour.getKRect()))
 		{
@@ -275,13 +271,12 @@ void MinBet::choiceNumberFour(SDL_Renderer* renderer, const SDL_Event& e,
 			m_numTen.setButtonColor(0, 0, 0);
 			m_numTen.LoadFromRenderedText("10",renderer,m_numTen.getButtonColor());
 			m_numTen.render(renderer,m_numTen.getKRect());
-			bet = 4;
+			setMinimalBet(4);
 		}
 
 }
 
-void MinBet::choiceNumberFive(SDL_Renderer* renderer, const SDL_Event& e,
-		int bet)
+void MinBet::choiceNumberFive(SDL_Renderer* renderer, const SDL_Event& e)
 {
 	if(m_numFive.isClicked(e,m_numFive.getKRect()))
 		{
@@ -314,12 +309,19 @@ void MinBet::choiceNumberFive(SDL_Renderer* renderer, const SDL_Event& e,
 			m_numTen.setButtonColor(0, 0, 0);
 			m_numTen.LoadFromRenderedText("10",renderer,m_numTen.getButtonColor());
 			m_numTen.render(renderer,m_numTen.getKRect());
-			bet = 5;
+			setMinimalBet(5);
 		}
 }
 
-void MinBet::choiceNumberTen(SDL_Renderer* renderer, const SDL_Event& e,
-		int bet)
+int MinBet::getMinimalBet() const {
+	return m_MinimalBet;
+}
+
+void MinBet::setMinimalBet(int minimalBet) {
+	m_MinimalBet = minimalBet;
+}
+
+void MinBet::choiceNumberTen(SDL_Renderer* renderer, const SDL_Event& e)
 {
 	if(m_numTen.isClicked(e,m_numTen.getKRect()))
 		{
@@ -352,7 +354,7 @@ void MinBet::choiceNumberTen(SDL_Renderer* renderer, const SDL_Event& e,
 			m_numTen.setButtonColor(254, 254, 254);
 			m_numTen.LoadFromRenderedText("10",renderer,m_numTen.getButtonColor());
 			m_numTen.render(renderer,m_numTen.getKRect());
-			bet = 10;
+			setMinimalBet(10);
 		}
 }
 

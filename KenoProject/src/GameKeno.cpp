@@ -1,7 +1,7 @@
 #include <iostream>
 #include "GameKeno.h"
 
-GameKeno::GameKeno() 
+GameKeno::GameKeno()
 {
 	this->kenoWindow = NULL;
 	this->kenoRenderer = NULL;

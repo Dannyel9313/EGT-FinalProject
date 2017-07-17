@@ -25,7 +25,7 @@ public:
 	void activateMinButton(SDL_Renderer* renderer);
 
 	// Bet choice min
-	void betChoiceMin(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+	void betChoiceMin(SDL_Renderer* renderer, const SDL_Event& e);
 
 	//Deactivate min bet
 	void deactivateMinButton(SDL_Renderer* renderer);
@@ -40,7 +40,14 @@ public:
 	BaseObject& getButtonRect();
 	BaseObject& getButtonStartCircle();
 
+
+	//Set and Get minimal bet
+	int getMinimalBet() const;
+	void setMinimalBet(int minimalBet);
+
 private:
+	int m_MinimalBet;
+
 	Font m_numOne;
 	Font m_numTwo;
 	Font m_numThree;
@@ -66,22 +73,22 @@ private:
 	void loadElements(SDL_Renderer* renderer);
 
 	// change color of number one
-	void choiceNumberOne(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+	void choiceNumberOne(SDL_Renderer* renderer, const SDL_Event& e);
 
 	// change color of number two
-	void choiceNumberTwo(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+	void choiceNumberTwo(SDL_Renderer* renderer, const SDL_Event& e);
 
 	// change color of number tree
-	void choiceNumberThree(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+	void choiceNumberThree(SDL_Renderer* renderer, const SDL_Event& e);
 
 	// change color of number four
-	void choiceNumberFour(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+	void choiceNumberFour(SDL_Renderer* renderer, const SDL_Event& e);
 
 	// change color of number five
-	void choiceNumberFive(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+	void choiceNumberFive(SDL_Renderer* renderer, const SDL_Event& e);
 
 	// change color of number ten
-	void choiceNumberTen(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+	void choiceNumberTen(SDL_Renderer* renderer, const SDL_Event& e);
 
 };
 

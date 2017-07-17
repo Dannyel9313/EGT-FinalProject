@@ -53,29 +53,17 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha) {
 }
 
 void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
-	int bet;
+
 	if (m_clearButton.getButtonRect().isClicked(e,
 			m_clearButton.getButtonRect().getKRect())) {
 		mGrid.resetNumbersGrid(renderer);
 
 	}
 
-	if (m_maxBetButton.getMaxBet().isClicked(e,
-			m_maxBetButton.getMaxBet().getKRect())) {
-		m_maxBetButton.activateMaxButton(renderer);
-		m_minBetButton.deactivateMinButton(renderer);
-	}
+	setMinMaxBet(renderer,e);
 
-	if (m_minBetButton.getMinBet().isClicked(e,
-			m_minBetButton.getMinBet().getKRect())) {
-		m_minBetButton.activateMinButton(renderer);
-		m_maxBetButton.deactivateMaxButton(renderer);
+	std::cout << "BET -> " << m_bet << std::endl;
 
-	}
-
-
-	m_minBetButton.betChoiceMin(renderer, e, bet);
-	m_maxBetButton.betChoiceMax(renderer, e, bet);
 
 	//If button condition true show random numbers
 	if (mBetButton.buttonCondition(mGrid.numbersClicked(), renderer)) {
@@ -156,6 +144,61 @@ Win& Game::getWinInGame() {
 
 History& Game::getHistory() {
 	return m_History;
+}
+
+int Game::getBet() const {
+	return m_bet;
+}
+
+void Game::setBet(int bet) {
+	m_bet = bet;
+}
+
+
+
+void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e)
+{
+
+	if (m_maxBetButton.getMaxBet().isClicked(e,
+			m_maxBetButton.getMaxBet().getKRect())) {
+		setBet(0);
+		m_maxBetButton.activateMaxButton(renderer);
+		m_minBetButton.deactivateMinButton(renderer);
+		m_maxBetFlag = true;
+		m_minBetFlag = false;
+	}
+
+	if (m_minBetButton.getMinBet().isClicked(e,
+			m_minBetButton.getMinBet().getKRect())) {
+		setBet(0);
+		m_minBetButton.activateMinButton(renderer);
+		m_maxBetButton.deactivateMaxButton(renderer);
+		m_minBetFlag = true;
+		m_maxBetFlag = false;
+	}
+
+	if(m_minBetFlag == false)
+	{
+		m_minBetButton.renderMinBet(renderer);
+		m_minBetButton.deactivateMinButton(renderer);
+	}
+	if(m_maxBetFlag == false)
+	{
+		m_maxBetButton.renderMaxBet(renderer);
+		m_maxBetButton.deactivateMaxButton(renderer);
+	}
+
+if(m_minBetFlag == true)
+{
+	m_minBetButton.betChoiceMin(renderer, e);
+	setBet(m_minBetButton.getMinimalBet());
+}
+
+if(m_maxBetFlag == true)
+{
+	m_maxBetButton.betChoiceMax(renderer, e);
+	setBet(m_maxBetButton.getMaximalBet());
+}
 }
 
 CashOut& Game::getCashOutButton() {

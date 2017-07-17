@@ -29,7 +29,7 @@ public:
 	void deactivateMaxButton(SDL_Renderer* renderer);
 
 	// Bet choice max
-	void betChoiceMax(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+	void betChoiceMax(SDL_Renderer* renderer, const SDL_Event& e);
 
 	BaseObject& getButtonRectMax();
 	BaseObject& getButtonStartCircleMax();
@@ -41,7 +41,12 @@ public:
 	Font& getNumThirtyMax();
 	Font& getNumTwentyMax();
 
+	// Set and Get maximal bet
+	int getMaximalBet() const;
+	void setMaximalBet(int maximalBet);
+
 private:
+	int m_maximalBet;
 
 	Font m_numFiveMax;
 	Font m_numTenMax;
@@ -68,25 +73,22 @@ private:
 	void setFont();
 
 	// change color of number five
-	void choiceNumberFive(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+	void choiceNumberFive(SDL_Renderer* renderer, const SDL_Event& e);
 
 	// change color of number ten
-	void choiceNumberTen(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+	void choiceNumberTen(SDL_Renderer* renderer, const SDL_Event& e);
 
 	// change color of number twenty
-	void choiceNumberTwenty(SDL_Renderer* renderer, const SDL_Event& e,
-			int bet);
+	void choiceNumberTwenty(SDL_Renderer* renderer, const SDL_Event& e);
 
 	// change color of number thirty
-	void choiceNumberThirty(SDL_Renderer* renderer, const SDL_Event& e,
-			int bet);
+	void choiceNumberThirty(SDL_Renderer* renderer, const SDL_Event& e);
 
 	// change color of number fourty
-	void choiceNumberFourty(SDL_Renderer* renderer, const SDL_Event& e,
-			int bet);
+	void choiceNumberFourty(SDL_Renderer* renderer, const SDL_Event& e);
 
 	// change color of number fifti
-	void choiceNumberFifty(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+	void choiceNumberFifty(SDL_Renderer* renderer, const SDL_Event& e);
 
 };
 
