@@ -28,6 +28,9 @@ public:
 	//Deactivate min bet
 	void deactivateMaxButton(SDL_Renderer* renderer);
 
+	// Bet choice max
+	void betChoiceMax(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+
 	BaseObject& getButtonRectMax();
 	BaseObject& getButtonStartCircleMax();
 	Font& getMaxBet();
@@ -63,6 +66,28 @@ private:
 
 	// Set font
 	void setFont();
+
+	// change color of number five
+	void choiceNumberFive(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+
+	// change color of number ten
+	void choiceNumberTen(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+
+	// change color of number twenty
+	void choiceNumberTwenty(SDL_Renderer* renderer, const SDL_Event& e,
+			int bet);
+
+	// change color of number thirty
+	void choiceNumberThirty(SDL_Renderer* renderer, const SDL_Event& e,
+			int bet);
+
+	// change color of number fourty
+	void choiceNumberFourty(SDL_Renderer* renderer, const SDL_Event& e,
+			int bet);
+
+	// change color of number fifti
+	void choiceNumberFifty(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+
 };
 
 #endif /* MAXBET_H_ */

@@ -116,6 +116,246 @@ void MinBet::deactivateMinButton(SDL_Renderer* renderer) {
 
 }
 
+void MinBet::betChoiceMin(SDL_Renderer* renderer, const SDL_Event& e, int bet) {
+
+choiceNumberOne(renderer, e, bet);
+choiceNumberTwo(renderer, e, bet);
+choiceNumberThree(renderer, e, bet);
+choiceNumberFour(renderer, e, bet);
+choiceNumberFive(renderer, e, bet);
+choiceNumberTen(renderer, e, bet);
+
+
+
+
+}
+
+void MinBet::choiceNumberOne(SDL_Renderer* renderer, const SDL_Event& e,
+		int bet) {
+	if(m_numOne.isClicked(e,m_numOne.getKRect()))
+		{
+			std::cout << m_numOne.isClicked(e,m_numOne.getKRect()) << std::endl;
+			m_buttonRect.render(renderer,m_buttonRect.getKRect());
+
+			m_buttonStartCircle.render(renderer,m_buttonStartCircle.getKRect());
+
+			m_minBet.render(renderer,m_minBet.getKRect());
+			m_numOne.setButtonColor(254,254,254);
+			m_numOne.LoadFromRenderedText("1", renderer, m_numOne.getButtonColor());
+			m_numOne.render(renderer,m_numOne.getKRect());
+
+			m_numTwo.setButtonColor(0, 0, 0);
+			m_numTwo.LoadFromRenderedText("2",renderer,m_numTwo.getButtonColor());
+			m_numTwo.render(renderer,m_numTwo.getKRect());
+
+			m_numThree.setButtonColor(0, 0, 0);
+			m_numThree.LoadFromRenderedText("3",renderer,m_numThree.getButtonColor());
+			m_numThree.render(renderer, m_numThree.getKRect());
+
+			m_numFour.setButtonColor(0, 0, 0);
+			m_numFour.LoadFromRenderedText("4",renderer,m_numFour.getButtonColor());
+			m_numFour.render(renderer, m_numFour.getKRect());
+
+			m_numFive.setButtonColor(0, 0, 0);
+			m_numFive.LoadFromRenderedText("5",renderer,m_numFive.getButtonColor());
+			m_numFive.render(renderer,m_numFive.getKRect());
+
+			m_numTen.setButtonColor(0, 0, 0);
+			m_numTen.LoadFromRenderedText("10",renderer,m_numTen.getButtonColor());
+			m_numTen.render(renderer,m_numTen.getKRect());
+			bet = 1;
+		}
+}
+
+void MinBet::choiceNumberTwo(SDL_Renderer* renderer, const SDL_Event& e,
+		int bet) {
+	if(m_numTwo.isClicked(e,m_numTwo.getKRect()))
+		{
+			std::cout << m_numOne.isClicked(e,m_numOne.getKRect()) << std::endl;
+			m_buttonRect.render(renderer,m_buttonRect.getKRect());
+
+			m_buttonStartCircle.render(renderer,m_buttonStartCircle.getKRect());
+
+			m_minBet.render(renderer,m_minBet.getKRect());
+			m_numOne.setButtonColor(0, 0, 0);
+			m_numOne.LoadFromRenderedText("1", renderer, m_numOne.getButtonColor());
+			m_numOne.render(renderer,m_numOne.getKRect());
+
+			m_numTwo.setButtonColor(254, 254, 254);
+			m_numTwo.LoadFromRenderedText("2",renderer,m_numTwo.getButtonColor());
+			m_numTwo.render(renderer,m_numTwo.getKRect());
+
+			m_numThree.setButtonColor(0, 0, 0);
+			m_numThree.LoadFromRenderedText("3",renderer,m_numThree.getButtonColor());
+			m_numThree.render(renderer, m_numThree.getKRect());
+
+			m_numFour.setButtonColor(0, 0, 0);
+			m_numFour.LoadFromRenderedText("4",renderer,m_numFour.getButtonColor());
+			m_numFour.render(renderer, m_numFour.getKRect());
+
+			m_numFive.setButtonColor(0, 0, 0);
+			m_numFive.LoadFromRenderedText("5",renderer,m_numFive.getButtonColor());
+			m_numFive.render(renderer,m_numFive.getKRect());
+
+			m_numTen.setButtonColor(0, 0, 0);
+			m_numTen.LoadFromRenderedText("10",renderer,m_numTen.getButtonColor());
+			m_numTen.render(renderer,m_numTen.getKRect());
+			bet = 2;
+		}
+}
+
+void MinBet::choiceNumberThree(SDL_Renderer* renderer, const SDL_Event& e,
+		int bet) {
+	if(m_numThree.isClicked(e,m_numThree.getKRect()))
+		{
+			std::cout << m_numOne.isClicked(e,m_numOne.getKRect()) << std::endl;
+			m_buttonRect.render(renderer,m_buttonRect.getKRect());
+
+			m_buttonStartCircle.render(renderer,m_buttonStartCircle.getKRect());
+
+			m_minBet.render(renderer,m_minBet.getKRect());
+			m_numOne.setButtonColor(0, 0, 0);
+			m_numOne.LoadFromRenderedText("1", renderer, m_numOne.getButtonColor());
+			m_numOne.render(renderer,m_numOne.getKRect());
+
+			m_numTwo.setButtonColor(0, 0, 0);
+			m_numTwo.LoadFromRenderedText("2",renderer,m_numTwo.getButtonColor());
+			m_numTwo.render(renderer,m_numTwo.getKRect());
+
+			m_numThree.setButtonColor(254, 254, 254);
+			m_numThree.LoadFromRenderedText("3",renderer,m_numThree.getButtonColor());
+			m_numThree.render(renderer, m_numThree.getKRect());
+
+			m_numFour.setButtonColor(0, 0, 0);
+			m_numFour.LoadFromRenderedText("4",renderer,m_numFour.getButtonColor());
+			m_numFour.render(renderer, m_numFour.getKRect());
+
+			m_numFive.setButtonColor(0, 0, 0);
+			m_numFive.LoadFromRenderedText("5",renderer,m_numFive.getButtonColor());
+			m_numFive.render(renderer,m_numFive.getKRect());
+
+			m_numTen.setButtonColor(0, 0, 0);
+			m_numTen.LoadFromRenderedText("10",renderer,m_numTen.getButtonColor());
+			m_numTen.render(renderer,m_numTen.getKRect());
+			bet = 4;
+		}
+}
+
+void MinBet::choiceNumberFour(SDL_Renderer* renderer, const SDL_Event& e,
+		int bet)
+{
+	if(m_numFour.isClicked(e,m_numFour.getKRect()))
+		{
+			std::cout << m_numOne.isClicked(e,m_numOne.getKRect()) << std::endl;
+			m_buttonRect.render(renderer,m_buttonRect.getKRect());
+
+			m_buttonStartCircle.render(renderer,m_buttonStartCircle.getKRect());
+
+			m_minBet.render(renderer,m_minBet.getKRect());
+			m_numOne.setButtonColor(0, 0, 0);
+			m_numOne.LoadFromRenderedText("1", renderer, m_numOne.getButtonColor());
+			m_numOne.render(renderer,m_numOne.getKRect());
+
+			m_numTwo.setButtonColor(0, 0, 0);
+			m_numTwo.LoadFromRenderedText("2",renderer,m_numTwo.getButtonColor());
+			m_numTwo.render(renderer,m_numTwo.getKRect());
+
+			m_numThree.setButtonColor(0, 0, 0);
+			m_numThree.LoadFromRenderedText("3",renderer,m_numThree.getButtonColor());
+			m_numThree.render(renderer, m_numThree.getKRect());
+
+			m_numFour.setButtonColor(254, 254, 254);
+			m_numFour.LoadFromRenderedText("4",renderer,m_numFour.getButtonColor());
+			m_numFour.render(renderer, m_numFour.getKRect());
+
+			m_numFive.setButtonColor(0, 0, 0);
+			m_numFive.LoadFromRenderedText("5",renderer,m_numFive.getButtonColor());
+			m_numFive.render(renderer,m_numFive.getKRect());
+
+			m_numTen.setButtonColor(0, 0, 0);
+			m_numTen.LoadFromRenderedText("10",renderer,m_numTen.getButtonColor());
+			m_numTen.render(renderer,m_numTen.getKRect());
+			bet = 4;
+		}
+
+}
+
+void MinBet::choiceNumberFive(SDL_Renderer* renderer, const SDL_Event& e,
+		int bet)
+{
+	if(m_numFive.isClicked(e,m_numFive.getKRect()))
+		{
+			std::cout << m_numOne.isClicked(e,m_numOne.getKRect()) << std::endl;
+			m_buttonRect.render(renderer,m_buttonRect.getKRect());
+
+			m_buttonStartCircle.render(renderer,m_buttonStartCircle.getKRect());
+
+			m_minBet.render(renderer,m_minBet.getKRect());
+			m_numOne.setButtonColor(0, 0, 0);
+			m_numOne.LoadFromRenderedText("1", renderer, m_numOne.getButtonColor());
+			m_numOne.render(renderer,m_numOne.getKRect());
+
+			m_numTwo.setButtonColor(0, 0, 0);
+			m_numTwo.LoadFromRenderedText("2",renderer,m_numTwo.getButtonColor());
+			m_numTwo.render(renderer,m_numTwo.getKRect());
+
+			m_numThree.setButtonColor(0, 0, 0);
+			m_numThree.LoadFromRenderedText("3",renderer,m_numThree.getButtonColor());
+			m_numThree.render(renderer, m_numThree.getKRect());
+
+			m_numFour.setButtonColor(0, 0, 0);
+			m_numFour.LoadFromRenderedText("4",renderer,m_numFour.getButtonColor());
+			m_numFour.render(renderer, m_numFour.getKRect());
+
+			m_numFive.setButtonColor(254, 254, 254);
+			m_numFive.LoadFromRenderedText("5",renderer,m_numFive.getButtonColor());
+			m_numFive.render(renderer,m_numFive.getKRect());
+
+			m_numTen.setButtonColor(0, 0, 0);
+			m_numTen.LoadFromRenderedText("10",renderer,m_numTen.getButtonColor());
+			m_numTen.render(renderer,m_numTen.getKRect());
+			bet = 5;
+		}
+}
+
+void MinBet::choiceNumberTen(SDL_Renderer* renderer, const SDL_Event& e,
+		int bet)
+{
+	if(m_numTen.isClicked(e,m_numTen.getKRect()))
+		{
+			std::cout << m_numOne.isClicked(e,m_numOne.getKRect()) << std::endl;
+			m_buttonRect.render(renderer,m_buttonRect.getKRect());
+
+			m_buttonStartCircle.render(renderer,m_buttonStartCircle.getKRect());
+
+			m_minBet.render(renderer,m_minBet.getKRect());
+			m_numOne.setButtonColor(0, 0, 0);
+			m_numOne.LoadFromRenderedText("1", renderer, m_numOne.getButtonColor());
+			m_numOne.render(renderer,m_numOne.getKRect());
+
+			m_numTwo.setButtonColor(0, 0, 0);
+			m_numTwo.LoadFromRenderedText("2",renderer,m_numTwo.getButtonColor());
+			m_numTwo.render(renderer,m_numTwo.getKRect());
+
+			m_numThree.setButtonColor(0, 0, 0);
+			m_numThree.LoadFromRenderedText("3",renderer,m_numThree.getButtonColor());
+			m_numThree.render(renderer, m_numThree.getKRect());
+
+			m_numFour.setButtonColor(0, 0, 0);
+			m_numFour.LoadFromRenderedText("4",renderer,m_numFour.getButtonColor());
+			m_numFour.render(renderer, m_numFour.getKRect());
+
+			m_numFive.setButtonColor(0, 0, 0);
+			m_numFive.LoadFromRenderedText("5",renderer,m_numFive.getButtonColor());
+			m_numFive.render(renderer,m_numFive.getKRect());
+
+			m_numTen.setButtonColor(254, 254, 254);
+			m_numTen.LoadFromRenderedText("10",renderer,m_numTen.getButtonColor());
+			m_numTen.render(renderer,m_numTen.getKRect());
+			bet = 10;
+		}
+}
+
 void MinBet::loadElements(SDL_Renderer* renderer) {
 
 	setNumbersColor();

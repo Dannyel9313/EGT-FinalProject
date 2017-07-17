@@ -24,6 +24,9 @@ public:
 	//Activate min bet
 	void activateMinButton(SDL_Renderer* renderer);
 
+	// Bet choice min
+	void betChoiceMin(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+
 	//Deactivate min bet
 	void deactivateMinButton(SDL_Renderer* renderer);
 
@@ -61,6 +64,24 @@ private:
 
 	// Load elements
 	void loadElements(SDL_Renderer* renderer);
+
+	// change color of number one
+	void choiceNumberOne(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+
+	// change color of number two
+	void choiceNumberTwo(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+
+	// change color of number tree
+	void choiceNumberThree(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+
+	// change color of number four
+	void choiceNumberFour(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+
+	// change color of number five
+	void choiceNumberFive(SDL_Renderer* renderer, const SDL_Event& e, int bet);
+
+	// change color of number ten
+	void choiceNumberTen(SDL_Renderer* renderer, const SDL_Event& e, int bet);
 
 };
 

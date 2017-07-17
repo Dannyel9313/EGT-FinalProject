@@ -1,32 +1,29 @@
 #include "Game.h"
 
-NumbersGrid& Game::getNumbersGrid()
-{
+NumbersGrid& Game::getNumbersGrid() {
 	return mGrid;
 }
 
-BetButton& Game::getBetButton()
-{
+BetButton& Game::getBetButton() {
 	return mBetButton;
 }
 
-void Game::renderGame(SDL_Renderer* renderer, int alpha) 
-{
+void Game::renderGame(SDL_Renderer* renderer, int alpha) {
 	//Render background
 	render(renderer, NULL);
 
 	//Render numbers grid background
 	mGrid.renderBackground(renderer);
-	
+
 	//Create number rects
 	mGrid.createRects(renderer, alpha);
 
 	//Print the numbers
 	mGrid.printNumbers(renderer);
-	
+
 	//Render bet button
 	mBetButton.buttonCondition(mGrid.numbersClicked(), renderer);
-	
+
 	//Render bet text
 	mBetButton.betText(renderer);
 
@@ -55,30 +52,34 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha)
 	m_History.initializeHistory(renderer);
 }
 
-void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
-{
-	if(m_clearButton.getButtonRect().isClicked(e,m_clearButton.getButtonRect().getKRect()))
-			{
+void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
+	int bet;
+	if (m_clearButton.getButtonRect().isClicked(e,
+			m_clearButton.getButtonRect().getKRect())) {
 		mGrid.resetNumbersGrid(renderer);
 
-			}
-
-	if(m_maxBetButton.getMaxBet().isClicked(e,m_maxBetButton.getMaxBet().getKRect()))
-	{
-	m_maxBetButton.activateMaxButton(renderer);
-	m_minBetButton.deactivateMinButton(renderer);
 	}
-if(m_minBetButton.getMinBet().isClicked(e,m_minBetButton.getMinBet().getKRect()))
-{
-	m_minBetButton.activateMinButton(renderer);
-	m_maxBetButton.deactivateMaxButton(renderer);
-}
+
+	if (m_maxBetButton.getMaxBet().isClicked(e,
+			m_maxBetButton.getMaxBet().getKRect())) {
+		m_maxBetButton.activateMaxButton(renderer);
+		m_minBetButton.deactivateMinButton(renderer);
+	}
+
+	if (m_minBetButton.getMinBet().isClicked(e,
+			m_minBetButton.getMinBet().getKRect())) {
+		m_minBetButton.activateMinButton(renderer);
+		m_maxBetButton.deactivateMaxButton(renderer);
+
+	}
+
+
+	m_minBetButton.betChoiceMin(renderer, e, bet);
+	m_maxBetButton.betChoiceMax(renderer, e, bet);
 
 	//If button condition true show random numbers
-	if(mBetButton.buttonCondition(mGrid.numbersClicked(), renderer))
-	{		
-		if (mBetButton.isClicked(e, mBetButton.getKRect())) 
-		{
+	if (mBetButton.buttonCondition(mGrid.numbersClicked(), renderer)) {
+		if (mBetButton.isClicked(e, mBetButton.getKRect())) {
 			//Pick 10 random numbers
 			mGrid.pickRandomNumbers(renderer, e);
 
@@ -87,7 +88,7 @@ if(m_minBetButton.getMinBet().isClicked(e,m_minBetButton.getMinBet().getKRect())
 			mGrid.reRenderClickedNumbers(renderer, 50);
 
 			mGrid.renderRandomNumbers(renderer);
-	
+
 			mGrid.printNumbers(renderer);
 
 			mGrid.numberOfHits();
@@ -105,11 +106,10 @@ if(m_minBetButton.getMinBet().isClicked(e,m_minBetButton.getMinBet().getKRect())
 			mGrid.resetNumbersGrid(renderer);
 
 		}
-	}	
+	}
 }
 
-void Game::mouseOnButtonRender(SDL_Renderer* renderer, const SDL_Event& e) 
-{
+void Game::mouseOnButtonRender(SDL_Renderer* renderer, const SDL_Event& e) {
 	//Mouse over stuff	
 	m_clearButton.changeColorOnMouseOver(renderer);
 
@@ -122,46 +122,39 @@ void Game::mouseOnButtonRender(SDL_Renderer* renderer, const SDL_Event& e)
 	m_cashOutButton.changeColorOnMouseOver(renderer);
 }
 
-void Game::changeColorOfClickedNumbers(SDL_Renderer* renderer, const SDL_Event& e)
-{
+void Game::changeColorOfClickedNumbers(SDL_Renderer* renderer,
+		const SDL_Event& e) {
 	mGrid.createRects(renderer, 255);
 	mGrid.reRenderClickedNumbers(renderer, 255);
 	mGrid.doIfClicked(renderer, e);
 	mGrid.printNumbers(renderer);
 }
 
-MinBet& Game::getMinBetButton()
-{
+MinBet& Game::getMinBetButton() {
 	return m_minBetButton;
 }
 
-MaxBet& Game::getMaxBetButton() 
-{
+MaxBet& Game::getMaxBetButton() {
 	return m_maxBetButton;
 }
 
-ClearButton& Game::getClearButton() 
-{
+ClearButton& Game::getClearButton() {
 	return m_clearButton;
 }
 
-QuickPick& Game::getQuickPickButton()
-{
+QuickPick& Game::getQuickPickButton() {
 	return m_quickPickButton;
 }
 
-CreditInGame& Game::getCreditInGame() 
-{
+CreditInGame& Game::getCreditInGame() {
 	return m_creditInGame;
 }
 
-Win& Game::getWinInGame() 
-{
+Win& Game::getWinInGame() {
 	return m_winInGame;
 }
 
-History& Game::getHistory()
-{
+History& Game::getHistory() {
 	return m_History;
 }
 
