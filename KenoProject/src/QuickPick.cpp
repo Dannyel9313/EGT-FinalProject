@@ -71,7 +71,6 @@ void QuickPick::setFont() {
 
 }
 
-
 void QuickPick::changeColorOnMouseOver(SDL_Renderer* renderer)
 {
 	if(m_quickPickText.onMouseOver(m_quickPickText.getKRect()))
@@ -96,4 +95,3 @@ void QuickPick::changeColorOnMouseOver(SDL_Renderer* renderer)
 
 
 }
-

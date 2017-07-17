@@ -11,5 +11,7 @@
 #include <vector>
 #include "pugixml.hpp"
 #include "Globals.h"
+#include <time.h>
+#include <bitset>
 
 #endif //Include.h

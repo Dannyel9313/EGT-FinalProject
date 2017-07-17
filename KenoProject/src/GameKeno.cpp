@@ -1,7 +1,7 @@
 #include <iostream>
 #include "GameKeno.h"
 
-GameKeno::GameKeno()
+GameKeno::GameKeno() 
 {
 	this->kenoWindow = NULL;
 	this->kenoRenderer = NULL;
@@ -104,6 +104,8 @@ bool GameKeno::loadMedia()
         m_GameMode.getBetButton().getFont().setFont(betButtonFont);
 
 	m_GameMode.getClearButton().getButtonClear().setFont(TTF_OpenFont("Resources/Fonts/Candles_.TTF", 30));
+	m_GameMode.getDrawAnimation().loadChunkEffect("Resources/Sounds/corkPop.wav");
+	m_GameMode.getDrawAnimation().loadChunkEffect("Resources/Sounds/blop.wav");
 	
 	return success;
 }

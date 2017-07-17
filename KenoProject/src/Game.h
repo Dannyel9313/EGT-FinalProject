@@ -3,7 +3,6 @@
 #include "BaseObject.h"
 #include "NumbersGrid.h"
 #include "BetButton.h"
-#include "BackgroundGame.h"
 #include "MinBet.h"
 #include "MaxBet.h"
 #include "ClearButton.h"
@@ -11,82 +10,88 @@
 #include "CreditInGame.h"
 #include "Win.h"
 #include "History.h"
+#include "KenoDrawAnimation.h"
 #include "CashOut.h"
 
-class Game: public BaseObject {
-public:
+class Game: public BaseObject
+{
+	public:
+		//Flags
+		std::bitset <80> flags;
+		std::vector <SDL_Color> colors;
 
+		//Get Number grid
+		NumbersGrid & getNumbersGrid();
 
+		//Get bet button
+		BetButton & getBetButton();
 
-	//Get Number grid
-	NumbersGrid & getNumbersGrid();
+		//Render the whole game screen
+		void renderGame(SDL_Renderer*, int alpha);
 
-	//Get bet button
-	BetButton & getBetButton();
+		//
+		void ifBetButtonClicked(SDL_Renderer*, const SDL_Event&);
 
-	//Render the whole game screen
-	void renderGame(SDL_Renderer*, int alpha);
+		//Get min bet button
+		MinBet& getMinBetButton();
 
-	//
-	void ifBetButtonClicked(SDL_Renderer*, const SDL_Event&);
+		//Get max bet button
+		MaxBet& getMaxBetButton();
 
-	//Get min bet button
-	MinBet& getMinBetButton();
+		//Get clear button
+		ClearButton& getClearButton();
 
-	//Get max bet button
-	MaxBet& getMaxBetButton();
+		//Get quick pick button
+		QuickPick& getQuickPickButton();
 
-	//Get clear button
-	ClearButton& getClearButton();
+		//Get credit in game
+		CreditInGame& getCreditInGame();
 
-	//Get quick pick button
-	QuickPick& getQuickPickButton();
+		//Get win in game
+		Win& getWinInGame();
 
-	//Get credit in game
-	CreditInGame& getCreditInGame();
+		//Get history
+		History& getHistory();		
+	
+		//Draw animation
+		KenoDrawAnimation& getDrawAnimation();
 
-	//Get win in game
-	Win& getWinInGame();
+		//Render on mousebuttondown
+		void mouseButtonDownRender(SDL_Renderer*, const SDL_Event&);
 
-	//Get history
-	History& getHistory();
+		//Render on mouseover
+		void mouseOnButtonRender(SDL_Renderer*, const SDL_Event&);
 
-	//Render on mousebuttondown
-	void mouseButtonDownRender(SDL_Renderer*, const SDL_Event&);
+		//Changes color of clicked numbers
+		void changeColorOfClickedNumbers(SDL_Renderer*, const SDL_Event&);
 
-	//Render on mouseover
-	void mouseOnButtonRender(SDL_Renderer*, const SDL_Event&);
+		void drawAnimation(SDL_Renderer*, int*, SDL_Rect*);		
+		void drawAnimationReRender(SDL_Renderer*, SDL_Rect*);
 
-	//Changes color of clicked numbers
-	void changeColorOfClickedNumbers(SDL_Renderer*, const SDL_Event&);
+		//Get cash out button
+		CashOut& getCashOutButton();
+ 
+		// Set and Get method
+		int getBet() const;
+		void setBet(int bet);
 
-	//Get cash out button
-	CashOut& getCashOutButton();
+	private:
+		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
 
-	// Set and Get method
-	int getBet() const;
-	void setBet(int bet);
-
-private:
-
-	bool m_minBetFlag;
-	bool m_maxBetFlag;
-	int m_bet;
-
-	NumbersGrid mGrid;
-	BetButton mBetButton;
-	MinBet m_minBetButton;
-	MaxBet m_maxBetButton;
-	ClearButton m_clearButton;
-	QuickPick m_quickPickButton;
-	CreditInGame m_creditInGame;
-	Win m_winInGame;
-	CashOut m_cashOutButton;
-	History m_History;
-
-	// Activate min/max bet
-	void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
-
+	 	bool m_minBetFlag;
+ 		bool m_maxBetFlag;
+ 		int m_bet;
+		NumbersGrid mGrid;
+		BetButton mBetButton;
+		MinBet m_minBetButton;
+		MaxBet m_maxBetButton;
+		ClearButton m_clearButton;
+		QuickPick m_quickPickButton;
+		CreditInGame m_creditInGame;
+		Win m_winInGame;
+		History m_History;
+		KenoDrawAnimation m_DrawAnimation;		
+		CashOut m_cashOutButton;
 };
 
 #endif

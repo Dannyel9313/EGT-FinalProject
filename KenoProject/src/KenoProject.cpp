@@ -28,7 +28,7 @@ int main(int argc, char* args[])
 		else 
 			{
 			SDL_RenderClear(game.getKenoRenderer());
-//			game.getIntroMode().loadIntroScreen(game.getKenoRenderer());
+			//game.getIntroMode().loadIntroScreen(game.getKenoRenderer());
 			while (!quit && introMode == 1) 
 			{
 				while (SDL_PollEvent(&e) != 0) 
@@ -56,8 +56,7 @@ int main(int argc, char* args[])
 				SDL_RenderPresent(game.getKenoRenderer());
 			}
 			if(gameMode)
-			{	
-				game.getGameMode().getCreditInGame().setGameCredit(game.getIntroMode().getInsertCredit().getCredit());
+			{
 				game.getGameMode().renderGame(game.getKenoRenderer(), 255);
 				quit = false;
 			}

@@ -42,31 +42,31 @@ const int infoButtonBackText_width = 100;
 const int infoButtonBackText_height = 30;
 
 //Position of numbers grid
-const int numbersGrid_x = 100;
-const int numbersGrid_y = 100;
+const int numbersGrid_x = 0;
+const int numbersGrid_y = 95;
 
 //Dimensions of numbers grid
-const int numbersGrid_width = 420;
-const int numbersGrid_height = 264;
+const int numbersGrid_width = 500;
+const int numbersGrid_height = 344;
 
 //Numbers rect dimensions
-const int numbersRect_width = 40;
-const int numbersRect_height = 30;
+const int numbersRect_width = (numbersGrid_width/10)-2;
+const int numbersRect_height = (numbersGrid_height/8)-3;
 
 //numbers text dimensions
-const int oneDigit_width = 13;
-const int oneDigit_height = 22;
+const int oneDigit_width = 18;
+const int oneDigit_height = 27;
 
-const int twoDigit_width = 24;
-const int twoDigit_height = 22;
+const int twoDigit_width = 29;
+const int twoDigit_height = 27;
 
 //Positioning in rect of 1-digit numbers
-const int oneDigit_xIndent = 13;
-const int oneDigit_yIndent = 5;
+const int oneDigit_xIndent = 15;
+const int oneDigit_yIndent = 7;
 
 //Positioning in rect of 2-digit numbers
-const int twoDigit_xIndent = 9;
-const int twoDigit_yIndent = 5;
+const int twoDigit_xIndent = 10;
+const int twoDigit_yIndent = 6;
 
 //Miliseconds to seconds
 const int oneSecond = 1000;
@@ -75,11 +75,11 @@ const int oneSecond = 1000;
 const int numbersText_size = 24;
 
 //Radius of catch circle
-const int radiusOfCircle = 15;
+const int radiusOfCircle = 20;
 
 //Catch circle rect indent
-const int circle_xIndent = 20;
-const int circle_yIndent = 15;
+const int circle_xIndent = 23;
+const int circle_yIndent = 20;
 
 //Bet button position
 const int betButton_x = 690;
@@ -137,10 +137,6 @@ const int minMaxBetCircle_height = 60;
 const int minMaxBetRectangle_width = 200;
 const int minMaxBetRectangle_height = 40;
 
-// Grey rectangle width
-const int minMaxBetRectangleGrey_width = 204;
-const int minMaxBetRectangleGrey_height = 42;
-
 // Size of min/max text
 const int minMaxBetText_width = 40;
 const int minMaxBetText_height = 40;
@@ -169,6 +165,9 @@ const int creditsInGameWinTextInCircle_height = 40;
 const int creditsInGameWinTextInRect_width = 120;
 const int creditsInGameWinTextInRect_height = 35;
 
+const int minMaxBetRectangleGrey_width = 204;
+const int minMaxBetRectangleGrey_height = 42;
+ 
 //Size of cash out button
 const int cashOutRect_width = 100;
 const int cashOutRect_height = 40;
@@ -176,9 +175,6 @@ const int cashOutRect_height = 40;
 //Size of cash out button text
 const int cashOutButtonText_width = 80;
 const int cashOutButtonText_height = 35;
-
-
-
-
+ 
 
 #endif /* GLOBALS_H_ */

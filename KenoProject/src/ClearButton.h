@@ -28,8 +28,6 @@ class ClearButton
 		void changeColorOnMouseOver(SDL_Renderer* renderer);
 
 	private:
-
-
 		Font m_buttonClear;
 
 		BaseObject m_buttonRect;

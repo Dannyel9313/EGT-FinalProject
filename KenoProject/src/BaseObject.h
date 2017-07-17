@@ -57,16 +57,20 @@ class BaseObject
 
 		void setKTexture(SDL_Texture* kTexture);
 
-		void loadChunkEfect();
+		void loadChunkEffect(std::string);
 
 		Mix_Chunk*& getChunkClick();
+	//	const std::vector& <Mix_Chunk*> getSoundEffects();
 
+		void cropFromRenderTo(SDL_Renderer*, SDL_Rect*, SDL_Rect*);
+
+		void playSoundEffect(int, int);
 	private:
 		SDL_Texture* m_KTexture;
 		SDL_Rect m_KRect;
 
 		Mix_Chunk* m_chunkClick;
-
+		std::vector <Mix_Chunk*> m_SoundEffects;
 };
 
 #endif

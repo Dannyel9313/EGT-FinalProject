@@ -23,22 +23,23 @@ void BetButton::betText(SDL_Renderer* renderer)
 	m_font.render(renderer, m_font.getKRect());
 }
 
-bool BetButton::buttonCondition(int condition, SDL_Renderer* renderer)
+void BetButton::renderButton(SDL_Renderer* renderer)
+{
+	render(renderer, getKRect());		
+}
+
+bool BetButton::buttonCondition(int condition)
 {
 	bool success = false;
 	//If less than 2 numbers clicked transperent button nothing happens if clicked
 	if (condition < minimumSpots) 
 	{
 		setAlpha(100);
-		render(renderer, getKRect()); 
-		betText(renderer);
 		success = false;
 	}
 	else if (condition >= minimumSpots) 
 	{
 		setAlpha(255);
-		render(renderer, getKRect());
-		betText(renderer);
 		success = true;
 	}
 	return success;

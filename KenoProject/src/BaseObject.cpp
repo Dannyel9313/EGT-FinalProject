@@ -131,21 +131,40 @@ void BaseObject::free()
 		SDL_DestroyTexture(m_KTexture);
 		m_KTexture = NULL;
 	}
-	if (m_chunkClick != NULL)
+	for (int i = 0; i < m_SoundEffects.size();i++)
 	{
-		Mix_FreeChunk(m_chunkClick);
+		Mix_FreeChunk(m_SoundEffects[i]);
 	}
 }
 
-void BaseObject::loadChunkEfect() 
+void BaseObject::loadChunkEffect(std::string path) 
 {
-	m_chunkClick = Mix_LoadWAV("Select.wav");
+	Mix_Chunk* temp = Mix_LoadWAV(path.c_str());
+        if (temp == NULL)
+        {
+                std::cout << "Error loading clicking effect" << std::endl;
+        }
+	else
+	{
+		m_SoundEffects.push_back(temp);
+	}
+}
+
+void BaseObject::playSoundEffect(int i, int volume)
+{
+	Mix_VolumeMusic(volume);
+	Mix_PlayChannel(-1, m_SoundEffects[i], 0);
 }
 
 Mix_Chunk*& BaseObject::getChunkClick() 
 {
 	return m_chunkClick;
 }
+
+/*const std::vector& <Mix_Chunk*> getSoundEffects()
+{
+	return m_SoundEffects;
+}*/
 
 SDL_Rect* BaseObject::getKRect() 
 {
@@ -217,3 +236,7 @@ void BaseObject::render(SDL_Renderer * renderer, SDL_Rect * whereTo)
         SDL_RenderCopy(renderer, m_KTexture, NULL, whereTo);
 }
 
+void BaseObject::cropFromRenderTo(SDL_Renderer* renderer, SDL_Rect* crop, SDL_Rect* whereTo)
+{
+	SDL_RenderCopy(renderer, m_KTexture, crop, whereTo);
+}

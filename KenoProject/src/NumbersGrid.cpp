@@ -111,6 +111,54 @@ void NumbersGrid::printNumbers(SDL_Renderer * renderer)
 	}	
 }
 
+void NumbersGrid::printSpecificNumber(SDL_Renderer* renderer, int num)
+{
+	SDL_Rect dst_rect = {0, 0, 0, 0};
+	SDL_Color white = {255, 255, 255};
+	int number = 0;
+	for (int i = 0; i < 8; i++) 
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			number++;			
+			if (num == number)
+			{
+				//1-digit numbers require specific spacing
+				if(number < 10) 
+				{
+					//Set the destination rect
+					dst_rect.x = m_numbers[i][j].x+oneDigit_xIndent;
+					dst_rect.y = m_numbers[i][j].y+oneDigit_yIndent;	
+					dst_rect.w = oneDigit_width;	
+					dst_rect.h = oneDigit_height;
+
+					//Load text from font
+					loadTextureFromTTF(toString(number), 
+						renderer, m_font, white);
+				
+					//Render
+					render(renderer, &dst_rect);  	
+				}
+				else 
+				{
+					//Set destination rect	
+					dst_rect.x = m_numbers[i][j].x+twoDigit_xIndent;
+					dst_rect.y = m_numbers[i][j].y+twoDigit_yIndent;	
+					dst_rect.w = twoDigit_width;	
+					dst_rect.h = twoDigit_height;
+
+					//Load number from font
+					loadTextureFromTTF(toString(number), renderer, m_font, white);
+
+					//Render
+					render(renderer, &dst_rect);  
+
+				}
+			}
+		}	
+	}
+}
+
 void NumbersGrid::doIfClicked(SDL_Renderer * renderer, const SDL_Event & e) 
 {
 	for (int i = 0; i < 8; i++)
@@ -301,8 +349,8 @@ void NumbersGrid::blinkingSuccessHits(SDL_Renderer* renderer)
 		//Reapply numbers in rects
 		printNumbers(renderer);
 		SDL_RenderPresent(renderer);	
-		//int timeout = SDL_GetTicks() + 500;
-		//while(!SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {};
+		int timeout = SDL_GetTicks() + 500;
+		while(!SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {};
 	}	
 }
 
@@ -348,3 +396,36 @@ void NumbersGrid::resetFlags()
 	}
 }
 
+int* NumbersGrid::getRandomNumbers()
+{
+	int* tempArray = new int[80];
+	int number = 0;	
+
+	for (int i = 0; i < 8; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			tempArray[number] = randomNumbersFlags[i][j];
+			number++;
+		}
+	}
+	
+	return tempArray;
+}
+
+SDL_Rect* NumbersGrid::getNumberRects()
+{
+	SDL_Rect* tempArray = new SDL_Rect[80];
+	int number = 0;
+
+	for (int i = 0; i < 8; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			tempArray[number] = m_numbers[i][j];
+			number++;
+		}
+	}
+
+	return tempArray;	
+}
