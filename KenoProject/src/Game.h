@@ -68,7 +68,7 @@ class Game: public BaseObject
 		void drawAnimation(SDL_Renderer*, int*, SDL_Rect*);		
 		void drawAnimationReRender(SDL_Renderer*, SDL_Rect*);
 
-		int calculateWin(int ,int, int);
+		int calaculateWin(int spots, int match, int bet);
 
 		//Get cash out button
 		CashOut& getCashOutButton();
