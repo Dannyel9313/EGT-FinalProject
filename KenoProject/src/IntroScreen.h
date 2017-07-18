@@ -50,6 +50,9 @@ public:
 
 	//start info screen
 	void startInfoClicked(bool*, const SDL_Event&);
+
+	//loads chunk if button is clicked
+	void introButtonsChunk(const SDL_Event&);
 private:
 	// moving elements
 	void moveStarNewGame(int yPos, SDL_Renderer* renderer);

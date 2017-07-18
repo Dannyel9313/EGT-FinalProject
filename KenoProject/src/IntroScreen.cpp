@@ -222,3 +222,35 @@ void IntroScreen::startInfoClicked(bool* infoMode, const SDL_Event& e) {
 		*infoMode = true;
 	}
 }
+
+void IntroScreen::introButtonsChunk(const SDL_Event& e){
+	Mix_Chunk* chunk = NULL;
+	chunk = Mix_LoadWAV("Resources/Sounds/blop.wav");
+	if(chunk == NULL){
+		std::cerr << "Chunk file could not be loaded" << std::endl;
+	}
+	if(m_startNewGameButton.isClicked(e, m_startNewGameButton.getKRect()))
+	{
+		Mix_PlayChannel(-1, chunk, 0);
+	}
+	if(m_resumeGameButton.isClicked(e, m_resumeGameButton.getKRect()))
+	{
+		Mix_PlayChannel(-1, chunk, 0);
+	}
+	if(m_infoButton.isClicked(e, m_infoButton.getKRect())){
+		Mix_PlayChannel(-1, chunk, 0);
+	}
+	if(m_volume.getFontPlus().isClicked(e, m_volume.getFontPlus().getKRect())){
+		Mix_PlayChannel(-1, chunk, 0);
+	}
+	if(m_volume.getFontMinus().isClicked(e, m_volume.getFontMinus().getKRect())){
+		Mix_PlayChannel(-1, chunk, 0);
+	}
+	if(m_insertCredit.getFontPlus().isClicked(e, m_insertCredit.getFontPlus().getKRect())){
+		Mix_PlayChannel(-1, chunk, 0);
+	}
+	if(m_insertCredit.getFontMinus().isClicked(e, m_insertCredit.getFontMinus().getKRect())){
+		Mix_PlayChannel(-1, chunk, 0);
+	}
+
+}
