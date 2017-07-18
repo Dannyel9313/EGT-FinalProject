@@ -428,4 +428,33 @@ SDL_Rect* NumbersGrid::getNumberRects()
 	}
 
 	return tempArray;	
+
 }
+
+void NumbersGrid::pickTenRandNumbersOnBoard(SDL_Renderer* renderer,
+		const SDL_Event& e)
+{
+
+	int rand_1;
+	int rand_2;
+	srand(SDL_GetTicks());
+	for (int i = 0; i < 10; i++)
+	{
+		rand_1 = rand()%8;
+		rand_2 = rand()%10;
+		if (randomNumbersFlags[rand_1][rand_2] == 0)
+		{
+			randomNumbersFlags[rand_1][rand_2] = 1;
+		}
+		//If already flag up increase loop by 1 time
+		else
+		{
+			i--;
+		}
+	}
+
+
+
+
+}
+

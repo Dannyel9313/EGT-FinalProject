@@ -65,11 +65,14 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha) {
 
 void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 
+
+if(m_creditInGame.getGameCredit() >= m_bet && m_bet != 0){
 	//If button condition true show random numbers
 	if (mBetButton.buttonCondition(mGrid.numbersClicked())) {
 		mBetButton.renderButton(renderer);
 		mBetButton.betText(renderer);
 		if (mBetButton.isClicked(e, mBetButton.getKRect())) {
+
 			//Pick 10 random numbers
 			changeCreditOnClickingBet(renderer,	e);
 
@@ -100,6 +103,7 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 			m_History.printHits(renderer, mGrid.numberOfHits(), 1);
 
 			mGrid.resetNumbersGrid(renderer);
+			}
 		}
 	}
 
@@ -329,8 +333,7 @@ void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e) {
 CashOut& Game::getCashOutButton() {
 	return m_cashOutButton;
 }
-
-int Game::calculateWin(int spots, int match, int bet) {
+int Game::calaculateWin(int spots, int match, int bet) {
 	int result = 0;
 	if (match > 0) {
 		int arrayQueficient[9][10] = { 1, 9, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 16,
@@ -342,11 +345,4 @@ int Game::calculateWin(int spots, int match, int bet) {
 		result = arrayQueficient[spots - 2][match - 1] * bet;
 	}
 	return result;
-}
-
-void Game::loadWinScreen(int spots, int match, int bet){
-	SDL_Renderer* renderer;
-	if(calculateWin(spots, match, bet) > 0){
-		m_winInGame.writeOnScreen(renderer);
-	}
 }

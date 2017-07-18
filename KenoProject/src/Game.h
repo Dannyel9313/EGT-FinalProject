@@ -70,7 +70,7 @@ class Game: public BaseObject
 		void drawAnimation(SDL_Renderer*, int*, SDL_Rect*);		
 		void drawAnimationReRender(SDL_Renderer*, SDL_Rect*);
 
-		int calculateWin(int spots, int match, int bet);
+		int calaculateWin(int spots, int match, int bet);
 
 		//Get cash out button
 		CashOut& getCashOutButton();
@@ -79,8 +79,6 @@ class Game: public BaseObject
 		int getBet() const;
 		void setBet(int bet);
 
-		// Load the win screen if the player won
-		void loadWinScreen(int spots, int match, int bet);
 	private:
 		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
 

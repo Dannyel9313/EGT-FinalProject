@@ -25,7 +25,7 @@ class Win: public BaseObject
 		// Get win text in rectangle
 		Font& getWinTextRect() ;
 
-		void writeOnScreen(SDL_Renderer*);
+//		void writeOnScreen(SDL_Renderer*);
 	private:
 
 		int m_winCredits;
@@ -40,24 +40,25 @@ class Win: public BaseObject
 		const char * toString(int);
 
 		// Set numbers Color
-		void setColor();
+			void setColor();
 
-		// Set elements position and dimension
-		void setElementsPositionDimension();
+			// Set elements position and dimension
+			void setElementsPositionDimension();
 
-		// Load elements
-		void loadElements(SDL_Renderer* renderer);
+			// Load elements
+			void loadElements(SDL_Renderer* renderer);
 
-		// Set font
-		void setFont();
+			// Set font
+			void setFont();
 
 
-		Font firstText;
-		Font secondText;
-		Font thirdText;
-		Font fourthText;
-		Font fifthText;
-		BaseObject mBackground;
+//		Font firstText;
+//      	 	Font secondText;
+//      		Font thirdText;
+//       		Font fourthText;
+//        	Font fifthText;
+//		BaseObject mBackground;
+//		std::string StringToDouble();
 };
 
 #endif /* WIN_H_ */
