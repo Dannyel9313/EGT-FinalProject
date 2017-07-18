@@ -17,6 +17,9 @@ class NumbersGrid: public BaseObject
 		//Change color if clicked
 		void doIfClicked(SDL_Renderer*, const SDL_Event&);
 
+		//Raise the flag of 10 numbers to be clicked
+		void pickRandomChoices(SDL_Renderer*);
+
 		void pickRandomNumbers(SDL_Renderer*, const SDL_Event&);
 
 		void resetRandFlags();

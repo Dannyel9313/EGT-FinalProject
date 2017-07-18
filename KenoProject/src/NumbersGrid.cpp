@@ -201,6 +201,48 @@ void NumbersGrid::doIfClicked(SDL_Renderer * renderer, const SDL_Event & e)
 	}
 }
 
+void NumbersGrid::pickRandomChoices(SDL_Renderer* renderer)
+{	
+	int rand_1;
+	int rand_2;
+	srand(SDL_GetTicks());
+	for (int i = 0; i < 10; i++)
+	{
+		std::cout << "NOW" << std::endl;
+		rand_1 = rand()%8;
+		rand_2 = rand()%10;
+		if (isClickedFlags[rand_1][rand_2] == 0) 
+		{
+			isClickedFlags[rand_1][rand_2] = 1;
+		}
+		//If already flag up increase loop by 1 time
+		else	
+		{
+			i--;
+		}			
+	}
+	for (int i = 0; i < 8; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			if (isClickedFlags[i][j] == 1) 
+			{
+				std::cout << "DONE" << std::endl;
+				roundedBoxRGBA(renderer, 
+				m_numbers[i][j].x, 
+				m_numbers[i][j].y, 
+				m_numbers[i][j].x+numbersRect_width, 
+				m_numbers[i][j].y+numbersRect_height, 
+				5, 200, 200, 0, 255);
+
+				//Play sound effect
+				Mix_PlayChannel(-1, m_ClickEffect, 0);
+			}
+		}
+	}
+	printNumbers(renderer);
+}
+
 const char* NumbersGrid::toString(int in_val)
 {
 	std::string str = boost::lexical_cast<std::string> (in_val);
