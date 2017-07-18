@@ -32,6 +32,8 @@ class Game: public BaseObject
 		//
 		void ifBetButtonClicked(SDL_Renderer*, const SDL_Event&);
 
+		void changeCreditOnClickingBet(SDL_Renderer* renderer, const SDL_Event& e);
+
 		//Get min bet button
 		MinBet& getMinBetButton();
 

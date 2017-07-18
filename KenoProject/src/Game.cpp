@@ -71,7 +71,10 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 		mBetButton.betText(renderer);
 		if (mBetButton.isClicked(e, mBetButton.getKRect())) {
 			//Pick 10 random numbers
+			changeCreditOnClickingBet(renderer,	e);
+
 			mGrid.pickRandomNumbers(renderer, e);
+
 
 			drawAnimation(renderer, mGrid.getRandomNumbers(),
 					mGrid.getNumberRects());
@@ -99,12 +102,13 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 			mGrid.resetNumbersGrid(renderer);
 		}
 	}
+
+
 	setMinMaxBet(renderer, e);
 
 	std::cout << "bet -> " << m_bet << "<-" << std::endl;
 	if (m_clearButton.getButtonRect().isClicked(e,
-			m_clearButton.getButtonRect().getKRect()))
-	{
+			m_clearButton.getButtonRect().getKRect())) {
 		mGrid.resetNumbersGrid(renderer);
 		m_minBetButton.renderMinBet(renderer);
 		m_maxBetButton.renderMaxBet(renderer);
@@ -254,32 +258,50 @@ void Game::setBet(int bet) {
 	this->m_bet = bet;
 }
 
+void Game::changeCreditOnClickingBet(SDL_Renderer* renderer,
+		const SDL_Event& e)
+{
+
+
+		int temp = 0;
+		int changedCredit = 0;
+
+		temp = m_creditInGame.getGameCredit();
+
+		changedCredit = temp - m_bet;
+		m_creditInGame.setGameCredit(changedCredit);
+		m_creditInGame.renderCreditsInGame(renderer);
+
+
+}
+
 void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e) {
 
-	std::cout << "min flag ->" << m_minBetFlag <<std::endl;
-	std::cout << "max flag ->" << m_maxBetFlag <<std::endl;
-	if(m_maxBetButton.getMaxBet().isClicked(e,
-			m_maxBetButton.getMaxBet().getKRect()) || m_minBetButton.getMinBet().isClicked(e,
-			m_minBetButton.getMinBet().getKRect())){
+	std::cout << "min flag ->" << m_minBetFlag << std::endl;
+	std::cout << "max flag ->" << m_maxBetFlag << std::endl;
 	if (m_maxBetButton.getMaxBet().isClicked(e,
-			m_maxBetButton.getMaxBet().getKRect())) {
-		setBet(0);
-		std::cout << "MaxBet-> " << m_bet << std::endl;
-		m_maxBetButton.activateMaxButton(renderer);
-		m_minBetButton.deactivateMinButton(renderer);
-		m_maxBetFlag = true;
-		m_minBetFlag = false;
-	}
+			m_maxBetButton.getMaxBet().getKRect())
+			|| m_minBetButton.getMinBet().isClicked(e,
+					m_minBetButton.getMinBet().getKRect())) {
+		if (m_maxBetButton.getMaxBet().isClicked(e,
+				m_maxBetButton.getMaxBet().getKRect())) {
+			setBet(0);
+			std::cout << "MaxBet-> " << m_bet << std::endl;
+			m_maxBetButton.activateMaxButton(renderer);
+			m_minBetButton.deactivateMinButton(renderer);
+			m_maxBetFlag = true;
+			m_minBetFlag = false;
+		}
 
-	if (m_minBetButton.getMinBet().isClicked(e,
-			m_minBetButton.getMinBet().getKRect())) {
-		setBet(0);
-		std::cout << "MINIMALBet-> " << m_bet << std::endl;
-		m_minBetButton.activateMinButton(renderer);
-		m_maxBetButton.deactivateMaxButton(renderer);
-		m_minBetFlag = true;
-		m_maxBetFlag = false;
-	}
+		if (m_minBetButton.getMinBet().isClicked(e,
+				m_minBetButton.getMinBet().getKRect())) {
+			setBet(0);
+			std::cout << "MINIMALBet-> " << m_bet << std::endl;
+			m_minBetButton.activateMinButton(renderer);
+			m_maxBetButton.deactivateMaxButton(renderer);
+			m_minBetFlag = true;
+			m_maxBetFlag = false;
+		}
 	}
 
 	if (m_minBetFlag == false) {
@@ -307,17 +329,16 @@ void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e) {
 CashOut& Game::getCashOutButton() {
 	return m_cashOutButton;
 }
-int Game::calaculateWin(int spots, int match, int bet)
-	{
-int result = 0;
-	if(match > 0){
-		int arrayQueficient[9][10] = { 1, 9, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 16, 0, 0, 0, 0, 0,
-					0, 0, 0, 2, 6, 12, 0, 0, 0, 0, 0, 0, 0, 1, 3, 15, 50, 0, 0, 0, 0, 0,
-					0, 1, 2, 3, 30, 75, 0, 0, 0, 0, 0, 0, 1, 6, 12, 36, 100, 0, 0, 0, 0,
-					0, 1, 3, 6, 19, 90, 720, 0, 0, 0, 0, 1, 2, 4, 8, 20, 80, 1200, 0, 0,
-					0, 1, 2, 3, 5, 10, 30, 600, 1800 };
+int Game::calaculateWin(int spots, int match, int bet) {
+	int result = 0;
+	if (match > 0) {
+		int arrayQueficient[9][10] = { 1, 9, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 16,
+				0, 0, 0, 0, 0, 0, 0, 0, 2, 6, 12, 0, 0, 0, 0, 0, 0, 0, 1, 3, 15,
+				50, 0, 0, 0, 0, 0, 0, 1, 2, 3, 30, 75, 0, 0, 0, 0, 0, 0, 1, 6,
+				12, 36, 100, 0, 0, 0, 0, 0, 1, 3, 6, 19, 90, 720, 0, 0, 0, 0, 1,
+				2, 4, 8, 20, 80, 1200, 0, 0, 0, 1, 2, 3, 5, 10, 30, 600, 1800 };
 
-	result = arrayQueficient[spots -2][match - 1] * bet;
+		result = arrayQueficient[spots - 2][match - 1] * bet;
 	}
 	return result;
-	}
+}
