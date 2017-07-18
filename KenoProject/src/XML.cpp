@@ -8,7 +8,7 @@ const char* XML::ToString(int in_val)
 	return s.c_str();
 }
 
-void XML::write(int credits, int array[8][10]) 
+void XML::write(int credits, int array[8][10])
 {
 	//Specification node
 	pugi::xml_node rootNode = doc.append_child(pugi::node_declaration);

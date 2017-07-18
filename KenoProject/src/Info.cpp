@@ -24,92 +24,142 @@ Font& Info::getButtonBack() {
 	return m_buttonBack;
 }
 
-Font& Info::getButtonBackPushed() {
-	return m_buttonBackPushed;
+Font& Info::getSecondBackgroundInfo() {
+	return m_secondBackgroundInfo;
 }
 
-//Font& Info::getSecondBackgroundInfo() {
-//	return m_secondBackgroundInfo;
-//}
-
 void Info::renderInfoScreen(SDL_Renderer* renderer) {
-
 
 	setElementsColor();
 	setElementsFont();
 	setElementsPositionDimension();
 	loadInfoElements(renderer);
 
-
 	m_backgroundInfo.render(renderer, NULL);
-
-	m_textInfo.render(renderer,m_textInfo.getKRect());
-
-if(m_buttonBack.onMouseOver(m_buttonBack.getKRect())){
-
 	m_buttonBack.render(renderer, m_buttonBack.getKRect());
-
-}else{
-
-	m_buttonBackPushed.render(renderer,m_buttonBackPushed.getKRect());
-
-}
-
-	m_textInformation.textRender(m_textInformation.getKRect(),
-			m_textInformation.getKTexture(), renderer);
-
-	m_buttonBackText.textRender(m_buttonBackText.getKRect(),m_buttonBackText.getKTexture(),renderer);
-
-	SDL_RenderPresent(renderer);
-
+	m_buttonBackText.textRender(m_buttonBackText.getKRect(),
+			m_buttonBackText.getKTexture(), renderer);
+	m_buttonNext.render(renderer, m_buttonNext.getKRect());
+	m_buttonReturn.render(renderer, m_buttonReturn.getKRect());
+	m_buttonNextText.render(renderer, m_buttonNextText.getKRect());
+	m_buttonReturnText.render(renderer, m_buttonReturnText.getKRect());
 }
 
 void Info::setElementsFont() {
 
-	m_textInformation.setFont(TTF_OpenFont("Resources/Fonts/AUDI.TTF", 40));
+	m_buttonReturnText.setFont(TTF_OpenFont("Resources/Fonts/AUDI.TTF", 40));
+	m_buttonNextText.setFont(TTF_OpenFont("Resources/Fonts/AUDI.TTF", 40));
 	m_buttonBackText.setFont(TTF_OpenFont("Resources/Fonts/AUDI.TTF", 40));
 }
 
 void Info::setElementsPositionDimension() {
 
-	m_textInfo.setPosition(40,140,infoText_width,infoText_height);
-	m_textInformation.setPosition(210, 40, infoLogo_Width, infoLogo_height);
-	m_buttonBack.setPosition(30, 560, infoButtonBack_width,
+	m_queficients.setPosition(130,130, 500, 300);
+
+	m_buttonBack.setPosition(580, 560, infoButtonBack_width,
 			infoButtonBack_height);
-	m_buttonBackPushed.setPosition(30, 559, infoButtonBack_width,
+	m_buttonNextText.setPosition(680, 520, infoButtonBackText_width,
+			infoButtonBackText_height);
+	m_buttonReturnText.setPosition(17, 520, infoButtonBackText_width,
+			infoButtonBackText_height);
+	m_buttonBackText.setPosition(555, 520, infoButtonBackText_width,
+			infoButtonBackText_height);
+	m_buttonNext.setPosition(705, 560, infoButtonBack_width,
 			infoButtonBack_height);
-	m_buttonBackText.setPosition(15,530, infoButtonBackText_width,infoButtonBackText_height);
+	m_buttonReturn.setPosition(30, 563, infoButtonBack_width,
+			infoButtonBack_height);
 
 }
 
 void Info::setElementsColor() {
 
-	m_textInformation.setButtonColor(129, 268, 69);
-	m_buttonBackText.setButtonColor(129,268,69);
+	m_buttonReturnText.setButtonColor(251, 211, 72);
+	m_buttonNextText.setButtonColor(251, 211, 72);
+	m_buttonBackText.setButtonColor(251, 211, 72);
 
 }
 
-Font& Info::getTextInfo() {
-	return m_textInfo;
+Font& Info::getButtonNext() {
+	return m_buttonNext;
+}
+
+Font& Info::getButtonReturn() {
+	return m_buttonReturn;
+}
+
+Font& Info::getButtonNextText() {
+	return m_buttonNextText;
+}
+
+Font& Info::getButtonReturnText() {
+	return m_buttonReturnText;
+}
+
+void Info::renderButtonDown(SDL_Renderer* renderer, const SDL_Event& e) {
+
+	if (m_buttonNext.isClicked(e, m_buttonNext.getKRect()))
+	{
+		std::cout << "NExt ->" << m_buttonNext.isClicked(e, m_buttonNext.getKRect()) << std::endl;
+
+		m_secondBackgroundInfo.render(renderer,NULL);
+//		m_queficients.render(renderer,m_queficients.getKRect());
+		m_buttonBack.render(renderer, m_buttonBack.getKRect());
+		m_buttonBackText.textRender(m_buttonBackText.getKRect(),
+				m_buttonBackText.getKTexture(), renderer);
+		m_buttonNext.render(renderer, m_buttonNext.getKRect());
+		m_buttonReturn.render(renderer, m_buttonReturn.getKRect());
+		m_buttonNextText.render(renderer, m_buttonNextText.getKRect());
+		m_buttonReturnText.render(renderer, m_buttonReturnText.getKRect());
+
+	}
+	if (m_buttonBack.isClicked(e, m_buttonBack.getKRect()))
+	{
+		std::cout << "back ->" << m_buttonBack.isClicked(e, m_buttonBack.getKRect()) << std::endl;
+		m_backgroundInfo.render(renderer, NULL);
+		m_buttonBack.render(renderer, m_buttonBack.getKRect());
+		m_buttonBackText.textRender(m_buttonBackText.getKRect(),
+				m_buttonBackText.getKTexture(), renderer);
+		m_buttonNext.render(renderer, m_buttonNext.getKRect());
+		m_buttonReturn.render(renderer, m_buttonReturn.getKRect());
+		m_buttonNextText.render(renderer, m_buttonNextText.getKRect());
+		m_buttonReturnText.render(renderer, m_buttonReturnText.getKRect());
+	}
+
+}
+
+void Info::buttonReturn(bool* introMode, const SDL_Event& e) {
+
+	if (m_buttonReturn.isClicked(e, m_buttonReturn.getKRect())) {
+		*introMode = true;
+	}
+
+}
+
+Font& Info::getQueficients(){
+	return m_queficients;
 }
 
 void Info::loadInfoElements(SDL_Renderer* renderer) {
-	m_backgroundInfo.loadTextureFromFile("Resources/Images/infoBackground2.png", renderer);
-	m_buttonBack.loadTextureFromFile("Resources/Images/buttonArrowBackIntro.png", renderer);
-	m_buttonBackPushed.loadTextureFromFile("Resources/Images/buttonArrowBackIntropushed.png",renderer);
-	m_textInfo.loadTextureFromFile("Resources/Images/kenoInfoText.png",renderer);
 
-	m_textInformation.LoadFromRenderedText("Information", renderer,
-			m_textInformation.getButtonColor());
-
-	m_buttonBackText.LoadFromRenderedText("BACK",renderer,m_buttonBackText.getButtonColor());
-
+//	m_queficients.loadTextureFromFile(	"Resources/Images/queficientTable.png", renderer);
+	m_secondBackgroundInfo.loadTextureFromFile(
+			"Resources/Images/InfoBackgroundSecond.png", renderer);
+	m_backgroundInfo.loadTextureFromFile(
+			"Resources/Images/kenoInformationBackground.png", renderer);
+	m_buttonBack.loadTextureFromFile(
+			"Resources/Images/buttonBackYewollArrow.png", renderer);
+	m_buttonNext.loadTextureFromFile(
+			"Resources/Images/buttonNextYewollArrow.png", renderer);
+	m_buttonReturn.loadTextureFromFile("Resources/Images/Button retur.png",
+			renderer);
+	m_buttonBackText.LoadFromRenderedText("BACK", renderer,
+			m_buttonBackText.getButtonColor());
+	m_buttonNextText.LoadFromRenderedText("NEXT", renderer,
+			m_buttonNextText.getButtonColor());
+	m_buttonReturnText.LoadFromRenderedText("RETURN", renderer,
+			m_buttonReturnText.getButtonColor());
 }
 
-Font& Info::getTextInformation() {
-	return m_textInformation;
-}
-
-Font& Info::getButtonBackText(){
+Font& Info::getButtonBackText() {
 	return m_buttonBackText;
 }

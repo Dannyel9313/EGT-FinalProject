@@ -22,6 +22,8 @@ class NumbersGrid: public BaseObject
 
 		void pickRandomNumbers(SDL_Renderer*, const SDL_Event&);
 
+		void pickTenRandNumbersOnBoard(SDL_Renderer* renderer, const SDL_Event& e);
+
 		void resetRandFlags();
 
 		//Loads clicking sound effect
@@ -61,6 +63,8 @@ class NumbersGrid: public BaseObject
 		void printNumbers(SDL_Renderer*);
 
 		void printSpecificNumber(SDL_Renderer*, int);
+
+
 
 	private:
 		const char* toString(int);

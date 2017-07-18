@@ -46,7 +46,7 @@ public:
 	void setMinimalBet(int minimalBet);
 
 private:
-	int m_MinimalBet;
+	int m_MinimalBet = 0;
 
 	Font m_numOne;
 	Font m_numTwo;

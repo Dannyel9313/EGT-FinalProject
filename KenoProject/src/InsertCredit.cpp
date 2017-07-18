@@ -91,19 +91,19 @@ void InsertCredit::setElementsPositionDimension() {
 }
 
 void InsertCredit::setElementsColor() {
-	m_FontCredit.setButtonColor(24, 236, 19);
+	m_FontCredit.setButtonColor(251, 211, 72);
 	if (m_FontPlus.onMouseOver(m_FontPlus.getKRect())) {
 		m_FontPlus.setButtonColor(255, 0, 39);
 	} else {
-		m_FontPlus.setButtonColor(24, 236, 19);
+		m_FontPlus.setButtonColor(251, 211, 72);
 	}
 	if (m_FontMinus.onMouseOver(m_FontMinus.getKRect())) {
 		m_FontMinus.setButtonColor(255, 0, 39);
 	} else {
-		m_FontMinus.setButtonColor(24, 236, 19);
+		m_FontMinus.setButtonColor(251, 211, 72);
 	}
-	m_FontInsertCredit.setButtonColor(24, 236, 19);
-	m_FontCredit.setButtonColor(24, 236, 19);
+	m_FontInsertCredit.setButtonColor(251, 211, 72);
+	m_FontCredit.setButtonColor(251, 211, 72);
 
 }
 

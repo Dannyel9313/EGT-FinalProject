@@ -175,6 +175,8 @@ const int cashOutRect_height = 40;
 //Size of cash out button text
 const int cashOutButtonText_width = 80;
 const int cashOutButtonText_height = 35;
+
+
  
 
 #endif /* GLOBALS_H_ */
