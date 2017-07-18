@@ -329,7 +329,8 @@ void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e) {
 CashOut& Game::getCashOutButton() {
 	return m_cashOutButton;
 }
-int Game::calaculateWin(int spots, int match, int bet) {
+
+int Game::calculateWin(int spots, int match, int bet) {
 	int result = 0;
 	if (match > 0) {
 		int arrayQueficient[9][10] = { 1, 9, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 16,
@@ -341,4 +342,11 @@ int Game::calaculateWin(int spots, int match, int bet) {
 		result = arrayQueficient[spots - 2][match - 1] * bet;
 	}
 	return result;
+}
+
+void Game::loadWinScreen(int spots, int match, int bet){
+	SDL_Renderer* renderer;
+	if(calculateWin(spots, match, bet) > 0){
+		m_winInGame.writeOnScreen(renderer);
+	}
 }
