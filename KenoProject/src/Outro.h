@@ -11,7 +11,7 @@
 #include <string>
 #include "BaseObject.h"
 
-class Outro
+class Outro: public BaseObject
 {
 public:
 	Outro();
@@ -19,19 +19,9 @@ public:
 	void loadFromTTF();
 	void winingWindow(SDL_Renderer *);
 	void writingOnScreen(SDL_Renderer *,double);
-	BaseObject& getBackground();
-	void setBackground(const BaseObject& back);
-	BaseObject& getWinPic();
-	void setWinPic(const BaseObject& win);
-
-
 private:
 
 	TTF_Font *  font;
-	BaseObject background;
-	BaseObject winPic;
-	BaseObject labelCongrat;
-	BaseObject labelMoney;
 	std::string doubleToString(double);
 };
 

@@ -108,6 +108,11 @@ if(m_creditInGame.getGameCredit() >= m_bet && m_bet != 0){
 	}
 
 
+if(m_quickPickButton.getQuickPickText().isClicked(e,m_quickPickButton.getQuickPickText().getKRect()))
+{
+	mGrid.pickRandomChoices(renderer);
+}
+
 	setMinMaxBet(renderer, e);
 
 	std::cout << "bet -> " << m_bet << "<-" << std::endl;
