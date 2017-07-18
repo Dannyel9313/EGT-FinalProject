@@ -1,34 +1,30 @@
 #include "Game.h"
 
-NumbersGrid& Game::getNumbersGrid()
-{
+NumbersGrid& Game::getNumbersGrid() {
 	return mGrid;
 }
 
-BetButton& Game::getBetButton()
-{
+BetButton& Game::getBetButton() {
 	return mBetButton;
 }
 
-KenoDrawAnimation& Game::getDrawAnimation()
-{
+KenoDrawAnimation& Game::getDrawAnimation() {
 	return m_DrawAnimation;
 }
 
-void Game::renderGame(SDL_Renderer* renderer, int alpha) 
-{
+void Game::renderGame(SDL_Renderer* renderer, int alpha) {
 	//Render background
 	render(renderer, NULL);
 
 	//Render numbers grid background
 	mGrid.renderBackground(renderer);
-	
+
 	//Create number rects
 	mGrid.createRects(renderer, alpha);
 
 	//Print the numbers
 	mGrid.printNumbers(renderer);
-	
+
 	//Render bet button
 	mBetButton.buttonCondition(mGrid.numbersClicked());
 	mBetButton.buttonCondition(mGrid.numbersClicked());
@@ -56,7 +52,7 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha)
 	m_winInGame.renderWinInGame(renderer);
 
 	//Render cash out button
-        m_cashOutButton.renderCashOutButton(renderer);
+	m_cashOutButton.renderCashOutButton(renderer);
 
 	//Render history
 	m_History.initializeHistory(renderer);
@@ -65,29 +61,19 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha)
 	m_DrawAnimation.drawPipe(renderer);
 }
 
-void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
-{
-	if (m_clearButton.getButtonRect().isClicked(e,
-                        m_clearButton.getButtonRect().getKRect())) 
-	{
-                mGrid.resetNumbersGrid(renderer);
-        }
-
-        setMinMaxBet(renderer,e);
-
+void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 
 	//If button condition true show random numbers
-	if(mBetButton.buttonCondition(mGrid.numbersClicked()))
-	{		
+	if (mBetButton.buttonCondition(mGrid.numbersClicked())) {
 		mBetButton.renderButton(renderer);
 		mBetButton.betText(renderer);
-		if (mBetButton.isClicked(e, mBetButton.getKRect())) 
-		{
+		if (mBetButton.isClicked(e, mBetButton.getKRect())) {
 			//Pick 10 random numbers
 			mGrid.pickRandomNumbers(renderer, e);
 
-			drawAnimation(renderer, mGrid.getRandomNumbers(), mGrid.getNumberRects());
-	
+			drawAnimation(renderer, mGrid.getRandomNumbers(),
+					mGrid.getNumberRects());
+
 			renderGame(renderer, 150);
 
 			mGrid.reRenderClickedNumbers(renderer, 50);
@@ -97,7 +83,7 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 			m_History.printHits(renderer, mGrid.numberOfHits(), 0);
 
 			mGrid.renderRandomNumbers(renderer);
-	
+
 			mGrid.printNumbers(renderer);
 
 			mGrid.blinkingSuccessHits(renderer);
@@ -110,69 +96,73 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 
 			mGrid.resetNumbersGrid(renderer);
 		}
-	}	
+	}
+	setMinMaxBet(renderer, e);
+
+	std::cout << "bet -> " << m_bet << "<-" << std::endl;
+	if (m_clearButton.getButtonRect().isClicked(e,
+			m_clearButton.getButtonRect().getKRect()))
+	{
+		mGrid.resetNumbersGrid(renderer);
+		m_minBetButton.renderMinBet(renderer);
+		m_maxBetButton.renderMaxBet(renderer);
+
+	}
 }
 
-void Game::mouseOnButtonRender(SDL_Renderer* renderer, const SDL_Event& e) 
-{
+void Game::mouseOnButtonRender(SDL_Renderer* renderer, const SDL_Event& e) {
 	//Mouse over stuff	
 	m_clearButton.changeColorOnMouseOver(renderer);
 
 	m_quickPickButton.changeColorOnMouseOver(renderer);
 
-        m_minBetButton.changeColorOnMouseOver(renderer);
+	m_minBetButton.changeColorOnMouseOver(renderer);
 
-        m_maxBetButton.changeColorOnMouseOver(renderer);
+	m_maxBetButton.changeColorOnMouseOver(renderer);
 
-        m_cashOutButton.changeColorOnMouseOver(renderer);
-	
+	m_cashOutButton.changeColorOnMouseOver(renderer);
+
 }
 
-void Game::changeColorOfClickedNumbers(SDL_Renderer* renderer, const SDL_Event& e)
-{
+void Game::changeColorOfClickedNumbers(SDL_Renderer* renderer,
+		const SDL_Event& e) {
 	mGrid.createRects(renderer, 255);
 	mGrid.reRenderClickedNumbers(renderer, 255);
 	mGrid.doIfClicked(renderer, e);
 	mGrid.printNumbers(renderer);
 }
 
-void Game::drawAnimationReRender(SDL_Renderer* renderer, SDL_Rect* rects)
-{
+void Game::drawAnimationReRender(SDL_Renderer* renderer, SDL_Rect* rects) {
 	int number = 0;
-	for (int i = 0; i < 80; i++)
-	{
-		if (flags[i] == 1)
-		{
-			filledCircleRGBA(renderer, rects[i].x+23, rects[i].y+21, 20, colors[number].r,
-						colors[number].g, colors[number].b, 255);
-			mGrid.printSpecificNumber(renderer, i+1);
+	for (int i = 0; i < 80; i++) {
+		if (flags[i] == 1) {
+			filledCircleRGBA(renderer, rects[i].x + 23, rects[i].y + 21, 20,
+					colors[number].r, colors[number].g, colors[number].b, 255);
+			mGrid.printSpecificNumber(renderer, i + 1);
 			number++;
 		}
-	}	
+	}
 }
 
-void Game::drawAnimation(SDL_Renderer* renderer, int* numbers, SDL_Rect* rects)
-{
-	SDL_Rect test = {500, 95, 80, 350};
+void Game::drawAnimation(SDL_Renderer* renderer, int* numbers,
+		SDL_Rect* rects) {
+	SDL_Rect test = { 500, 95, 80, 350 };
 	colors.clear();
-	for (int i = 0; i < 80; i++)
-	{
-		if (numbers[i] == 1)
-		{
-			getDrawAnimation().playSoundEffect(0, 80);
+	for (int i = 0; i < 80; i++) {
+		if (numbers[i] == 1) {
+//			getDrawAnimation().playSoundEffect(0, 80);
 			int r = rand();
 			int g = rand();
 			int b = rand();
-			SDL_Color color = {r, g, b};
-			colors.push_back(color);	
-			for (int k = 115; k <= rects[i].y+20; k+=5)
-			{
+			SDL_Color color = { r, g, b };
+			colors.push_back(color);
+			for (int k = 115; k <= rects[i].y + 20; k += 5) {
 				//Render top left
 				cropFromRenderTo(renderer, &test, &test);
 
 				//Render numbers grid background
 				mGrid.renderBackground(renderer);
-		
+
 				//Create number rects
 				mGrid.createRects(renderer, 255);
 
@@ -187,34 +177,37 @@ void Game::drawAnimation(SDL_Renderer* renderer, int* numbers, SDL_Rect* rects)
 				drawAnimationReRender(renderer, rects);
 				SDL_RenderPresent(renderer);
 			}
-			for (int j = 540; j >= rects[i].x+23; j-=5)
-			{	
+			for (int j = 540; j >= rects[i].x + 23; j -= 5) {
 				//Render top left
 				cropFromRenderTo(renderer, &test, &test);
 
 				//Render numbers grid background
 				mGrid.renderBackground(renderer);
-		
+
 				//Create number rects
 				mGrid.createRects(renderer, 255);
 
 				mGrid.reRenderClickedNumbers(renderer, 255);
 
 				m_DrawAnimation.drawPipe(renderer);
-	
+
 				//Print the numbers
 				mGrid.printNumbers(renderer);
-				m_DrawAnimation.dropBalls(renderer, j, rects[i].y+20, r, g, b);
+				m_DrawAnimation.dropBalls(renderer, j, rects[i].y + 20, r, g,
+						b);
 
 				drawAnimationReRender(renderer, rects);
 				SDL_RenderPresent(renderer);
-			}	
-			getDrawAnimation().playSoundEffect(1, 128);
+			}
+//			getDrawAnimation().playSoundEffect(1, 128);
 			int timeout = SDL_GetTicks() + 100;
-			while(!(SDL_TICKS_PASSED(SDL_GetTicks(), timeout)));
+			while (!(SDL_TICKS_PASSED(SDL_GetTicks(), timeout)))
+				;
 			flags.set(i, 1);
-		}			
+		}
+
 	}
+
 	drawAnimationReRender(renderer, rects);
 	SDL_RenderPresent(renderer);
 	flags.reset();
@@ -223,293 +216,32 @@ void Game::drawAnimation(SDL_Renderer* renderer, int* numbers, SDL_Rect* rects)
 
 }
 
-int Game::calculateBetForTwoNumbers(int credits)
-{
-	int userWin = 1;
-	if(mGrid.numberOfHits() == 1){
-		return userWin *= credits;
-	}
-	else if(mGrid.numberOfHits() == 2){
-		return userWin *= credits * 9;
-	}
-	return userWin;
-}
-
-int Game::calculateBetForThreeNumbers(int credits)
-{
-	int userWin = 1;
-	if(mGrid.numberOfHits() == 1){
-		return userWin *= credits;
-	}
-	else if(mGrid.numberOfHits() == 2){
-		return userWin *= credits * 2;
-	}
-	else if(mGrid.numberOfHits() == 3){
-		return userWin *= credits * 16;
-	}
-	return userWin;
-}
-
-int Game::calculateBetForFourNumbers(int credits)
-{
-	int userWin = 1;
-	if(mGrid.numberOfHits() == 1){
-		return 0;
-	}
-	else if(mGrid.numberOfHits() == 2){
-		return userWin *= credits * 2;
-	}
-	else if(mGrid.numberOfHits() == 3){
-		return userWin *= credits * 6;
-	}
-	else if(mGrid.numberOfHits() == 4){
-		return userWin *= credits * 12;
-	}
-	return userWin;
-}
-
-int Game::calculateBetForFiveNumbers(int credits)
-{
-	int userWin = 1;
-	if(mGrid.numberOfHits() == 1){
-		return 0;
-	}
-	else if(mGrid.numberOfHits() == 2){
-		return userWin *= credits;
-	}
-	else if(mGrid.numberOfHits() == 3){
-		return userWin *= credits * 3;
-	}
-	else if(mGrid.numberOfHits() == 4){
-		return userWin *= credits * 15;
-	}
-	else if(mGrid.numberOfHits() == 5){
-		return userWin *= credits * 50;
-	}
-	return userWin;
-}
-
-int Game::calculateBetForSixNumbers(int credits)
-{
-	int userWin = 1;
-	if(mGrid.numberOfHits() == 1){
-		return 0;
-	}
-	else if(mGrid.numberOfHits() == 2){
-		return userWin *= credits;
-	}
-	else if(mGrid.numberOfHits() == 3){
-		return userWin *= credits * 2;
-	}
-	else if(mGrid.numberOfHits() == 4){
-		return userWin *= credits * 3;
-	}
-	else if(mGrid.numberOfHits() == 5){
-		return userWin *= credits * 30;
-	}
-	else if(mGrid.numberOfHits() == 6){
-		return userWin *= credits * 75;
-	}
-	return userWin;
-}
-
-int Game::calculateBetForSevenNumbers(int credits)
-{
-	int userWin = 1;
-	if(mGrid.numberOfHits() == 1){
-		return 0;
-	}
-	else if(mGrid.numberOfHits() == 2){
-		return 0;
-	}
-	else if(mGrid.numberOfHits() == 3){
-		return userWin *= credits;
-	}
-	else if(mGrid.numberOfHits() == 4){
-		return userWin *= credits * 6;
-	}
-	else if(mGrid.numberOfHits() == 5){
-		return userWin *= credits * 12;
-	}
-	else if(mGrid.numberOfHits() == 6){
-		return userWin *= credits * 36;
-	}
-	else if(mGrid.numberOfHits() == 7){
-		return userWin *= credits * 100;
-	}
-	return userWin;
-}
-
-int Game::calculateBetForEightNumbers(int credits)
-{
-	int userWin = 1;
-	if(mGrid.numberOfHits() == 1){
-		return 0;
-	}
-	else if(mGrid.numberOfHits() == 2){
-		return 0;
-	}
-	else if(mGrid.numberOfHits() == 3){
-		return userWin *= credits;
-	}
-	else if(mGrid.numberOfHits() == 4){
-		return userWin *= credits * 3;
-	}
-	else if(mGrid.numberOfHits() == 5){
-		return userWin *= credits * 6;
-	}
-	else if(mGrid.numberOfHits() == 6){
-		return userWin *= credits * 19;
-	}
-	else if(mGrid.numberOfHits() == 7){
-		return userWin *= credits * 90;
-	}
-	else if(mGrid.numberOfHits() == 8){
-		return userWin *= credits * 720;
-	}
-	return userWin;
-}
-
-int Game::calculateBetForNineNumbers(int credits)
-{
-	int userWin = 1;
-	if(mGrid.numberOfHits() == 1){
-		return 0;
-	}
-	else if(mGrid.numberOfHits() == 2){
-		return 0;
-	}
-	else if(mGrid.numberOfHits() == 3){
-		return userWin *= credits;
-	}
-	else if(mGrid.numberOfHits() == 4){
-		return userWin *= credits * 2;
-	}
-	else if(mGrid.numberOfHits() == 5){
-		return userWin *= credits * 4;
-	}
-	else if(mGrid.numberOfHits() == 6){
-		return userWin *= credits * 8;
-	}
-	else if(mGrid.numberOfHits() == 7){
-		return userWin *= credits * 20;
-	}
-	else if(mGrid.numberOfHits() == 8){
-		return userWin *= credits * 80;
-	}
-	else if(mGrid.numberOfHits() == 9){
-		return userWin *= credits * 1200;
-	}
-	return userWin;
-}
-
-int Game::calculateBetForTenNumbers(int credits)
-{
-	int userWin = 1;
-	if(mGrid.numberOfHits() == 1){
-		return 0;
-	}
-	else if(mGrid.numberOfHits() == 2){
-		return 0;
-	}
-	else if(mGrid.numberOfHits() == 3){
-		return userWin *= credits;
-	}
-	else if(mGrid.numberOfHits() == 4){
-		return userWin *= credits * 2;
-	}
-	else if(mGrid.numberOfHits() == 5){
-		return userWin *= credits * 3;
-	}
-	else if(mGrid.numberOfHits() == 6){
-		return userWin *= credits * 5;
-	}
-	else if(mGrid.numberOfHits() == 7){
-		return userWin *= credits * 10;
-	}
-	else if(mGrid.numberOfHits() == 8){
-		return userWin *= credits * 30;
-	}
-	else if(mGrid.numberOfHits() == 9){
-		return userWin *= credits * 600;
-	}
-	else if(mGrid.numberOfHits() == 10){
-		return userWin *= credits * 1800;
-	}
-	return userWin;
-}
-int Game::moneyWon(int credits){
-	int userWin = 1;
-	if(mGrid.numbersClicked() == 2){
-		calculateBetForTwoNumbers(credits);
-	}
-
-	if(mGrid.numbersClicked() == 3){
-		calculateBetForThreeNumbers(credits);
-	}
-
-	if(mGrid.numbersClicked() == 4){
-		calculateBetForFourNumbers(credits);
-	}
-
-	if(mGrid.numbersClicked() == 5){
-		calculateBetForFiveNumbers(credits);
-	}
-
-	if(mGrid.numbersClicked() == 6){
-		calculateBetForSixNumbers(credits);
-	}
-
-	if(mGrid.numbersClicked() == 7){
-		calculateBetForSevenNumbers(credits);
-	}
-
-	if(mGrid.numbersClicked() == 8){
-		calculateBetForEightNumbers(credits);
-	}
-
-	if(mGrid.numbersClicked() == 9){
-		calculateBetForNineNumbers(credits);
-	}
-
-	if(mGrid.numbersClicked() == 10){
-		calculateBetForTenNumbers(credits);
-	}
-}
-
-MinBet& Game::getMinBetButton()
-{
+MinBet& Game::getMinBetButton() {
 	return m_minBetButton;
 }
 
-MaxBet& Game::getMaxBetButton() 
-{
+MaxBet& Game::getMaxBetButton() {
 	return m_maxBetButton;
 }
 
-ClearButton& Game::getClearButton() 
-{
+ClearButton& Game::getClearButton() {
 	return m_clearButton;
 }
 
-QuickPick& Game::getQuickPickButton()
-{
+QuickPick& Game::getQuickPickButton() {
 	return m_quickPickButton;
 }
 
-CreditInGame& Game::getCreditInGame() 
-{
+CreditInGame& Game::getCreditInGame() {
 	return m_creditInGame;
 }
 
-Win& Game::getWinInGame() 
-{
+Win& Game::getWinInGame() {
 	return m_winInGame;
 }
 
-History& Game::getHistory()
-{
-	return m_History;	
+History& Game::getHistory() {
+	return m_History;
 }
 
 int Game::getBet() const {
@@ -517,15 +249,13 @@ int Game::getBet() const {
 }
 
 void Game::setBet(int bet) {
-	m_bet = bet;
+	this->m_bet = bet;
 }
 
-void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e)
-{
+void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e) {
 
 	if (m_maxBetButton.getMaxBet().isClicked(e,
-			m_maxBetButton.getMaxBet().getKRect())) 
-	{
+			m_maxBetButton.getMaxBet().getKRect())) {
 		setBet(0);
 		m_maxBetButton.activateMaxButton(renderer);
 		m_minBetButton.deactivateMinButton(renderer);
@@ -534,8 +264,7 @@ void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e)
 	}
 
 	if (m_minBetButton.getMinBet().isClicked(e,
-			m_minBetButton.getMinBet().getKRect())) 
-	{
+			m_minBetButton.getMinBet().getKRect())) {
 		setBet(0);
 		m_minBetButton.activateMinButton(renderer);
 		m_maxBetButton.deactivateMaxButton(renderer);
@@ -543,33 +272,39 @@ void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e)
 		m_maxBetFlag = false;
 	}
 
-	if(m_minBetFlag == false)
-	{
+	if (m_minBetFlag == false) {
 		m_minBetButton.renderMinBet(renderer);
 		m_minBetButton.deactivateMinButton(renderer);
 	}
 
-	if(m_maxBetFlag == false)
-	{
+	if (m_maxBetFlag == false) {
 		m_maxBetButton.renderMaxBet(renderer);
 		m_maxBetButton.deactivateMaxButton(renderer);
 	}
 
-if(m_minBetFlag == true)
-{
-	m_minBetButton.betChoiceMin(renderer, e);
-	setBet(m_minBetButton.getMinimalBet());
+	if (m_minBetFlag == true) {
+		m_minBetButton.betChoiceMin(renderer, e);
+		setBet(m_minBetButton.getMinimalBet());
+	}
+
+	if (m_maxBetFlag == true) {
+		m_maxBetButton.betChoiceMax(renderer, e);
+		setBet(m_maxBetButton.getMaximalBet());
+	}
 }
 
-if(m_maxBetFlag == true)
-{
-	m_maxBetButton.betChoiceMax(renderer, e);
-	setBet(m_maxBetButton.getMaximalBet());
-}
-}
-
-CashOut& Game::getCashOutButton() 
-{
+CashOut& Game::getCashOutButton() {
 	return m_cashOutButton;
 }
+int calaculateWin(int spots, int match, int bet)
+	{
 
+		int arrayQueficient[9][10] = { 1, 9, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 16, 0, 0, 0, 0, 0,
+					0, 0, 0, 2, 6, 12, 0, 0, 0, 0, 0, 0, 0, 1, 3, 15, 50, 0, 0, 0, 0, 0,
+					0, 1, 2, 3, 30, 75, 0, 0, 0, 0, 0, 0, 1, 6, 12, 36, 100, 0, 0, 0, 0,
+					0, 1, 3, 6, 19, 90, 720, 0, 0, 0, 0, 1, 2, 4, 8, 20, 80, 1200, 0, 0,
+					0, 1, 2, 3, 5, 10, 30, 600, 1800 };
+
+		return arrayQueficient[spots -2][match - 1] * bet;
+
+	}
