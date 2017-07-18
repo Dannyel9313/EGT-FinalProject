@@ -208,7 +208,6 @@ void NumbersGrid::pickRandomChoices(SDL_Renderer* renderer)
 	srand(SDL_GetTicks());
 	for (int i = 0; i < 10; i++)
 	{
-		std::cout << "NOW" << std::endl;
 		rand_1 = rand()%8;
 		rand_2 = rand()%10;
 		if (isClickedFlags[rand_1][rand_2] == 0) 
@@ -227,7 +226,6 @@ void NumbersGrid::pickRandomChoices(SDL_Renderer* renderer)
 		{
 			if (isClickedFlags[i][j] == 1) 
 			{
-				std::cout << "DONE" << std::endl;
 				roundedBoxRGBA(renderer, 
 				m_numbers[i][j].x, 
 				m_numbers[i][j].y, 
