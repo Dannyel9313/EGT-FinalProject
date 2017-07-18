@@ -80,9 +80,9 @@ class Game: public BaseObject
 	private:
 		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
 
-	 	bool m_minBetFlag;
- 		bool m_maxBetFlag;
- 		int m_bet;
+	 	bool m_minBetFlag = true;
+ 		bool m_maxBetFlag = true;
+ 		int m_bet = 0;
 		NumbersGrid mGrid;
 		BetButton mBetButton;
 		MinBet m_minBetButton;

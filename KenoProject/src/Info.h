@@ -10,36 +10,53 @@ public:
 	// Load info screen
 	void renderInfoScreen(SDL_Renderer* renderer);
 
+
+	void renderButtonDown(SDL_Renderer* renderer, const SDL_Event& e);
+
+
+	void buttonReturn(bool* introMode, const SDL_Event& e);
 	// Get background
 	Font& getBackgroundInfo();
 
 	// Get button back
 	Font& getButtonBack();
 
-	// Get pushed button back
-	Font& getButtonBackPushed();
 
 	// Get Second
-//	Font& getSecondBackgroundInfo();
-
-	// Get info text
-	Font& getTextInfo();
-
-	// Get text "Information"
-	Font& getTextInformation();
+	Font& getSecondBackgroundInfo();
 
 	// Get back text
 	Font& getButtonBackText();
 
+	// Get button next
+	Font& getButtonNext();
+
+	// Get button return
+	Font& getButtonReturn();
+
+	// Get button next text
+	Font& getButtonNextText();
+
+	// Get button next text
+	Font& getButtonReturnText();
+
+	//	Get Queficients
+	Font& getQueficients();
+
 private:
 
 	Font m_backgroundInfo;
-//	Font m_secondBackgroundInfo;
+	Font m_secondBackgroundInfo;
+	Font m_queficients;
+
 	Font m_buttonBackText;
 	Font m_buttonBack;
-	Font m_buttonBackPushed;
-	Font m_textInformation;
-	Font m_textInfo;
+	Font m_buttonNextText;
+	Font m_buttonNext;
+	Font m_buttonReturn;
+	Font m_buttonReturnText;
+
+
 
 	// Set font elements
 	void setElementsFont();

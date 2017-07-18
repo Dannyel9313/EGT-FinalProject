@@ -14,6 +14,8 @@ KenoDrawAnimation& Game::getDrawAnimation() {
 
 void Game::renderGame(SDL_Renderer* renderer, int alpha) {
 	//Render background
+	setBet(0);
+
 	render(renderer, NULL);
 
 	//Render numbers grid background
@@ -254,9 +256,15 @@ void Game::setBet(int bet) {
 
 void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e) {
 
+	std::cout << "min flag ->" << m_minBetFlag <<std::endl;
+	std::cout << "max flag ->" << m_maxBetFlag <<std::endl;
+	if(m_maxBetButton.getMaxBet().isClicked(e,
+			m_maxBetButton.getMaxBet().getKRect()) || m_minBetButton.getMinBet().isClicked(e,
+			m_minBetButton.getMinBet().getKRect())){
 	if (m_maxBetButton.getMaxBet().isClicked(e,
 			m_maxBetButton.getMaxBet().getKRect())) {
 		setBet(0);
+		std::cout << "MaxBet-> " << m_bet << std::endl;
 		m_maxBetButton.activateMaxButton(renderer);
 		m_minBetButton.deactivateMinButton(renderer);
 		m_maxBetFlag = true;
@@ -266,10 +274,12 @@ void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e) {
 	if (m_minBetButton.getMinBet().isClicked(e,
 			m_minBetButton.getMinBet().getKRect())) {
 		setBet(0);
+		std::cout << "MINIMALBet-> " << m_bet << std::endl;
 		m_minBetButton.activateMinButton(renderer);
 		m_maxBetButton.deactivateMaxButton(renderer);
 		m_minBetFlag = true;
 		m_maxBetFlag = false;
+	}
 	}
 
 	if (m_minBetFlag == false) {
@@ -291,6 +301,7 @@ void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e) {
 		m_maxBetButton.betChoiceMax(renderer, e);
 		setBet(m_maxBetButton.getMaximalBet());
 	}
+
 }
 
 CashOut& Game::getCashOutButton() {

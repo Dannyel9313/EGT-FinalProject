@@ -154,7 +154,7 @@ void IntroScreen::setElementsColor() {
 			m_startNewGameButton.setButtonColor(255, 0, 39);
 
 		} else {
-			m_startNewGameButton.setButtonColor(24, 236, 19);
+			m_startNewGameButton.setButtonColor(251, 211, 72);
 
 		}
 	} else {
@@ -164,13 +164,13 @@ void IntroScreen::setElementsColor() {
 		m_resumeGameButton.setButtonColor(255, 0, 39);
 
 	} else {
-		m_resumeGameButton.setButtonColor(24, 236, 19);
+		m_resumeGameButton.setButtonColor(251, 211, 72);
 	}
 	if (m_infoButton.onMouseOver(m_infoButton.getKRect())) {
 		m_infoButton.setButtonColor(255, 0, 39);
 
 	} else {
-		m_infoButton.setButtonColor(24, 236, 19);
+		m_infoButton.setButtonColor(251, 211, 72);
 	}
 }
 

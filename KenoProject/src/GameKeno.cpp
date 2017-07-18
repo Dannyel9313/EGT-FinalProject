@@ -77,18 +77,6 @@ bool GameKeno::loadMedia()
 {
 	bool success = true;
 
-//		m_introMode.getBackground().loadTexture("IntroKenoImage2.png",kenoRenderer);
-//
-//		m_introMode.getStartNewGameButton().setFont(TTF_OpenFont("Pozo.ttf",50));
-//		m_introMode.getResumeGameButton().setFont(TTF_OpenFont("Pozo.ttf",50));
-//		m_introMode.getInsertCredit().setFont(TTF_OpenFont("Pozo.ttf",50));
-//		m_introMode.getInfoButton().setFont(TTF_OpenFont("Pozo.ttf",50));
-//		m_introMode.getVolumeButton().setFont(TTF_OpenFont("Pozo.ttf",50));
-//
-//		m_introMode.getStartNewGameButton().LoadFromRenderedText("START GAME",kenoRenderer,
-//				m_introMode.getStartNewGameButton().setButtonColor(255,255,255));
-//		m_introMode.getResumeGameButton().LoadFromRenderedText("RESUME GAME",kenoRenderer,
-//				m_introMode.getResumeGameButton().setButtonColor(255,255,255));
 
         m_GameMode.loadTextureFromFile("Resources/Images/LasVegas.jpg", kenoRenderer);
 
@@ -104,8 +92,8 @@ bool GameKeno::loadMedia()
         m_GameMode.getBetButton().getFont().setFont(betButtonFont);
 
 	m_GameMode.getClearButton().getButtonClear().setFont(TTF_OpenFont("Resources/Fonts/Candles_.TTF", 30));
-	m_GameMode.getDrawAnimation().loadChunkEffect("Resources/Sounds/corkPop.wav");
-	m_GameMode.getDrawAnimation().loadChunkEffect("Resources/Sounds/blop.wav");
+//	m_GameMode.getDrawAnimation().loadChunkEffect("Resources/Sounds/corkPop.wav");
+//	m_GameMode.getDrawAnimation().loadChunkEffect("Resources/Sounds/blop.wav");
 	
 	return success;
 }
