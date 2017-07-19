@@ -211,7 +211,7 @@ void MinBet::choiceNumberThree(SDL_Renderer* renderer, const SDL_Event& e) {
 			m_numTwo.LoadFromRenderedText("2",renderer,m_numTwo.getButtonColor());
 			m_numTwo.render(renderer,m_numTwo.getKRect());
 
-			m_numThree.setButtonColor(251, 211, 254);
+			m_numThree.setButtonColor(251, 211, 72);
 			m_numThree.LoadFromRenderedText("3",renderer,m_numThree.getButtonColor());
 			m_numThree.render(renderer, m_numThree.getKRect());
 

@@ -34,10 +34,11 @@ class Game: public BaseObject
 		//Render the whole game screen
 		void renderGame(SDL_Renderer*, int alpha);
 
-		//
-		void ifBetButtonClicked(SDL_Renderer*, const SDL_Event&);
-
+		// Change credit
 		void changeCreditOnClickingBet(SDL_Renderer* renderer, const SDL_Event& e);
+
+		// show win credit
+		void showWinInGame(SDL_Renderer* renderer);
 
 		//Get min bet button
 		MinBet& getMinBetButton();

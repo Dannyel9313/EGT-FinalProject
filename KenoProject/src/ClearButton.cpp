@@ -53,7 +53,7 @@ void ClearButton::setElementsPositionDimension()
 void ClearButton::loadElements(SDL_Renderer* renderer) 
 {
 	setElementsPositionDimension();
-	m_buttonClear.setColor(254, 0, 0);
+	m_buttonClear.setButtonColor(254, 0, 0);
 	m_buttonClear.LoadFromRenderedText("CLEAR", renderer,
 			m_buttonClear.getButtonColor());
 	m_buttonRect.loadTextureFromFile("Resources/Images/clearButtonYewoll.png",

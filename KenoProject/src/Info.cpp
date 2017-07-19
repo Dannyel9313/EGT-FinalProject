@@ -143,7 +143,7 @@ void Info::loadInfoElements(SDL_Renderer* renderer) {
 
 //	m_queficients.loadTextureFromFile(	"Resources/Images/queficientTable.png", renderer);
 	m_secondBackgroundInfo.loadTextureFromFile(
-			"Resources/Images/InfoBackgroundSecond.png", renderer);
+			"Resources/Images/InfoBackgroundSecond (2).jpg", renderer);
 	m_backgroundInfo.loadTextureFromFile(
 			"Resources/Images/kenoInformationBackground.png", renderer);
 	m_buttonBack.loadTextureFromFile(

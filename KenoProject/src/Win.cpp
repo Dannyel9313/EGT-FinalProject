@@ -2,7 +2,7 @@
 
 Win::Win()
 {
- this->m_winCredits = 583;
+ this->m_winCredits = 0;
 }
 
 Win::~Win()
@@ -39,9 +39,10 @@ void Win::renderWinInGame(SDL_Renderer* renderer) {
 	m_winGameCircle.render(renderer, m_winGameCircle.getKRect());
 	m_winTextRect.textRender(m_winTextRect.getKRect(),
 			m_winTextRect.getKTexture(), renderer);
+	if(m_winCredits > 0){
 	m_winInGame.textRender(m_winInGame.getKRect(),
 			m_winInGame.getKTexture(), renderer);
-
+	}
 }
 
 
@@ -134,5 +135,10 @@ void Win::writeOnScreen(SDL_Renderer* renderer)
 	}
 }
 
+int Win::getWinCredits() const {
+	return m_winCredits;
+}
 
-
+void Win::setWinCredits(int winCredits) {
+	m_winCredits = winCredits;
+}

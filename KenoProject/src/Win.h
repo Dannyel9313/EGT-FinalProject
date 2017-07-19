@@ -29,6 +29,13 @@ class Win: public BaseObject
 
 		// Loads "YOU HAVE WON" text
 		void writeOnScreen(SDL_Renderer*);
+
+		// Get win credits
+		int getWinCredits() const;
+
+		// Set win credits
+		void setWinCredits(int winCredits);
+
 	private:
 
 		int m_winCredits;
