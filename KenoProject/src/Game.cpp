@@ -62,6 +62,9 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha) {
 	//Render cash out button
 	m_cashOutButton.renderCashOutButton(renderer);
 
+	//Render volume button
+	m_volumeButton.renderVolumeButton(renderer);
+
 	//Render history
 	m_History.renderHistory(renderer);
 	m_PayTable.renderPayTable(renderer);
@@ -156,6 +159,7 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 		m_minBetButton.renderMinBet(renderer);
 		m_maxBetButton.renderMaxBet(renderer);
 	}
+
 }
 
 void Game::mouseOnButtonRender(SDL_Renderer* renderer, const SDL_Event& e)
@@ -214,7 +218,7 @@ void Game::drawAnimation(SDL_Renderer* renderer, int* numbers,
 			int b = rand();
 			SDL_Color color = { r, g, b };
 			colors.push_back(color);
-			for (int k = 115; k <= rects[i].y + 20; k += 5) {
+			for (int k = 115; k <= rects[i].y + 20; k += 15) {
 				//Render top left
 				cropFromRenderTo(renderer, &test, &test);
 
@@ -235,19 +239,19 @@ void Game::drawAnimation(SDL_Renderer* renderer, int* numbers,
 				drawAnimationReRender(renderer, rects);
 				SDL_RenderPresent(renderer);
 			}
-			for (int j = 540; j >= rects[i].x + 23; j -= 5) {
+			for (int j = 540; j >= rects[i].x + 23; j -= 15) {
 				//Render top left
 				cropFromRenderTo(renderer, &test, &test);
 
 				//Render numbers grid background
-				mGrid.renderBackground(renderer);
+				//mGrid.renderBackground(renderer);
 
 				//Create number rects
 				mGrid.createRects(renderer, 255);
 
 				mGrid.reRenderClickedNumbers(renderer, 255);
 
-				m_DrawAnimation.drawPipe(renderer);
+				//m_DrawAnimation.drawPipe(renderer);
 
 				//Print the numbers
 				mGrid.printNumbers(renderer);
@@ -288,6 +292,10 @@ ClearButton& Game::getClearButton() {
 
 QuickPick& Game::getQuickPickButton() {
 	return m_quickPickButton;
+}
+
+VolumeButton& Game::getVolumeButton() {
+	return m_volumeButton;
 }
 
 CreditInGame& Game::getCreditInGame() {
@@ -392,6 +400,7 @@ void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e) {
 CashOut& Game::getCashOutButton() {
 	return m_cashOutButton;
 }
+
 int Game::calculateWin(int spots, int match, int bet) {
 	int result = 0;
 	if (match > 0) {
@@ -406,9 +415,11 @@ int Game::calculateWin(int spots, int match, int bet) {
 	return result;
 }
 
-void Game::loadWinScreen(int spots, int match, int bet) {
+void Game::loadWinScreen(int spots, int match, int bet)
+{
 	SDL_Renderer* renderer;
 	if (calculateWin(spots, match, bet) > 0) {
 		m_winInGame.writeOnScreen(renderer);
 	}
 }
+

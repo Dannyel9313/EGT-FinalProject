@@ -13,6 +13,7 @@
 #include "KenoDrawAnimation.h"
 #include "CashOut.h"
 #include "PayTable.h"
+#include "VolumeButton.h"
 
 class Game: public BaseObject
 {
@@ -52,6 +53,9 @@ class Game: public BaseObject
 		//Get quick pick button
 		QuickPick& getQuickPickButton();
 
+		//Get volume button
+		VolumeButton& getVolumeButton();
+
 		//Get credit in game
 		CreditInGame& getCreditInGame();
 
@@ -76,6 +80,7 @@ class Game: public BaseObject
 		void drawAnimation(SDL_Renderer*, int*, SDL_Rect*);		
 		void drawAnimationReRender(SDL_Renderer*, SDL_Rect*);
 
+		//Calculates the win of the user
 		int calculateWin(int spots, int match, int bet);
 
 		//Get cash out button
@@ -99,6 +104,7 @@ class Game: public BaseObject
 		MaxBet m_maxBetButton;
 		ClearButton m_clearButton;
 		QuickPick m_quickPickButton;
+		VolumeButton m_volumeButton;
 		CreditInGame m_creditInGame;
 		Win m_winInGame;
 		History m_History;
