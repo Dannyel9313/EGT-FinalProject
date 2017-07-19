@@ -31,7 +31,7 @@ int main(int argc, char* args[])
 		else 
 			{
 			SDL_RenderClear(game.getKenoRenderer());
-//			game.getIntroMode().loadIntroScreen(game.getKenoRenderer());
+			game.getIntroMode().loadIntroScreen(game.getKenoRenderer());
 			while (!quit && introMode == 1) 
 			{
 				while (SDL_PollEvent(&e) != 0) 

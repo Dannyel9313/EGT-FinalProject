@@ -208,7 +208,7 @@ void Game::drawAnimation(SDL_Renderer* renderer, int* numbers,
 	colors.clear();
 	for (int i = 0; i < 80; i++) {
 		if (numbers[i] == 1) {
-//			getDrawAnimation().playSoundEffect(0, 80);
+			getDrawAnimation().playSoundEffect(0, 80);
 			int r = rand();
 			int g = rand();
 			int b = rand();
@@ -257,7 +257,7 @@ void Game::drawAnimation(SDL_Renderer* renderer, int* numbers,
 				drawAnimationReRender(renderer, rects);
 				SDL_RenderPresent(renderer);
 			}
-//			getDrawAnimation().playSoundEffect(1, 128);
+			getDrawAnimation().playSoundEffect(1, 128);
 			int timeout = SDL_GetTicks() + 100;
 			while (!(SDL_TICKS_PASSED(SDL_GetTicks(), timeout)))
 				;
