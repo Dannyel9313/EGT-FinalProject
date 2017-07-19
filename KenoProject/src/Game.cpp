@@ -86,8 +86,8 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 
 				mGrid.pickRandomNumbers(renderer, e);
 
-//				drawAnimation(renderer, mGrid.getRandomNumbers(),
-//						mGrid.getNumberRects());
+				drawAnimation(renderer, mGrid.getRandomNumbers(),
+						mGrid.getNumberRects());
 
 				renderGame(renderer, 150);
 
@@ -107,11 +107,18 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 
 				History::currentRound++;
 
+				if (History::currentRound == 10)
+        	                {
+        	                        SDL_Rect tempRect = {HISTORY_BOTTOM_LEFT.x,
+                	                        HISTORY_TOP_RIGHT.y, HISTORY_WIDTH, HISTORY_HEIGHT};
+
+                        	        cropFromRenderTo(renderer, &tempRect, &tempRect);
+                                	m_History.renderHistory(renderer);
+	                        }
+	
 				m_History.renderHits(renderer, mGrid.numberOfHits(), 1);
 
 				mGrid.resetIsClicked();
-
-//				renderGame(renderer, 255);
 
 				mGrid.resetNumbersGrid(renderer);
 			}
