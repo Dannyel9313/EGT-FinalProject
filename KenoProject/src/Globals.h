@@ -104,20 +104,6 @@ const int minimumSpots = 2;
 const int informationLogo_width = 300;
 const int informationLogo_height = 80;
 
-//History constants
-const int HistoryBox_X = 670;
-const int HistoryBox_Y = 75;
-const int HistoryBox_Width = 150;
-const int HistoryBox_Height = 300;
-const int RoundTable_Width = HistoryBox_Width/2;
-const int RoundTable_Height = HistoryBox_Height;
-const int RoundTable_X = HistoryBox_X;
-const int RoundTable_Y = HistoryBox_Y;
-const int HitTable_Width = HistoryBox_Width/2;
-const int HitTable_Height = HistoryBox_Height;
-const int HitTable_X = HistoryBox_X+(HistoryBox_Width/2);
-const int HitTable_Y = HistoryBox_Y;
-
 // Number of frames
 const int framesNumber = 199;
 
@@ -176,7 +162,67 @@ const int cashOutRect_height = 40;
 const int cashOutButtonText_width = 80;
 const int cashOutButtonText_height = 35;
 
+//Pay table
+const SDL_Point TOP_RIGHT_POINT = {820, 0};
+const SDL_Point BOTTOM_LEFT_POINT = {585, 225};
+const SDL_Color RED = {153, 0, 0};
+const SDL_Color WHITE = {255, 255, 255};
+const int PAYTABLE_WIDTH = TOP_RIGHT_POINT.x - BOTTOM_LEFT_POINT.x;
+const int PAYTABLE_HEIGHT = BOTTOM_LEFT_POINT.y - TOP_RIGHT_POINT.y;
+const int PAYTABLE_RIGHT_MARGIN = 40;
+const int PAYTABLE_TOP_MARGIN = 5;
+const int PAYTABLE_LEFT_MARGIN = 30;
+const int HITS_TEXT_WIDTH = PAYTABLE_WIDTH/2 - PAYTABLE_RIGHT_MARGIN;
+const int HITS_TEXT_HEIGHT = PAYTABLE_HEIGHT/11;
+const int HITS_TEXT_X = BOTTOM_LEFT_POINT.x + PAYTABLE_LEFT_MARGIN;
+const int HITS_TEXT_Y = TOP_RIGHT_POINT.y + PAYTABLE_TOP_MARGIN;
+const int PAY_TEXT_WIDTH = PAYTABLE_WIDTH/2 - PAYTABLE_RIGHT_MARGIN - 20;
+const int PAY_TEXT_HEIGHT = PAYTABLE_HEIGHT/11;
+const int PAY_TEXT_X = BOTTOM_LEFT_POINT.x + PAYTABLE_WIDTH/2 + PAYTABLE_LEFT_MARGIN;
+const int PAY_TEXT_Y = TOP_RIGHT_POINT.y + PAYTABLE_TOP_MARGIN;
+const int HITS_RECT_X = HITS_TEXT_X + HITS_TEXT_WIDTH - 20;
+const int HITS_RECT_Y = HITS_TEXT_Y;
+const int HITS_RECT_WIDTH = PAY_TEXT_WIDTH - 40;
+const int HITS_RECT_HEIGHT = PAY_TEXT_HEIGHT;
+const int PAY_RECT_X = PAY_TEXT_X + PAY_TEXT_WIDTH - 20;
+const int PAY_RECT_Y = PAY_TEXT_Y;
+const int PAY_RECT_WIDTH = PAY_TEXT_WIDTH - 40;
+const int PAY_RECT_HEIGHT = PAY_TEXT_HEIGHT;
+ 
+const int arrayQueficients[9][10] =
+        {{1, 9, 0, 0, 0, 0, 0, 0, 0, 0},
+        {1, 2, 16, 0, 0, 0, 0, 0, 0, 0},
+        {0, 2, 6, 12, 0, 0, 0, 0, 0, 0},
+        {0, 1, 3, 15, 50, 0, 0, 0, 0, 0},
+        {0, 1, 2, 3, 30, 75, 0, 0, 0, 0},
+        {0, 0, 1, 6, 12, 36, 100, 0, 0, 0},
+        {0, 0, 1, 3, 6, 19, 90, 720, 0, 0},
+        {0, 0, 1, 2, 4, 8, 20, 80, 1200, 0},
+        {0, 0, 1, 2, 3, 5, 10, 30, 600, 1800}};
 
+//History constants
+const SDL_Point HISTORY_TOP_RIGHT = {820, 225};
+const SDL_Point HISTORY_BOTTOM_LEFT = {585, 460};
+const int HISTORY_X = HISTORY_BOTTOM_LEFT.x;
+const int HISTORY_Y = HISTORY_TOP_RIGHT.y;
+const int HISTORY_WIDTH = HISTORY_TOP_RIGHT.x - HISTORY_BOTTOM_LEFT.x;
+const int HISTORY_HEIGHT = HISTORY_BOTTOM_LEFT.y - HISTORY_TOP_RIGHT.y;
+const int ROUNDTABLE_TEXT_WIDTH = HISTORY_WIDTH/2 - 40;
+const int ROUNDTABLE_TEXT_HEIGHT = HISTORY_HEIGHT/10;
+const int ROUNDTABLE_TEXT_X = HISTORY_X + 20;
+const int ROUNDTABLE_TEXT_Y = HISTORY_Y;
+const int HITTABLE_TEXT_WIDTH = HISTORY_WIDTH/2 - 40;
+const int HITTABLE_TEXT_HEIGHT = HISTORY_HEIGHT/10;
+const int HITTABLE_TEXT_X = HISTORY_X + 20 + HISTORY_WIDTH/2;
+const int HITTABLE_TEXT_Y = HISTORY_Y; 
+const int ROUNDTABLE_RECT_WIDTH = ROUNDTABLE_TEXT_WIDTH - 60;
+const int ROUNDTABLE_RECT_HEIGHT = ROUNDTABLE_TEXT_HEIGHT;
+const int ROUNDTABLE_RECT_X = ROUNDTABLE_TEXT_X + 70;
+const int ROUNDTABLE_RECT_Y = ROUNDTABLE_TEXT_Y;
+const int HITTABLE_RECT_WIDTH = HITTABLE_TEXT_WIDTH - 80;
+const int HITTABLE_RECT_HEIGHT = HITTABLE_TEXT_HEIGHT;
+const int HITTABLE_RECT_X = HITTABLE_TEXT_X + 70;
+const int HITTABLE_RECT_Y = HITTABLE_TEXT_Y;
  
 
 #endif /* GLOBALS_H_ */

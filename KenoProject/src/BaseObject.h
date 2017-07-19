@@ -46,6 +46,9 @@ class BaseObject
 		//set alpha modulation
 		void setAlpha(Uint8 alpha);
 
+		//Set rect
+		void setKRect(const SDL_Rect&);
+
 		//Deallocates texture
 		void free();
 

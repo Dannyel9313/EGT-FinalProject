@@ -15,11 +15,12 @@ class NumbersGrid: public BaseObject
 		void loadTTF();
 
 		//Change color if clicked
-		void doIfClicked(SDL_Renderer*, const SDL_Event&);
+		bool doIfClicked(SDL_Renderer*, const SDL_Event&);
+
+		//Raise the flag of 10 numbers to be clicked
+		void pickRandomChoices(SDL_Renderer*);
 
 		void pickRandomNumbers(SDL_Renderer*, const SDL_Event&);
-
-		void pickTenRandNumbersOnBoard(SDL_Renderer* renderer, const SDL_Event& e);
 
 		void resetRandFlags();
 
@@ -31,8 +32,6 @@ class NumbersGrid: public BaseObject
 
 		//How many numbers are clicked
 		int numbersClicked();
-
-		void pickRandomChoices(SDL_Renderer* renderer);
 
 		//Re-render rect
 		void reRenderClickedNumbers(SDL_Renderer*, int);
@@ -49,6 +48,9 @@ class NumbersGrid: public BaseObject
 		//Reset all glags
 		void resetFlags();
 
+		//Reset isClickedFlags
+		void resetIsClicked();
+
 		//Get random numbers
 		int* getRandomNumbers();
 
@@ -62,8 +64,6 @@ class NumbersGrid: public BaseObject
 		void printNumbers(SDL_Renderer*);
 
 		void printSpecificNumber(SDL_Renderer*, int);
-
-
 
 	private:
 		const char* toString(int);

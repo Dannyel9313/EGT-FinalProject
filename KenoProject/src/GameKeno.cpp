@@ -95,6 +95,12 @@ bool GameKeno::loadMedia()
 //	m_GameMode.getDrawAnimation().loadChunkEffect("Resources/Sounds/corkPop.wav");
 //	m_GameMode.getDrawAnimation().loadChunkEffect("Resources/Sounds/blop.wav");
 	
+	//Load pay table media
+	m_GameMode.getPayTable().getFont().setFont(TTF_OpenFont("Resources/Fonts/AUDI.TTF", 24));
+
+	//Load history table media
+	m_GameMode.getHistory().getFont().setFont(TTF_OpenFont("Resources/Fonts/AUDI.TTF", 24));
+
 	return success;
 }
 

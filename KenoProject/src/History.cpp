@@ -8,111 +8,87 @@ std::string History::toString(int val)
 
 int History::currentRound = 0;
 
-void History::setRoundTable(SDL_Renderer* renderer)
-{	
-	//X, Y, Width, Height
-	SDL_Rect tempRect = {RoundTable_X, RoundTable_Y, RoundTable_Width, RoundTable_Height};
-
-	//Set round text
-	tempRect.x += 9;
-	tempRect.w -= 9;
-	tempRect.h = RoundTable_Height/10;
-	round = tempRect;
-
-	//Push back round text rect
-	roundLines.push_back(tempRect);
-
-	//Set round numbers rect
-	int yPos = RoundTable_Y;
-	tempRect.x = RoundTable_X+35;
-	tempRect.w = RoundTable_Width-65;
-	for (int i = 0; i < 9; i++)
-	{
-		yPos += RoundTable_Height/10;		
-		tempRect.y = yPos;
-		roundLines.push_back(tempRect);
-	}
+void History::renderHistory(SDL_Renderer* renderer)
+{
+	roundedBoxRGBA(renderer, HISTORY_TOP_RIGHT.x, HISTORY_TOP_RIGHT.y,
+				HISTORY_BOTTOM_LEFT.x, HISTORY_BOTTOM_LEFT.y,
+				5, RED.r, RED.g, RED.b, 150); 
+	renderRoundText(renderer);
+	renderHitsText(renderer);
+	setHitsRects();
+	setRoundRects();
+	renderRounds(renderer);
 }
 
-void History::setHitsTable(SDL_Renderer* renderer)
-{	
-	SDL_Rect tempRect = {HitTable_X, HitTable_Y, HitTable_Width, HitTable_Height};
-	
-	//Set hit teVt
-	tempRect.x += 9;
-	tempRect.w -= 9;
-	tempRect.h = HitTable_Height/10;
-	round = tempRect;
+void History::renderRoundText(SDL_Renderer* renderer)
+{
+	SDL_Rect tempRect = {ROUNDTABLE_TEXT_X, ROUNDTABLE_TEXT_Y, 
+				ROUNDTABLE_TEXT_WIDTH, ROUNDTABLE_TEXT_HEIGHT};
 
-	//Push back round text rect
-	hitLines.push_back(tempRect);
+        m_text.setKRect(tempRect);
 
-	int yPos = RoundTable_Y;
-	tempRect.x = HitTable_X+35;
-	tempRect.w = RoundTable_Width-65;
-	for (int i = 0; i < 9; i++)
-	{
-		yPos += RoundTable_Height/10;		
-		tempRect.y = yPos;
-		hitLines.push_back(tempRect);
-	}
+        m_text.LoadFromRenderedText("round", renderer, WHITE);
+        m_text.textRender(m_text.getKRect(), m_text.getKTexture(), renderer);
 }
 
-/*void History::setLines(SDL_Renderer* renderer)
+void History::renderHitsText(SDL_Renderer* renderer)
 {
-	int yPos = 75;
-	SDL_Rect tempRect = {500, 0, 320, 30};
-	
-	for (int i = 0; i < 6; i++)
-	{
-		tempRect.y = yPos;
-		lines.push_back(tempRect);
-		yPos += 30;
-	}
-}*/
+	SDL_Rect tempRect = {HITTABLE_TEXT_X, HITTABLE_TEXT_Y, 
+				HITTABLE_TEXT_WIDTH, HITTABLE_TEXT_HEIGHT};
 
-/*void History::printHits(SDL_Renderer* renderer, int* hits)
+        m_text.setKRect(tempRect);
+
+        m_text.LoadFromRenderedText("hits", renderer, WHITE);
+        m_text.textRender(m_text.getKRect(), m_text.getKTexture(), renderer);
+}
+
+void History::setHitsRects()
 {
-	std::string path = "History.ttf";
-	TTF_Font* font = TTF_OpenFont(path.c_str(), 6);
+        SDL_Rect tempRect = {HITTABLE_RECT_X, HITTABLE_RECT_Y,
+                                HITTABLE_RECT_WIDTH, HITTABLE_RECT_HEIGHT};
 
-	SDL_Color white = {255, 255, 255};
+        for (int i = 0; i < 9; i++)
+        {
+                tempRect.y += HISTORY_HEIGHT/10;
+                hitsRects.push_back(tempRect);
+        }
+}
 
-	int temp;
-	std::string str;
-	std::string str_one;
-	if(hits!=NULL) 
-	{
-		for (int i = 0; i < 80; i++)
+void History::setRoundRects()
+{
+        SDL_Rect tempRect = {ROUNDTABLE_RECT_X, ROUNDTABLE_RECT_Y,
+                                ROUNDTABLE_RECT_WIDTH, ROUNDTABLE_RECT_HEIGHT};
+
+        for (int i = 0; i < 9; i++)
+        {
+                tempRect.y += HISTORY_HEIGHT/10;
+                roundsRects.push_back(tempRect);
+        }
+}
+
+void History::renderRounds(SDL_Renderer* renderer)
+{
+	for (int i = 0; i < 9; i++)
+        {        
+		if (i+1 >= 10)
 		{
-			temp = 1;
-			if (hits[i] == 1)
-			{
-				temp = temp+i;
-				str = toString(temp) + "|";
-				str_one = str_one + str;  
-			}
+			roundsRects[i].w = ROUNDTABLE_RECT_WIDTH + 20;       
+                	roundsRects[i].x = ROUNDTABLE_RECT_X - 20;
+			m_text.LoadFromRenderedText(toString(i+1), renderer, WHITE);
+			m_text.textRender(&roundsRects[i], m_text.getKTexture(), renderer);
 		}
-	}
+		else if (i+1 < 10)
+		{
+			roundsRects[i].w = ROUNDTABLE_RECT_WIDTH;       
+                	roundsRects[i].x = ROUNDTABLE_RECT_X-15;
+			m_text.LoadFromRenderedText(toString(i+1), renderer, WHITE);
+			m_text.textRender(&roundsRects[i], m_text.getKTexture(), renderer);
+		}
+      	}
+}
 
-	if(!str.empty())
-	{
-		loadTextureFromTTF(str_one, renderer, font, white);
-		render(renderer, &lines[0]);
-	}
-
-	if (font != NULL)
-	{
-		TTF_CloseFont(font);
-		font = NULL;
-	}
-	delete[] hits;
-}*/
-
-void History::printHits(SDL_Renderer* renderer, int hits, int pushFlag)
+void History::renderHits(SDL_Renderer* renderer, int hits, int pushFlag)
 {
-	SDL_Color white = {255, 255, 255};
-	
 	if(pushFlag == 1)
 	{
 		if(currentRound == 10)
@@ -120,47 +96,29 @@ void History::printHits(SDL_Renderer* renderer, int hits, int pushFlag)
 			currentRound = 1;
 			saveHits.clear();
 		}
-
 		saveHits.push_back(hits);	
 	}
 
 	for (int i = 0; i < currentRound; i++)	
 	{
-		historyText.LoadFromRenderedText(toString(saveHits[i]), renderer, white);
-		historyText.textRender(&hitLines[i+1], historyText.getKTexture(), renderer);
-	}
-
-}
-
-void History::printHistory(SDL_Renderer* renderer)
-{
-	roundedBoxRGBA(renderer, 820, 75, 670, 375, 5, 153, 0, 0, 150); 
-}
-
-void History::printRounds(SDL_Renderer* renderer)
-{
-	SDL_Color white = {255, 255, 255};
-	for (int i = 0; i < 9; i++)
-	{
-		historyText.LoadFromRenderedText(toString(i+1), renderer, white);
-		historyText.textRender(&roundLines[i+1], historyText.getKTexture(), renderer);
+		if(saveHits[i] >= 10)
+		{
+			hitsRects[i].w = HITTABLE_RECT_WIDTH + 35;       
+                	hitsRects[i].x = HITTABLE_RECT_X - 25;
+			m_text.LoadFromRenderedText(toString(saveHits[i]), renderer, WHITE);
+			m_text.textRender(&hitsRects[i], m_text.getKTexture(), renderer);
+		}
+		else if (saveHits[i] < 10)
+		{		
+			hitsRects[i].w = HITTABLE_RECT_WIDTH + 20;       
+                	hitsRects[i].x = HITTABLE_RECT_X - 20;
+			m_text.LoadFromRenderedText(toString(saveHits[i]), renderer, WHITE);
+			m_text.textRender(&hitsRects[i], m_text.getKTexture(), renderer);
+		}
 	}
 }
 
-void History::initializeHistory(SDL_Renderer* renderer)
+Font& History::getFont()
 {
-	printHistory(renderer);
-
-	setHitsTable(renderer);
-	setRoundTable(renderer);	
-
-	historyText.setFont(TTF_OpenFont("Resources/Fonts/AUDI.TTF", 16));
-	SDL_Color white = {255, 255, 255};
-
-	historyText.LoadFromRenderedText("round", renderer, white);
-	historyText.textRender(&roundLines[0], historyText.getKTexture(), renderer);
-	historyText.LoadFromRenderedText("hits", renderer, white);
-	historyText.textRender(&hitLines[0], historyText.getKTexture(), renderer);	
-
-	printRounds(renderer);
+	return m_text;
 }

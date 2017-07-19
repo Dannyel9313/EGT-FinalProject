@@ -8,19 +8,23 @@ class History: public BaseObject
 {
 	public:
 		static int currentRound;
-		void printHistory(SDL_Renderer*);
-		void printHits(SDL_Renderer*, int, int);
-		void setRoundTable(SDL_Renderer*);
-		void setHitsTable(SDL_Renderer*);
+	
+		void renderHistory(SDL_Renderer*);
+		void renderRoundText(SDL_Renderer*);
+		void renderHitsText(SDL_Renderer*);
+		void setRoundRects();
+		void setHitsRects();
+		void renderRounds(SDL_Renderer*);
+		void renderHits(SDL_Renderer*, int, int);
+		Font& getFont();
+
 		std::string toString(int);
-		void initializeHistory(SDL_Renderer*);
-		void printRounds(SDL_Renderer*);
 	private:
-		Font historyText;
+		Font m_text;
 		SDL_Rect round;
 		SDL_Rect hits;
-		std::vector <SDL_Rect> roundLines;
-		std::vector <SDL_Rect> hitLines;
+		std::vector <SDL_Rect> roundsRects;
+		std::vector <SDL_Rect> hitsRects;
 		std::vector <int> saveHits;
 };
 

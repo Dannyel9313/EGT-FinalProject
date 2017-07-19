@@ -12,19 +12,24 @@
 #include "History.h"
 #include "KenoDrawAnimation.h"
 #include "CashOut.h"
+#include "PayTable.h"
 
 class Game: public BaseObject
 {
 	public:
+		Game();
+
 		//Flags
 		std::bitset <80> flags;
 		std::vector <SDL_Color> colors;
 
 		//Get Number grid
-		NumbersGrid & getNumbersGrid();
+		NumbersGrid& getNumbersGrid();
 
 		//Get bet button
-		BetButton & getBetButton();
+		BetButton& getBetButton();
+
+		PayTable& getPayTable();
 
 		//Render the whole game screen
 		void renderGame(SDL_Renderer*, int alpha);
@@ -84,9 +89,9 @@ class Game: public BaseObject
 	private:
 		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
 
-	 	bool m_minBetFlag = true;
- 		bool m_maxBetFlag = true;
- 		int m_bet = 0;
+	 	bool m_minBetFlag;
+ 		bool m_maxBetFlag;
+ 		int m_bet;
 		NumbersGrid mGrid;
 		BetButton mBetButton;
 		MinBet m_minBetButton;
@@ -98,6 +103,7 @@ class Game: public BaseObject
 		History m_History;
 		KenoDrawAnimation m_DrawAnimation;		
 		CashOut m_cashOutButton;
+		PayTable m_PayTable;
 };
 
 #endif

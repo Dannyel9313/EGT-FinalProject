@@ -171,6 +171,11 @@ SDL_Rect* BaseObject::getKRect()
 	return &m_KRect;
 }
 
+void BaseObject::setKRect(const SDL_Rect& rect)
+{
+	m_KRect = rect;
+}
+
 SDL_Texture* BaseObject::getKTexture() 
 {
 	return m_KTexture;

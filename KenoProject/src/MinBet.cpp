@@ -1,15 +1,7 @@
-/*
- * MinBet.cpp
- *
- *  Created on: 14.07.2017
- *      Author: Danny
- */
-
 #include "MinBet.h"
 
-MinBet::MinBet() {
-	// TODO Auto-generated constructor stub
-
+MinBet::MinBet() : m_MinimalBet(0)
+{
 }
 
 MinBet::~MinBet() {
