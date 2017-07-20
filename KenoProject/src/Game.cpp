@@ -159,6 +159,12 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 		m_minBetButton.renderMinBet(renderer);
 		m_maxBetButton.renderMaxBet(renderer);
 	}
+
+	if(m_volumeButton.getButtonRect().isClicked(e,
+			m_volumeButton.getButtonRect().getKRect()))
+	{
+		loadMainMusic();
+	}
 }
 
 void Game::mouseOnButtonRender(SDL_Renderer* renderer, const SDL_Event& e)
@@ -423,11 +429,26 @@ void Game::loadWinScreen(int spots, int match, int bet)
 
 void Game::loadMainMusic()
 {
-	Mix_Chunk* mainMusic = NULL;
-	mainMusic = Mix_LoadWAV("Resources/Sounds/Casino (Instrumental) - Patzmarzbelt's Collections [HD].mp3");
+	Mix_Music* mainMusic = NULL;
+	mainMusic = Mix_LoadMUS("Resources/Sounds/Casino (Instrumental) - Patzmarzbelt's Collections [HD].mp3");
 	if(mainMusic == NULL)
 	{
 		std::cerr << "Could not load music file!" << std::endl;
 	}
-	Mix_PlayChannel(-1, mainMusic, 0);
+	if(Mix_PlayingMusic() == 0)
+	{
+		Mix_PlayMusic(mainMusic, -1);
+	}
+	else
+	{
+		if( Mix_PausedMusic() == 1 )
+		{
+			Mix_ResumeMusic();
+		}
+		else
+		{
+		Mix_PauseMusic();
+		}
+	}
+
 }

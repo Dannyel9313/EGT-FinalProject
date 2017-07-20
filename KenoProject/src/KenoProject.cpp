@@ -32,6 +32,7 @@ int main(int argc, char* args[])
 			{
 			SDL_RenderClear(game.getKenoRenderer());
 			game.getIntroMode().loadIntroScreen(game.getKenoRenderer());
+			game.getGameMode().loadMainMusic();
 			while (!quit && introMode == 1) 
 			{
 				while (SDL_PollEvent(&e) != 0) 
@@ -46,6 +47,7 @@ int main(int argc, char* args[])
 						game.getIntroMode().getInsertCredit().setCreditToGame(&e);
 						game.getIntroMode().startNewGameClicked(&gameMode, e);
 						game.getIntroMode().startInfoClicked(&infoMode, e);
+						game.getIntroMode().introButtonsChunk(e);
 					}
 				}
 				if (gameMode || infoMode)
