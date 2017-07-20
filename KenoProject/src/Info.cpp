@@ -127,9 +127,11 @@ void Info::renderButtonDown(SDL_Renderer* renderer, const SDL_Event& e) {
 
 }
 
-void Info::buttonReturn(bool* introMode, const SDL_Event& e) {
+void Info::buttonReturn(bool* introMode, const SDL_Event& e)
+{
 
-	if (m_buttonReturn.isClicked(e, m_buttonReturn.getKRect())) {
+	if (m_buttonReturn.isClicked(e, m_buttonReturn.getKRect()))
+	{
 		*introMode = true;
 	}
 

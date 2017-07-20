@@ -7,25 +7,28 @@
 
 #include "MaxBet.h"
 
-MaxBet::MaxBet() {
+MaxBet::MaxBet():m_maximalBet(0)
+{
 	// TODO Auto-generated constructor stub
 
 }
 
-MaxBet::~MaxBet() {
+MaxBet::~MaxBet()
+{
 	// TODO Auto-generated destructor stub
 }
 
 
-void MaxBet::setNumbersColor() {
+void MaxBet::setNumbersColor()
+{
 
-	m_numFiveMax.setButtonColor(0, 0, 0);
-	m_numTenMax.setButtonColor(0, 0, 0);
-	m_numTwentyMax.setButtonColor(0, 0, 0);
-	m_numThirtyMax.setButtonColor(0, 0, 0);
-	m_numFourtyMax.setButtonColor(0, 0, 0);
-	m_numFiftyMax.setButtonColor(0, 0, 0);
-	m_maxBet.setButtonColor(0, 0, 0);
+	m_numFiveMax.setButtonColor(254, 254, 254);
+	m_numTenMax.setButtonColor(254, 254, 254);
+	m_numTwentyMax.setButtonColor(254, 254, 254);
+	m_numThirtyMax.setButtonColor(254, 254, 254);
+	m_numFourtyMax.setButtonColor(254, 254, 254);
+	m_numFiftyMax.setButtonColor(254, 254, 254);
+	m_maxBet.setButtonColor(254 , 254, 254);
 
 }
 
@@ -80,23 +83,23 @@ void MaxBet::choiceNumberFive(SDL_Renderer* renderer, const SDL_Event& e)
 				m_numFiveMax.LoadFromRenderedText("5", renderer, m_numFiveMax.getButtonColor());
 				m_numFiveMax.render(renderer,m_numFiveMax.getKRect());
 
-				m_numTwentyMax.setButtonColor(0, 0, 0);
+				m_numTwentyMax.setButtonColor(254, 254, 254);
 				m_numTwentyMax.LoadFromRenderedText("20",renderer,m_numTwentyMax.getButtonColor());
 				m_numTwentyMax.render(renderer,m_numTwentyMax.getKRect());
 
-				m_numThirtyMax.setButtonColor(0, 0, 0);
+				m_numThirtyMax.setButtonColor(254, 254, 254);
 				m_numThirtyMax.LoadFromRenderedText("30",renderer,m_numThirtyMax.getButtonColor());
 				m_numThirtyMax.render(renderer, m_numThirtyMax.getKRect());
 
-				m_numFourtyMax.setButtonColor(0, 0, 0);
+				m_numFourtyMax.setButtonColor(254, 254, 254);
 				m_numFourtyMax.LoadFromRenderedText("40",renderer,m_numFourtyMax.getButtonColor());
 				m_numFourtyMax.render(renderer, m_numFourtyMax.getKRect());
 
-				m_numFiftyMax.setButtonColor(0, 0, 0);
+				m_numFiftyMax.setButtonColor(254, 254, 254);
 				m_numFiftyMax.LoadFromRenderedText("50",renderer,m_numFiftyMax.getButtonColor());
 				m_numFiftyMax.render(renderer,m_numFiftyMax.getKRect());
 
-				m_numTenMax.setButtonColor(0, 0, 0);
+				m_numTenMax.setButtonColor(254, 254, 254);
 				m_numTenMax.LoadFromRenderedText("10",renderer,m_numTenMax.getButtonColor());
 				m_numTenMax.render(renderer,m_numTenMax.getKRect());
 				setMaximalBet(5);
@@ -115,7 +118,7 @@ void MaxBet::choiceNumberTwenty(SDL_Renderer* renderer, const SDL_Event& e)
 				m_buttonStartCircleMax.render(renderer,m_buttonStartCircleMax.getKRect());
 
 				m_maxBet.render(renderer,m_maxBet.getKRect());
-				m_numFiveMax.setButtonColor(0, 0, 0);
+				m_numFiveMax.setButtonColor(254, 254, 254);
 				m_numFiveMax.LoadFromRenderedText("5", renderer, m_numFiveMax.getButtonColor());
 				m_numFiveMax.render(renderer,m_numFiveMax.getKRect());
 
@@ -123,19 +126,19 @@ void MaxBet::choiceNumberTwenty(SDL_Renderer* renderer, const SDL_Event& e)
 				m_numTwentyMax.LoadFromRenderedText("20",renderer,m_numTwentyMax.getButtonColor());
 				m_numTwentyMax.render(renderer,m_numTwentyMax.getKRect());
 
-				m_numThirtyMax.setButtonColor(0, 0, 0);
+				m_numThirtyMax.setButtonColor(254, 254, 254);
 				m_numThirtyMax.LoadFromRenderedText("30",renderer,m_numThirtyMax.getButtonColor());
 				m_numThirtyMax.render(renderer, m_numThirtyMax.getKRect());
 
-				m_numFourtyMax.setButtonColor(0, 0, 0);
+				m_numFourtyMax.setButtonColor(254, 254, 254);
 				m_numFourtyMax.LoadFromRenderedText("40",renderer,m_numFourtyMax.getButtonColor());
 				m_numFourtyMax.render(renderer, m_numFourtyMax.getKRect());
 
-				m_numFiftyMax.setButtonColor(0, 0, 0);
+				m_numFiftyMax.setButtonColor(254, 254, 254);
 				m_numFiftyMax.LoadFromRenderedText("50",renderer,m_numFiftyMax.getButtonColor());
 				m_numFiftyMax.render(renderer,m_numFiftyMax.getKRect());
 
-				m_numTenMax.setButtonColor(0, 0, 0);
+				m_numTenMax.setButtonColor(254, 254, 254);
 				m_numTenMax.LoadFromRenderedText("10",renderer,m_numTenMax.getButtonColor());
 				m_numTenMax.render(renderer,m_numTenMax.getKRect());
 				setMaximalBet(20);
@@ -152,11 +155,11 @@ void MaxBet::choiceNumberThirty(SDL_Renderer* renderer, const SDL_Event& e)
 					m_buttonStartCircleMax.render(renderer,m_buttonStartCircleMax.getKRect());
 
 					m_maxBet.render(renderer,m_maxBet.getKRect());
-					m_numFiveMax.setButtonColor(0, 0, 0);
+					m_numFiveMax.setButtonColor(254, 254, 254);
 					m_numFiveMax.LoadFromRenderedText("5", renderer, m_numFiveMax.getButtonColor());
 					m_numFiveMax.render(renderer,m_numFiveMax.getKRect());
 
-					m_numTwentyMax.setButtonColor(0, 0, 0);
+					m_numTwentyMax.setButtonColor(254, 254, 254);
 					m_numTwentyMax.LoadFromRenderedText("20",renderer,m_numTwentyMax.getButtonColor());
 					m_numTwentyMax.render(renderer,m_numTwentyMax.getKRect());
 
@@ -164,15 +167,15 @@ void MaxBet::choiceNumberThirty(SDL_Renderer* renderer, const SDL_Event& e)
 					m_numThirtyMax.LoadFromRenderedText("30",renderer,m_numThirtyMax.getButtonColor());
 					m_numThirtyMax.render(renderer, m_numThirtyMax.getKRect());
 
-					m_numFourtyMax.setButtonColor(0, 0, 0);
+					m_numFourtyMax.setButtonColor(254, 254, 254);
 					m_numFourtyMax.LoadFromRenderedText("40",renderer,m_numFourtyMax.getButtonColor());
 					m_numFourtyMax.render(renderer, m_numFourtyMax.getKRect());
 
-					m_numFiftyMax.setButtonColor(0, 0, 0);
+					m_numFiftyMax.setButtonColor(254, 254, 254);
 					m_numFiftyMax.LoadFromRenderedText("50",renderer,m_numFiftyMax.getButtonColor());
 					m_numFiftyMax.render(renderer,m_numFiftyMax.getKRect());
 
-					m_numTenMax.setButtonColor(0, 0, 0);
+					m_numTenMax.setButtonColor(254, 254, 254);
 					m_numTenMax.LoadFromRenderedText("10",renderer,m_numTenMax.getButtonColor());
 					m_numTenMax.render(renderer,m_numTenMax.getKRect());
 					setMaximalBet(30);
@@ -189,15 +192,15 @@ void MaxBet::choiceNumberFourty(SDL_Renderer* renderer, const SDL_Event& e)
 					m_buttonStartCircleMax.render(renderer,m_buttonStartCircleMax.getKRect());
 
 					m_maxBet.render(renderer,m_maxBet.getKRect());
-					m_numFiveMax.setButtonColor(0, 0, 0);
+					m_numFiveMax.setButtonColor(254, 254, 254);
 					m_numFiveMax.LoadFromRenderedText("5", renderer, m_numFiveMax.getButtonColor());
 					m_numFiveMax.render(renderer,m_numFiveMax.getKRect());
 
-					m_numTwentyMax.setButtonColor(0, 0, 0);
+					m_numTwentyMax.setButtonColor(254, 254, 254);
 					m_numTwentyMax.LoadFromRenderedText("20",renderer,m_numTwentyMax.getButtonColor());
 					m_numTwentyMax.render(renderer,m_numTwentyMax.getKRect());
 
-					m_numThirtyMax.setButtonColor(0, 0, 0);
+					m_numThirtyMax.setButtonColor(254, 254, 254);
 					m_numThirtyMax.LoadFromRenderedText("30",renderer,m_numThirtyMax.getButtonColor());
 					m_numThirtyMax.render(renderer, m_numThirtyMax.getKRect());
 
@@ -205,11 +208,11 @@ void MaxBet::choiceNumberFourty(SDL_Renderer* renderer, const SDL_Event& e)
 					m_numFourtyMax.LoadFromRenderedText("40",renderer,m_numFourtyMax.getButtonColor());
 					m_numFourtyMax.render(renderer, m_numFourtyMax.getKRect());
 
-					m_numFiftyMax.setButtonColor(0, 0, 0);
+					m_numFiftyMax.setButtonColor(254, 254, 254);
 					m_numFiftyMax.LoadFromRenderedText("50",renderer,m_numFiftyMax.getButtonColor());
 					m_numFiftyMax.render(renderer,m_numFiftyMax.getKRect());
 
-					m_numTenMax.setButtonColor(0, 0, 0);
+					m_numTenMax.setButtonColor(254, 254, 254);
 					m_numTenMax.LoadFromRenderedText("10",renderer,m_numTenMax.getButtonColor());
 					m_numTenMax.render(renderer,m_numTenMax.getKRect());
 					setMaximalBet(40);
@@ -245,19 +248,19 @@ void MaxBet::choiceNumberFifty(SDL_Renderer* renderer, const SDL_Event& e)
 					m_buttonStartCircleMax.render(renderer,m_buttonStartCircleMax.getKRect());
 
 					m_maxBet.render(renderer,m_maxBet.getKRect());
-					m_numFiveMax.setButtonColor(0, 0, 0);
+					m_numFiveMax.setButtonColor(254, 254, 254);
 					m_numFiveMax.LoadFromRenderedText("5", renderer, m_numFiveMax.getButtonColor());
 					m_numFiveMax.render(renderer,m_numFiveMax.getKRect());
 
-					m_numTwentyMax.setButtonColor(0, 0, 0);
+					m_numTwentyMax.setButtonColor(254, 254, 254);
 					m_numTwentyMax.LoadFromRenderedText("20",renderer,m_numTwentyMax.getButtonColor());
 					m_numTwentyMax.render(renderer,m_numTwentyMax.getKRect());
 
-					m_numThirtyMax.setButtonColor(0, 0, 0);
+					m_numThirtyMax.setButtonColor(254, 254, 254);
 					m_numThirtyMax.LoadFromRenderedText("30",renderer,m_numThirtyMax.getButtonColor());
 					m_numThirtyMax.render(renderer, m_numThirtyMax.getKRect());
 
-					m_numFourtyMax.setButtonColor(0, 0, 0);
+					m_numFourtyMax.setButtonColor(254, 254, 254);
 					m_numFourtyMax.LoadFromRenderedText("40",renderer,m_numFourtyMax.getButtonColor());
 					m_numFourtyMax.render(renderer, m_numFourtyMax.getKRect());
 
@@ -265,7 +268,7 @@ void MaxBet::choiceNumberFifty(SDL_Renderer* renderer, const SDL_Event& e)
 					m_numFiftyMax.LoadFromRenderedText("50",renderer,m_numFiftyMax.getButtonColor());
 					m_numFiftyMax.render(renderer,m_numFiftyMax.getKRect());
 
-					m_numTenMax.setButtonColor(0, 0, 0);
+					m_numTenMax.setButtonColor(254, 254, 254);
 					m_numTenMax.LoadFromRenderedText("10",renderer,m_numTenMax.getButtonColor());
 					m_numTenMax.render(renderer,m_numTenMax.getKRect());
 					setMaximalBet(50);
@@ -282,23 +285,23 @@ void MaxBet::choiceNumberTen(SDL_Renderer* renderer, const SDL_Event& e)
 					m_buttonStartCircleMax.render(renderer,m_buttonStartCircleMax.getKRect());
 
 					m_maxBet.render(renderer,m_maxBet.getKRect());
-					m_numFiveMax.setButtonColor(0, 0, 0);
+					m_numFiveMax.setButtonColor(254, 254, 254);
 					m_numFiveMax.LoadFromRenderedText("5", renderer, m_numFiveMax.getButtonColor());
 					m_numFiveMax.render(renderer,m_numFiveMax.getKRect());
 
-					m_numTwentyMax.setButtonColor(0, 0, 0);
+					m_numTwentyMax.setButtonColor(254, 254, 254);
 					m_numTwentyMax.LoadFromRenderedText("20",renderer,m_numTwentyMax.getButtonColor());
 					m_numTwentyMax.render(renderer,m_numTwentyMax.getKRect());
 
-					m_numThirtyMax.setButtonColor(0, 0, 0);
+					m_numThirtyMax.setButtonColor(254, 254, 254);
 					m_numThirtyMax.LoadFromRenderedText("30",renderer,m_numThirtyMax.getButtonColor());
 					m_numThirtyMax.render(renderer, m_numThirtyMax.getKRect());
 
-					m_numFourtyMax.setButtonColor(0, 0, 0);
+					m_numFourtyMax.setButtonColor(254, 254, 254);
 					m_numFourtyMax.LoadFromRenderedText("40",renderer,m_numFourtyMax.getButtonColor());
 					m_numFourtyMax.render(renderer, m_numFourtyMax.getKRect());
 
-					m_numFiftyMax.setButtonColor(0, 0, 0);
+					m_numFiftyMax.setButtonColor(254, 254, 254);
 					m_numFiftyMax.LoadFromRenderedText("50",renderer,m_numFiftyMax.getButtonColor());
 					m_numFiftyMax.render(renderer,m_numFiftyMax.getKRect());
 
@@ -388,7 +391,7 @@ void MaxBet::changeColorOnMouseOver(SDL_Renderer* renderer)
 	}
 	else
 	{
-		m_maxBet.setButtonColor(0, 0, 0);
+		m_maxBet.setButtonColor(254, 254, 254);
 		m_maxBet.LoadFromRenderedText("MAX", renderer, m_maxBet.getButtonColor());
 			m_buttonStartCircleMax.render(renderer, m_buttonStartCircleMax.getKRect());
 			m_maxBet.textRender(m_maxBet.getKRect(),

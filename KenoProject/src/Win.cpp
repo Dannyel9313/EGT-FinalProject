@@ -47,8 +47,8 @@ void Win::renderWinInGame(SDL_Renderer* renderer) {
 
 
 void Win::setColor() {
-	m_winTextRect.setButtonColor(0, 0, 0);
-	m_winInGame.setButtonColor(0, 0, 0);
+	m_winTextRect.setButtonColor(254, 254, 254);
+	m_winInGame.setButtonColor(254, 254, 254);
 
 }
 

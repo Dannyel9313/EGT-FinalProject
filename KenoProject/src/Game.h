@@ -24,6 +24,8 @@ class Game: public BaseObject
 		std::bitset <80> flags;
 		std::vector <SDL_Color> colors;
 
+		void renderAfterAnimationGame(SDL_Renderer*, int alpha);
+
 		//Get Number grid
 		NumbersGrid& getNumbersGrid();
 
@@ -35,11 +37,17 @@ class Game: public BaseObject
 		//Render the whole game screen
 		void renderGame(SDL_Renderer*, int alpha);
 
+
+		// Play/pause music
+		void playPauseMusic(SDL_Renderer* renderer, const SDL_Event& e, Mix_Music* mainMusic);
+
 		// Change credit
 		void changeCreditOnClickingBet(SDL_Renderer* renderer, const SDL_Event& e);
 
 		// show win credit
 		void showWinInGame(SDL_Renderer* renderer);
+
+		double calculateCreditsInMoney(int credits);
 
 		//Get min bet button
 		MinBet& getMinBetButton();
@@ -80,7 +88,6 @@ class Game: public BaseObject
 		void drawAnimation(SDL_Renderer*, int*, SDL_Rect*);		
 		void drawAnimationReRender(SDL_Renderer*, SDL_Rect*);
 
-		//Calculates the win of the user
 		int calculateWin(int spots, int match, int bet);
 
 		//Get cash out button
@@ -90,14 +97,14 @@ class Game: public BaseObject
 		int getBet() const;
 		void setBet(int bet);
 
+		void cashOutButtonPushed(bool* outroMode, const SDL_Event& e);
+
 		// Loads win if the user won
 		void loadWinScreen(int spots, int match, int bet);
-
-		// Loads the main music
-		void loadMainMusic();
 	private:
 		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
 
+		bool m_setBetFlag;
 	 	bool m_minBetFlag;
  		bool m_maxBetFlag;
  		int m_bet;
@@ -107,13 +114,13 @@ class Game: public BaseObject
 		MaxBet m_maxBetButton;
 		ClearButton m_clearButton;
 		QuickPick m_quickPickButton;
-		VolumeButton m_volumeButton;
 		CreditInGame m_creditInGame;
 		Win m_winInGame;
 		History m_History;
 		KenoDrawAnimation m_DrawAnimation;		
 		CashOut m_cashOutButton;
 		PayTable m_PayTable;
+		VolumeButton m_volumeButton;
 };
 
 #endif

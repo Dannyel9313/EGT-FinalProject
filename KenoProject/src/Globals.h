@@ -97,14 +97,6 @@ const int betText_yIndent = 25;
 const int betText_width = 50;
 const int betText_height = 50;
 
-//Volume button position
-const int VOLUME_BUTTON_POSITION_X = 5;
-const int VOLUME_BUTTON_POSITION_Y = 35;
-
-//Volume buttons dimensions
-const int VOLUME_BUTTON_WIDTH = 50;
-const int VOLUME_BUTTON_HEIGHT = 50;
-
 //Minimum numbers to be chosen
 const int minimumSpots = 2;
 
@@ -232,5 +224,13 @@ const int HITTABLE_RECT_HEIGHT = HITTABLE_TEXT_HEIGHT;
 const int HITTABLE_RECT_X = HITTABLE_TEXT_X + 70;
 const int HITTABLE_RECT_Y = HITTABLE_TEXT_Y;
  
+//Volume button position
+const int VOLUME_BUTTON_POSITION_X = 5;
+const int VOLUME_BUTTON_POSITION_Y = 35;
+
+//Volume buttons dimensions
+const int VOLUME_BUTTON_WIDTH = 50;
+const int VOLUME_BUTTON_HEIGHT = 50;
+
 
 #endif /* GLOBALS_H_ */

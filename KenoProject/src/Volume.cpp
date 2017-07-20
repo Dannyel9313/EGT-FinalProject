@@ -1,32 +1,39 @@
 #include "Volume.h"
 
-Volume::Volume() {
+Volume::Volume()
+{
 	// TODO Auto-generated constructor stub
 	m_movingPoint = 129;
-	m_volumePoint = 69;
+	m_volumePoint = 50;
 }
 
-Volume::~Volume() {
+Volume::~Volume()
+{
 	// TODO Auto-generated destructor stub
 }
 
-Font& Volume::getFontDot() {
+Font& Volume::getFontDot()
+{
 	return m_FontDot;
 }
 
-Font& Volume::getFontDotLine() {
+Font& Volume::getFontDotLine()
+{
 	return m_FontDotLine;
 }
 
-Font& Volume::getFontMinus() {
+Font& Volume::getFontMinus()
+{
 	return m_FontMinus;
 }
 
-Font& Volume::getFontPlus() {
+Font& Volume::getFontPlus()
+{
 	return m_FontPlus;
 }
 
-void Volume::LoadVolumeElements(SDL_Renderer* renderer) {
+void Volume::LoadVolumeElements(SDL_Renderer* renderer)
+{
 
 	setElementsFont();
 	setElementsPositionDimension();
@@ -61,7 +68,8 @@ void Volume::LoadVolumeElements(SDL_Renderer* renderer) {
 
 }
 
-void Volume::setElementsPositionDimension() {
+void Volume::setElementsPositionDimension()
+{
 	m_FontDotLine.setPosition(83, 531, introVolumeSlider_width,
 			introVolumeSlider_height);
 
@@ -78,42 +86,51 @@ void Volume::setElementsPositionDimension() {
 	m_FontVolume.setPosition(43, 445, introButton_width, introButton_height);
 }
 
-void Volume::setElementsFont() {
+void Volume::setElementsFont()
+{
 
 	m_FontPlus.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 40));
 	m_FontMinus.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 40));
 	m_FontVolume.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 40));
 }
 
-void Volume::moveVolumeDot(SDL_Event* e) {
+void Volume::moveVolumeDot(SDL_Event* e)
+{
 
-	if (e->type == SDL_MOUSEBUTTONDOWN) {
-		if(m_movingPoint < 80 || m_volumePoint < 9){
+	if (e->type == SDL_MOUSEBUTTONDOWN)
+	{
+		if(m_movingPoint < 80 || m_volumePoint < 9)
+		{
 				m_movingPoint = 79;
 				m_volumePoint = 0;
 			}
-			if(m_movingPoint > 169 || m_volumePoint > 108){
+			if(m_movingPoint > 169 || m_volumePoint > 108)
+			{
 				m_movingPoint = 169;
 				m_volumePoint = 100;
 			}
-		if (m_FontPlus.onMouseOver(m_FontPlus.getKRect())) {
+		if (m_FontPlus.onMouseOver(m_FontPlus.getKRect()))
+		{
 			if (m_volumePoint > -1 && m_volumePoint < 101 && m_movingPoint > 78
-					&& m_movingPoint < 169) {
+					&& m_movingPoint < 169)
+			{
 
 				m_volumePoint+=10;
 				m_movingPoint+=10;
-				std::cout << "->" << m_movingPoint << "<-" << "->" << m_volumePoint << "<-" << std::endl;
+
 				Mix_VolumeMusic(m_volumePoint);
 
 			}
 		}
-		if(m_FontMinus.onMouseOver(m_FontMinus.getKRect())) {
+		if(m_FontMinus.onMouseOver(m_FontMinus.getKRect()))
+		{
 			if (m_volumePoint > 9 && m_volumePoint < 101 && m_movingPoint > 78
-					&& m_movingPoint < 178) {
+					&& m_movingPoint < 178)
+			{
 
 				m_volumePoint-=10;
 				m_movingPoint-=10;
-				std::cout << "->" << m_movingPoint << "<-" << "->" << m_volumePoint << "<-" << std::endl;
+
 				Mix_VolumeMusic(m_volumePoint);
 
 			}
@@ -122,33 +139,53 @@ void Volume::moveVolumeDot(SDL_Event* e) {
 	}
 }
 
-void Volume::setElementsColor() {
-	if (m_FontPlus.onMouseOver(m_FontPlus.getKRect())) {
+void Volume::setElementsColor()
+{
+	if (m_FontPlus.onMouseOver(m_FontPlus.getKRect()))
+	{
 		m_FontPlus.setButtonColor(255, 0, 39);
-	} else {
+	}
+	else
+	{
 		m_FontPlus.setButtonColor(251, 211, 72);
 	}
-	if (m_FontMinus.onMouseOver(m_FontMinus.getKRect())) {
+	if (m_FontMinus.onMouseOver(m_FontMinus.getKRect()))
+	{
 		m_FontMinus.setButtonColor(255, 0, 39);
-	} else {
+	}
+	else
+	{
 		m_FontMinus.setButtonColor(251, 211, 72);
 	}
 	m_FontVolume.setButtonColor(251, 211, 72);
 }
 
-Font& Volume::getFontVolume() {
+Font& Volume::getFontVolume()
+{
 	return m_FontVolume;
 }
 
-int Volume::getMovingPoint() const {
+int Volume::getMovingPoint() const
+{
 	return m_movingPoint;
 }
 
-void Volume::setMovingPoint(int movingPoint) {
+void Volume::setMovingPoint(int movingPoint)
+{
 	m_movingPoint = movingPoint;
 }
 
-Font& Volume::getFontChanelClick() {
+Font& Volume::getFontChanelClick()
+{
 	return m_FontChanelClick;
 }
 
+int Volume::getVolumePoint() const
+{
+	return m_volumePoint;
+}
+
+void Volume::setVolumePoint(int volumePoint)
+{
+	m_volumePoint = volumePoint;
+}

@@ -7,7 +7,6 @@ class NumbersGrid: public BaseObject
 {
 	public:
 		NumbersGrid();
-		~NumbersGrid();
 	
 		void createRects(SDL_Renderer*, int);
 		void setNumbersGridRect(int x, int y, int w, int h);		

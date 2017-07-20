@@ -31,8 +31,9 @@ int main(int argc, char* args[])
 		else 
 			{
 			SDL_RenderClear(game.getKenoRenderer());
-			game.getIntroMode().loadIntroScreen(game.getKenoRenderer());
-			game.getGameMode().loadMainMusic();
+//			game.getIntroMode().loadIntroScreen(game.getKenoRenderer());
+			Mix_PlayMusic(game.getMainMusic(),-1);
+			Mix_VolumeMusic(game.getIntroMode().getVolume().getVolumePoint());
 			while (!quit && introMode == 1) 
 			{
 				while (SDL_PollEvent(&e) != 0) 
@@ -69,6 +70,7 @@ int main(int argc, char* args[])
 				game.getGameMode().getCreditInGame().setGameCredit(game.getIntroMode().getInsertCredit().getCredit());
 				game.getGameMode().renderGame(game.getKenoRenderer(), 255);
 
+
 				quit = false;
 			}
 			while (!quit && gameMode == 1)
@@ -83,6 +85,7 @@ int main(int argc, char* args[])
                                 	{
 						game.getGameMode().changeColorOfClickedNumbers(game.getKenoRenderer(), e);
 						game.getGameMode().mouseButtonDownRender(game.getKenoRenderer(), e);
+						game.getGameMode().playPauseMusic(game.getKenoRenderer(), e, game.getMainMusic());
 						SDL_GetMouseState(&x, &y);
 						std::cout << "X: " << x << " " << "Y: " << y << std::endl;
                                         }

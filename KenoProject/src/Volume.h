@@ -30,6 +30,8 @@ public:
 	void setMovingPoint(int movingPoint);
 
 	Font& getFontChanelClick();
+	int getVolumePoint() const;
+	void setVolumePoint(int volumePoint);
 
 private:
 

@@ -42,13 +42,13 @@ BaseObject& MinBet::getButtonRect() {
 
 void MinBet::setNumbersColor() {
 
-	m_numOne.setButtonColor(0, 0, 0);
-	m_numTwo.setButtonColor(0, 0, 0);
-	m_numThree.setButtonColor(0, 0, 0);
-	m_numFour.setButtonColor(0, 0, 0);
-	m_numFive.setButtonColor(0, 0, 0);
-	m_numTen.setButtonColor(0, 0, 0);
-	m_minBet.setButtonColor(0, 0, 0);
+	m_numOne.setButtonColor(254, 254, 254);
+	m_numTwo.setButtonColor(254, 254, 254);
+	m_numThree.setButtonColor(254, 254, 254);
+	m_numFour.setButtonColor(254, 254, 254);
+	m_numFive.setButtonColor(254, 254, 254);
+	m_numTen.setButtonColor(254, 254, 254);
+	m_minBet.setButtonColor(254, 254, 254);
 
 }
 
@@ -135,23 +135,23 @@ void MinBet::choiceNumberOne(SDL_Renderer* renderer, const SDL_Event& e) {
 			m_numOne.LoadFromRenderedText("1", renderer, m_numOne.getButtonColor());
 			m_numOne.render(renderer,m_numOne.getKRect());
 
-			m_numTwo.setButtonColor(0, 0, 0);
+			m_numTwo.setButtonColor(254, 254, 254);
 			m_numTwo.LoadFromRenderedText("2",renderer,m_numTwo.getButtonColor());
 			m_numTwo.render(renderer,m_numTwo.getKRect());
 
-			m_numThree.setButtonColor(0, 0, 0);
-			m_numThree.LoadFromRenderedText("3",renderer,m_numThree.getButtonColor());
+			m_numThree.setButtonColor(254, 254, 254);
+			m_numThree.LoadFromRenderedText("3", renderer, m_numThree.getButtonColor());
 			m_numThree.render(renderer, m_numThree.getKRect());
 
-			m_numFour.setButtonColor(0, 0, 0);
+			m_numFour.setButtonColor(254, 254, 254);
 			m_numFour.LoadFromRenderedText("4",renderer,m_numFour.getButtonColor());
 			m_numFour.render(renderer, m_numFour.getKRect());
 
-			m_numFive.setButtonColor(0, 0, 0);
+			m_numFive.setButtonColor(254, 254, 254);
 			m_numFive.LoadFromRenderedText("5",renderer,m_numFive.getButtonColor());
 			m_numFive.render(renderer,m_numFive.getKRect());
 
-			m_numTen.setButtonColor(0, 0, 0);
+			m_numTen.setButtonColor(254, 254, 254);
 			m_numTen.LoadFromRenderedText("10",renderer,m_numTen.getButtonColor());
 			m_numTen.render(renderer,m_numTen.getKRect());
 			setMinimalBet(1);
@@ -167,7 +167,7 @@ void MinBet::choiceNumberTwo(SDL_Renderer* renderer, const SDL_Event& e) {
 			m_buttonStartCircle.render(renderer,m_buttonStartCircle.getKRect());
 
 			m_minBet.render(renderer,m_minBet.getKRect());
-			m_numOne.setButtonColor(0, 0, 0);
+			m_numOne.setButtonColor(254, 254, 254);
 			m_numOne.LoadFromRenderedText("1", renderer, m_numOne.getButtonColor());
 			m_numOne.render(renderer,m_numOne.getKRect());
 
@@ -175,19 +175,19 @@ void MinBet::choiceNumberTwo(SDL_Renderer* renderer, const SDL_Event& e) {
 			m_numTwo.LoadFromRenderedText("2",renderer,m_numTwo.getButtonColor());
 			m_numTwo.render(renderer,m_numTwo.getKRect());
 
-			m_numThree.setButtonColor(0, 0, 0);
+			m_numThree.setButtonColor(254, 254, 254);
 			m_numThree.LoadFromRenderedText("3",renderer,m_numThree.getButtonColor());
 			m_numThree.render(renderer, m_numThree.getKRect());
 
-			m_numFour.setButtonColor(0, 0, 0);
+			m_numFour.setButtonColor(254, 254, 254);
 			m_numFour.LoadFromRenderedText("4",renderer,m_numFour.getButtonColor());
 			m_numFour.render(renderer, m_numFour.getKRect());
 
-			m_numFive.setButtonColor(0, 0, 0);
+			m_numFive.setButtonColor(254, 254, 254);
 			m_numFive.LoadFromRenderedText("5",renderer,m_numFive.getButtonColor());
 			m_numFive.render(renderer,m_numFive.getKRect());
 
-			m_numTen.setButtonColor(0, 0, 0);
+			m_numTen.setButtonColor(254, 254, 254);
 			m_numTen.LoadFromRenderedText("10",renderer,m_numTen.getButtonColor());
 			m_numTen.render(renderer,m_numTen.getKRect());
 			setMinimalBet(2);
@@ -203,11 +203,11 @@ void MinBet::choiceNumberThree(SDL_Renderer* renderer, const SDL_Event& e) {
 			m_buttonStartCircle.render(renderer,m_buttonStartCircle.getKRect());
 
 			m_minBet.render(renderer,m_minBet.getKRect());
-			m_numOne.setButtonColor(0, 0, 0);
+			m_numOne.setButtonColor(254, 254, 254);
 			m_numOne.LoadFromRenderedText("1", renderer, m_numOne.getButtonColor());
 			m_numOne.render(renderer,m_numOne.getKRect());
 
-			m_numTwo.setButtonColor(0, 0, 0);
+			m_numTwo.setButtonColor(254, 254, 254);
 			m_numTwo.LoadFromRenderedText("2",renderer,m_numTwo.getButtonColor());
 			m_numTwo.render(renderer,m_numTwo.getKRect());
 
@@ -215,15 +215,15 @@ void MinBet::choiceNumberThree(SDL_Renderer* renderer, const SDL_Event& e) {
 			m_numThree.LoadFromRenderedText("3",renderer,m_numThree.getButtonColor());
 			m_numThree.render(renderer, m_numThree.getKRect());
 
-			m_numFour.setButtonColor(0, 0, 0);
+			m_numFour.setButtonColor(254, 254, 254);
 			m_numFour.LoadFromRenderedText("4",renderer,m_numFour.getButtonColor());
 			m_numFour.render(renderer, m_numFour.getKRect());
 
-			m_numFive.setButtonColor(0, 0, 0);
+			m_numFive.setButtonColor(254, 254, 254);
 			m_numFive.LoadFromRenderedText("5",renderer,m_numFive.getButtonColor());
 			m_numFive.render(renderer,m_numFive.getKRect());
 
-			m_numTen.setButtonColor(0, 0, 0);
+			m_numTen.setButtonColor(254, 254, 254);
 			m_numTen.LoadFromRenderedText("10",renderer,m_numTen.getButtonColor());
 			m_numTen.render(renderer,m_numTen.getKRect());
 			setMinimalBet(3);
@@ -240,15 +240,15 @@ void MinBet::choiceNumberFour(SDL_Renderer* renderer, const SDL_Event& e)
 			m_buttonStartCircle.render(renderer,m_buttonStartCircle.getKRect());
 
 			m_minBet.render(renderer,m_minBet.getKRect());
-			m_numOne.setButtonColor(0, 0, 0);
+			m_numOne.setButtonColor(254, 254, 254);
 			m_numOne.LoadFromRenderedText("1", renderer, m_numOne.getButtonColor());
 			m_numOne.render(renderer,m_numOne.getKRect());
 
-			m_numTwo.setButtonColor(0, 0, 0);
+			m_numTwo.setButtonColor(254, 254, 254);
 			m_numTwo.LoadFromRenderedText("2",renderer,m_numTwo.getButtonColor());
 			m_numTwo.render(renderer,m_numTwo.getKRect());
 
-			m_numThree.setButtonColor(0, 0, 0);
+			m_numThree.setButtonColor(254, 254, 254);
 			m_numThree.LoadFromRenderedText("3",renderer,m_numThree.getButtonColor());
 			m_numThree.render(renderer, m_numThree.getKRect());
 
@@ -256,11 +256,11 @@ void MinBet::choiceNumberFour(SDL_Renderer* renderer, const SDL_Event& e)
 			m_numFour.LoadFromRenderedText("4",renderer,m_numFour.getButtonColor());
 			m_numFour.render(renderer, m_numFour.getKRect());
 
-			m_numFive.setButtonColor(0, 0, 0);
+			m_numFive.setButtonColor(254, 254, 254);
 			m_numFive.LoadFromRenderedText("5",renderer,m_numFive.getButtonColor());
 			m_numFive.render(renderer,m_numFive.getKRect());
 
-			m_numTen.setButtonColor(0, 0, 0);
+			m_numTen.setButtonColor(254, 254, 254);
 			m_numTen.LoadFromRenderedText("10",renderer,m_numTen.getButtonColor());
 			m_numTen.render(renderer,m_numTen.getKRect());
 			setMinimalBet(4);
@@ -278,19 +278,19 @@ void MinBet::choiceNumberFive(SDL_Renderer* renderer, const SDL_Event& e)
 			m_buttonStartCircle.render(renderer,m_buttonStartCircle.getKRect());
 
 			m_minBet.render(renderer,m_minBet.getKRect());
-			m_numOne.setButtonColor(0, 0, 0);
+			m_numOne.setButtonColor(254, 254, 254);
 			m_numOne.LoadFromRenderedText("1", renderer, m_numOne.getButtonColor());
 			m_numOne.render(renderer,m_numOne.getKRect());
 
-			m_numTwo.setButtonColor(0, 0, 0);
+			m_numTwo.setButtonColor(254, 254, 254);
 			m_numTwo.LoadFromRenderedText("2",renderer,m_numTwo.getButtonColor());
 			m_numTwo.render(renderer,m_numTwo.getKRect());
 
-			m_numThree.setButtonColor(0, 0, 0);
+			m_numThree.setButtonColor(254, 254, 254);
 			m_numThree.LoadFromRenderedText("3",renderer,m_numThree.getButtonColor());
 			m_numThree.render(renderer, m_numThree.getKRect());
 
-			m_numFour.setButtonColor(0, 0, 0);
+			m_numFour.setButtonColor(254, 254, 254);
 			m_numFour.LoadFromRenderedText("4",renderer,m_numFour.getButtonColor());
 			m_numFour.render(renderer, m_numFour.getKRect());
 
@@ -298,7 +298,7 @@ void MinBet::choiceNumberFive(SDL_Renderer* renderer, const SDL_Event& e)
 			m_numFive.LoadFromRenderedText("5",renderer,m_numFive.getButtonColor());
 			m_numFive.render(renderer,m_numFive.getKRect());
 
-			m_numTen.setButtonColor(0, 0, 0);
+			m_numTen.setButtonColor(254, 254, 254);
 			m_numTen.LoadFromRenderedText("10",renderer,m_numTen.getButtonColor());
 			m_numTen.render(renderer,m_numTen.getKRect());
 			setMinimalBet(5);
@@ -323,23 +323,23 @@ void MinBet::choiceNumberTen(SDL_Renderer* renderer, const SDL_Event& e)
 			m_buttonStartCircle.render(renderer,m_buttonStartCircle.getKRect());
 
 			m_minBet.render(renderer,m_minBet.getKRect());
-			m_numOne.setButtonColor(0, 0, 0);
+			m_numOne.setButtonColor(254, 254, 254);
 			m_numOne.LoadFromRenderedText("1", renderer, m_numOne.getButtonColor());
 			m_numOne.render(renderer,m_numOne.getKRect());
 
-			m_numTwo.setButtonColor(0, 0, 0);
+			m_numTwo.setButtonColor(254, 254, 254);
 			m_numTwo.LoadFromRenderedText("2",renderer,m_numTwo.getButtonColor());
 			m_numTwo.render(renderer,m_numTwo.getKRect());
 
-			m_numThree.setButtonColor(0, 0, 0);
+			m_numThree.setButtonColor(254, 254, 254);
 			m_numThree.LoadFromRenderedText("3",renderer,m_numThree.getButtonColor());
 			m_numThree.render(renderer, m_numThree.getKRect());
 
-			m_numFour.setButtonColor(0, 0, 0);
+			m_numFour.setButtonColor(254, 254, 254);
 			m_numFour.LoadFromRenderedText("4",renderer,m_numFour.getButtonColor());
 			m_numFour.render(renderer, m_numFour.getKRect());
 
-			m_numFive.setButtonColor(0, 0, 0);
+			m_numFive.setButtonColor(254, 254, 254);
 			m_numFive.LoadFromRenderedText("5",renderer,m_numFive.getButtonColor());
 			m_numFive.render(renderer,m_numFive.getKRect());
 
@@ -417,7 +417,7 @@ void MinBet::changeColorOnMouseOver(SDL_Renderer* renderer)
 	}
 	else
 	{
-		m_minBet.setButtonColor(0, 0, 0);
+		m_minBet.setButtonColor(254, 254, 254);
 			m_minBet.LoadFromRenderedText("MIN", renderer, m_minBet.getButtonColor());
 			m_buttonStartCircle.render(renderer, m_buttonStartCircle.getKRect());
 			m_minBet.textRender(m_minBet.getKRect(),
@@ -427,7 +427,5 @@ void MinBet::changeColorOnMouseOver(SDL_Renderer* renderer)
 
 
 }
-
-
 
 

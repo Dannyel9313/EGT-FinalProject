@@ -21,29 +21,25 @@ public:
 	//Load intro elements
 	void loadIntroElements(SDL_Renderer* renderer);
 
+	// Get background
 	BaseObject& getBackground();
-	void setBackground(const BaseObject& background);
 
+	// Get info
 	Font& getInfoButton();
-	void setInfoButton(const Font& infoButton);
 
+	// Get resume game
 	Font& getResumeGameButton();
-	void setResumeGameButton(const Font& resumeGameButton);
 
+	// Get start new game
 	Font& getStartNewGameButton();
-	void setStartNewGameButton(const Font& startNewGameButton);
 
-
-
+	// Get volume
 	Volume& getVolume();
-	void setVolume(Volume& volume);
 
 	void setPositionDimension();
 
+	//Get insert credit
 	InsertCredit& getInsertCredit();
-	void setInsertCredit(InsertCredit& insertCredit);
-
-	Mix_Music*& getIntroSong();
 
 	//Start new game button
 	void startNewGameClicked(bool*, const SDL_Event&);
@@ -53,6 +49,10 @@ public:
 
 	//loads chunk if button is clicked
 	void introButtonsChunk(const SDL_Event&);
+
+	// Get chunk
+	Mix_Chunk*& getChunk();
+
 private:
 	// moving elements
 	void moveStarNewGame(int yPos, SDL_Renderer* renderer);
@@ -75,7 +75,8 @@ private:
 	Volume m_volume;
 	Font m_infoButton;
 
-	Mix_Music* m_introSong;
+	Mix_Chunk* m_chunk;
+
 
 };
 

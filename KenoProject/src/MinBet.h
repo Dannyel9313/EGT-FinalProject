@@ -9,6 +9,7 @@ class MinBet
 		MinBet();
 		virtual ~MinBet();
 
+
 		//Render min bet
 		void renderMinBet(SDL_Renderer* renderer);
 

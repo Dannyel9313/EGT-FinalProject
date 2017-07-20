@@ -1,7 +1,7 @@
 #include "InsertCredit.h"
 
 InsertCredit::InsertCredit() {
-	// TODO Auto-generated constructor stub
+	// TODO Auto-generated constructor stub+
 	m_credit = 0;
 }
 

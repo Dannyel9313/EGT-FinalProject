@@ -6,6 +6,7 @@
 #include "IntroScreen.h"
 #include "Info.h"
 #include "Game.h"
+#include "Outro.h"
 
 class GameKeno 
 {
@@ -45,12 +46,21 @@ class GameKeno
 
 		//Get game mode
 		Game& getGameMode();
+
+		//Get outro mode
+		Outro& getOutroMode();
+
+		// Get music
+		Mix_Music*& getMainMusic();
+
 	private:
 		//Window
 		SDL_Window* kenoWindow;
 
 		//Renderer
 		SDL_Renderer* kenoRenderer;
+
+		Mix_Music* m_mainMusic;
 
 		//Intro mode
 		IntroScreen m_introMode;
@@ -60,6 +70,9 @@ class GameKeno
 
 		//Game mode
 		Game m_GameMode;
+
+		//Outro mode
+		Outro m_outroMode;
 };
 
 #endif /* GAMEKENO_H_ */

@@ -1,51 +1,43 @@
 #include "IntroScreen.h"
 
-IntroScreen::IntroScreen() {
+IntroScreen::IntroScreen():m_chunk(NULL)
+{
 	// TODO Auto-generated constructor stub
 
 }
 
-IntroScreen::~IntroScreen() {
-	// TODO Auto-generated destructor stub
+IntroScreen::~IntroScreen()
+{
+	 Mix_FreeChunk(m_chunk);
+
+	 m_chunk = NULL;
 }
 
-BaseObject& IntroScreen::getBackground() {
+BaseObject& IntroScreen::getBackground()
+{
 	return m_background;
 }
 
-void IntroScreen::setBackground(const BaseObject& background) {
-	m_background = background;
-}
-
-Font& IntroScreen::getInfoButton() {
+Font& IntroScreen::getInfoButton()
+{
 	return m_infoButton;
 }
 
-void IntroScreen::setInfoButton(const Font& infoButton) {
-	m_infoButton = infoButton;
-}
-
-Font& IntroScreen::getResumeGameButton() {
+Font& IntroScreen::getResumeGameButton()
+{
 	return m_resumeGameButton;
 }
 
-void IntroScreen::setResumeGameButton(const Font& resumeGameButton) {
-	m_resumeGameButton = resumeGameButton;
-}
-
-Font& IntroScreen::getStartNewGameButton() {
+Font& IntroScreen::getStartNewGameButton()
+{
 	return m_startNewGameButton;
 }
 
-void IntroScreen::setStartNewGameButton(const Font& startNewGameButton) {
-	m_startNewGameButton = startNewGameButton;
-}
-// to do a function
-void IntroScreen::loadIntroScreen(SDL_Renderer* renderer) {
 
-//	m_introSong = Mix_LoadMUS("Deya Dova - Footsteps In The Stars Temple 
-//					Step Project  DJ Dakini Remix.mp3");
-//	Mix_PlayMusic(m_introSong, -1);
+void IntroScreen::loadIntroScreen(SDL_Renderer* renderer)
+{
+
+
 
 	m_background.loadTextureFromFile("Resources/Images/IntroKenoImage2.png", renderer);
 
@@ -56,32 +48,39 @@ void IntroScreen::loadIntroScreen(SDL_Renderer* renderer) {
 	SDL_RenderPresent(renderer);
 }
 
-Volume& IntroScreen::getVolume() {
+Volume& IntroScreen::getVolume()
+{
 	return m_volume;
 }
 
-void IntroScreen::setVolume(Volume& volume) {
-	m_volume = volume;
-}
 
-InsertCredit& IntroScreen::getInsertCredit() {
+
+InsertCredit& IntroScreen::getInsertCredit()
+{
 	return m_insertCredit;
 }
 
-void IntroScreen::setPositionDimension() {
+void IntroScreen::setPositionDimension()
+{
 	m_startNewGameButton.setPosition(450, 30, introStartResumeButton_width,
 			introStartResumeButton_height);
+
 	m_resumeGameButton.setPosition(450, 110, introStartResumeButton_width,
 			introStartResumeButton_height);
 	m_infoButton.setPosition(550, 190, introButton_width, introButton_height);
 
 }
 
-void IntroScreen::loadIntroElements(SDL_Renderer* renderer) {
+void IntroScreen::loadIntroElements(SDL_Renderer* renderer)
+{
 	setElementsFont();
+
 	setPositionDimension();
+
 	setElementsColor();
+
 	m_background.loadTextureFromFile("Resources/Images/InfoBackground.jpg", renderer);
+
 	m_startNewGameButton.LoadFromRenderedText("START NEW GAME", renderer,
 			m_startNewGameButton.getButtonColor());
 
@@ -90,13 +89,17 @@ void IntroScreen::loadIntroElements(SDL_Renderer* renderer) {
 
 	m_infoButton.LoadFromRenderedText("INFO", renderer,
 			m_infoButton.getButtonColor());
+
 	m_volume.LoadVolumeElements(renderer);
+
 	m_insertCredit.loadCreditElements(renderer);
 
 }
 
-void IntroScreen::moveStarNewGame(int yPos, SDL_Renderer* renderer) {
-	for (int i = 640; i > yPos; i -= 5) {
+void IntroScreen::moveStarNewGame(int yPos, SDL_Renderer* renderer)
+{
+	for (int i = 640; i > yPos; i -= 5)
+	{
 
 		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
 
@@ -109,7 +112,8 @@ void IntroScreen::moveStarNewGame(int yPos, SDL_Renderer* renderer) {
 	}
 }
 
-void IntroScreen::moveResumeGame(int yPos, SDL_Renderer* renderer) {
+void IntroScreen::moveResumeGame(int yPos, SDL_Renderer* renderer)
+{
 	for (int i = 640; i > yPos; i -= 5) {
 
 		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
@@ -126,7 +130,8 @@ void IntroScreen::moveResumeGame(int yPos, SDL_Renderer* renderer) {
 	}
 }
 
-void IntroScreen::moveInfoGame(int yPos, SDL_Renderer* renderer) {
+void IntroScreen::moveInfoGame(int yPos, SDL_Renderer* renderer)
+{
 	for (int i = 640; i > yPos; i -= 5) {
 
 		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
@@ -148,39 +153,55 @@ void IntroScreen::moveInfoGame(int yPos, SDL_Renderer* renderer) {
 
 void IntroScreen::setElementsColor() {
 
-	if (m_insertCredit.getCredit() > 0) {
+	if (m_insertCredit.getCredit() > 0)
+	{
 
-		if (m_startNewGameButton.onMouseOver(m_startNewGameButton.getKRect())) {
+		if (m_startNewGameButton.onMouseOver(m_startNewGameButton.getKRect()))
+		{
 			m_startNewGameButton.setButtonColor(255, 0, 39);
 
-		} else {
+		}
+		else
+		{
 			m_startNewGameButton.setButtonColor(251, 211, 72);
 
 		}
-	} else {
+	}
+	else
+	{
 		m_startNewGameButton.setButtonColor(127, 127, 127);
 	}
-	if (m_resumeGameButton.onMouseOver(m_resumeGameButton.getKRect())) {
+	if (m_resumeGameButton.onMouseOver(m_resumeGameButton.getKRect()))
+	{
 		m_resumeGameButton.setButtonColor(255, 0, 39);
 
-	} else {
+	}
+	else
+	{
 		m_resumeGameButton.setButtonColor(251, 211, 72);
 	}
-	if (m_infoButton.onMouseOver(m_infoButton.getKRect())) {
+	if (m_infoButton.onMouseOver(m_infoButton.getKRect()))
+	{
 		m_infoButton.setButtonColor(255, 0, 39);
 
-	} else {
+	}
+	else
+	{
 		m_infoButton.setButtonColor(251, 211, 72);
 	}
 }
 
-void IntroScreen::setElementsFont() {
+void IntroScreen::setElementsFont()
+{
 	m_startNewGameButton.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 50));
+
 	m_resumeGameButton.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 50));
+
 	m_infoButton.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 50));
 }
 
-void IntroScreen::introScreenPresent(SDL_Renderer* renderer) {
+void IntroScreen::introScreenPresent(SDL_Renderer* renderer)
+{
 
 	SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
 
@@ -196,14 +217,6 @@ void IntroScreen::introScreenPresent(SDL_Renderer* renderer) {
 
 }
 
-void IntroScreen::setInsertCredit(InsertCredit& insertCredit) {
-	m_insertCredit = insertCredit;
-}
-
-Mix_Music*& IntroScreen::getIntroSong() {
-	return m_introSong;
-}
-
 void IntroScreen::startNewGameClicked(bool* gameMode, const SDL_Event& e)
 {
 	if(m_insertCredit.getCredit() > 0)
@@ -215,7 +228,8 @@ void IntroScreen::startNewGameClicked(bool* gameMode, const SDL_Event& e)
 	}
 }
 
-void IntroScreen::startInfoClicked(bool* infoMode, const SDL_Event& e) {
+void IntroScreen::startInfoClicked(bool* infoMode, const SDL_Event& e)
+{
 
 	if(m_infoButton.isClicked(e,m_infoButton.getKRect()))
 	{
@@ -223,34 +237,41 @@ void IntroScreen::startInfoClicked(bool* infoMode, const SDL_Event& e) {
 	}
 }
 
-void IntroScreen::introButtonsChunk(const SDL_Event& e){
-	Mix_Chunk* chunk = NULL;
-	chunk = Mix_LoadWAV("Resources/Sounds/blop.wav");
-	if(chunk == NULL){
+void IntroScreen::introButtonsChunk(const SDL_Event& e)
+{
+
+	m_chunk = Mix_LoadWAV("Resources/Sounds/blop.wav");
+	if(m_chunk == NULL){
 		std::cerr << "Chunk file could not be loaded" << std::endl;
 	}
 	if(m_startNewGameButton.isClicked(e, m_startNewGameButton.getKRect()))
 	{
-		Mix_PlayChannel(-1, chunk, 0);
+		Mix_PlayChannel(-1, m_chunk, 0);
 	}
 	if(m_resumeGameButton.isClicked(e, m_resumeGameButton.getKRect()))
 	{
-		Mix_PlayChannel(-1, chunk, 0);
+		Mix_PlayChannel(-1, m_chunk, 0);
 	}
 	if(m_infoButton.isClicked(e, m_infoButton.getKRect())){
-		Mix_PlayChannel(-1, chunk, 0);
+		Mix_PlayChannel(-1, m_chunk, 0);
 	}
 	if(m_volume.getFontPlus().isClicked(e, m_volume.getFontPlus().getKRect())){
-		Mix_PlayChannel(-1, chunk, 0);
+		Mix_PlayChannel(-1, m_chunk, 0);
 	}
 	if(m_volume.getFontMinus().isClicked(e, m_volume.getFontMinus().getKRect())){
-		Mix_PlayChannel(-1, chunk, 0);
+		Mix_PlayChannel(-1, m_chunk, 0);
 	}
 	if(m_insertCredit.getFontPlus().isClicked(e, m_insertCredit.getFontPlus().getKRect())){
-		Mix_PlayChannel(-1, chunk, 0);
+		Mix_PlayChannel(-1, m_chunk, 0);
 	}
 	if(m_insertCredit.getFontMinus().isClicked(e, m_insertCredit.getFontMinus().getKRect())){
-		Mix_PlayChannel(-1, chunk, 0);
+		Mix_PlayChannel(-1, m_chunk, 0);
 	}
 
+
+
+}
+
+Mix_Chunk*& IntroScreen::getChunk(){
+	return m_chunk;
 }

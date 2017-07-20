@@ -5,6 +5,7 @@ GameKeno::GameKeno()
 {
 	this->kenoWindow = NULL;
 	this->kenoRenderer = NULL;
+	this->m_mainMusic = NULL;
 }
 
 GameKeno::~GameKeno() 
@@ -92,8 +93,8 @@ bool GameKeno::loadMedia()
         m_GameMode.getBetButton().getFont().setFont(betButtonFont);
 
 	m_GameMode.getClearButton().getButtonClear().setFont(TTF_OpenFont("Resources/Fonts/Candles_.TTF", 30));
-	m_GameMode.getDrawAnimation().loadChunkEffect("Resources/Sounds/corkPop.wav");
-	m_GameMode.getDrawAnimation().loadChunkEffect("Resources/Sounds/blop.wav");
+//	m_GameMode.getDrawAnimation().loadChunkEffect("Resources/Sounds/corkPop.wav");
+//	m_GameMode.getDrawAnimation().loadChunkEffect("Resources/Sounds/blop.wav");
 	
 	//Load pay table media
 	m_GameMode.getPayTable().getFont().setFont(TTF_OpenFont("Resources/Fonts/AUDI.TTF", 24));
@@ -101,31 +102,21 @@ bool GameKeno::loadMedia()
 	//Load history table media
 	m_GameMode.getHistory().getFont().setFont(TTF_OpenFont("Resources/Fonts/AUDI.TTF", 24));
 
+	// Load music media
+	m_mainMusic = Mix_LoadMUS("Resources/Sounds/Casino-Instrumental-Patzmarzbelts-Collections-HD.mp3");
+	if(m_mainMusic == NULL)
+	 	{
+	 		std::cerr << "Could not load music file!" << std::endl;
+	 	}
 	return success;
 }
 
 //Free resources
 void GameKeno::close() 
 {
-	TTF_CloseFont(m_introMode.getStartNewGameButton().getFont());
-	TTF_CloseFont(m_introMode.getResumeGameButton().getFont());
-	TTF_CloseFont(m_introMode.getInfoButton().getFont());
-	TTF_CloseFont(m_introMode.getVolume().getFontPlus().getFont());
-	TTF_CloseFont(m_introMode.getVolume().getFontVolume().getFont());
-	TTF_CloseFont(m_introMode.getVolume().getFontMinus().getFont());
-	TTF_CloseFont(m_introMode.getInsertCredit().getFontPlus().getFont());
-	TTF_CloseFont(m_introMode.getInsertCredit().getFontMinus().getFont());
-	TTF_CloseFont(
-			m_introMode.getInsertCredit().getFontInsertCredit().getFont());
+	Mix_FreeMusic(m_mainMusic);
+	m_mainMusic = NULL;
 
-	SDL_DestroyTexture(m_introMode.getBackground().getKTexture());
-	SDL_DestroyTexture(
-			m_introMode.getInsertCredit().getFontCreditRect().getKTexture());
-	SDL_DestroyTexture(m_introMode.getVolume().getFontDot().getKTexture());
-	SDL_DestroyTexture(m_introMode.getVolume().getFontDotLine().getKTexture());
-
-	Mix_FreeMusic(m_introMode.getIntroSong());
-	m_introMode.getIntroSong() = NULL;
 
 	SDL_DestroyRenderer(kenoRenderer);
 	kenoRenderer = NULL;
@@ -175,7 +166,10 @@ Game& GameKeno::getGameMode()
         return m_GameMode;
 }
 
-/*Outro& GameKeno::getOutroMode()
-{
-	return m_OutroMode;
-}*/
+Outro& GameKeno::getOutroMode(){
+	return m_outroMode;
+}
+
+Mix_Music*& GameKeno::getMainMusic(){
+	return m_mainMusic;
+}

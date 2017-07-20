@@ -53,13 +53,15 @@ void CreditInGame::renderCreditsInGame(SDL_Renderer* renderer) {
 
 }
 
-Font& CreditInGame::getCreditsText() {
+Font& CreditInGame::getCreditsText()
+{
 	return m_creditsText;
 }
 
-void CreditInGame::setColor() {
-	m_creditsText.setButtonColor(0, 0, 0);
-	m_creditsInGame.setButtonColor(0, 0, 0);
+void CreditInGame::setColor()
+{
+	m_creditsText.setButtonColor(254, 254, 254);
+	m_creditsInGame.setButtonColor(254, 254, 254);
 
 }
 

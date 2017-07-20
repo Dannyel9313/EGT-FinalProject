@@ -2,8 +2,7 @@
 
 NumbersGrid::NumbersGrid()
 {
-	m_font = NULL;
-	m_ClickEffect = NULL;
+	//TODO NULL FONT, SOUND EFFECT
 	setPosition(numbersGrid_x, numbersGrid_y);
 	setDimensions(numbersGrid_width, numbersGrid_height);
 	for (int i = 0; i < 8; i++)
@@ -14,20 +13,6 @@ NumbersGrid::NumbersGrid()
 			randomNumbersFlags[i][j] = 0;
 			numberOfHitsFlags[i][j] = 0;
 		}
-	}
-}
-
-NumbersGrid::~NumbersGrid()
-{
-	if (m_font != NULL)
-	{
-		TTF_CloseFont(m_font);
-		m_font = NULL;
-	}
-	if (m_ClickEffect != NULL)
-	{
-		Mix_FreeChunk(m_ClickEffect);
-		m_ClickEffect = NULL;
 	}
 }
 

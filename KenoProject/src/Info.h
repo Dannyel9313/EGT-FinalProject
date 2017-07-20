@@ -10,11 +10,12 @@ public:
 	// Load info screen
 	void renderInfoScreen(SDL_Renderer* renderer);
 
-
+	//
 	void renderButtonDown(SDL_Renderer* renderer, const SDL_Event& e);
 
 
 	void buttonReturn(bool* introMode, const SDL_Event& e);
+
 	// Get background
 	Font& getBackgroundInfo();
 
