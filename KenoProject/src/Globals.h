@@ -97,6 +97,14 @@ const int betText_yIndent = 25;
 const int betText_width = 50;
 const int betText_height = 50;
 
+//Volume button position
+const int VOLUME_BUTTON_POSITION_X = 5;
+const int VOLUME_BUTTON_POSITION_Y = 35;
+
+//Volume buttons dimensions
+const int VOLUME_BUTTON_WIDTH = 50;
+const int VOLUME_BUTTON_HEIGHT = 50;
+
 //Minimum numbers to be chosen
 const int minimumSpots = 2;
 
