@@ -159,7 +159,6 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 		m_minBetButton.renderMinBet(renderer);
 		m_maxBetButton.renderMaxBet(renderer);
 	}
-
 }
 
 void Game::mouseOnButtonRender(SDL_Renderer* renderer, const SDL_Event& e)
@@ -191,7 +190,6 @@ void Game::changeColorOfClickedNumbers(SDL_Renderer* renderer,
 		m_PayTable.renderPay(renderer, mGrid.numbersClicked());
 	}
 	mGrid.printNumbers(renderer);
-
 }
 
 void Game::drawAnimationReRender(SDL_Renderer* renderer, SDL_Rect* rects) {
@@ -423,3 +421,13 @@ void Game::loadWinScreen(int spots, int match, int bet)
 	}
 }
 
+void Game::loadMainMusic()
+{
+	Mix_Chunk* mainMusic = NULL;
+	mainMusic = Mix_LoadWAV("Resources/Sounds/Casino (Instrumental) - Patzmarzbelt's Collections [HD].mp3");
+	if(mainMusic == NULL)
+	{
+		std::cerr << "Could not load music file!" << std::endl;
+	}
+	Mix_PlayChannel(-1, mainMusic, 0);
+}

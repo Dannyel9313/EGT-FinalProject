@@ -92,6 +92,9 @@ class Game: public BaseObject
 
 		// Loads win if the user won
 		void loadWinScreen(int spots, int match, int bet);
+
+		// Loads the main music
+		void loadMainMusic();
 	private:
 		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
 
