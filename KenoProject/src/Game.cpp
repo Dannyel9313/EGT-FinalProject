@@ -4,6 +4,12 @@ Game::Game() :
 		m_minBetFlag(true), m_maxBetFlag(true), m_setBetFlag(false), m_bet(0) {
 }
 
+Game::~Game()
+{
+	Mix_FreeChunk(m_chunk);
+	m_chunk = NULL;
+}
+
 NumbersGrid& Game::getNumbersGrid() {
 	return mGrid;
 }
@@ -84,6 +90,7 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 			mBetButton.betText(renderer);
 			if (mBetButton.isClicked(e, mBetButton.getKRect())) 
 			{
+				gameButtonsChunk();
 				//Pick 10 random numbers
 				changeCreditOnClickingBet(renderer, e);
 
@@ -151,6 +158,7 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 	if (m_clearButton.getButtonRect().isClicked(e,
 			m_clearButton.getButtonRect().getKRect())) 
 	{
+		gameButtonsChunk();
 		SDL_Rect payTableRect = { 585, 0, 235, 225 };
 		cropFromRenderTo(renderer, &payTableRect, &payTableRect);
 		m_PayTable.renderPayTable(renderer);
@@ -453,17 +461,19 @@ void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e) {
 	if (m_maxBetButton.getMaxBet().isClicked(e,
 				m_maxBetButton.getMaxBet().getKRect()))
 	{
-			setBet(0);
-			std::cout << "MaxBet-> " << m_bet << std::endl;
-			m_maxBetButton.activateMaxButton(renderer);
-			m_minBetButton.deactivateMinButton(renderer);
-			m_maxBetFlag = true;
-			m_minBetFlag = false;
+		gameButtonsChunk();
+		setBet(0);
+		std::cout << "MaxBet-> " << m_bet << std::endl;
+		m_maxBetButton.activateMaxButton(renderer);
+		m_minBetButton.deactivateMinButton(renderer);
+		m_maxBetFlag = true;
+		m_minBetFlag = false;
 		}
 
 		if (m_minBetButton.getMinBet().isClicked(e,
 				m_minBetButton.getMinBet().getKRect()) )
 		{
+			gameButtonsChunk();
 			setBet(0);
 			std::cout << "MINIMALBet-> " << m_bet << std::endl;
 			m_minBetButton.activateMinButton(renderer);
@@ -516,6 +526,28 @@ int Game::calculateWin(int spots, int match, int bet) {
 //		m_winInGame.writeOnScreen(renderer);
 //	}
 //}
+
+void Game::loadBigWinScreen(int spots, int match, int bet)
+{
+	SDL_Renderer* renderer;
+	if(calculateWin(spots, match, bet) > 0)
+	{
+		if(match == 10)
+		{
+			m_winInGame.bigWin(renderer);
+		}
+	}
+}
+
+void Game::gameButtonsChunk()
+{
+	m_chunk = Mix_LoadWAV("Resources/Sounds/button click version sound effect  13.mp3");
+	if(m_chunk == NULL)
+	{
+		std::cerr << "Could not load music chunk!" << std::endl;
+	}
+	Mix_PlayChannel(-1, m_chunk, 0);
+}
 
 VolumeButton& Game::getVolumeButton() {
  	return m_volumeButton;

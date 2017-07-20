@@ -135,6 +135,47 @@ void Win::writeOnScreen(SDL_Renderer* renderer)
 	}
 }
 
+void Win::bigWin(SDL_Renderer* renderer)
+{
+	Mix_Chunk* winningMusic = NULL;
+	winningMusic = Mix_LoadWAV("Resources/Sounds/Victory sound effect.wav");
+	if(winningMusic == NULL){
+		std::cerr << "Music file could not be loaded" << std::endl;
+	}
+	Mix_PlayChannel(-1, winningMusic, 0);
+	loadTextureFromFile("Resources/Images/LasVegas.jpg", renderer);
+	render(renderer, NULL);
+
+	Text.setFont(TTF_OpenFont("Resources/Fonts/AUDI.ttf", 50));
+	Text.LoadFromRenderedText("BIG WIN!", renderer,
+				Text.getButtonColor());
+
+	for(int i = 0; i < 300; i += 5){
+		loadTexture(renderer);
+		Text.setPosition(i, i, introButton_width, introButton_height);
+		Text.textRender(Text.getKRect(), Text.getKTexture(), renderer);
+		Text.setPosition((SCREEN_WIDTH - 220) - i, 0 + i, introButton_width, introButton_height);
+		Text.textRender(Text.getKRect(), Text.getKTexture(), renderer);
+		Text.setPosition(SCREEN_WIDTH - 220 - i, SCREEN_HEIGHT - i - 45,
+				introButton_width, introButton_height);
+		Text.textRender(Text.getKRect(), Text.getKTexture(), renderer);
+		Text.setPosition(0 + i, SCREEN_HEIGHT - i - 40, introButton_width, introButton_height);
+		Text.textRender(Text.getKRect(), Text.getKTexture(), renderer);
+
+		SDL_RenderPresent(renderer);
+	}
+
+	for(int i = 0; i < 300; i += 5){
+		loadTexture(renderer);
+
+		Text.setPosition(300 - i, 300 - i, introButton_width + i*2, introButton_height + i*2);
+		Text.textRender(Text.getKRect(), Text.getKTexture(), renderer);
+
+		SDL_RenderPresent(renderer);
+	}
+
+}
+
 int Win::getWinCredits() const {
 	return m_winCredits;
 }

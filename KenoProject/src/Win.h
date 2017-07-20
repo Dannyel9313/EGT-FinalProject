@@ -30,6 +30,9 @@ class Win: public BaseObject
 		// Loads "YOU HAVE WON" text
 		void writeOnScreen(SDL_Renderer*);
 
+		// Loads "Big win" text
+		void bigWin(SDL_Renderer*);
+
 		// Get win credits
 		int getWinCredits() const;
 

@@ -19,6 +19,7 @@ class Game: public BaseObject
 {
 	public:
 		Game();
+		~Game();
 
 		//Flags
 		std::bitset <80> flags;
@@ -101,6 +102,14 @@ class Game: public BaseObject
 
 		// Loads win if the user won
 		void loadWinScreen(int spots, int match, int bet);
+
+		// Loads big win if the user matched 10 out of 10
+		void loadBigWinScreen(int spots, int match, int bet);
+
+		//loads chunk if button is clicked
+		void gameButtonsChunk();
+
+
 	private:
 		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
 
@@ -121,6 +130,8 @@ class Game: public BaseObject
 		CashOut m_cashOutButton;
 		PayTable m_PayTable;
 		VolumeButton m_volumeButton;
+
+		Mix_Chunk* m_chunk;
 };
 
 #endif
