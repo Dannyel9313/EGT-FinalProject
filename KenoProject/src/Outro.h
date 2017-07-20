@@ -28,10 +28,12 @@ public:
 private:
 
 	TTF_Font *  font;
-	BaseObject background;
+	//BaseObject background;
 	BaseObject winPic;
 	BaseObject labelCongrat;
 	BaseObject labelMoney;
+	BaseObject labelDenom;
+	BaseObject zarq[12];
 	std::string doubleToString(double);
 };
 
