@@ -101,10 +101,10 @@ class Game: public BaseObject
 		void cashOutButtonPushed(bool* outroMode, const SDL_Event& e);
 
 		// Loads win if the user won
-		void loadWinScreen(int spots, int match, int bet);
+		void loadWinScreen(SDL_Renderer* renderer, int spots, int match, int bet);
 
 		// Loads big win if the user matched 10 out of 10
-		void loadBigWinScreen(int spots, int match, int bet);
+		void loadBigWinScreen(SDL_Renderer* renderer, int spots, int match, int bet);
 
 		//loads chunk if button is clicked
 		void gameButtonsChunk();

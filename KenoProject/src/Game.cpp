@@ -520,21 +520,19 @@ int Game::calculateWin(int spots, int match, int bet) {
 
 // to fix function
 
-//void Game::loadWinScreen(int spots, int match, int bet) {
-//	SDL_Renderer* renderer;
-//	if (calculateWin(spots, match, bet) > 0) {
-//		m_winInGame.writeOnScreen(renderer);
-//	}
-//}
+void Game::loadWinScreen(SDL_Renderer* renderer, int spots, int match, int bet) {
+	if (calculateWin(spots, match, bet) > 0) {
+		m_winInGame.writeOnScreen(renderer, 100);
+	}
+}
 
-void Game::loadBigWinScreen(int spots, int match, int bet)
+void Game::loadBigWinScreen(SDL_Renderer* renderer, int spots, int match, int bet)
 {
-	SDL_Renderer* renderer;
 	if(calculateWin(spots, match, bet) > 0)
 	{
 		if(match == 10)
 		{
-			m_winInGame.bigWin(renderer);
+			m_winInGame.bigWin(renderer, 1000);
 		}
 	}
 }
