@@ -167,12 +167,12 @@ const int bonusLogo_width = 150;
 const int bonusLogo_height = 65;
 
 // Size of bonus rectangle
-const int bonusRectangle_width = 130;
-const int bonusRectangle_height = 50;
+const int bonusRectangle_width = 150;
+const int bonusRectangle_height = 45;
 
 // Size of bonus text
-const int bonusText_width = 60;
-const int bonusText_height = 45;
+const int bonusText_width = 80;
+const int bonusText_height = 35;
 
 
 //Pay table

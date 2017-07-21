@@ -25,6 +25,7 @@ class Game: public BaseObject
 		std::bitset <80> flags;
 		std::vector <SDL_Color> colors;
 
+		// render game after main animation
 		void renderAfterAnimationGame(SDL_Renderer*, int alpha);
 
 		//Get Number grid
@@ -33,11 +34,17 @@ class Game: public BaseObject
 		//Get bet button
 		BetButton& getBetButton();
 
+		// Get pay table
 		PayTable& getPayTable();
+
+		// add bonus to credits
+		void bonusToCredits(int match, SDL_Renderer* renderer);
 
 		//Render the whole game screen
 		void renderGame(SDL_Renderer*, int alpha);
 
+		// Calculate bonus to show in game
+		int calculateBonus(int bet);
 
 		// Play/pause music
 		void playPauseMusic(SDL_Renderer* renderer, const SDL_Event& e, Mix_Music* mainMusic);
@@ -48,6 +55,7 @@ class Game: public BaseObject
 		// show win credit
 		void showWinInGame(SDL_Renderer* renderer);
 
+		// Calculate money from credits and denomination
 		double calculateCreditsInMoney(int credits);
 
 		//Get min bet button
@@ -89,13 +97,16 @@ class Game: public BaseObject
 		void drawAnimation(SDL_Renderer*, int*, SDL_Rect*);		
 		void drawAnimationReRender(SDL_Renderer*, SDL_Rect*);
 
+		// calculate win credits
 		int calculateWin(int spots, int match, int bet);
 
 		//Get cash out button
 		CashOut& getCashOutButton();
  
-		// Set and Get method
+		// Get bet
 		int getBet() const;
+
+		// Set bet
 		void setBet(int bet);
 
 		void cashOutButtonPushed(bool* outroMode, const SDL_Event& e);
@@ -106,6 +117,12 @@ class Game: public BaseObject
 		// Get bonus
 		Bonus& getBonusInGame();
 
+		// Get bonus
+		double getBonus() const;
+
+		// Set bonus
+		void setBonus(double bonus);
+
 	private:
 		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
 
@@ -113,6 +130,7 @@ class Game: public BaseObject
 	 	bool m_minBetFlag;
  		bool m_maxBetFlag;
  		int m_bet;
+ 		double m_bonus;
 		NumbersGrid mGrid;
 		BetButton mBetButton;
 		MinBet m_minBetButton;

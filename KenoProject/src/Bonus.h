@@ -21,6 +21,9 @@ public:
 	// Set position and dimension
 	void setPositionAndDimension(SDL_Renderer* renderer);
 
+	// show bonus on screen
+	void showBonus(SDL_Renderer* renderer, int bonusPoints);
+
 	//Render bonus
 	void renderBonus(SDL_Renderer* renderer);
 
@@ -58,6 +61,7 @@ private:
 
 	Font m_bonusText;
 
+	// cast to string
 	const char * toString(int);
 
 };

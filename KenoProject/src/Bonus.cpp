@@ -117,8 +117,19 @@ void Bonus::setBonus(int bonus)
 	m_bonus = bonus;
 }
 
-const char * Bonus::toString(int in_val)
+void Bonus::showBonus(SDL_Renderer* renderer, int bonusPoints)
 {
+
+
+m_bonusRectangle.render(renderer, m_bonusRectangle.getKRect());
+
+m_bonusText.LoadFromRenderedText(toString(bonusPoints), renderer, m_bonusText.getButtonColor());
+
+m_bonusText.textRender(m_bonusText.getKRect(), m_bonusText.getKTexture(), renderer);
+}
+
+const char * Bonus::toString(int in_val) {
 	std::string str = boost::lexical_cast<std::string>(in_val);
 	return str.c_str();
 }
+

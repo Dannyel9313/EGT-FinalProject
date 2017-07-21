@@ -88,6 +88,9 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 			mBetButton.betText(renderer);
 			if (mBetButton.isClicked(e, mBetButton.getKRect())) 
 			{
+
+
+				m_bonusInGame.showBonus(renderer,calculateBonus(getBet()));
 				//Pick 10 random numbers
 				changeCreditOnClickingBet(renderer, e);
 
@@ -105,6 +108,7 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 				mGrid.numberOfHits();
 
 				showWinInGame(renderer);
+				bonusToCredits(mGrid.numberOfHits(), renderer);
 
 				m_History.renderHits(renderer, mGrid.numberOfHits(), 0);
 
@@ -120,9 +124,12 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 
 				mGrid.resetIsClicked();
 
+
 //				renderGame(renderer, 255);
 
 				mGrid.resetNumbersGrid(renderer);
+
+
 			}
 		}
 	}
@@ -446,6 +453,72 @@ Bonus& Game::getBonusInGame()
 	return m_bonusInGame;
 }
 
+int Game::calculateBonus(int bet)
+{
+	double bonus = 0;
+	double result = 0;
+	bonus = static_cast<double>(bet);
+
+	result = m_bonus + (bonus * 0.1);
+
+	setBonus(result);
+
+	int bonusToShow = 0;
+
+	bonusToShow += getBonus();
+	std::cout << "Bonus ->" << getBonus() << std::endl;
+	return bonusToShow;
+
+}
+
+double Game::getBonus() const
+{
+	return m_bonus;
+}
+
+void Game::setBonus(double bonus)
+{
+	m_bonus = bonus;
+}
+
+void Game::bonusToCredits(int match, SDL_Renderer* renderer)
+{
+	int bonus = 0;
+	std::cout << match << " match" << std::endl;
+	int tempBonus = 0;
+	int resultDenom = 0;
+	if(match > 5)
+	{
+	tempBonus = m_bonus * 10;
+
+	resultDenom = tempBonus % 10;
+
+	std::cout << resultDenom << "poslednaCifra" << std::endl;
+	if(resultDenom > 5)
+	{
+		bonus = m_bonus + 1;
+		std::cout<< "bonusa za setvane v ifa" << bonus <<std::endl;
+	}
+	else
+	{
+		bonus = m_bonus;
+		std::cout << "bonusa za setvane izvyn ifa" << bonus << std::endl;
+	}
+	setBonus(0);
+
+		std::cout << getBonus() << "bonus after null" << std::endl;
+	m_creditInGame.setGameCredit((m_creditInGame.getGameCredit() + bonus));
+
+	std::cout << "credits after bonus ->" << m_creditInGame.getGameCredit() << std::endl;
+	m_creditInGame.renderCreditsInGame(renderer);
+	m_bonusInGame.renderBonus(renderer);
+
+	}
+
+
+
+}
+
 void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e) {
 
 	std::cout << "min flag ->" << m_minBetFlag << std::endl;
@@ -530,7 +603,8 @@ int Game::calculateWin(int spots, int match, int bet) {
 //	}
 //}
 
-VolumeButton& Game::getVolumeButton() {
+VolumeButton& Game::getVolumeButton()
+{
  	return m_volumeButton;
  }
 
