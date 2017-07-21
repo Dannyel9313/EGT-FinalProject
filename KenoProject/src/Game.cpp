@@ -4,12 +4,6 @@ Game::Game() :
 		m_minBetFlag(true), m_maxBetFlag(true), m_setBetFlag(false), m_bet(0) {
 }
 
-Game::~Game()
-{
-	Mix_FreeChunk(m_chunk);
-	m_chunk = NULL;
-}
-
 NumbersGrid& Game::getNumbersGrid() {
 	return mGrid;
 }
@@ -30,6 +24,8 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha) {
 	//Render background
 
 	render(renderer, NULL);
+
+
 
 	//Render numbers grid background
 	mGrid.renderBackground(renderer);
@@ -78,6 +74,8 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha) {
 
 	m_DrawAnimation.loadTextures(renderer);
 	m_DrawAnimation.drawPipe(renderer);
+
+	m_bonusInGame.renderBonus(renderer);
 }
 
 void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
@@ -90,14 +88,13 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 			mBetButton.betText(renderer);
 			if (mBetButton.isClicked(e, mBetButton.getKRect())) 
 			{
-				gameButtonsChunk();
 				//Pick 10 random numbers
 				changeCreditOnClickingBet(renderer, e);
 
 				mGrid.pickRandomNumbers(renderer, e);
 
-				drawAnimation(renderer, mGrid.getRandomNumbers(),
-						mGrid.getNumberRects());
+//				drawAnimation(renderer, mGrid.getRandomNumbers(),
+//						mGrid.getNumberRects());
 
 				// Render game after animation
 				renderAfterAnimationGame(renderer,150);
@@ -158,7 +155,6 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 	if (m_clearButton.getButtonRect().isClicked(e,
 			m_clearButton.getButtonRect().getKRect())) 
 	{
-		gameButtonsChunk();
 		SDL_Rect payTableRect = { 585, 0, 235, 225 };
 		cropFromRenderTo(renderer, &payTableRect, &payTableRect);
 		m_PayTable.renderPayTable(renderer);
@@ -445,6 +441,11 @@ void Game::playPauseMusic(SDL_Renderer* renderer, const SDL_Event& e,
 
 }
 
+Bonus& Game::getBonusInGame()
+{
+	return m_bonusInGame;
+}
+
 void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e) {
 
 	std::cout << "min flag ->" << m_minBetFlag << std::endl;
@@ -461,19 +462,17 @@ void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e) {
 	if (m_maxBetButton.getMaxBet().isClicked(e,
 				m_maxBetButton.getMaxBet().getKRect()))
 	{
-		gameButtonsChunk();
-		setBet(0);
-		std::cout << "MaxBet-> " << m_bet << std::endl;
-		m_maxBetButton.activateMaxButton(renderer);
-		m_minBetButton.deactivateMinButton(renderer);
-		m_maxBetFlag = true;
-		m_minBetFlag = false;
+			setBet(0);
+			std::cout << "MaxBet-> " << m_bet << std::endl;
+			m_maxBetButton.activateMaxButton(renderer);
+			m_minBetButton.deactivateMinButton(renderer);
+			m_maxBetFlag = true;
+			m_minBetFlag = false;
 		}
 
 		if (m_minBetButton.getMinBet().isClicked(e,
 				m_minBetButton.getMinBet().getKRect()) )
 		{
-			gameButtonsChunk();
 			setBet(0);
 			std::cout << "MINIMALBet-> " << m_bet << std::endl;
 			m_minBetButton.activateMinButton(renderer);
@@ -511,7 +510,11 @@ CashOut& Game::getCashOutButton() {
 int Game::calculateWin(int spots, int match, int bet) {
 	int result = 0;
 	if (match > 0) {
-		int arrayQueficient[9][10] ;
+		int arrayQueficient[9][10] = { 1, 9, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 16,
+						0, 0, 0, 0, 0, 0, 0, 0, 2, 6, 12, 0, 0, 0, 0, 0, 0, 0, 1, 3, 15,
+						50, 0, 0, 0, 0, 0, 0, 1, 2, 3, 30, 75, 0, 0, 0, 0, 0, 0, 1, 6,
+						12, 36, 100, 0, 0, 0, 0, 0, 1, 3, 6, 19, 90, 720, 0, 0, 0, 0, 1,
+						2, 4, 8, 20, 80, 1200, 0, 0, 0, 1, 2, 3, 5, 10, 30, 600, 1800 };
 
 		result = arrayQueficient[spots - 2][match - 1] * bet;
 	}
@@ -520,32 +523,12 @@ int Game::calculateWin(int spots, int match, int bet) {
 
 // to fix function
 
-void Game::loadWinScreen(SDL_Renderer* renderer, int spots, int match, int bet) {
-	if (calculateWin(spots, match, bet) > 0) {
-		m_winInGame.writeOnScreen(renderer, 100);
-	}
-}
-
-void Game::loadBigWinScreen(SDL_Renderer* renderer, int spots, int match, int bet)
-{
-	if(calculateWin(spots, match, bet) > 0)
-	{
-		if(match == 10)
-		{
-			m_winInGame.bigWin(renderer, 1000);
-		}
-	}
-}
-
-void Game::gameButtonsChunk()
-{
-	m_chunk = Mix_LoadWAV("Resources/Sounds/button click version sound effect  13.mp3");
-	if(m_chunk == NULL)
-	{
-		std::cerr << "Could not load music chunk!" << std::endl;
-	}
-	Mix_PlayChannel(-1, m_chunk, 0);
-}
+//void Game::loadWinScreen(int spots, int match, int bet) {
+//	SDL_Renderer* renderer;
+//	if (calculateWin(spots, match, bet) > 0) {
+//		m_winInGame.writeOnScreen(renderer);
+//	}
+//}
 
 VolumeButton& Game::getVolumeButton() {
  	return m_volumeButton;

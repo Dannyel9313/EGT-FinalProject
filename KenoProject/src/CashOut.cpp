@@ -48,11 +48,11 @@ void CashOut::setColor() {
 
 void CashOut::setElementsPositionDimension() {
 
-	m_cashOutText.setPosition(700,583, cashOutButtonText_width,
+	m_cashOutText.setPosition(900,583, cashOutButtonText_width,
 			cashOutButtonText_height);
-	m_cashOutRect.setPosition(690, 575, cashOutRect_width,
+	m_cashOutRect.setPosition(890, 575, cashOutRect_width,
 			cashOutRect_height);
-	m_cashOutRectPushed.setPosition(690, 575, cashOutRect_width,
+	m_cashOutRectPushed.setPosition(890, 575, cashOutRect_width,
 			cashOutRect_height);
 
 }

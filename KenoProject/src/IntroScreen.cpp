@@ -62,12 +62,12 @@ InsertCredit& IntroScreen::getInsertCredit()
 
 void IntroScreen::setPositionDimension()
 {
-	m_startNewGameButton.setPosition(450, 30, introStartResumeButton_width,
+	m_startNewGameButton.setPosition(650, 30, introStartResumeButton_width,
 			introStartResumeButton_height);
 
-	m_resumeGameButton.setPosition(450, 110, introStartResumeButton_width,
+	m_resumeGameButton.setPosition(650, 110, introStartResumeButton_width,
 			introStartResumeButton_height);
-	m_infoButton.setPosition(550, 190, introButton_width, introButton_height);
+	m_infoButton.setPosition(750, 190, introButton_width, introButton_height);
 
 }
 

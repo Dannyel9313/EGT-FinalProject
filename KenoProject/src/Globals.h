@@ -2,7 +2,7 @@
 #define GLOBALS_H_
 
 // Screen size
-const int SCREEN_WIDTH = 820;
+const int SCREEN_WIDTH = 1020;
 const int SCREEN_HEIGHT = 640;
 
 // Size of start and resume buttons
@@ -82,8 +82,8 @@ const int circle_xIndent = 23;
 const int circle_yIndent = 20;
 
 //Bet button position
-const int betButton_x = 690;
-const int betButton_y = 460;
+const int betButton_x = 480;
+const int betButton_y = 515;
 
 //Bet button dimensions
 const int betButton_width = 100;
@@ -162,6 +162,19 @@ const int cashOutRect_height = 40;
 const int cashOutButtonText_width = 80;
 const int cashOutButtonText_height = 35;
 
+// Size of bonus logo
+const int bonusLogo_width = 150;
+const int bonusLogo_height = 65;
+
+// Size of bonus rectangle
+const int bonusRectangle_width = 130;
+const int bonusRectangle_height = 50;
+
+// Size of bonus text
+const int bonusText_width = 60;
+const int bonusText_height = 45;
+
+
 //Pay table
 const SDL_Point TOP_RIGHT_POINT = {820, 0};
 const SDL_Point BOTTOM_LEFT_POINT = {585, 225};
@@ -225,12 +238,12 @@ const int HITTABLE_RECT_X = HITTABLE_TEXT_X + 70;
 const int HITTABLE_RECT_Y = HITTABLE_TEXT_Y;
  
 //Volume button position
-const int VOLUME_BUTTON_POSITION_X = 5;
-const int VOLUME_BUTTON_POSITION_Y = 35;
+const int VOLUME_BUTTON_POSITION_X = 990;
+const int VOLUME_BUTTON_POSITION_Y = 610;
 
 //Volume buttons dimensions
-const int VOLUME_BUTTON_WIDTH = 50;
-const int VOLUME_BUTTON_HEIGHT = 50;
+const int VOLUME_BUTTON_WIDTH = 30;
+const int VOLUME_BUTTON_HEIGHT = 30;
 
 
 #endif /* GLOBALS_H_ */

@@ -32,7 +32,8 @@ void MaxBet::setNumbersColor()
 
 }
 
-void MaxBet::setElementsPositionDimension() {
+void MaxBet::setElementsPositionDimension()
+{
 
 	m_buttonStartCircleMax.setPosition(20, 562, minMaxBetCircle_width,
 			minMaxBetCircle_height);
@@ -49,7 +50,8 @@ void MaxBet::setElementsPositionDimension() {
 
 }
 
-void MaxBet::loadElements(SDL_Renderer* renderer) {
+void MaxBet::loadElements(SDL_Renderer* renderer)
+{
 
 	setNumbersColor();
 

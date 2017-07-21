@@ -25,19 +25,37 @@ class MinBet
 		//Deactivate min bet
 		void deactivateMinButton(SDL_Renderer* renderer);
 
+		// Get minimal bet
 		Font& getMinBet();
+
+		// Get bet five
 		Font& getNumFive();
+
+		// Get bet four
 		Font& getNumFour();
+
+		// Get bet one
 		Font& getNumOne();
+
+		// Get bet ten
 		Font& getNumTen();
+
+		// Get bet three
 		Font& getNumThree();
+
+		// Get bet two
 		Font& getNumTwo();
+
+		// Get button rect
 		BaseObject& getButtonRect();
+
+		// Get button circle
 		BaseObject& getButtonStartCircle();
 
-
-		//Set and Get minimal bet
+		// Get minimal bet
 		int getMinimalBet() const;
+
+		// Get minimal bet
 		void setMinimalBet(int minimalBet);
 
 	private:

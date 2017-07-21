@@ -42,11 +42,11 @@ void ClearButton::changeColorOnMouseOver(SDL_Renderer* renderer)
 
 void ClearButton::setElementsPositionDimension() 
 {
-	m_buttonClear.setPosition(304, 578, buttonClearQuickPickText_width,
+	m_buttonClear.setPosition(340, 578, buttonClearQuickPickText_width,
 			buttonClearQuickPickText_height);
-	m_buttonRect.setPosition(294, 573, buttonClearQuickPickRect_width,
+	m_buttonRect.setPosition(330, 573, buttonClearQuickPickRect_width,
 			buttonClearQuickPickRect_height);
-	m_buttonRectPushed.setPosition(294, 573, buttonClearQuickPickRect_width,
+	m_buttonRectPushed.setPosition(330, 573, buttonClearQuickPickRect_width,
 			buttonClearQuickPickRect_height);
 }
 

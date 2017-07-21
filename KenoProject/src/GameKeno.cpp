@@ -103,7 +103,7 @@ bool GameKeno::loadMedia()
 	m_GameMode.getHistory().getFont().setFont(TTF_OpenFont("Resources/Fonts/AUDI.TTF", 24));
 
 	// Load music media
-	m_mainMusic = Mix_LoadMUS("Resources/Sounds/Casino (Instrumental) - Patzmarzbelt's Collections [HD].mp3");
+	m_mainMusic = Mix_LoadMUS("Resources/Sounds/Casino-Instrumental-Patzmarzbelts-Collections-HD.mp3");
 	if(m_mainMusic == NULL)
 	 	{
 	 		std::cerr << "Could not load music file!" << std::endl;

@@ -67,14 +67,14 @@ void CreditInGame::setColor()
 
 void CreditInGame::setElementsPositionDimension() {
 
-	m_creditsCircle.setPosition(604, 562, creditsInGameWinCircle_width,
+	m_creditsCircle.setPosition(804, 562, creditsInGameWinCircle_width,
 			creditsInGameWInCircle_height);
-	m_creditsTextRect.setPosition(421, 573, creditsInGameWinRect_width,
+	m_creditsTextRect.setPosition(621, 573, creditsInGameWinRect_width,
 			creditsInGameWinRect_height);
-	m_creditsText.setPosition(454, 580, creditsInGameWinTextInRect_width,
+	m_creditsText.setPosition(654, 580, creditsInGameWinTextInRect_width,
 			creditsInGameWinTextInRect_height);
 
-	m_creditsInGame.setPosition(619, 575, creditsInGameWinTextInCircle_width,
+	m_creditsInGame.setPosition(819, 575, creditsInGameWinTextInCircle_width,
 			creditsInGameWinTextInCircle_height);
 }
 

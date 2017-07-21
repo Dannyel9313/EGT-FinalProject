@@ -47,11 +47,11 @@ void QuickPick::setColor() {
 
 void QuickPick::setElementsPositionDimension() {
 
-	m_quickPickText.setPosition(304, 519, buttonClearQuickPickText_width,
+	m_quickPickText.setPosition(340, 519, buttonClearQuickPickText_width,
 			buttonClearQuickPickText_height);
-	m_quickPickRect.setPosition(294, 513, buttonClearQuickPickRect_width,
+	m_quickPickRect.setPosition(330, 513, buttonClearQuickPickRect_width,
 			buttonClearQuickPickRect_height);
-	m_quickPickRectPushed.setPosition(294, 513, buttonClearQuickPickRect_width,
+	m_quickPickRectPushed.setPosition(330, 513, buttonClearQuickPickRect_width,
 			buttonClearQuickPickRect_height);
 
 }
