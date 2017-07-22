@@ -7,6 +7,7 @@ class NumbersGrid: public BaseObject
 {
 	public:
 		NumbersGrid();
+		~NumbersGrid();
 	
 		void createRects(SDL_Renderer*, int);
 		void setNumbersGridRect(int x, int y, int w, int h);		
@@ -63,8 +64,11 @@ class NumbersGrid: public BaseObject
 		//Load numbers in rectangles
 		void printNumbers(SDL_Renderer*);
 
+		//Print only specific numbers
 		void printSpecificNumber(SDL_Renderer*, int);
 
+		//Get clicked numbers
+		int* getClickedNumbers();
 	private:
 		const char* toString(int);
 

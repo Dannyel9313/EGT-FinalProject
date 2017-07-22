@@ -20,12 +20,23 @@ PayTable& Game::getPayTable() {
 	return m_PayTable;
 }
 
+void Game::initializeGameState()
+{
+        //Sets pay table lines
+        m_PayTable.setLines();
+
+        //Sets pay table hit rects
+        m_PayTable.setHitsRects();
+
+        //Set pay table pay rects
+        m_PayTable.setPayRects();
+
+}
+
 void Game::renderGame(SDL_Renderer* renderer, int alpha) {
+
 	//Render background
-
 	render(renderer, NULL);
-
-
 
 	//Render numbers grid background
 	mGrid.renderBackground(renderer);
@@ -69,8 +80,9 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha) {
 
 	//Render history
 	m_History.renderHistory(renderer);
-	m_PayTable.renderPayTable(renderer);
-	m_PayTable.renderHitsText(renderer);
+
+	//Render pay table
+	m_PayTable.renderPayTable(renderer, 0, 0);
 
 	m_DrawAnimation.loadTextures(renderer);
 	m_DrawAnimation.drawPipe(renderer);
@@ -118,17 +130,25 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 
 				mGrid.blinkingSuccessHits(renderer);
 
+				payTableAnimation(renderer);
+
 				History::currentRound++;
+
+		                if (History::currentRound == 10)
+                                {
+                                        SDL_Rect tempRect = {HISTORY_BOTTOM_LEFT.x,
+                                                HISTORY_TOP_RIGHT.y, HISTORY_WIDTH, HISTORY_HEIGHT};
+
+                                        cropFromRenderTo(renderer, &tempRect, &tempRect);
+                                        m_History.renderHistory(renderer);
+                                }
+
 
 				m_History.renderHits(renderer, mGrid.numberOfHits(), 1);
 
 				mGrid.resetIsClicked();
 
-
-//				renderGame(renderer, 255);
-
 				mGrid.resetNumbersGrid(renderer);
-
 
 			}
 		}
@@ -142,13 +162,8 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 		mGrid.resetIsClicked();
 		SDL_Rect payTableRect = { 585, 0, 235, 225 };
 		cropFromRenderTo(renderer, &payTableRect, &payTableRect);
-		m_PayTable.renderPayTable(renderer);
-		m_PayTable.renderHitsText(renderer);
-		m_PayTable.renderPayText(renderer);
 		mGrid.pickRandomChoices(renderer);
-
-		m_PayTable.renderHits(renderer,mGrid.numbersClicked());
-		m_PayTable.renderPay(renderer,mGrid.numbersClicked());
+		m_PayTable.renderPayTable(renderer, 0, m_bet);
 		if(mBetButton.buttonCondition(mGrid.numbersClicked()))
 		{
 			mBetButton.renderButton(renderer);
@@ -164,9 +179,7 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 	{
 		SDL_Rect payTableRect = { 585, 0, 235, 225 };
 		cropFromRenderTo(renderer, &payTableRect, &payTableRect);
-		m_PayTable.renderPayTable(renderer);
-		m_PayTable.renderHitsText(renderer);
-		m_PayTable.renderPayText(renderer);
+		m_PayTable.renderPayTable(renderer, 0, m_bet);
 		mGrid.resetNumbersGrid(renderer);
 		m_minBetButton.renderMinBet(renderer);
 		m_maxBetButton.renderMaxBet(renderer);
@@ -176,6 +189,8 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 		m_setBetFlag = false;
 	}
 
+	//Re render bet button
+	reRenderBetButton(renderer);
 }
 
 void Game::mouseOnButtonRender(SDL_Renderer* renderer, const SDL_Event& e)
@@ -200,11 +215,7 @@ void Game::changeColorOfClickedNumbers(SDL_Renderer* renderer,
 	if (mGrid.doIfClicked(renderer, e)) {
 		SDL_Rect payTableRect = { 585, 0, 235, 225 };
 		cropFromRenderTo(renderer, &payTableRect, &payTableRect);
-		m_PayTable.renderPayTable(renderer);
-		m_PayTable.renderHitsText(renderer);
-		m_PayTable.renderPayText(renderer);
-		m_PayTable.renderHits(renderer, mGrid.numbersClicked());
-		m_PayTable.renderPay(renderer, mGrid.numbersClicked());
+		m_PayTable.renderPayTable(renderer, mGrid.numbersClicked(), m_bet);
 	}
 	mGrid.printNumbers(renderer);
 
@@ -376,7 +387,6 @@ void Game::renderAfterAnimationGame(SDL_Renderer* renderer, int alpha) {
 	//Render bet text
 	mBetButton.betText(renderer);
 
-
 	//Render clear button
 	m_clearButton.renderClearButton(renderer);
 
@@ -394,7 +404,6 @@ void Game::renderAfterAnimationGame(SDL_Renderer* renderer, int alpha) {
 
 	//Render history
 	m_History.renderHistory(renderer);
-
 
 //	m_PayTable.renderPayTable(renderer);
 //	m_PayTable.renderHitsText(renderer);
@@ -606,8 +615,60 @@ int Game::calculateWin(int spots, int match, int bet) {
 VolumeButton& Game::getVolumeButton()
 {
  	return m_volumeButton;
- }
+}
 
+void Game::payTableAnimation(SDL_Renderer* renderer)
+{
+	SDL_Rect payTableRect = { 585, 0, 235, 225 };
+	if(mGrid.numberOfHits() > 0)
+        {
+                for (int i = 1; i < 9; i++)
+                {
+                        if (i % 2 != 0)
+                        {  
+                                SDL_SetRenderDrawColor(renderer, LIME.r, LIME.g,
+                                        LIME.b, 150);
+                                SDL_RenderFillRect(renderer, 
+					&m_PayTable.getLines()
+					[mGrid.numberOfHits()-1]);
+				m_PayTable.reApplyLine(renderer, 
+					mGrid.numberOfHits(),
+					mGrid.numbersClicked(),
+					m_bet);
+                        }
+                        else
+                        {
+                                SDL_SetRenderDrawColor(renderer, RED.r, RED.g,
+                                        RED.b, 150);
+                                SDL_RenderFillRect(renderer, 
+					&m_PayTable.getLines()
+					[mGrid.numberOfHits()-1]);
+				m_PayTable.reApplyLine(renderer, 
+					mGrid.numberOfHits(),
+					mGrid.numbersClicked(),
+					m_bet);
+                        }
+                        SDL_RenderPresent(renderer);
+                       	int timeout = SDL_GetTicks() + HALF_SECOND_MS;
+                       	while(!SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {}
+                }
+        }
+	//Returns pay table to normal condition
+	cropFromRenderTo(renderer, &payTableRect, &payTableRect);
+	m_PayTable.renderPayTable(renderer, 0, m_bet);
+}
+
+void Game::reRenderBetButton(SDL_Renderer* renderer)
+{
+	SDL_Rect tempRect = {470, 510, 120, 100};
+	cropFromRenderTo(renderer, &tempRect, &tempRect);	
+	//Render bet button
+	mBetButton.buttonCondition(mGrid.numbersClicked());
+	mBetButton.renderButton(renderer);
+
+	//Render bet text
+	mBetButton.betText(renderer);
+}
 
 
 

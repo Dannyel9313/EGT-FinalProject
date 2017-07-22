@@ -67,6 +67,9 @@ int main(int argc, char* args[])
 			}
 			if(gameMode)
 			{
+			        //Initialize game state
+                                game.getGameMode().initializeGameState();
+
 				game.getGameMode().getCreditInGame().setGameCredit(game.getIntroMode().getInsertCredit().getCredit());
 				game.getGameMode().renderGame(game.getKenoRenderer(), 255);
 

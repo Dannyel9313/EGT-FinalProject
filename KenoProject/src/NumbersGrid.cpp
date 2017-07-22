@@ -2,7 +2,8 @@
 
 NumbersGrid::NumbersGrid()
 {
-	//TODO NULL FONT, SOUND EFFECT
+	m_font = NULL;
+	m_ClickEffect = NULL;
 	setPosition(numbersGrid_x, numbersGrid_y);
 	setDimensions(numbersGrid_width, numbersGrid_height);
 	for (int i = 0; i < 8; i++)
@@ -13,6 +14,20 @@ NumbersGrid::NumbersGrid()
 			randomNumbersFlags[i][j] = 0;
 			numberOfHitsFlags[i][j] = 0;
 		}
+	}
+}
+
+NumbersGrid::~NumbersGrid()
+{
+	if (m_font != NULL)
+	{
+		TTF_CloseFont(m_font);
+		m_font = NULL;
+	}
+	if (m_ClickEffect != NULL)
+	{
+		Mix_FreeChunk(m_ClickEffect);
+		m_ClickEffect = NULL;
 	}
 }
 
@@ -481,6 +496,23 @@ SDL_Rect* NumbersGrid::getNumberRects()
 		for (int j = 0; j < 10; j++)
 		{
 			tempArray[number] = m_numbers[i][j];
+			number++;
+		}
+	}
+
+	return tempArray;	
+}
+
+int* NumbersGrid::getClickedNumbers()
+{
+	int* tempArray = new int[80];
+	int number = 0;
+
+	for (int i = 0; i < 8; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			tempArray[number] = isClickedFlags[i][j];
 			number++;
 		}
 	}

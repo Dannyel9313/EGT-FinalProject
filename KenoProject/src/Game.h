@@ -21,11 +21,14 @@ class Game: public BaseObject
 	public:
 		Game();
 
+		//Call functions that only need to be called once
+		void initializeGameState();
+
 		//Flags
 		std::bitset <80> flags;
 		std::vector <SDL_Color> colors;
 
-		// render game after main animation
+		//Render game after main animation
 		void renderAfterAnimationGame(SDL_Renderer*, int alpha);
 
 		//Get Number grid
@@ -34,10 +37,10 @@ class Game: public BaseObject
 		//Get bet button
 		BetButton& getBetButton();
 
-		// Get pay table
+		//Get pay table
 		PayTable& getPayTable();
 
-		// add bonus to credits
+		//Add bonus to credits
 		void bonusToCredits(int match, SDL_Renderer* renderer);
 
 		//Render the whole game screen
@@ -97,32 +100,36 @@ class Game: public BaseObject
 		void drawAnimation(SDL_Renderer*, int*, SDL_Rect*);		
 		void drawAnimationReRender(SDL_Renderer*, SDL_Rect*);
 
-		// calculate win credits
+		//Calculate win credits
 		int calculateWin(int spots, int match, int bet);
 
 		//Get cash out button
 		CashOut& getCashOutButton();
  
-		// Get bet
+		//Get bet
 		int getBet() const;
 
-		// Set bet
+		//Set bet
 		void setBet(int bet);
 
 		void cashOutButtonPushed(bool* outroMode, const SDL_Event& e);
 
-		// Loads win if the user won
+		//Loads win if the user won
 		void loadWinScreen(int spots, int match, int bet);
 
-		// Get bonus
+		//Get bonus
 		Bonus& getBonusInGame();
 
-		// Get bonus
+		//Get bonus
 		double getBonus() const;
 
-		// Set bonus
+		//Set bonus
 		void setBonus(double bonus);
+		
+		void payTableAnimation(SDL_Renderer*);
 
+		//Re render bet button
+		void reRenderBetButton(SDL_Renderer*);
 	private:
 		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
 

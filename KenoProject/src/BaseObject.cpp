@@ -3,7 +3,10 @@
 BaseObject::BaseObject() 
 {
 	this->m_KTexture = NULL;
-	this->m_chunkClick = NULL;
+        for (int i = 0; i < m_SoundEffects.size(); i++)
+        {
+                m_SoundEffects[i] = NULL;
+        }
 }
 
 BaseObject::~BaseObject() 
@@ -156,10 +159,10 @@ void BaseObject::playSoundEffect(int i, int volume)
 	Mix_PlayChannel(-1, m_SoundEffects[i], 0);
 }
 
-Mix_Chunk*& BaseObject::getChunkClick() 
+/*Mix_Chunk*& BaseObject::getChunkClick() 
 {
 	return m_chunkClick;
-}
+}*/
 
 /*const std::vector& <Mix_Chunk*> getSoundEffects()
 {
