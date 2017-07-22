@@ -28,7 +28,13 @@ class Win: public BaseObject
 		void loadTexture(SDL_Renderer* renderer);
 
 		// Loads "YOU HAVE WON" text
-		void writeOnScreen(SDL_Renderer*);
+		void writeOnScreen(SDL_Renderer*, int);
+
+		// Loads "Big win" text
+		void bigWin(SDL_Renderer*, int);
+
+		// Get chunk
+		Mix_Chunk* getChunk();
 
 		// Get win credits
 		int getWinCredits() const;
@@ -37,6 +43,9 @@ class Win: public BaseObject
 		void setWinCredits(int winCredits);
 
 	private:
+
+		Mix_Chunk* m_chunk;
+		Font m_credits;
 
 		int m_winCredits;
 

@@ -250,5 +250,16 @@ const int VOLUME_BUTTON_POSITION_Y = 610;
 const int VOLUME_BUTTON_WIDTH = 30;
 const int VOLUME_BUTTON_HEIGHT = 30;
 
+//Info button position
+const int INFO_BUTTON_POSITION_X = 5;
+const int INFO_BUTTON_POSITION_Y = 35;
+
+//Info button dimensions
+const int INFO_BUTTON_WIDTH = 50;
+const int INFO_BUTTON_HEIGHT = 50;
+
+// Size of extra bonus logo
+const int extraBonusLogo_width = 200;
+const int extraBonusLogo_height = 100;
 
 #endif /* GLOBALS_H_ */

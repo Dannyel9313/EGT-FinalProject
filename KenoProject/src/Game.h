@@ -19,7 +19,11 @@
 class Game: public BaseObject
 {
 	public:
+
+
 		Game();
+
+		~Game();
 
 		//Call functions that only need to be called once
 		void initializeGameState();
@@ -60,6 +64,15 @@ class Game: public BaseObject
 
 		// Calculate money from credits and denomination
 		double calculateCreditsInMoney(int credits);
+
+		// Loads win if the user won
+		void loadWinScreen(SDL_Renderer* renderer, int spots, int match, int bet);
+
+		// Loads big win if the user matched 10 out of 10
+		void loadBigWinScreen(SDL_Renderer* renderer, int spots, int match, int bet);
+
+		// Show Bonus logo when you get bonus
+			void showBonusLogo(SDL_Renderer* renderer);
 
 		//Get min bet button
 		MinBet& getMinBetButton();
@@ -133,9 +146,13 @@ class Game: public BaseObject
 		
 		//Rerender history table
 		void reRenderHistory(SDL_Renderer*);
+
+		//loads chunk if button is clicked
+		void gameButtonsChunk();
 	private:
 		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
 
+		bool m_bonusFlag;
 		bool m_setBetFlag;
 	 	bool m_minBetFlag;
  		bool m_maxBetFlag;
@@ -155,6 +172,8 @@ class Game: public BaseObject
 		PayTable m_PayTable;
 		VolumeButton m_volumeButton;
 		Bonus m_bonusInGame;
+		Mix_Chunk* m_chunk;
+
 };
 
 #endif

@@ -15,8 +15,7 @@ class Bonus {
 public:
 	Bonus();
 	virtual ~Bonus();
-//	void bonusWindow(SDL_Renderer *,double);
-//	void addBonusPercent(double );
+
 
 	// Set position and dimension
 	void setPositionAndDimension(SDL_Renderer* renderer);
@@ -52,6 +51,10 @@ public:
 	//Set bonus
 	void setBonus(int bonus);
 
+
+	// Get extra bonus logo
+	BaseObject& getExtraBonusLogo();
+
 private:
 
 	int m_bonus;
@@ -60,6 +63,8 @@ private:
 	BaseObject m_bonusRectangle;
 
 	Font m_bonusText;
+
+	BaseObject m_extraBonusLogo;
 
 	// cast to string
 	const char * toString(int);

@@ -1,22 +1,32 @@
 #include "Game.h"
 
 Game::Game() :
-		m_minBetFlag(true), m_maxBetFlag(true), m_setBetFlag(false), m_bet(0) {
+		m_minBetFlag(true), m_maxBetFlag(true), m_setBetFlag(false), m_bonusFlag(false), m_bet(0) {
 }
 
-NumbersGrid& Game::getNumbersGrid() {
+Game::~Game()
+ {
+ 	Mix_FreeChunk(m_chunk);
+ 	m_chunk = NULL;
+ }
+
+NumbersGrid& Game::getNumbersGrid()
+{
 	return mGrid;
 }
 
-BetButton& Game::getBetButton() {
+BetButton& Game::getBetButton()
+{
 	return mBetButton;
 }
 
-KenoDrawAnimation& Game::getDrawAnimation() {
+KenoDrawAnimation& Game::getDrawAnimation()
+{
 	return m_DrawAnimation;
 }
 
-PayTable& Game::getPayTable() {
+PayTable& Game::getPayTable()
+{
 	return m_PayTable;
 }
 
@@ -33,7 +43,8 @@ void Game::initializeGameState()
 
 }
 
-void Game::renderGame(SDL_Renderer* renderer, int alpha) {
+void Game::renderGame(SDL_Renderer* renderer, int alpha)
+{
 
 	//Render background
 	render(renderer, NULL);
@@ -88,9 +99,12 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha) {
 	m_DrawAnimation.drawPipe(renderer);
 
 	m_bonusInGame.renderBonus(renderer);
+
+
 }
 
-void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
+void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
+{
 	if (m_creditInGame.getGameCredit() >= m_bet && m_bet != 0)
 	{
 		//If button condition true show random numbers
@@ -101,6 +115,7 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 			if (mBetButton.isClicked(e, mBetButton.getKRect())) 
 			{
 
+				gameButtonsChunk();
 
 				m_bonusInGame.showBonus(renderer,calculateBonus(getBet()));
 				//Pick 10 random numbers
@@ -132,6 +147,12 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 
 				payTableAnimation(renderer);
 
+				if(m_bonusFlag == true)
+				{
+					showBonusLogo(renderer);
+
+				}
+
 				History::currentRound++;
 
 		                if (History::currentRound == 10)
@@ -150,6 +171,11 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 
 				mGrid.resetNumbersGrid(renderer);
 
+				if(m_bonusFlag == true){
+				m_creditInGame.renderCreditsInGame(renderer);
+				m_bonusInGame.renderBonus(renderer);
+				m_bonusFlag = false;
+				}
 			}
 		}
 	}
@@ -157,7 +183,7 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 	if (m_quickPickButton.getQuickPickText().isClicked(e,
 			m_quickPickButton.getQuickPickText().getKRect()))
 	{
-
+		gameButtonsChunk();
 		mGrid.resetNumbersGrid(renderer);
 		mGrid.resetIsClicked();
 		SDL_Rect payTableRect = {PAYTABLE_BOTTOM_LEFT.x,
@@ -179,6 +205,7 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 	if (m_clearButton.getButtonRect().isClicked(e,
 			m_clearButton.getButtonRect().getKRect())) 
 	{
+		gameButtonsChunk();
 		SDL_Rect payTableRect = {PAYTABLE_BOTTOM_LEFT.x,
 				PAYTABLE_TOP_RIGHT.y, PAYTABLE_WIDTH,
 					PAYTABLE_HEIGHT};
@@ -213,7 +240,8 @@ void Game::mouseOnButtonRender(SDL_Renderer* renderer, const SDL_Event& e)
 }
 
 void Game::changeColorOfClickedNumbers(SDL_Renderer* renderer,
-		const SDL_Event& e) {
+		const SDL_Event& e)
+{
 	mGrid.createRects(renderer, 255);
 	mGrid.reRenderClickedNumbers(renderer, 255);
 	if (mGrid.doIfClicked(renderer, e)) {
@@ -227,7 +255,8 @@ void Game::changeColorOfClickedNumbers(SDL_Renderer* renderer,
 
 }
 
-void Game::drawAnimationReRender(SDL_Renderer* renderer, SDL_Rect* rects) {
+void Game::drawAnimationReRender(SDL_Renderer* renderer, SDL_Rect* rects)
+{
 	int number = 0;
 	for (int i = 0; i < 80; i++) {
 		if (flags[i] == 1) {
@@ -240,7 +269,8 @@ void Game::drawAnimationReRender(SDL_Renderer* renderer, SDL_Rect* rects) {
 }
 
 void Game::drawAnimation(SDL_Renderer* renderer, int* numbers,
-		SDL_Rect* rects) {
+		SDL_Rect* rects)
+{
 	SDL_Rect test = { 500, 95, 80, 350 };
 	colors.clear();
 	for (int i = 0; i < 80; i++) {
@@ -311,27 +341,33 @@ void Game::drawAnimation(SDL_Renderer* renderer, int* numbers,
 
 }
 
-MinBet& Game::getMinBetButton() {
+MinBet& Game::getMinBetButton()
+{
 	return m_minBetButton;
 }
 
-MaxBet& Game::getMaxBetButton() {
+MaxBet& Game::getMaxBetButton()
+{
 	return m_maxBetButton;
 }
 
-ClearButton& Game::getClearButton() {
+ClearButton& Game::getClearButton()
+{
 	return m_clearButton;
 }
 
-QuickPick& Game::getQuickPickButton() {
+QuickPick& Game::getQuickPickButton()
+{
 	return m_quickPickButton;
 }
 
-CreditInGame& Game::getCreditInGame() {
+CreditInGame& Game::getCreditInGame()
+{
 	return m_creditInGame;
 }
 
-Win& Game::getWinInGame() {
+Win& Game::getWinInGame()
+{
 	return m_winInGame;
 }
 
@@ -348,7 +384,8 @@ void Game::setBet(int bet) {
 }
 
 void Game::changeCreditOnClickingBet(SDL_Renderer* renderer,
-		const SDL_Event& e) {
+		const SDL_Event& e)
+{
 
 	int temp = 0;
 	int changedCredit = 0;
@@ -361,7 +398,8 @@ void Game::changeCreditOnClickingBet(SDL_Renderer* renderer,
 
 }
 
-void Game::showWinInGame(SDL_Renderer* renderer) {
+void Game::showWinInGame(SDL_Renderer* renderer)
+{
 	int winResult = 0;
 
 	m_winInGame.setWinCredits(
@@ -375,7 +413,8 @@ void Game::showWinInGame(SDL_Renderer* renderer) {
 
 }
 
-void Game::renderAfterAnimationGame(SDL_Renderer* renderer, int alpha) {
+void Game::renderAfterAnimationGame(SDL_Renderer* renderer, int alpha)
+{
 
 	//Render numbers grid background
 	mGrid.renderBackground(renderer);
@@ -418,7 +457,8 @@ void Game::renderAfterAnimationGame(SDL_Renderer* renderer, int alpha) {
 	m_DrawAnimation.drawPipe(renderer);
 }
 
-double Game::calculateCreditsInMoney(int credits) {
+double Game::calculateCreditsInMoney(int credits)
+{
 
 	double denomination = 0.25;
 	double money = 0;
@@ -502,8 +542,9 @@ void Game::bonusToCredits(int match, SDL_Renderer* renderer)
 	std::cout << match << " match" << std::endl;
 	int tempBonus = 0;
 	int resultDenom = 0;
-	if(match > 5)
+	if(match > 2)
 	{
+
 	tempBonus = m_bonus * 10;
 
 	resultDenom = tempBonus % 10;
@@ -525,8 +566,8 @@ void Game::bonusToCredits(int match, SDL_Renderer* renderer)
 	m_creditInGame.setGameCredit((m_creditInGame.getGameCredit() + bonus));
 
 	std::cout << "credits after bonus ->" << m_creditInGame.getGameCredit() << std::endl;
-	m_creditInGame.renderCreditsInGame(renderer);
-	m_bonusInGame.renderBonus(renderer);
+
+	m_bonusFlag = true;
 
 	}
 
@@ -550,6 +591,7 @@ void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e) {
 	if (m_maxBetButton.getMaxBet().isClicked(e,
 				m_maxBetButton.getMaxBet().getKRect()))
 	{
+		gameButtonsChunk();
 			setBet(0);
 			std::cout << "MaxBet-> " << m_bet << std::endl;
 			m_maxBetButton.activateMaxButton(renderer);
@@ -561,6 +603,7 @@ void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e) {
 		if (m_minBetButton.getMinBet().isClicked(e,
 				m_minBetButton.getMinBet().getKRect()) )
 		{
+			gameButtonsChunk();
 			setBet(0);
 			std::cout << "MINIMALBet-> " << m_bet << std::endl;
 			m_minBetButton.activateMinButton(renderer);
@@ -575,27 +618,32 @@ void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e) {
 		m_minBetButton.deactivateMinButton(renderer);
 	}
 
-	if (m_maxBetFlag == false && m_setBetFlag == true) {
+	if (m_maxBetFlag == false && m_setBetFlag == true)
+	{
 		m_maxBetButton.renderMaxBet(renderer);
 		m_maxBetButton.deactivateMaxButton(renderer);
 	}
 
-	if (m_minBetFlag == true && m_setBetFlag == true) {
+	if (m_minBetFlag == true && m_setBetFlag == true)
+	{
 		m_minBetButton.betChoiceMin(renderer, e);
 		setBet(m_minBetButton.getMinimalBet());
 	}
 
-	if (m_maxBetFlag == true && m_setBetFlag == true) {
+	if (m_maxBetFlag == true && m_setBetFlag == true)
+	{
 		m_maxBetButton.betChoiceMax(renderer, e);
 		setBet(m_maxBetButton.getMaximalBet());
 	}
 
 }
 
-CashOut& Game::getCashOutButton() {
+CashOut& Game::getCashOutButton()
+{
 	return m_cashOutButton;
 }
-int Game::calculateWin(int spots, int match, int bet) {
+int Game::calculateWin(int spots, int match, int bet)
+{
 	int result = 0;
 	if (match > 0) {
 		int arrayQueficient[9][10] = { 1, 9, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 16,
@@ -608,15 +656,6 @@ int Game::calculateWin(int spots, int match, int bet) {
 	}
 	return result;
 }
-
-// to fix function
-
-//void Game::loadWinScreen(int spots, int match, int bet) {
-//	SDL_Renderer* renderer;
-//	if (calculateWin(spots, match, bet) > 0) {
-//		m_winInGame.writeOnScreen(renderer);
-//	}
-//}
 
 VolumeButton& Game::getVolumeButton()
 {
@@ -686,5 +725,54 @@ void Game::reRenderHistory(SDL_Renderer* renderer)
 	m_History.renderHistory(renderer);
 }
 
+void Game::loadBigWinScreen(SDL_Renderer* renderer, int spots, int match, int bet)
+  {
+
+  	if(calculateWin(spots, match, bet) > 0)
+  	{
+  		if(match == 10)
+  		{
+
+ 		m_winInGame.bigWin(renderer, 1000);
+  		}
+  	}
+  }
+
+void Game::loadWinScreen(SDL_Renderer* renderer, int spots, int match, int bet)
+{
+ 	if (calculateWin(spots, match, bet) > 0)
+ 	{
+ 		m_winInGame.writeOnScreen(renderer, 100);
+ 	}
+ }
+
+void Game::gameButtonsChunk()
+ {
+ 	m_chunk = Mix_LoadWAV("Resources/Sounds/button-click-version-sound-effect-13.mp3");
+ 	if(m_chunk == NULL)
+ 	{
+ 		std::cerr << "Could not load music chunk!" << std::endl;
+ 	}
+ 	Mix_PlayChannel(-1, m_chunk, 0);
+ }
+void Game::showBonusLogo(SDL_Renderer* renderer)
+{
+	SDL_Rect rectToCrop;
+	for(int i = 0; i < 350; i += 5 )
+	{
+
+rectToCrop = {570, i, extraBonusLogo_width,extraBonusLogo_height};
+
+		m_bonusInGame.getExtraBonusLogo().setPosition(570, i, extraBonusLogo_width, extraBonusLogo_height);
+		m_bonusInGame.getExtraBonusLogo().render(renderer,m_bonusInGame.getExtraBonusLogo().getKRect());
+
+		SDL_RenderPresent(renderer);
+		cropFromRenderTo(renderer, &rectToCrop, &rectToCrop);
+
+	}
 
 
+
+
+
+}

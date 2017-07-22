@@ -7,28 +7,34 @@
 
 #include "Info.h"
 
-Info::Info() {
-	// TODO Auto-generated constructor stub
+Info::Info()
+{
+
 
 }
 
-Info::~Info() {
-	// TODO Auto-generated destructor stub
+Info::~Info()
+{
+
 }
 
-Font& Info::getBackgroundInfo() {
+Font& Info::getBackgroundInfo()
+{
 	return m_backgroundInfo;
 }
 
-Font& Info::getButtonBack() {
+Font& Info::getButtonBack()
+{
 	return m_buttonBack;
 }
 
-Font& Info::getSecondBackgroundInfo() {
+Font& Info::getSecondBackgroundInfo()
+{
 	return m_secondBackgroundInfo;
 }
 
-void Info::renderInfoScreen(SDL_Renderer* renderer) {
+void Info::renderInfoScreen(SDL_Renderer* renderer)
+{
 
 	setElementsColor();
 	setElementsFont();
@@ -45,33 +51,36 @@ void Info::renderInfoScreen(SDL_Renderer* renderer) {
 	m_buttonReturnText.render(renderer, m_buttonReturnText.getKRect());
 }
 
-void Info::setElementsFont() {
+void Info::setElementsFont()
+{
 
 	m_buttonReturnText.setFont(TTF_OpenFont("Resources/Fonts/AUDI.TTF", 40));
 	m_buttonNextText.setFont(TTF_OpenFont("Resources/Fonts/AUDI.TTF", 40));
 	m_buttonBackText.setFont(TTF_OpenFont("Resources/Fonts/AUDI.TTF", 40));
 }
 
-void Info::setElementsPositionDimension() {
+void Info::setElementsPositionDimension()
+{
 
 	m_queficients.setPosition(130,130, 500, 300);
 
-	m_buttonBack.setPosition(580, 560, infoButtonBack_width,
+	m_buttonBack.setPosition(780, 560, infoButtonBack_width,
 			infoButtonBack_height);
-	m_buttonNextText.setPosition(680, 520, infoButtonBackText_width,
+	m_buttonNextText.setPosition(880, 520, infoButtonBackText_width,
 			infoButtonBackText_height);
 	m_buttonReturnText.setPosition(17, 520, infoButtonBackText_width,
 			infoButtonBackText_height);
-	m_buttonBackText.setPosition(555, 520, infoButtonBackText_width,
+	m_buttonBackText.setPosition(755, 520, infoButtonBackText_width,
 			infoButtonBackText_height);
-	m_buttonNext.setPosition(705, 560, infoButtonBack_width,
+	m_buttonNext.setPosition(905, 560, infoButtonBack_width,
 			infoButtonBack_height);
 	m_buttonReturn.setPosition(30, 563, infoButtonBack_width,
 			infoButtonBack_height);
 
 }
 
-void Info::setElementsColor() {
+void Info::setElementsColor()
+{
 
 	m_buttonReturnText.setButtonColor(251, 211, 72);
 	m_buttonNextText.setButtonColor(251, 211, 72);
@@ -79,30 +88,34 @@ void Info::setElementsColor() {
 
 }
 
-Font& Info::getButtonNext() {
+Font& Info::getButtonNext()
+{
 	return m_buttonNext;
 }
 
-Font& Info::getButtonReturn() {
+Font& Info::getButtonReturn()
+{
 	return m_buttonReturn;
 }
 
-Font& Info::getButtonNextText() {
+Font& Info::getButtonNextText()
+{
 	return m_buttonNextText;
 }
 
-Font& Info::getButtonReturnText() {
+Font& Info::getButtonReturnText()
+{
 	return m_buttonReturnText;
 }
 
-void Info::renderButtonDown(SDL_Renderer* renderer, const SDL_Event& e) {
+void Info::renderButtonDown(SDL_Renderer* renderer, const SDL_Event& e)
+{
 
 	if (m_buttonNext.isClicked(e, m_buttonNext.getKRect()))
 	{
-		std::cout << "NExt ->" << m_buttonNext.isClicked(e, m_buttonNext.getKRect()) << std::endl;
+
 
 		m_secondBackgroundInfo.render(renderer,NULL);
-//		m_queficients.render(renderer,m_queficients.getKRect());
 		m_buttonBack.render(renderer, m_buttonBack.getKRect());
 		m_buttonBackText.textRender(m_buttonBackText.getKRect(),
 				m_buttonBackText.getKTexture(), renderer);
@@ -114,7 +127,7 @@ void Info::renderButtonDown(SDL_Renderer* renderer, const SDL_Event& e) {
 	}
 	if (m_buttonBack.isClicked(e, m_buttonBack.getKRect()))
 	{
-		std::cout << "back ->" << m_buttonBack.isClicked(e, m_buttonBack.getKRect()) << std::endl;
+
 		m_backgroundInfo.render(renderer, NULL);
 		m_buttonBack.render(renderer, m_buttonBack.getKRect());
 		m_buttonBackText.textRender(m_buttonBackText.getKRect(),
@@ -141,9 +154,10 @@ Font& Info::getQueficients(){
 	return m_queficients;
 }
 
-void Info::loadInfoElements(SDL_Renderer* renderer) {
+void Info::loadInfoElements(SDL_Renderer* renderer)
+{
 
-//	m_queficients.loadTextureFromFile(	"Resources/Images/queficientTable.png", renderer);
+
 	m_secondBackgroundInfo.loadTextureFromFile(
 			"Resources/Images/InfoBackgroundSecond (2).jpg", renderer);
 	m_backgroundInfo.loadTextureFromFile(
