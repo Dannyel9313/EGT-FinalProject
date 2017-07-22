@@ -165,7 +165,7 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 					PAYTABLE_HEIGHT};
 		cropFromRenderTo(renderer, &payTableRect, &payTableRect);
 		mGrid.pickRandomChoices(renderer);
-		m_PayTable.renderPayTable(renderer, 0, m_bet);
+		m_PayTable.renderPayTable(renderer, mGrid.numbersClicked(), m_bet);
 		if(mBetButton.buttonCondition(mGrid.numbersClicked()))
 		{
 			mBetButton.renderButton(renderer);
