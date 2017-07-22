@@ -128,8 +128,11 @@ class Game: public BaseObject
 		
 		void payTableAnimation(SDL_Renderer*);
 
-		//Re render bet button
+		//Rerender bet button
 		void reRenderBetButton(SDL_Renderer*);
+		
+		//Rerender history table
+		void reRenderHistory(SDL_Renderer*);
 	private:
 		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
 

@@ -213,7 +213,9 @@ void Game::changeColorOfClickedNumbers(SDL_Renderer* renderer,
 	mGrid.createRects(renderer, 255);
 	mGrid.reRenderClickedNumbers(renderer, 255);
 	if (mGrid.doIfClicked(renderer, e)) {
-		SDL_Rect payTableRect = { 585, 0, 235, 225 };
+		SDL_Rect payTableRect = {PAYTABLE_BOTTOM_LEFT.x,
+				PAYTABLE_TOP_RIGHT.y, PAYTABLE_WIDTH,
+					PAYTABLE_HEIGHT};
 		cropFromRenderTo(renderer, &payTableRect, &payTableRect);
 		m_PayTable.renderPayTable(renderer, mGrid.numbersClicked(), m_bet);
 	}
@@ -403,7 +405,7 @@ void Game::renderAfterAnimationGame(SDL_Renderer* renderer, int alpha) {
 	m_cashOutButton.renderCashOutButton(renderer);
 
 	//Render history
-	m_History.renderHistory(renderer);
+	reRenderHistory(renderer);	
 
 //	m_PayTable.renderPayTable(renderer);
 //	m_PayTable.renderHitsText(renderer);
@@ -619,7 +621,9 @@ VolumeButton& Game::getVolumeButton()
 
 void Game::payTableAnimation(SDL_Renderer* renderer)
 {
-	SDL_Rect payTableRect = { 585, 0, 235, 225 };
+	SDL_Rect payTableRect = {PAYTABLE_BOTTOM_LEFT.x,
+				PAYTABLE_TOP_RIGHT.y, PAYTABLE_WIDTH,
+					PAYTABLE_HEIGHT};
 	if(mGrid.numberOfHits() > 0)
         {
                 for (int i = 1; i < 9; i++)
@@ -668,6 +672,14 @@ void Game::reRenderBetButton(SDL_Renderer* renderer)
 
 	//Render bet text
 	mBetButton.betText(renderer);
+}
+
+void Game::reRenderHistory(SDL_Renderer* renderer)
+{
+	SDL_Rect tempRect = {HISTORY_X, HISTORY_Y, HISTORY_WIDTH, HISTORY_HEIGHT};
+	cropFromRenderTo(renderer, &tempRect, &tempRect);	
+	//Render history button
+	m_History.renderHistory(renderer);
 }
 
 

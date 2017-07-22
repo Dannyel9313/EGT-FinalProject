@@ -175,8 +175,8 @@ const int bonusText_width = 80;
 const int bonusText_height = 35;
 
 //Pay table
-const SDL_Point PAYTABLE_TOP_RIGHT = {820, 0};
-const SDL_Point PAYTABLE_BOTTOM_LEFT = {585, 225};
+const SDL_Point PAYTABLE_TOP_RIGHT = {1020, 0};
+const SDL_Point PAYTABLE_BOTTOM_LEFT = {785, 225};
 const SDL_Color RED = {153, 0, 0};
 const SDL_Color WHITE = {255, 255, 255};
 const int PAYTABLE_WIDTH = PAYTABLE_TOP_RIGHT.x - PAYTABLE_BOTTOM_LEFT.x;
@@ -219,8 +219,8 @@ const int arrayQueficients[9][10] =
         {0, 0, 1, 2, 3, 5, 10, 30, 600, 1800}};
 
 //History constants
-const SDL_Point HISTORY_TOP_RIGHT = {820, 225};
-const SDL_Point HISTORY_BOTTOM_LEFT = {585, 460};
+const SDL_Point HISTORY_TOP_RIGHT = {1020, 225};
+const SDL_Point HISTORY_BOTTOM_LEFT = {785, 460};
 const int HISTORY_X = HISTORY_BOTTOM_LEFT.x;
 const int HISTORY_Y = HISTORY_TOP_RIGHT.y;
 const int HISTORY_WIDTH = HISTORY_TOP_RIGHT.x - HISTORY_BOTTOM_LEFT.x;

@@ -65,7 +65,6 @@ void PayTable::renderHits(SDL_Renderer* renderer, int number)
 
 void PayTable::renderPay(SDL_Renderer* renderer, int numbers, int bet)
 {
-	std::cout << bet << std::endl;
 	if(numbers >= 2)
 	{
 		for (int j = 0; j < numbers; j++)
