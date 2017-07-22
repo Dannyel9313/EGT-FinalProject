@@ -160,7 +160,9 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 
 		mGrid.resetNumbersGrid(renderer);
 		mGrid.resetIsClicked();
-		SDL_Rect payTableRect = { 585, 0, 235, 225 };
+		SDL_Rect payTableRect = {PAYTABLE_BOTTOM_LEFT.x,
+				PAYTABLE_TOP_RIGHT.y, PAYTABLE_WIDTH,
+					PAYTABLE_HEIGHT};
 		cropFromRenderTo(renderer, &payTableRect, &payTableRect);
 		mGrid.pickRandomChoices(renderer);
 		m_PayTable.renderPayTable(renderer, 0, m_bet);
@@ -177,7 +179,9 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e) {
 	if (m_clearButton.getButtonRect().isClicked(e,
 			m_clearButton.getButtonRect().getKRect())) 
 	{
-		SDL_Rect payTableRect = { 585, 0, 235, 225 };
+		SDL_Rect payTableRect = {PAYTABLE_BOTTOM_LEFT.x,
+				PAYTABLE_TOP_RIGHT.y, PAYTABLE_WIDTH,
+					PAYTABLE_HEIGHT};
 		cropFromRenderTo(renderer, &payTableRect, &payTableRect);
 		m_PayTable.renderPayTable(renderer, 0, m_bet);
 		mGrid.resetNumbersGrid(renderer);
