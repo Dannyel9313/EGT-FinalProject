@@ -1,7 +1,8 @@
 #include "Game.h"
 
 Game::Game() :
-		m_minBetFlag(true), m_maxBetFlag(true), m_setBetFlag(false), m_bonusFlag(false), m_bet(0) {
+		m_minBetFlag(true), m_maxBetFlag(true), m_setBetFlag(false),
+		m_bonusFlag(false),m_counterInfoClick(0), m_bet(0) {
 }
 
 Game::~Game()
@@ -100,6 +101,7 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha)
 
 	m_bonusInGame.renderBonus(renderer);
 
+	m_infoButton.renderInfoButton(renderer);
 
 }
 
@@ -176,6 +178,7 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 				m_bonusInGame.renderBonus(renderer);
 				m_bonusFlag = false;
 				}
+
 			}
 		}
 	}
@@ -218,6 +221,29 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 		m_minBetFlag = true;
 		m_maxBetFlag = true;
 		m_setBetFlag = false;
+	}
+
+	if(m_infoButton.isClicked(e, m_infoButton.getButtonRect().getKRect()))
+	{
+
+
+		m_counterInfoClick++;
+
+
+		if((m_counterInfoClick % 2) == 0)
+		{
+
+			initializeGameState();
+			renderGame(renderer,255);
+
+
+		}
+		else
+		{
+			m_infoButton.isClickedInfoButton(renderer, e);
+		}
+
+
 	}
 
 	//Re render bet button
@@ -484,19 +510,28 @@ void Game::playPauseMusic(SDL_Renderer* renderer, const SDL_Event& e,
 	if(m_volumeButton.getButtonRect().isClicked(e,
 		 			m_volumeButton.getButtonRect().getKRect()))
 		 	{
+			SDL_Rect cropRect = {VOLUME_BUTTON_POSITION_X, VOLUME_BUTTON_POSITION_Y,
+					VOLUME_BUTTON_WIDTH, VOLUME_BUTTON_HEIGHT};
+
 			if(Mix_PlayingMusic() == 0)
 			 	{
 			 		Mix_PlayMusic(mainMusic, -1);
+
 			 	}
 			 	else
 			 	{
 			 		if( Mix_PausedMusic() == 1 )
 			 		{
 			 			Mix_ResumeMusic();
+			 			cropFromRenderTo(renderer, &cropRect, &cropRect);
+			 						 		m_volumeButton.renderVolumeButton(renderer);
 			 		}
 			 		else
 			 		{
 			 		Mix_PauseMusic();
+			 		cropFromRenderTo(renderer, &cropRect, &cropRect);
+			 		m_volumeButton.getButtonRectPushed().render
+			 				(renderer,m_volumeButton.getButtonRectPushed().getKRect());
 			 		}
 			 	}
 		 	}
@@ -521,7 +556,7 @@ int Game::calculateBonus(int bet)
 	int bonusToShow = 0;
 
 	bonusToShow += getBonus();
-	std::cout << "Bonus ->" << getBonus() << std::endl;
+
 	return bonusToShow;
 
 }
@@ -542,30 +577,30 @@ void Game::bonusToCredits(int match, SDL_Renderer* renderer)
 	std::cout << match << " match" << std::endl;
 	int tempBonus = 0;
 	int resultDenom = 0;
-	if(match > 2)
+	if(match > 5)
 	{
 
 	tempBonus = m_bonus * 10;
 
 	resultDenom = tempBonus % 10;
 
-	std::cout << resultDenom << "poslednaCifra" << std::endl;
+
 	if(resultDenom > 5)
 	{
 		bonus = m_bonus + 1;
-		std::cout<< "bonusa za setvane v ifa" << bonus <<std::endl;
+
 	}
 	else
 	{
 		bonus = m_bonus;
-		std::cout << "bonusa za setvane izvyn ifa" << bonus << std::endl;
+
 	}
 	setBonus(0);
 
-		std::cout << getBonus() << "bonus after null" << std::endl;
+
 	m_creditInGame.setGameCredit((m_creditInGame.getGameCredit() + bonus));
 
-	std::cout << "credits after bonus ->" << m_creditInGame.getGameCredit() << std::endl;
+
 
 	m_bonusFlag = true;
 
@@ -575,10 +610,15 @@ void Game::bonusToCredits(int match, SDL_Renderer* renderer)
 
 }
 
-void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e) {
+InfoButton& Game::getInfoButton()
+{
+	return m_infoButton;
+}
 
-	std::cout << "min flag ->" << m_minBetFlag << std::endl;
-	std::cout << "max flag ->" << m_maxBetFlag << std::endl;
+void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e)
+{
+
+
 	if (m_maxBetButton.getMaxBet().isClicked(e,
 			m_maxBetButton.getMaxBet().getKRect())
 			|| m_minBetButton.getMinBet().isClicked(e,
@@ -758,7 +798,7 @@ void Game::gameButtonsChunk()
 void Game::showBonusLogo(SDL_Renderer* renderer)
 {
 	SDL_Rect rectToCrop;
-	for(int i = 0; i < 350; i += 5 )
+	for(int i = -120; i < 350; i += 5 )
 	{
 
 rectToCrop = {570, i, extraBonusLogo_width,extraBonusLogo_height};

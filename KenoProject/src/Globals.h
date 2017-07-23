@@ -243,16 +243,16 @@ const int HITTABLE_RECT_X = HITTABLE_TEXT_X + 70;
 const int HITTABLE_RECT_Y = HITTABLE_TEXT_Y;
  
 //Volume button position
-const int VOLUME_BUTTON_POSITION_X = 990;
-const int VOLUME_BUTTON_POSITION_Y = 610;
+const int VOLUME_BUTTON_POSITION_X = 970;
+const int VOLUME_BUTTON_POSITION_Y = 590;
 
 //Volume buttons dimensions
-const int VOLUME_BUTTON_WIDTH = 30;
-const int VOLUME_BUTTON_HEIGHT = 30;
+const int VOLUME_BUTTON_WIDTH = 50;
+const int VOLUME_BUTTON_HEIGHT = 50;
 
 //Info button position
-const int INFO_BUTTON_POSITION_X = 5;
-const int INFO_BUTTON_POSITION_Y = 35;
+const int INFO_BUTTON_POSITION_X = 900;
+const int INFO_BUTTON_POSITION_Y = 590;
 
 //Info button dimensions
 const int INFO_BUTTON_WIDTH = 50;

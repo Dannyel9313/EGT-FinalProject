@@ -100,8 +100,10 @@ void Bonus::showBonus(SDL_Renderer* renderer, int bonusPoints)
 m_bonusRectangle.render(renderer, m_bonusRectangle.getKRect());
 
 m_bonusText.LoadFromRenderedText(toString(bonusPoints), renderer, m_bonusText.getButtonColor());
-
+if(bonusPoints >= 1)
+{
 m_bonusText.textRender(m_bonusText.getKRect(), m_bonusText.getKTexture(), renderer);
+}
 }
 
 BaseObject& Bonus::getExtraBonusLogo() {

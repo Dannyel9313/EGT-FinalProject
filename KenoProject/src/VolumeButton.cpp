@@ -26,14 +26,12 @@ void VolumeButton::renderVolumeButton(SDL_Renderer* renderer)
 {
 	loadElements(renderer);
 	m_buttonRect.render(renderer, m_buttonRect.getKRect());
-	m_buttonVolume.textRender(m_buttonVolume.getKRect(),
-				m_buttonVolume.getKTexture(), renderer);
+
 }
 
 void VolumeButton::setElementsPositionDimension()
 {
-	m_buttonVolume.setPosition(VOLUME_BUTTON_POSITION_X, VOLUME_BUTTON_POSITION_Y,
-			VOLUME_BUTTON_WIDTH, VOLUME_BUTTON_HEIGHT);
+
 	m_buttonRect.setPosition(VOLUME_BUTTON_POSITION_X, VOLUME_BUTTON_POSITION_Y,
 			VOLUME_BUTTON_WIDTH, VOLUME_BUTTON_HEIGHT);
 	m_buttonRectPushed.setPosition(VOLUME_BUTTON_POSITION_X, VOLUME_BUTTON_POSITION_Y,
@@ -43,11 +41,11 @@ void VolumeButton::setElementsPositionDimension()
 void VolumeButton::loadElements(SDL_Renderer* renderer)
 {
 	setElementsPositionDimension();
-	m_buttonVolume.setButtonColor(254, 0, 0);
+
 	m_buttonRect.loadTextureFromFile("Resources/Images/speaker-volume-button.jpg",
 			renderer);
 	m_buttonRectPushed.loadTextureFromFile(
-			"Resources/Images/Mute volume button.png", renderer);
+			"Resources/Images/musicButtonStop.png", renderer);
 }
 
 void VolumeButton::isClickedVolumeButton(SDL_Renderer* renderer,
@@ -56,7 +54,7 @@ void VolumeButton::isClickedVolumeButton(SDL_Renderer* renderer,
 	if(m_buttonRect.isClicked(e, m_buttonRect.getKRect()))
 	{
 		m_buttonRectPushed.render(renderer, m_buttonRectPushed.getKRect());
-		m_buttonVolume.textRender(m_buttonVolume.getKRect(), m_buttonVolume.getKTexture(), renderer);
+
 	}
 }
 

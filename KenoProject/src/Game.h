@@ -15,6 +15,7 @@
 #include "PayTable.h"
 #include "VolumeButton.h"
 #include "Bonus.h"
+#include "InfoButton.h"
 
 class Game: public BaseObject
 {
@@ -149,9 +150,14 @@ class Game: public BaseObject
 
 		//loads chunk if button is clicked
 		void gameButtonsChunk();
+
+		//Get info button
+		InfoButton& getInfoButton();
+
 	private:
 		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
 
+		int m_counterInfoClick;
 		bool m_bonusFlag;
 		bool m_setBetFlag;
 	 	bool m_minBetFlag;
@@ -172,6 +178,7 @@ class Game: public BaseObject
 		PayTable m_PayTable;
 		VolumeButton m_volumeButton;
 		Bonus m_bonusInGame;
+		InfoButton m_infoButton;
 		Mix_Chunk* m_chunk;
 
 };
