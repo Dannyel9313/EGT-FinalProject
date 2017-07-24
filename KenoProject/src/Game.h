@@ -66,8 +66,8 @@ class Game: public BaseObject
 		// Calculate money from credits and denomination
 		double calculateCreditsInMoney(int credits);
 
-		// Loads win if the user won
-		void loadWinScreen(SDL_Renderer* renderer, int spots, int match, int bet);
+		// Loads game over if the user has 0 credits
+		void loadGameOverScreen(SDL_Renderer* renderer, int spots, int match, int bet);
 
 		// Loads big win if the user matched 10 out of 10
 		void loadBigWinScreen(SDL_Renderer* renderer, int spots, int match, int bet);
@@ -128,8 +128,8 @@ class Game: public BaseObject
 
 		void cashOutButtonPushed(bool* outroMode, const SDL_Event& e);
 
-		//Loads win if the user won
-		void loadWinScreen(int spots, int match, int bet);
+		//Loads game over if the user has no credits
+		void loadGameOverScreen(SDL_Renderer*);
 
 		//Get bonus
 		Bonus& getBonusInGame();
@@ -148,7 +148,7 @@ class Game: public BaseObject
 		//Rerender history table
 		void reRenderHistory(SDL_Renderer*);
 
-		//loads chunk if button is clicked
+		//loads chunk
 		void gameButtonsChunk();
 
 		//Get info button

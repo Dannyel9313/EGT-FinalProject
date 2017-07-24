@@ -27,8 +27,8 @@ class Win: public BaseObject
 
 		void loadTexture(SDL_Renderer* renderer);
 
-		// Loads "YOU HAVE WON" text
-		void writeOnScreen(SDL_Renderer*, int);
+		// Loads "GAME OVER!" text
+		void writeOnScreen(SDL_Renderer*);
 
 		// Loads "Big win" text
 		void bigWin(SDL_Renderer*, int);

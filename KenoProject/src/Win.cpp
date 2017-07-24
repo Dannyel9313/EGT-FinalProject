@@ -109,38 +109,49 @@ int Win::getWinCredits() const {
 void Win::setWinCredits(int winCredits) {
 	m_winCredits = winCredits;
 }
-void Win::writeOnScreen(SDL_Renderer* renderer, int credits)
-  {
+
+void Win::writeOnScreen(SDL_Renderer* renderer)
+{
 	m_chunk = Mix_LoadWAV("Resources/Sounds/Victory sound effect.wav");
 		if(m_chunk == NULL){
 	  		std::cerr << "Music file could not be loaded" << std::endl;
 	  	}
 
-Mix_PlayChannel(-1, m_chunk, 0);
-	loadTextureFromFile("Resources/Images/LasVegas.jpg", renderer);
-	render(renderer, NULL);
+		Mix_PlayChannel(-1, m_chunk, 0);
+		loadTextureFromFile("Resources/Images/LasVegas.jpg", renderer);
+		render(renderer, NULL);
 
-	Text.setFont(TTF_OpenFont("Resources/Fonts/AUDI.ttf", 50));
-	Text.LoadFromRenderedText("YOU HAVE WON!", renderer,
+		Text.setFont(TTF_OpenFont("Resources/Fonts/AUDI.ttf", 50));
+		Text.LoadFromRenderedText("GAME OVER!", renderer,
 				Text.getButtonColor());
-m_credits.setFont(TTF_OpenFont("Resources/Fonts/AUDI.ttf", 50));
-	m_credits.LoadFromRenderedText(toString(credits), renderer, m_credits.getButtonColor());
 
 	for(int i = 0; i < 300; i += 5){
 		loadTexture(renderer);
- 		SDL_RenderPresent(renderer);
-  	}
- 	SDL_RenderClear(renderer);
- for(int i = 0; i < 300; i +=5){
- 		loadTexture(renderer);
- 		m_credits.setPosition(300, 300, introButton_width, introButton_height);
- 		m_credits.textRender(m_credits.getKRect(), m_credits.getKTexture(), renderer);
- 		SDL_RenderPresent(renderer);
- 	}
+		Text.setPosition(i, i, introButton_width, introButton_height);
+		Text.textRender(Text.getKRect(), Text.getKTexture(), renderer);
+		Text.setPosition((SCREEN_WIDTH - 220) - i, 0 + i, introButton_width, introButton_height);
+		Text.textRender(Text.getKRect(), Text.getKTexture(), renderer);
+		Text.setPosition(SCREEN_WIDTH - 220 - i, SCREEN_HEIGHT - i - 45,
+				introButton_width, introButton_height);
+		Text.textRender(Text.getKRect(), Text.getKTexture(), renderer);
+		Text.setPosition(0 + i, SCREEN_HEIGHT - i - 40, introButton_width, introButton_height);
+		Text.textRender(Text.getKRect(), Text.getKTexture(), renderer);
 
-  }
+		SDL_RenderPresent(renderer);
+	}
+
+	for(int i = 0; i < 300; i += 5){
+		loadTexture(renderer);
+
+		Text.setPosition(400 - i, 300 - i, introButton_width + i*2, introButton_height + i*2);
+		Text.textRender(Text.getKRect(), Text.getKTexture(), renderer);
+
+		SDL_RenderPresent(renderer);
+	}
+}
+
 void Win::bigWin(SDL_Renderer* renderer, int credits)
-  {
+{
 
  	m_chunk = Mix_LoadWAV("Resources/Sounds/Victory sound effect.wav");
  	if(m_chunk == NULL){
@@ -156,19 +167,39 @@ void Win::bigWin(SDL_Renderer* renderer, int credits)
 
  	m_credits.setFont(TTF_OpenFont("Resources/Fonts/AUDI.ttf", 50));
  	m_credits.LoadFromRenderedText(toString(credits), renderer, m_credits.getButtonColor());
-  	for(int i = 0; i < 300; i += 5){
-  		loadTexture(renderer);
-  		Text.setPosition(i, i, introButton_width, introButton_height);
+	for(int i = 0; i < 300; i += 5){
+		loadTexture(renderer);
+		Text.setPosition(i, i, introButton_width, introButton_height);
+		Text.textRender(Text.getKRect(), Text.getKTexture(), renderer);
+		Text.setPosition((SCREEN_WIDTH - 220) - i, 0 + i, introButton_width, introButton_height);
+		Text.textRender(Text.getKRect(), Text.getKTexture(), renderer);
+		Text.setPosition(SCREEN_WIDTH - 220 - i, SCREEN_HEIGHT - i - 45,
+				introButton_width, introButton_height);
+		Text.textRender(Text.getKRect(), Text.getKTexture(), renderer);
+		Text.setPosition(0 + i, SCREEN_HEIGHT - i - 40, introButton_width, introButton_height);
+		Text.textRender(Text.getKRect(), Text.getKTexture(), renderer);
 
+		SDL_RenderPresent(renderer);
+	}
 
-  		SDL_RenderPresent(renderer);
-  	}
+	for(int i = 0; i < 300; i += 5){
+		loadTexture(renderer);
 
+		Text.setPosition(400 - i, 300 - i, introButton_width + i*2, introButton_height + i*2);
+		Text.textRender(Text.getKRect(), Text.getKTexture(), renderer);
+
+		SDL_RenderPresent(renderer);
+	}
+
+	for(int i = 0; i < 300; i += 5){
+			loadTexture(renderer);
+	 		SDL_RenderPresent(renderer);
+	}
  	SDL_RenderClear(renderer);
  	for(int i = 0; i < 300; i +=5){
  		loadTexture(renderer);
- 		m_credits.setPosition(300, 300, introButton_width, introButton_height);
+ 		m_credits.setPosition(400, 300, introButton_width, introButton_height);
  		m_credits.textRender(m_credits.getKRect(), m_credits.getKTexture(), renderer);
  		SDL_RenderPresent(renderer);
  	}
-  }
+}

@@ -772,17 +772,16 @@ void Game::loadBigWinScreen(SDL_Renderer* renderer, int spots, int match, int be
   	{
   		if(match == 10)
   		{
-
  		m_winInGame.bigWin(renderer, 1000);
   		}
   	}
   }
 
-void Game::loadWinScreen(SDL_Renderer* renderer, int spots, int match, int bet)
+void Game::loadGameOverScreen(SDL_Renderer* renderer)
 {
- 	if (calculateWin(spots, match, bet) > 0)
+ 	if (m_creditInGame.getGameCredit() == 0)
  	{
- 		m_winInGame.writeOnScreen(renderer, 100);
+ 		m_winInGame.writeOnScreen(renderer);
  	}
  }
 
