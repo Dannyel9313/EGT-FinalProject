@@ -39,13 +39,13 @@ void IntroScreen::loadIntroScreen(SDL_Renderer* renderer)
 
 
 
-	m_background.loadTextureFromFile("Resources/Images/IntroKenoImage2.png", renderer);
+m_background.loadTextureFromFile("Resources/Images/InfoBackground.jpg",renderer);
 
 	loadIntroElements(renderer);
 	moveStarNewGame(30, renderer);
 	moveResumeGame(110, renderer);
 	moveInfoGame(190, renderer);
-	SDL_RenderPresent(renderer);
+//	SDL_RenderPresent(renderer);
 }
 
 Volume& IntroScreen::getVolume()
@@ -103,7 +103,7 @@ void IntroScreen::moveStarNewGame(int yPos, SDL_Renderer* renderer)
 
 		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
 
-		m_startNewGameButton.setPosition(450, i, introStartResumeButton_width,
+		m_startNewGameButton.setPosition(650, i, introStartResumeButton_width,
 				introStartResumeButton_height);
 		m_startNewGameButton.textRender(m_startNewGameButton.getKRect(),
 				m_startNewGameButton.getKTexture(), renderer);
@@ -114,14 +114,15 @@ void IntroScreen::moveStarNewGame(int yPos, SDL_Renderer* renderer)
 
 void IntroScreen::moveResumeGame(int yPos, SDL_Renderer* renderer)
 {
-	for (int i = 640; i > yPos; i -= 5) {
+	for (int i = 640; i > yPos; i -= 5)
+	{
 
 		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
 
 		m_startNewGameButton.textRender(m_startNewGameButton.getKRect(),
 				m_startNewGameButton.getKTexture(), renderer);
 
-		m_resumeGameButton.setPosition(450, i, introStartResumeButton_width,
+		m_resumeGameButton.setPosition(650, i, introStartResumeButton_width,
 				introStartResumeButton_height);
 		m_resumeGameButton.textRender(m_resumeGameButton.getKRect(),
 				m_resumeGameButton.getKTexture(), renderer);
@@ -132,7 +133,8 @@ void IntroScreen::moveResumeGame(int yPos, SDL_Renderer* renderer)
 
 void IntroScreen::moveInfoGame(int yPos, SDL_Renderer* renderer)
 {
-	for (int i = 640; i > yPos; i -= 5) {
+	for (int i = 640; i > yPos; i -= 5)
+	{
 
 		SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
 
@@ -142,7 +144,7 @@ void IntroScreen::moveInfoGame(int yPos, SDL_Renderer* renderer)
 		m_resumeGameButton.textRender(m_resumeGameButton.getKRect(),
 				m_resumeGameButton.getKTexture(), renderer);
 
-		m_infoButton.setPosition(550, i, introButton_width, introButton_height);
+		m_infoButton.setPosition(750, i, introButton_width, introButton_height);
 		m_infoButton.textRender(m_infoButton.getKRect(),
 				m_infoButton.getKTexture(), renderer);
 
@@ -217,23 +219,27 @@ void IntroScreen::introScreenPresent(SDL_Renderer* renderer)
 
 }
 
-void IntroScreen::startNewGameClicked(bool* gameMode, const SDL_Event& e)
+void IntroScreen::startNewGameClicked(bool* gameMode,bool* controlGameFlag,bool* introMode, const SDL_Event& e)
 {
 	if(m_insertCredit.getCredit() > 0)
 	{
 		if(m_startNewGameButton.isClicked(e, m_startNewGameButton.getKRect())) 
 		{
-		*gameMode = true;	
+		*gameMode = true;
+		*controlGameFlag = true;
+		*introMode = false;
 		}	
 	}
 }
 
-void IntroScreen::startInfoClicked(bool* infoMode, const SDL_Event& e)
+void IntroScreen::startInfoClicked(bool* infoMode,bool* controlInfo,bool* introMode, const SDL_Event& e)
 {
 
 	if(m_infoButton.isClicked(e,m_infoButton.getKRect()))
 	{
 		*infoMode = true;
+		*controlInfo = true;
+		*introMode = false;
 	}
 }
 

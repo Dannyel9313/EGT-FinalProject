@@ -41,13 +41,11 @@ void Volume::LoadVolumeElements(SDL_Renderer* renderer)
 
 	m_FontDotLine.loadTextureFromFile("Resources/Images/volumeSlider.png", renderer);
 
-	SDL_RenderCopy(renderer, m_FontDotLine.getKTexture(), NULL,
-			m_FontDotLine.getKRect());
+	m_FontDotLine.render(renderer, m_FontDotLine.getKRect());
 
 	m_FontDot.loadTextureFromFile("Resources/Images/volumeDot.png", renderer);
 
-	SDL_RenderCopy(renderer, m_FontDot.getKTexture(), NULL,
-			m_FontDot.getKRect());
+	m_FontDot.render(renderer,m_FontDot.getKRect());
 
 	m_FontPlus.LoadFromRenderedText("+", renderer, m_FontPlus.getButtonColor());
 

@@ -23,12 +23,14 @@ class BaseObject
 		bool isClicked(const SDL_Event&, SDL_Rect*) const;
 
 		//Load image from texture
-		bool loadTextureFromFile(std::string picPath, SDL_Renderer*);
+		void loadTextureFromFile(std::string picPath, SDL_Renderer*);
 
+		// Load texture from ttf
 		bool loadTextureFromTTF(std::string, SDL_Renderer*, TTF_Font*,const SDL_Color&);
 
 		//Set rect position
 		SDL_Rect setPosition(int x, int y,int w, int h);
+
 		void setPosition(int x, int y);
 
 		//Set rect dimensions

@@ -51,8 +51,7 @@ void InsertCredit::loadCreditElements(SDL_Renderer* renderer)
 
 	m_FontCreditRect.loadTextureFromFile("Resources/Images/creditRect.png", renderer);
 
-	SDL_RenderCopy(renderer, m_FontCreditRect.getKTexture(),
-			NULL, m_FontCreditRect.getKRect());
+	m_FontCreditRect.render(renderer,m_FontCreditRect.getKRect());
 
 	m_FontInsertCredit.LoadFromRenderedText("INSERT CREDIT", renderer,
 			m_FontInsertCredit.getButtonColor());

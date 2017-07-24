@@ -171,7 +171,7 @@ const int bonusRectangle_width = 150;
 const int bonusRectangle_height = 45;
 
 // Size of bonus text
-const int bonusText_width = 80;
+const int bonusText_width = 70;
 const int bonusText_height = 35;
 
 //Pay table

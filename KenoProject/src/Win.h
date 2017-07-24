@@ -33,15 +33,19 @@ class Win: public BaseObject
 		// Loads "Big win" text
 		void bigWin(SDL_Renderer*, int);
 
+		// Get chunk
+		Mix_Chunk* getChunk();
+
 		// Get win credits
 		int getWinCredits() const;
 
 		// Set win credits
 		void setWinCredits(int winCredits);
 
-		// Get chunk
-		Mix_Chunk* getChunk();
 	private:
+
+		Mix_Chunk* m_chunk;
+		Font m_credits;
 
 		int m_winCredits;
 
@@ -52,7 +56,7 @@ class Win: public BaseObject
 		BaseObject m_winGameCircle;
 
 		// cast to string
-		std::string toString(int);
+		const char * toString(int);
 
 		// Set numbers Color
 		void setColor();
@@ -66,11 +70,9 @@ class Win: public BaseObject
 		// Set font
 		void setFont();
 
-		Mix_Chunk* m_chunk;
-		Font m_credits;
+
 		Font Text;
 		BaseObject mBackground;
-
 
 };
 
