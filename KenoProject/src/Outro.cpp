@@ -110,7 +110,9 @@ winPic.render(renderer,&rect1);
 		}
 
 	}
-		}
+	int timeout = SDL_GetTicks()+5000;
+	while(!SDL_TICKS_PASSED(SDL_GetTicks(), timeout)){}
+}
 
 
 
