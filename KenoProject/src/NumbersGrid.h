@@ -69,6 +69,9 @@ class NumbersGrid: public BaseObject
 
 		//Get clicked numbers
 		int* getClickedNumbers();
+
+		//Raise clicked flags
+		void raiseClickedFlags(int*);
 	private:
 		const char* toString(int);
 
