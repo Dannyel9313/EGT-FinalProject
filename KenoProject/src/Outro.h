@@ -27,6 +27,10 @@ public:
 	BaseObject& getWinPic();
 	void setWinPic(const BaseObject& win);
 
+	void loadFireworksPictures(SDL_Renderer* renderer);
+
+	// Get fireworks background
+	BaseObject& getFireworksBackground();
 
 private:
 
@@ -36,7 +40,7 @@ private:
 	BaseObject labelCongrat;
 	BaseObject labelMoney;
 	BaseObject labelDenom;
-	BaseObject zarq[12];
+	BaseObject m_fireworksBackground;
 	std::string doubleToString(double);
 };
 

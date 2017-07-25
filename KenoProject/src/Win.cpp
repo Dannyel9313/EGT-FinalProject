@@ -125,6 +125,7 @@ void Win::writeOnScreen(SDL_Renderer* renderer)
 		render(renderer, NULL);
 
 		Text.setFont(TTF_OpenFont("Resources/Fonts/AUDI.ttf", 50));
+		Text.setButtonColor(237, 25 ,35);
 		Text.LoadFromRenderedText("GAME OVER!", renderer,
 				Text.getButtonColor());
 

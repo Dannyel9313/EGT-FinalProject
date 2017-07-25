@@ -2,7 +2,7 @@
 
 Game::Game() :
 		m_minBetFlag(true), m_maxBetFlag(true), m_setBetFlag(false),
-		m_bonusFlag(false),m_counterInfoClick(0), m_infoGameMode(false), m_bet(0),m_bonus(0)
+		m_bonusFlag(false),m_counterInfoClick(0), m_infoGameMode(false), m_gameOverFlag(false), m_bet(0),m_bonus(0)
 {
 	m_chunk = NULL;
 }
@@ -112,7 +112,7 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha)
 	m_infoButton.renderInfoButton(renderer);
 
         m_Recovery.write(m_creditInGame.getGameCredit(),
-                                getBonus(),
+                                calculateBonus(getBet()),
                                 NULL);
 
 }
@@ -196,10 +196,15 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 					m_bonusInGame.renderBonus(renderer);
 					m_bonusFlag = false;
 				}
+				if(m_creditInGame.getGameCredit() == 0)
+				{
+					m_gameOverFlag = true;
+				}
 				//Save data
                                 m_Recovery.write(m_creditInGame.getGameCredit(),
                                         getBonus(),
                                         mGrid.getClickedNumbers());
+
 
 
 			}
@@ -301,7 +306,7 @@ void Game::changeColorOfClickedNumbers(SDL_Renderer* renderer,
 		cropFromRenderTo(renderer, &payTableRect, &payTableRect);
 		m_PayTable.renderPayTable(renderer, mGrid.numbersClicked(), m_bet);
 		m_Recovery.write(m_creditInGame.getGameCredit(),
-                	getBonus(),
+                	getBet(),
                         mGrid.getClickedNumbers());
 
 	}
@@ -548,7 +553,7 @@ void Game::cashOutButtonPushed(bool* outroMode, bool* gameMode, const SDL_Event&
 		*outroMode = true;
 		*gameMode = false;
 		m_Recovery.write(m_creditInGame.getGameCredit(),
-                	getBonus(),
+				getBonus(),
                         mGrid.getClickedNumbers());
 	}
 }
@@ -625,6 +630,7 @@ void Game::setBonus(double bonus)
 void Game::bonusToCredits(int match, SDL_Renderer* renderer)
 {
 	int bonus = 0;
+	std::cout << match << " match" << std::endl;
 	int tempBonus = 0;
 	int resultDenom = 0;
 	if(match > 5)
@@ -663,6 +669,14 @@ void Game::bonusToCredits(int match, SDL_Renderer* renderer)
 InfoButton& Game::getInfoButton()
 {
 	return m_infoButton;
+}
+
+bool Game::isGameOverFlag() const {
+	return m_gameOverFlag;
+}
+
+void Game::setGameOverFlag(bool gameOverFlag) {
+	m_gameOverFlag = gameOverFlag;
 }
 
 void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e)
@@ -868,7 +882,7 @@ void Game::resetVariables()
 	getWinInGame().setWinCredits(0);
 	m_bet = 0;	
         m_Recovery.write(m_creditInGame.getGameCredit(),
-                                getBonus(),
+                                getBet(),
                                 NULL);
 }
 

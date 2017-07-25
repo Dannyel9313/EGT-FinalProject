@@ -161,10 +161,18 @@ class Game: public BaseObject
 
 		//Reset variables
 		void resetVariables();
+
+		// Game Over Flag
+		bool isGameOverFlag() const;
+
+		// Set game over flag
+		void setGameOverFlag(bool gameOverFlag);
+
 	private:
 		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
 
 		int m_counterInfoClick;
+		bool m_gameOverFlag;
 		bool m_infoGameMode;
 		bool m_bonusFlag;
 		bool m_setBetFlag;
