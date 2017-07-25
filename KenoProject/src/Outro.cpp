@@ -30,7 +30,7 @@ void Outro::winingWindow(SDL_Renderer * renderer)
 
 		//render(renderer, &rect);
 		//SDL_RenderCopy(renderer, background.getKTexture(), NULL, NULL);
-		 zarq[12].setBlendMode(SDL_BLENDMODE_BLEND);
+		//zarq[12].setBlendMode(SDL_BLENDMODE_BLEND);
 		for(int i=0;i<12;i++){
 		zarq[i].loadTextureFromFile("Resources/Images/1.jpg",renderer);
 		zarq[i].render(renderer,&rect);

@@ -243,6 +243,18 @@ void IntroScreen::startInfoClicked(bool* infoMode,bool* controlInfo,bool* introM
 	}
 }
 
+void IntroScreen::resumeGameClicked(bool* gameMode, bool* controlGameFlag, bool* introMode,
+					bool* recoveryMode, const SDL_Event& e)
+{
+	if (m_resumeGameButton.isClicked(e, m_resumeGameButton.getKRect()))
+	{
+		*gameMode = true;
+		*controlGameFlag = true;
+		*recoveryMode = true;
+		*introMode = false;
+	}
+}
+
 void IntroScreen::introButtonsChunk(const SDL_Event& e)
 {
 

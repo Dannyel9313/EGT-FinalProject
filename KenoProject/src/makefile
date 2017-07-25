@@ -1,7 +1,7 @@
 CC = g++
 
-all: KenoProject.o Game.o History.o BaseObject.o BetButton.o Bonus.o Font.o GameKeno.o Info.o InsertCredit.o IntroScreen.o NumbersGrid.o Outro.o Volume.o Win.o XML.o pugixml.o ClearButton.o CreditInGame.o MaxBet.o MinBet.o QuickPick.o KenoDrawAnimation.o CashOut.o PayTable.o 
-	$(CC) -o Keno KenoProject.o Game.o History.o pugixml.o BaseObject.o BetButton.o Bonus.o Font.o GameKeno.o Info.o InsertCredit.o IntroScreen.o NumbersGrid.o Outro.o Volume.o Win.o XML.o ClearButton.o CreditInGame.o MaxBet.o MinBet.o QuickPick.o KenoDrawAnimation.o CashOut.o PayTable.o -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_gfx
+all: KenoProject.o Game.o History.o BaseObject.o BetButton.o Bonus.o Font.o GameKeno.o Info.o InsertCredit.o IntroScreen.o NumbersGrid.o Outro.o Volume.o Win.o XML.o pugixml.o ClearButton.o CreditInGame.o MaxBet.o MinBet.o QuickPick.o KenoDrawAnimation.o CashOut.o PayTable.o VolumeButton.o InfoButton.o
+	$(CC) -o Keno KenoProject.o Game.o History.o pugixml.o BaseObject.o BetButton.o Bonus.o Font.o GameKeno.o Info.o InsertCredit.o IntroScreen.o NumbersGrid.o Outro.o Volume.o Win.o XML.o ClearButton.o CreditInGame.o MaxBet.o MinBet.o QuickPick.o KenoDrawAnimation.o CashOut.o PayTable.o VolumeButton.o InfoButton.o -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lSDL2_gfx
 
 History.o: History.cpp BaseObject.h Font.h Globals.h
 	$(CC) -c -g History.cpp
@@ -80,3 +80,9 @@ CashOut.o: CashOut.cpp Font.h BaseObject.h Include.h
 
 PayTable.o: PayTable.cpp BaseObject.h Font.h
 	$(CC) -c PayTable.cpp
+
+VolumeButton.o: VolumeButton.cpp Font.h BaseObject.h Include.h
+	$(CC) -c VolumeButton.cpp
+
+InfoButton.o: InfoButton.cpp Font.h BaseObject.h Include.h
+	$(CC) -c InfoButton.cpp

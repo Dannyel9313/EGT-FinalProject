@@ -32,8 +32,11 @@ int main(int argc, char* args[])
 			std::cerr << "Error loading media" << std::endl;
 		} 
 		else 
-			{
+		{
 			SDL_RenderClear(game.getKenoRenderer());
+
+	 	        //Read recovery
+                        game.getGameMode().getXML().read("Recovery.xml");
 
 			Mix_PlayMusic(game.getMainMusic(),-1);
 			Mix_VolumeMusic(game.getIntroMode().getVolume().getVolumePoint());
@@ -41,74 +44,94 @@ int main(int argc, char* args[])
 			game.getIntroMode().introScreenPresent(game.getKenoRenderer());
 			while (!quit)
 			{
-				 if (introMode)
-					{
-						game.getIntroMode().introScreenPresent(game.getKenoRenderer());
-					}
-
-
-
-
-
-				if(introMode){
-				while (SDL_PollEvent(&e) != 0) 
+				if (introMode)
 				{
+					game.getIntroMode().introScreenPresent(game.getKenoRenderer());
+				}
 
-					if (e.type == SDL_QUIT) 
+
+				if(introMode)
+				{
+					while (SDL_PollEvent(&e) != 0) 
 					{
-						quit = true;
-					}
-					else if (e.type == SDL_MOUSEBUTTONDOWN)
-					{
-						game.getIntroMode().getVolume().moveVolumeDot(&e);
-						game.getIntroMode().getInsertCredit().setCreditToGame(&e);
-						game.getIntroMode().startNewGameClicked(&gameMode,&controlGameFlag,&introMode, e);
-						game.getIntroMode().startInfoClicked(&infoMode,&controlInfoFlag,&introMode, e);
-						game.getIntroMode().introButtonsChunk(e);
+						if (e.type == SDL_QUIT) 
+						{
+							quit = true;
+						}
+						else if (e.type == SDL_MOUSEBUTTONDOWN)
+						{
+							game.getIntroMode().getVolume().moveVolumeDot(&e);
+							game.getIntroMode().getInsertCredit().setCreditToGame(&e);
+							game.getIntroMode().startNewGameClicked(&gameMode,&controlGameFlag,&introMode, e);
+							game.getIntroMode().startInfoClicked(&infoMode,&controlInfoFlag,&introMode, e);
+                                                        //If resume game clicked
+                                                        game.getIntroMode().resumeGameClicked
+                                                                (&gameMode, &controlGameFlag, &introMode,
+                                                                        &recoveryMode, e);
+							game.getIntroMode().introButtonsChunk(e);
+						}
 					}
 				}
-				}
-			if(gameMode == true  && controlGameFlag == true)
-			{
-			        //Initialize game state
-                                game.getGameMode().initializeGameState();
 
-				game.getGameMode().getCreditInGame().setGameCredit(game.getIntroMode().getInsertCredit().getCredit());
-				game.getGameMode().renderGame(game.getKenoRenderer(), 255);
-
-
-				quit = false;
-			}
-
-			if(gameMode){
-				while(SDL_PollEvent(&e) != 0)
+				if(gameMode == true  && controlGameFlag == true)
 				{
-					if(e.type == SDL_QUIT)
+				        //Initialize game state
+                       	 	        game.getGameMode().initializeGameState();
+
+
+					if (recoveryMode == false)
 					{
-						quit = true;
+						game.getGameMode().getCreditInGame().
+							setGameCredit(game.getIntroMode().
+							getInsertCredit().getCredit());
 					}
-					else if (e.type == SDL_MOUSEBUTTONDOWN)
-                                	{
-						game.getGameMode().changeColorOfClickedNumbers(game.getKenoRenderer(), e);
-						game.getGameMode().mouseButtonDownRender(game.getKenoRenderer(), e);
-						game.getGameMode().playPauseMusic(game.getKenoRenderer(), e, game.getMainMusic());
-						game.getGameMode().cashOutButtonPushed(&outroMode,&gameMode, e);
-						SDL_GetMouseState(&x, &y);
-						std::cout << "X: " << x << " " << "Y: " << y << std::endl;
+					
+					else if (recoveryMode == true)
+                                        {
+                                                //Recovery
+                                                game.getGameMode().getCreditInGame().
+                                         	       setGameCredit(game.getGameMode().
+                                         	       getXML().getCredits());
+						game.getGameMode().getNumbersGrid().
+							raiseClickedFlags(game.getGameMode().
+							getXML().getUserChoices());
+						game.getGameMode().getBonusInGame().setBonus
+							(game.getGameMode().getXML().getBonus());
+						std::cout << game.getGameMode().getXML().getBonus() << std::endl;
+		
                                         }
-					else if (e.type == SDL_MOUSEMOTION)
+					game.getGameMode().renderGame(game.getKenoRenderer(), 255);
+					quit = false;
+				}
+
+				if(gameMode)
+				{
+					while(SDL_PollEvent(&e) != 0)
 					{
-						game.getGameMode().mouseOnButtonRender(game.getKenoRenderer(), e);
+						if(e.type == SDL_QUIT)
+						{
+							quit = true;
+						}
+						else if (e.type == SDL_MOUSEBUTTONDOWN)
+                                		{
+							game.getGameMode().changeColorOfClickedNumbers(game.getKenoRenderer(), e);
+							game.getGameMode().mouseButtonDownRender(game.getKenoRenderer(), e);
+							game.getGameMode().playPauseMusic(game.getKenoRenderer(), e, game.getMainMusic());
+							game.getGameMode().cashOutButtonPushed(&outroMode, &gameMode, e);	
+                                      		}
+						else if (e.type == SDL_MOUSEMOTION)
+						{
+							game.getGameMode().mouseOnButtonRender(game.getKenoRenderer(), e);
+						}
+
 					}
+				}
 
-			}
-			}
-
-			if(infoMode && controlInfoFlag)
-			{
-				game.getInfoMode().renderInfoScreen(game.getKenoRenderer());
-				quit = false;
-			}
+				if(infoMode && controlInfoFlag)
+				{
+					game.getInfoMode().renderInfoScreen(game.getKenoRenderer());
+					quit = false;
+				}
 
 				while(SDL_PollEvent(&e) != 0)
 				{
@@ -116,27 +139,26 @@ int main(int argc, char* args[])
 					{
 						quit = true;
 					}
-					if(e.type == SDL_MOUSEBUTTONDOWN){
+					else if(e.type == SDL_MOUSEBUTTONDOWN)
+					{
 						game.getInfoMode().renderButtonDown(game.getKenoRenderer(), e);
 						game.getInfoMode().buttonReturn(&introMode, e);
-
+						std::cout << introMode << "<-" << std::endl;
 					}
 				}
 
-				if(outroMode)
-							{
-
-								game.getOutroMode().writingOnScreen(game.getKenoRenderer(),game.getGameMode().calculateCreditsInMoney());
-								introMode = true;
-							}
+				if (outroMode)
+				{
+					game.getOutroMode().writingOnScreen(game.getKenoRenderer(), game.getGameMode().
+						calculateCreditsInMoney());
+					introMode = true;
+				}
 				SDL_RenderPresent(game.getKenoRenderer());
-
 				controlGameFlag = false;
 				controlInfoFlag = false;
 				outroMode = false;
 			}
 		}
 	}
-//	game.close();
 	return 0;
 }

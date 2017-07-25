@@ -2,14 +2,17 @@
 
 Win::Win()
 {
-
- this->m_winCredits = 0;
+	m_chunk = NULL;
+ 	this->m_winCredits = 0;
 }
 
 Win::~Win()
 {
-	Mix_FreeChunk(m_chunk);
-	m_chunk = NULL;
+	if (m_chunk!=NULL)
+	{
+		Mix_FreeChunk(m_chunk);
+		m_chunk = NULL;
+	}
 }
 
 BaseObject& Win::getWinGameCircle() {
