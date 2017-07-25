@@ -73,12 +73,12 @@ void BaseObject::loadTextureFromFile(std::string picPath, SDL_Renderer * rendere
 	if (loadedSurface == NULL) 
 	{
 		std::cerr << "The surface can not be created !" << std::endl;
-		std::cout << "wtf" << picPath.c_str() << std::endl;
+
 	} 
 	else 
 	{
 		SDL_SetColorKey(loadedSurface, SDL_TRUE,
-				SDL_MapRGB(loadedSurface->format, 255, 255, 255));
+				SDL_MapRGB(loadedSurface->format, 255, 255, 254));
 		newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
 		if (newTexture == NULL) 
 		{

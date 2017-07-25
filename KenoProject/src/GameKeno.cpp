@@ -166,10 +166,13 @@ Game& GameKeno::getGameMode()
         return m_GameMode;
 }
 
-Outro& GameKeno::getOutroMode(){
-	return m_outroMode;
+
+
+Mix_Music*& GameKeno::getMainMusic()
+{
+	return m_mainMusic;
 }
 
-Mix_Music*& GameKeno::getMainMusic(){
-	return m_mainMusic;
+Outro& GameKeno::getOutroMode() {
+	return m_outroMode;
 }

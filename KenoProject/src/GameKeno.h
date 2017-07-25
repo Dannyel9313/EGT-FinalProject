@@ -53,6 +53,7 @@ class GameKeno
 		// Get music
 		Mix_Music*& getMainMusic();
 
+
 	private:
 		//Window
 		SDL_Window* kenoWindow;

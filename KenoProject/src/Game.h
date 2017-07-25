@@ -16,7 +16,6 @@
 #include "VolumeButton.h"
 #include "Bonus.h"
 #include "InfoButton.h"
-#include "XML.h"
 
 class Game: public BaseObject
 {
@@ -65,7 +64,7 @@ class Game: public BaseObject
 		void showWinInGame(SDL_Renderer* renderer);
 
 		// Calculate money from credits and denomination
-		double calculateCreditsInMoney(int credits);
+		double calculateCreditsInMoney();
 
 		// Loads game over if the user has 0 credits
 		void loadGameOverScreen(SDL_Renderer* renderer, int spots, int match, int bet);
@@ -74,7 +73,10 @@ class Game: public BaseObject
 		void loadBigWinScreen(SDL_Renderer* renderer, int spots, int match, int bet);
 
 		// Show Bonus logo when you get bonus
-			void showBonusLogo(SDL_Renderer* renderer);
+		void showBonusLogo(SDL_Renderer* renderer);
+
+
+		void cashOutButtonPushed(bool* outroMode,bool* gameMode, const SDL_Event& e);
 
 		//Get min bet button
 		MinBet& getMinBetButton();
@@ -127,8 +129,6 @@ class Game: public BaseObject
 		//Set bet
 		void setBet(int bet);
 
-		void cashOutButtonPushed(bool* outroMode, const SDL_Event& e);
-
 		//Loads game over if the user has no credits
 		void loadGameOverScreen(SDL_Renderer*);
 
@@ -155,13 +155,11 @@ class Game: public BaseObject
 		//Get info button
 		InfoButton& getInfoButton();
 
-		//Get XML
-		XML& getXML();
-
 	private:
 		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
 
 		int m_counterInfoClick;
+		bool m_infoGameMode;
 		bool m_bonusFlag;
 		bool m_setBetFlag;
 	 	bool m_minBetFlag;
@@ -184,7 +182,6 @@ class Game: public BaseObject
 		Bonus m_bonusInGame;
 		InfoButton m_infoButton;
 		Mix_Chunk* m_chunk;
-		XML m_Recovery;
 
 };
 

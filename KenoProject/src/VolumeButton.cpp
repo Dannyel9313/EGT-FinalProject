@@ -42,7 +42,7 @@ void VolumeButton::loadElements(SDL_Renderer* renderer)
 {
 	setElementsPositionDimension();
 
-	m_buttonRect.loadTextureFromFile("Resources/Images/speaker-volume-button.jpg",
+	m_buttonRect.loadTextureFromFile("Resources/Images/speaker-volume-button.png",
 			renderer);
 	m_buttonRectPushed.loadTextureFromFile(
 			"Resources/Images/musicButtonStop.png", renderer);

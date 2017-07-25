@@ -2,18 +2,14 @@
 
 Game::Game() :
 		m_minBetFlag(true), m_maxBetFlag(true), m_setBetFlag(false),
-		m_bonusFlag(false),m_counterInfoClick(0), m_bet(0) {
+		m_bonusFlag(false),m_counterInfoClick(0),m_infoGameMode(false), m_bet(0) {
 }
 
 Game::~Game()
-{
-	if (m_chunk != NULL)
-        {
-                Mix_FreeChunk(m_chunk);
-                m_chunk = NULL;
-        }
-
-}
+ {
+ 	Mix_FreeChunk(m_chunk);
+ 	m_chunk = NULL;
+ }
 
 NumbersGrid& Game::getNumbersGrid()
 {
@@ -59,8 +55,6 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha)
 
 	//Create number rects
 	mGrid.createRects(renderer, alpha);
-
-	mGrid.reRenderClickedNumbers(renderer, alpha);
 
 	//Print the numbers
 	mGrid.printNumbers(renderer);
@@ -109,14 +103,12 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha)
 
 	m_infoButton.renderInfoButton(renderer);
 
-        m_Recovery.write(m_creditInGame.getGameCredit(),
-                                calculateBonus(getBet()),
-                                NULL);
-
 }
 
 void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 {
+	if(m_infoGameMode == false)
+	{
 	if (m_creditInGame.getGameCredit() >= m_bet && m_bet != 0)
 	{
 		//If button condition true show random numbers
@@ -134,11 +126,6 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 				changeCreditOnClickingBet(renderer, e);
 
 				mGrid.pickRandomNumbers(renderer, e);
-
-				m_Recovery.write(m_creditInGame.getGameCredit(),
-                                	calculateBonus(getBet()),
-                                        mGrid.getClickedNumbers());
-
 
 //				drawAnimation(renderer, mGrid.getRandomNumbers(),
 //						mGrid.getNumberRects());
@@ -189,15 +176,10 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 				mGrid.resetNumbersGrid(renderer);
 
 				if(m_bonusFlag == true){
-					m_creditInGame.renderCreditsInGame(renderer);
-					m_bonusInGame.renderBonus(renderer);
-					m_bonusFlag = false;
+				m_creditInGame.renderCreditsInGame(renderer);
+				m_bonusInGame.renderBonus(renderer);
+				m_bonusFlag = false;
 				}
-				//Save data
-                                m_Recovery.write(m_creditInGame.getGameCredit(),
-                                        calculateBonus(getBet()),
-                                        mGrid.getClickedNumbers());
-
 
 			}
 		}
@@ -242,7 +224,7 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 		m_maxBetFlag = true;
 		m_setBetFlag = false;
 	}
-
+	}
 	if(m_infoButton.isClicked(e, m_infoButton.getButtonRect().getKRect()))
 	{
 
@@ -256,11 +238,12 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 			initializeGameState();
 			renderGame(renderer,255);
 
-
+			m_infoGameMode = false;
 		}
 		else
 		{
 			m_infoButton.isClickedInfoButton(renderer, e);
+			m_infoGameMode = true;
 		}
 
 
@@ -296,10 +279,6 @@ void Game::changeColorOfClickedNumbers(SDL_Renderer* renderer,
 					PAYTABLE_HEIGHT};
 		cropFromRenderTo(renderer, &payTableRect, &payTableRect);
 		m_PayTable.renderPayTable(renderer, mGrid.numbersClicked(), m_bet);
-		m_Recovery.write(m_creditInGame.getGameCredit(),
-                	calculateBonus(getBet()),
-                        mGrid.getClickedNumbers());
-
 	}
 	mGrid.printNumbers(renderer);
 
@@ -507,22 +486,24 @@ void Game::renderAfterAnimationGame(SDL_Renderer* renderer, int alpha)
 	m_DrawAnimation.drawPipe(renderer);
 }
 
-double Game::calculateCreditsInMoney(int credits)
+double Game::calculateCreditsInMoney()
 {
 
 	double denomination = 0.25;
 	double money = 0;
 
-	money = denomination * credits;
+	money = denomination *( m_creditInGame.getGameCredit() + m_bonus);
+
 
 	return money;
 }
 
-void Game::cashOutButtonPushed(bool* outroMode, const SDL_Event& e)
+void Game::cashOutButtonPushed(bool* outroMode,bool* gameMode, const SDL_Event& e)
 {
 	if(m_cashOutButton.getCashOutRect().isClicked(e, m_cashOutButton.getCashOutRect().getKRect()))
 	{
 		*outroMode = true;
+		*gameMode = false;
 	}
 }
 
@@ -657,7 +638,7 @@ void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e)
 	{
 		gameButtonsChunk();
 			setBet(0);
-			std::cout << "MaxBet-> " << m_bet << std::endl;
+
 			m_maxBetButton.activateMaxButton(renderer);
 			m_minBetButton.deactivateMinButton(renderer);
 			m_maxBetFlag = true;
@@ -669,7 +650,7 @@ void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e)
 		{
 			gameButtonsChunk();
 			setBet(0);
-			std::cout << "MINIMALBet-> " << m_bet << std::endl;
+
 			m_minBetButton.activateMinButton(renderer);
 			m_maxBetButton.deactivateMaxButton(renderer);
 			m_minBetFlag = true;
@@ -833,10 +814,7 @@ rectToCrop = {570, i, extraBonusLogo_width,extraBonusLogo_height};
 		cropFromRenderTo(renderer, &rectToCrop, &rectToCrop);
 
 	}
-
 }
 
-XML& Game::getXML()
-{
-	return m_Recovery;
-}
+
+

@@ -19,6 +19,9 @@ public:
 	void loadFromTTF();
 	void winingWindow(SDL_Renderer *);
 	void writingOnScreen(SDL_Renderer *,double);
+
+
+
 	BaseObject& getBackground();
 	void setBackground(const BaseObject& back);
 	BaseObject& getWinPic();

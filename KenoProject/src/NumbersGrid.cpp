@@ -519,20 +519,3 @@ int* NumbersGrid::getClickedNumbers()
 
 	return tempArray;	
 }
-
-void NumbersGrid::raiseClickedFlags(int* clickedNumbers)
-{
-	int number = 0;
-
-	for (int i = 0; i < 8; i++)
-	{
-		for (int j = 0; j < 10; j++)
-		{
-			if(clickedNumbers[number] == 1)
-			{
-				isClickedFlags[i][j] = 1;
-			}
-			number++;
-		}
-	}
-}
