@@ -156,7 +156,7 @@ void PayTable::setLines()
 	for (int i = 0; i < 10; i++)
 	{
 		lines.push_back(tempRect);
-		tempRect.y += PAYTABLE_HEIGHT/11 + 2;
+		tempRect.y += PAYTABLE_HEIGHT/11;
 	}
 }
 
