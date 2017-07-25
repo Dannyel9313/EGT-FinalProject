@@ -112,7 +112,7 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha)
 	m_infoButton.renderInfoButton(renderer);
 
         m_Recovery.write(m_creditInGame.getGameCredit(),
-                                calculateBonus(getBet()),
+                                getBonus(),
                                 NULL);
 
 }
@@ -301,7 +301,7 @@ void Game::changeColorOfClickedNumbers(SDL_Renderer* renderer,
 		cropFromRenderTo(renderer, &payTableRect, &payTableRect);
 		m_PayTable.renderPayTable(renderer, mGrid.numbersClicked(), m_bet);
 		m_Recovery.write(m_creditInGame.getGameCredit(),
-                	calculateBonus(getBet()),
+                	getBonus(),
                         mGrid.getClickedNumbers());
 
 	}
@@ -548,7 +548,7 @@ void Game::cashOutButtonPushed(bool* outroMode, bool* gameMode, const SDL_Event&
 		*outroMode = true;
 		*gameMode = false;
 		m_Recovery.write(m_creditInGame.getGameCredit(),
-                	calculateBonus(getBet()),
+                	getBonus(),
                         mGrid.getClickedNumbers());
 	}
 }
@@ -625,7 +625,6 @@ void Game::setBonus(double bonus)
 void Game::bonusToCredits(int match, SDL_Renderer* renderer)
 {
 	int bonus = 0;
-	std::cout << match << " match" << std::endl;
 	int tempBonus = 0;
 	int resultDenom = 0;
 	if(match > 5)
@@ -865,9 +864,11 @@ void Game::resetVariables()
 {
 	m_creditInGame.setGameCredit(0);
 	setBonus(0);
+	getBonusInGame().setBonus(0);
+	getWinInGame().setWinCredits(0);
 	m_bet = 0;	
         m_Recovery.write(m_creditInGame.getGameCredit(),
-                                calculateBonus(getBet()),
+                                getBonus(),
                                 NULL);
 }
 
