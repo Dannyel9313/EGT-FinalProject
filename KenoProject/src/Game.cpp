@@ -2,7 +2,7 @@
 
 Game::Game() :
 		m_minBetFlag(true), m_maxBetFlag(true), m_setBetFlag(false),
-		m_bonusFlag(false),m_counterInfoClick(0), m_infoGameMode(false), m_bet(0) 
+		m_bonusFlag(false),m_counterInfoClick(0), m_infoGameMode(false), m_bet(0),m_bonus(0)
 {
 	m_chunk = NULL;
 }
@@ -138,7 +138,7 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 				mGrid.pickRandomNumbers(renderer, e);
 
 				m_Recovery.write(m_creditInGame.getGameCredit(),
-                                	calculateBonus(getBet()),
+                                	getBonus(),
                                         mGrid.getClickedNumbers());
 
 
@@ -198,7 +198,7 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 				}
 				//Save data
                                 m_Recovery.write(m_creditInGame.getGameCredit(),
-                                        calculateBonus(getBet()),
+                                        getBonus(),
                                         mGrid.getClickedNumbers());
 
 
@@ -517,7 +517,26 @@ double Game::calculateCreditsInMoney()
 	double denomination = 0.25;
 	double money = 0;
 
-	money = denomination * (m_creditInGame.getGameCredit() + m_bonus);
+	int bonus = 0;
+	int tempBonus = 0;
+	int resultDenom = 0;
+
+	tempBonus = m_bonus * 10;
+
+	resultDenom = tempBonus % 10;
+
+	if(resultDenom > 5)
+		{
+			bonus = m_bonus + 1;
+
+		}
+		else
+		{
+			bonus = m_bonus;
+
+		}
+
+	money = denomination * (m_creditInGame.getGameCredit() + bonus);
 
 	return money;
 }

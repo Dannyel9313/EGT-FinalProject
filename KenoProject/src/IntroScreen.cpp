@@ -34,14 +34,14 @@ Font& IntroScreen::getStartNewGameButton()
 }
 
 
-void IntroScreen::loadIntroScreen(SDL_Renderer* renderer)
+void IntroScreen::loadIntroScreen(SDL_Renderer* renderer,double bonus)
 {
 
 
 
 m_background.loadTextureFromFile("Resources/Images/InfoBackground.jpg",renderer);
 
-	loadIntroElements(renderer);
+	loadIntroElements(renderer, bonus);
 	moveStarNewGame(30, renderer);
 	moveResumeGame(110, renderer);
 	moveInfoGame(190, renderer);
@@ -71,13 +71,13 @@ void IntroScreen::setPositionDimension()
 
 }
 
-void IntroScreen::loadIntroElements(SDL_Renderer* renderer)
+void IntroScreen::loadIntroElements(SDL_Renderer* renderer,double bonus)
 {
 	setElementsFont();
 
 	setPositionDimension();
 
-	setElementsColor();
+	setElementsColor(bonus);
 
 	m_background.loadTextureFromFile("Resources/Images/InfoBackground.jpg", renderer);
 
@@ -153,7 +153,7 @@ void IntroScreen::moveInfoGame(int yPos, SDL_Renderer* renderer)
 	}
 }
 
-void IntroScreen::setElementsColor() {
+void IntroScreen::setElementsColor(double bonus) {
 
 	if (m_insertCredit.getCredit() > 0)
 	{
@@ -173,14 +173,22 @@ void IntroScreen::setElementsColor() {
 	{
 		m_startNewGameButton.setButtonColor(127, 127, 127);
 	}
-	if (m_resumeGameButton.onMouseOver(m_resumeGameButton.getKRect()))
+	if(bonus <= 0)
 	{
-		m_resumeGameButton.setButtonColor(255, 0, 39);
+		m_resumeGameButton.setButtonColor(127,127,127);
 
 	}
 	else
 	{
-		m_resumeGameButton.setButtonColor(251, 211, 72);
+		if (m_resumeGameButton.onMouseOver(m_resumeGameButton.getKRect()))
+				{
+					m_resumeGameButton.setButtonColor(255, 0, 39);
+
+				}
+				else
+				{
+					m_resumeGameButton.setButtonColor(251, 211, 72);
+				}
 	}
 	if (m_infoButton.onMouseOver(m_infoButton.getKRect()))
 	{
@@ -202,7 +210,7 @@ void IntroScreen::setElementsFont()
 	m_infoButton.setFont(TTF_OpenFont("Resources/Fonts/Pozo.ttf", 50));
 }
 
-void IntroScreen::introScreenPresent(SDL_Renderer* renderer)
+void IntroScreen::introScreenPresent(SDL_Renderer* renderer, double bonus)
 {
 
 	SDL_RenderCopy(renderer, m_background.getKTexture(), NULL, NULL);
@@ -215,7 +223,7 @@ void IntroScreen::introScreenPresent(SDL_Renderer* renderer)
 
 	m_infoButton.textRender(m_infoButton.getKRect(), m_infoButton.getKTexture(),
 			renderer);
-	loadIntroElements(renderer);
+	loadIntroElements(renderer, bonus);
 
 }
 

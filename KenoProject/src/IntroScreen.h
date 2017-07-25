@@ -13,13 +13,13 @@ public:
 	virtual ~IntroScreen();
 
 	//Load intro screen
-	void loadIntroScreen(SDL_Renderer* renderer);
+	void loadIntroScreen(SDL_Renderer* renderer,double bonus);
 
 	// Present intro screen
-	void introScreenPresent(SDL_Renderer* renderer);
+	void introScreenPresent(SDL_Renderer* renderer,double bonus);
 
 	//Load intro elements
-	void loadIntroElements(SDL_Renderer* renderer);
+	void loadIntroElements(SDL_Renderer* renderer,double bonus);
 
 	// Get background
 	BaseObject& getBackground();
@@ -68,7 +68,7 @@ private:
 	void setElementsFont();
 
 	// Set elements color
-	void setElementsColor();
+	void setElementsColor(double bonus);
 
 	BaseObject m_background;
 

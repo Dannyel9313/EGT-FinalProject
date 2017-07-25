@@ -40,13 +40,18 @@ int main(int argc, char* args[])
 
 			Mix_PlayMusic(game.getMainMusic(),-1);
 			Mix_VolumeMusic(game.getIntroMode().getVolume().getVolumePoint());
-			game.getIntroMode().loadIntroScreen(game.getKenoRenderer());
-			game.getIntroMode().introScreenPresent(game.getKenoRenderer());
+			game.getIntroMode().loadIntroScreen(game.getKenoRenderer(),game.getGameMode().
+          	       getXML().getCredits());
+			game.getIntroMode().introScreenPresent(game.getKenoRenderer(),game.getGameMode().
+          	       getXML().getCredits());
 			while (!quit)
 			{
+				//Read recovery
+				                 				      	game.getGameMode().getXML().read("Recovery.xml");
 				if (introMode)
 				{
-					game.getIntroMode().introScreenPresent(game.getKenoRenderer());
+					game.getIntroMode().introScreenPresent(game.getKenoRenderer(),game.getGameMode().
+                  	       getXML().getCredits());
 				}
 
 
@@ -65,8 +70,7 @@ int main(int argc, char* args[])
 							game.getIntroMode().startNewGameClicked(&gameMode,&controlGameFlag,&introMode, e);
 							game.getIntroMode().startInfoClicked(&infoMode,&controlInfoFlag,&introMode, e);
                                                         //If resume game clicked
-	 	       					//Read recovery
-                 				      	game.getGameMode().getXML().read("Recovery.xml");
+
                                                         game.getIntroMode().resumeGameClicked
                                                                 (&gameMode, &controlGameFlag, &introMode,
                                                                         &recoveryMode, e);
@@ -79,6 +83,7 @@ int main(int argc, char* args[])
 				{
 				        //Initialize game state
                        	 	        game.getGameMode().initializeGameState();
+                       	 	        game.getGameMode().resetVariables();
 
 					game.getGameMode().getCreditInGame().
 						setGameCredit(game.getIntroMode().
@@ -115,6 +120,7 @@ int main(int argc, char* args[])
 				else if(recoveryMode && game.getGameMode().
                                          	       getXML().getCredits() > 0)  
 				{
+					std::cout<< "recovery " << std::endl;
 	 	       			//Read recovery
                        			game.getGameMode().getXML().read("Recovery.xml");
 
@@ -171,11 +177,13 @@ int main(int argc, char* args[])
 						calculateCreditsInMoney());
 					introMode = true;
 					game.getGameMode().resetVariables();
+					game.getIntroMode().getInsertCredit().setCredit(0);
 				}
 				SDL_RenderPresent(game.getKenoRenderer());
 				controlGameFlag = false;
 				controlInfoFlag = false;
 				outroMode = false;
+				recoveryMode = false;
 			}
 		}
 	}
