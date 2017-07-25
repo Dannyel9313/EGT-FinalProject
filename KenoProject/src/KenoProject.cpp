@@ -35,23 +35,21 @@ int main(int argc, char* args[])
 		{
 			SDL_RenderClear(game.getKenoRenderer());
 
-	 	       	 //Read recovery
-                       	 game.getGameMode().getXML().read("Recovery.xml");
+	 	       	//Read recovery
+                       	game.getGameMode().getXML().read("Recovery.xml");
 
 			Mix_PlayMusic(game.getMainMusic(),-1);
 			Mix_VolumeMusic(game.getIntroMode().getVolume().getVolumePoint());
 			game.getIntroMode().loadIntroScreen(game.getKenoRenderer(),game.getGameMode().
-          	       getXML().getCredits());
+          	        getXML().getCredits());
 			game.getIntroMode().introScreenPresent(game.getKenoRenderer(),game.getGameMode().
-          	       getXML().getCredits());
+          	        getXML().getCredits());
 			while (!quit)
 			{
-				//Read recovery
-				                 				      	game.getGameMode().getXML().read("Recovery.xml");
 				if (introMode)
 				{
 					game.getIntroMode().introScreenPresent(game.getKenoRenderer(),game.getGameMode().
-                  	       getXML().getCredits());
+                  	       			getXML().getCredits());
 				}
 
 
@@ -120,7 +118,6 @@ int main(int argc, char* args[])
 				else if(recoveryMode && game.getGameMode().
                                          	       getXML().getCredits() > 0)  
 				{
-					std::cout<< "recovery " << std::endl;
 	 	       			//Read recovery
                        			game.getGameMode().getXML().read("Recovery.xml");
 
@@ -136,6 +133,8 @@ int main(int argc, char* args[])
 						getXML().getUserChoices());
 					game.getGameMode().getBonusInGame().setBonus
 						(game.getGameMode().getXML().getBonus());
+					game.getGameMode().setBonus(game.getGameMode().getXML().
+						getBonus());
 		
 					game.getGameMode().renderGame(game.getKenoRenderer(), 255);
 					recoveryMode = false;
@@ -178,6 +177,8 @@ int main(int argc, char* args[])
 					introMode = true;
 					game.getGameMode().resetVariables();
 					game.getIntroMode().getInsertCredit().setCredit(0);
+	 	       			//Read recovery
+                       			game.getGameMode().getXML().read("Recovery.xml");
 				}
 				SDL_RenderPresent(game.getKenoRenderer());
 				controlGameFlag = false;
