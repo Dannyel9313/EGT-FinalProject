@@ -159,6 +159,8 @@ class Game: public BaseObject
 		//Get xml
 		XML& getXML();
 
+		//Reset variables
+		void resetVariables();
 	private:
 		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
 

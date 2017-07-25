@@ -7,9 +7,9 @@
 
 #include "CreditInGame.h"
 
-CreditInGame::CreditInGame() {
-	this->m_gameCredit = 583;
-
+CreditInGame::CreditInGame() 
+{
+	this->m_gameCredit = 0;
 }
 
 CreditInGame::~CreditInGame() {

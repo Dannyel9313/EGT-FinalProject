@@ -528,6 +528,9 @@ void Game::cashOutButtonPushed(bool* outroMode, bool* gameMode, const SDL_Event&
 	{
 		*outroMode = true;
 		*gameMode = false;
+		m_Recovery.write(m_creditInGame.getGameCredit(),
+                	calculateBonus(getBet()),
+                        mGrid.getClickedNumbers());
 	}
 }
 
@@ -838,6 +841,17 @@ rectToCrop = {570, i, extraBonusLogo_width,extraBonusLogo_height};
 	}
 
 }
+
+void Game::resetVariables()
+{
+	m_creditInGame.setGameCredit(0);
+	setBonus(0);
+	m_bet = 0;	
+        m_Recovery.write(m_creditInGame.getGameCredit(),
+                                calculateBonus(getBet()),
+                                NULL);
+}
+
 
 XML& Game::getXML()
 {
