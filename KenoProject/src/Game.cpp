@@ -834,8 +834,9 @@ rectToCrop = {570, i, extraBonusLogo_width,extraBonusLogo_height};
 
 	}
 
+}
 
-
-
-
+XML& Game::getXML()
+{
+	return m_Recovery;
 }

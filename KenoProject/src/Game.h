@@ -16,6 +16,7 @@
 #include "VolumeButton.h"
 #include "Bonus.h"
 #include "InfoButton.h"
+#include "XML.h"
 
 class Game: public BaseObject
 {
@@ -154,6 +155,9 @@ class Game: public BaseObject
 		//Get info button
 		InfoButton& getInfoButton();
 
+		//Get XML
+		XML& getXML();
+
 	private:
 		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
 
@@ -180,6 +184,7 @@ class Game: public BaseObject
 		Bonus m_bonusInGame;
 		InfoButton m_infoButton;
 		Mix_Chunk* m_chunk;
+		XML m_Recovery;
 
 };
 
