@@ -225,11 +225,23 @@ void IntroScreen::startNewGameClicked(bool* gameMode,bool* controlGameFlag,bool*
 	{
 		if(m_startNewGameButton.isClicked(e, m_startNewGameButton.getKRect())) 
 		{
-		*gameMode = true;
-		*controlGameFlag = true;
-		*introMode = false;
+			*gameMode = true;
+			*controlGameFlag = true;
+			*introMode = false;
 		}	
 	}
+}
+
+void IntroScreen::resumeGameClicked(bool* gameMode,bool* controlGameFlag,bool* introMode, 
+	bool* recoveryMode, const SDL_Event& e)
+{
+	if(m_resumeGameButton.isClicked(e, m_resumeGameButton.getKRect())) 
+	{
+		*gameMode = true;
+		*controlGameFlag = true;
+		*recoveryMode = true;
+		*introMode = false;
+	}	
 }
 
 void IntroScreen::startInfoClicked(bool* infoMode,bool* controlInfo,bool* introMode, const SDL_Event& e)

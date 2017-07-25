@@ -47,6 +47,9 @@ public:
 	//start info screen
 	void startInfoClicked(bool*,bool*,bool*, const SDL_Event&);
 
+	//Resume button
+	void resumeGameClicked(bool*,bool*,bool*,bool*, const SDL_Event&);
+
 	//loads chunk if button is clicked
 	void introButtonsChunk(const SDL_Event&);
 

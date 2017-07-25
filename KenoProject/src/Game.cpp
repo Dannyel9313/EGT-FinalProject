@@ -6,10 +6,14 @@ Game::Game() :
 }
 
 Game::~Game()
- {
- 	Mix_FreeChunk(m_chunk);
- 	m_chunk = NULL;
- }
+{
+	if (m_chunk != NULL)
+        {
+                Mix_FreeChunk(m_chunk);
+                m_chunk = NULL;
+        }
+
+}
 
 NumbersGrid& Game::getNumbersGrid()
 {
@@ -55,6 +59,8 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha)
 
 	//Create number rects
 	mGrid.createRects(renderer, alpha);
+
+	mGrid.reRenderClickedNumbers(renderer, alpha);
 
 	//Print the numbers
 	mGrid.printNumbers(renderer);
@@ -103,6 +109,10 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha)
 
 	m_infoButton.renderInfoButton(renderer);
 
+        m_Recovery.write(m_creditInGame.getGameCredit(),
+                                calculateBonus(getBet()),
+                                NULL);
+
 }
 
 void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
@@ -124,6 +134,11 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 				changeCreditOnClickingBet(renderer, e);
 
 				mGrid.pickRandomNumbers(renderer, e);
+
+				m_Recovery.write(m_creditInGame.getGameCredit(),
+                                	calculateBonus(getBet()),
+                                        mGrid.getClickedNumbers());
+
 
 //				drawAnimation(renderer, mGrid.getRandomNumbers(),
 //						mGrid.getNumberRects());
@@ -174,10 +189,15 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 				mGrid.resetNumbersGrid(renderer);
 
 				if(m_bonusFlag == true){
-				m_creditInGame.renderCreditsInGame(renderer);
-				m_bonusInGame.renderBonus(renderer);
-				m_bonusFlag = false;
+					m_creditInGame.renderCreditsInGame(renderer);
+					m_bonusInGame.renderBonus(renderer);
+					m_bonusFlag = false;
 				}
+				//Save data
+                                m_Recovery.write(m_creditInGame.getGameCredit(),
+                                        calculateBonus(getBet()),
+                                        mGrid.getClickedNumbers());
+
 
 			}
 		}
@@ -276,6 +296,10 @@ void Game::changeColorOfClickedNumbers(SDL_Renderer* renderer,
 					PAYTABLE_HEIGHT};
 		cropFromRenderTo(renderer, &payTableRect, &payTableRect);
 		m_PayTable.renderPayTable(renderer, mGrid.numbersClicked(), m_bet);
+		m_Recovery.write(m_creditInGame.getGameCredit(),
+                	calculateBonus(getBet()),
+                        mGrid.getClickedNumbers());
+
 	}
 	mGrid.printNumbers(renderer);
 
