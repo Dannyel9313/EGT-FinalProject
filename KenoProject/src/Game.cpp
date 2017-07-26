@@ -143,8 +143,8 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
                                         mGrid.getClickedNumbers());
 
 
-//				drawAnimation(renderer, mGrid.getRandomNumbers(),
-//						mGrid.getNumberRects());
+				drawAnimation(renderer, mGrid.getRandomNumbers(),
+						mGrid.getNumberRects());
 
 				// Render game after animation
 				renderAfterAnimationGame(renderer,150);
@@ -157,7 +157,7 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 				showWinInGame(renderer);
 				bonusToCredits(mGrid.numberOfHits(), renderer);
 
-				if(mGrid.numberOfHits() >0 )
+				if(mGrid.numberOfHits() == 10)
 				{
 					m_bigWinFlag = true;
 				}
@@ -213,8 +213,10 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 
                 if(m_bigWinFlag == true)
                 {
+                	Mix_PauseMusic();
                 	m_winInGame.bigWin(renderer,m_winInGame.getWinCredits());
                 	renderGame(renderer,255);
+                	Mix_ResumeMusic();
                 	reRenderMinimalBet(renderer,m_bet);
                 	reRenderMaximalBet(renderer,m_bet);
                 	m_bigWinFlag = false;
@@ -654,7 +656,7 @@ void Game::setBonus(double bonus)
 void Game::bonusToCredits(int match, SDL_Renderer* renderer)
 {
 	int bonus = 0;
-	std::cout << match << " match" << std::endl;
+
 	int tempBonus = 0;
 	int resultDenom = 0;
 	if(match > 5)
