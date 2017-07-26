@@ -26,7 +26,7 @@ void Outro::loadFireworksPictures(SDL_Renderer* renderer)
 						"Resources/Images/11.jpg", "Resources/Images/12.jpg",
 						"Resources/Images/13.jpg" };
 
-	for(int i = 0; i < 12; i++)
+	for(int i = 0; i < 5; i++)
 	{
 	for(int i = 0; i < 12; i++)
 	{
@@ -110,10 +110,10 @@ winPic.render(renderer,&rect1);
 		}
 
 	}
-	int timeout = SDL_GetTicks()+5000;
+
+int timeout = SDL_GetTicks()+5000;
 	while(!SDL_TICKS_PASSED(SDL_GetTicks(), timeout)){}
 }
-
 
 
 

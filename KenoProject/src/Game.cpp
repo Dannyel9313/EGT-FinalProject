@@ -2,7 +2,8 @@
 
 Game::Game() :
 		m_minBetFlag(true), m_maxBetFlag(true), m_setBetFlag(false),
-		m_bonusFlag(false),m_counterInfoClick(0), m_infoGameMode(false), m_gameOverFlag(false), m_bet(0),m_bonus(0)
+		m_bonusFlag(false),m_counterInfoClick(0), m_infoGameMode(false),
+		m_bigWinFlag(false),m_gameOverFlag(false), m_bet(0),m_bonus(0)
 {
 	m_chunk = NULL;
 }
@@ -112,7 +113,7 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha)
 	m_infoButton.renderInfoButton(renderer);
 
         m_Recovery.write(m_creditInGame.getGameCredit(),
-                                calculateBonus(getBet()),
+                                getBonus(),
                                 NULL);
 
 }
@@ -155,6 +156,13 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 
 				showWinInGame(renderer);
 				bonusToCredits(mGrid.numberOfHits(), renderer);
+
+				if(mGrid.numberOfHits() == 10)
+								{
+
+									m_bigWinFlag = true;
+
+								}
 
 				m_History.renderHits(renderer, mGrid.numberOfHits(), 0);
 
@@ -205,6 +213,14 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
                                         getBonus(),
                                         mGrid.getClickedNumbers());
 
+                if(m_bigWinFlag == true)
+                {
+                	m_winInGame.bigWin(renderer,m_winInGame.getWinCredits());
+                	renderGame(renderer,255);
+                	m_bonusInGame.getBonusRectangle().render(renderer,m_bonusInGame.getBonusRectangle().getKRect());
+                	m_bonusInGame.getBonusText().render(renderer,m_bonusInGame.getBonusText().getKRect());
+                	m_bigWinFlag = false;
+                }
 
 
 			}
@@ -263,7 +279,11 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 
 			initializeGameState();
 			renderGame(renderer,255);
-
+			if(m_bonusInGame.getBonus() > 1)
+			{
+			m_bonusInGame.getBonusRectangle().render(renderer,m_bonusInGame.getBonusRectangle().getKRect());
+		                	m_bonusInGame.getBonusText().render(renderer,m_bonusInGame.getBonusText().getKRect());
+			}
 			m_infoGameMode = false;
 		}
 		else
@@ -306,7 +326,7 @@ void Game::changeColorOfClickedNumbers(SDL_Renderer* renderer,
 		cropFromRenderTo(renderer, &payTableRect, &payTableRect);
 		m_PayTable.renderPayTable(renderer, mGrid.numbersClicked(), m_bet);
 		m_Recovery.write(m_creditInGame.getGameCredit(),
-                	getBet(),
+                	getBonus(),
                         mGrid.getClickedNumbers());
 
 	}
@@ -340,7 +360,7 @@ void Game::drawAnimation(SDL_Renderer* renderer, int* numbers,
 			int b = rand();
 			SDL_Color color = { r, g, b };
 			colors.push_back(color);
-			for (int k = 115; k <= rects[i].y + 20; k += 5) {
+			for (int k = 115; k <= rects[i].y + 20; k += 15) {
 				//Render top left
 				cropFromRenderTo(renderer, &test, &test);
 
@@ -361,7 +381,7 @@ void Game::drawAnimation(SDL_Renderer* renderer, int* numbers,
 				drawAnimationReRender(renderer, rects);
 				SDL_RenderPresent(renderer);
 			}
-			for (int j = 540; j >= rects[i].x + 23; j -= 5) {
+			for (int j = 540; j >= rects[i].x + 23; j -= 15) {
 				//Render top left
 				cropFromRenderTo(renderer, &test, &test);
 
@@ -827,17 +847,17 @@ void Game::reRenderHistory(SDL_Renderer* renderer)
 	m_History.renderHistory(renderer);
 }
 
-void Game::loadBigWinScreen(SDL_Renderer* renderer, int spots, int match, int bet)
-  {
-
-  	if(calculateWin(spots, match, bet) > 0)
-  	{
-  		if(match == 10)
-  		{
- 		m_winInGame.bigWin(renderer, 1000);
-  		}
-  	}
-  }
+//void Game::loadBigWinScreen(SDL_Renderer* renderer, int spots, int match, int bet)
+//  {
+//
+//  	if(calculateWin(spots, match, bet) > 0)
+//  	{
+//  		if(match == 10)
+//  		{
+// 		m_winInGame.bigWin(renderer, 1000);
+//  		}
+//  	}
+//  }
 
 void Game::loadGameOverScreen(SDL_Renderer* renderer)
 {
@@ -882,7 +902,7 @@ void Game::resetVariables()
 	getWinInGame().setWinCredits(0);
 	m_bet = 0;	
         m_Recovery.write(m_creditInGame.getGameCredit(),
-                                getBet(),
+                                getBonus(),
                                 NULL);
 }
 

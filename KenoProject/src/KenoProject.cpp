@@ -19,7 +19,7 @@ int main(int argc, char* args[])
 	bool controlGameFlag = false;
 	bool controlInfoFlag = false;
 
-	int x, y;
+
 
 	if (!game.init()) 
 	{
@@ -35,21 +35,25 @@ int main(int argc, char* args[])
 		{
 			SDL_RenderClear(game.getKenoRenderer());
 
-			//Read recovery
-			game.getGameMode().getXML().read("Recovery.xml");
+	 	       	 //Read recovery
+                       	 game.getGameMode().getXML().read("Recovery.xml");
+
 			Mix_PlayMusic(game.getMainMusic(),-1);
 			Mix_VolumeMusic(game.getIntroMode().getVolume().getVolumePoint());
 			game.getIntroMode().loadIntroScreen(game.getKenoRenderer(),game.getGameMode().
-          	       	getXML().getCredits());
+          	       getXML().getCredits());
 			game.getIntroMode().introScreenPresent(game.getKenoRenderer(),game.getGameMode().
-          	       	getXML().getCredits());
+          	       getXML().getCredits());
 			while (!quit)
 			{
+
 				if (introMode)
 				{
 					game.getIntroMode().introScreenPresent(game.getKenoRenderer(),game.getGameMode().
-                  	      			getXML().getCredits());
+                  	       getXML().getCredits());
 				}
+
+
 				if(introMode)
 				{
 					while (SDL_PollEvent(&e) != 0) 
@@ -131,8 +135,8 @@ int main(int argc, char* args[])
 						getXML().getUserChoices());
 					game.getGameMode().getBonusInGame().setBonus
 						(game.getGameMode().getXML().getBonus());
-					game.getGameMode().setBonus
-						(game.getGameMode().getXML().getBonus());
+					game.getGameMode().setBonus(game.getGameMode().getXML().
+											getBonus());
 		
 					game.getGameMode().renderGame(game.getKenoRenderer(), 255);
 					recoveryMode = false;
@@ -169,10 +173,12 @@ int main(int argc, char* args[])
 				}
 				if(game.getGameMode().isGameOverFlag() == true)
 				{
-					gameMode = false;
-					game.getGameMode().getWinInGame().writeOnScreen(game.getKenoRenderer());
-					game.getIntroMode().getInsertCredit().setCredit(0);
-					introMode = true;
+				gameMode = false;
+				Mix_PauseMusic();
+				game.getGameMode().getWinInGame().writeOnScreen(game.getKenoRenderer());
+				game.getIntroMode().getInsertCredit().setCredit(0);
+				Mix_ResumeMusic();
+				introMode = true;
 				}
 
 
@@ -183,8 +189,8 @@ int main(int argc, char* args[])
 					introMode = true;
 					game.getGameMode().resetVariables();
 					game.getIntroMode().getInsertCredit().setCredit(0);
-	 	       			//Read recovery
-                      		 	game.getGameMode().getXML().read("Recovery.xml");
+					//Read recovery
+					game.getGameMode().getXML().read("Recovery.xml");
 				}
 				SDL_RenderPresent(game.getKenoRenderer());
 				controlGameFlag = false;

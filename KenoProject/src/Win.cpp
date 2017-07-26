@@ -115,7 +115,7 @@ void Win::setWinCredits(int winCredits) {
 
 void Win::writeOnScreen(SDL_Renderer* renderer)
 {
-	m_chunk = Mix_LoadWAV("Resources/Sounds/Victory sound effect.wav");
+	m_chunk = Mix_LoadWAV("Resources/Sounds/277403__landlucky__game-over-sfx-and-voice.wav");
 		if(m_chunk == NULL){
 	  		std::cerr << "Music file could not be loaded" << std::endl;
 	  	}
@@ -154,7 +154,7 @@ void Win::writeOnScreen(SDL_Renderer* renderer)
 	}
 }
 
-void Win::bigWin(SDL_Renderer* renderer, int credits)
+void Win::bigWin(SDL_Renderer* renderer,int credits)
 {
 
  	m_chunk = Mix_LoadWAV("Resources/Sounds/Victory sound effect.wav");

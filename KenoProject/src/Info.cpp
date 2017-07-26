@@ -159,7 +159,7 @@ void Info::loadInfoElements(SDL_Renderer* renderer)
 
 
 	m_secondBackgroundInfo.loadTextureFromFile(
-			"Resources/Images/infoTable.jpg", renderer);
+			"Resources/Images/infoTable.png", renderer);
 	m_backgroundInfo.loadTextureFromFile(
 			"Resources/Images/kenoInformationBackground.png", renderer);
 	m_buttonBack.loadTextureFromFile(

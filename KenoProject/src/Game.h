@@ -171,7 +171,9 @@ class Game: public BaseObject
 	private:
 		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
 
+
 		int m_counterInfoClick;
+		bool m_bigWinFlag;
 		bool m_gameOverFlag;
 		bool m_infoGameMode;
 		bool m_bonusFlag;

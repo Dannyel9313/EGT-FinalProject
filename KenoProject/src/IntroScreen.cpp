@@ -45,7 +45,7 @@ m_background.loadTextureFromFile("Resources/Images/InfoBackground.jpg",renderer)
 	moveStarNewGame(30, renderer);
 	moveResumeGame(110, renderer);
 	moveInfoGame(190, renderer);
-//	SDL_RenderPresent(renderer);
+
 }
 
 Volume& IntroScreen::getVolume()
