@@ -367,8 +367,8 @@ void Game::drawAnimation(SDL_Renderer* renderer, int* numbers,
 		if (numbers[i] == 1) {
 			getDrawAnimation().playSoundEffect(0, 80);
 			int r = rand()%155;
-			int g = rand()%50;
-			int b = rand()%50;
+			int g = rand()%155;
+			int b = rand()%155;
 			SDL_Color color = { r, g, b };
 			colors.push_back(color);
 			for (int k = 115; k <= rects[i].y + 20; k += 15) {
@@ -422,8 +422,16 @@ void Game::drawAnimation(SDL_Renderer* renderer, int* numbers,
 		}
 
 	}
+	//Create number rects
+	mGrid.createRects(renderer, 255);
+
+	mGrid.reRenderClickedNumbers(renderer, 255);
+
+	//Print the numbers
+	mGrid.printNumbers(renderer);
 
 	drawAnimationReRender(renderer, rects);
+
 	SDL_RenderPresent(renderer);
 	flags.reset();
 	delete[] numbers;
