@@ -168,6 +168,12 @@ class Game: public BaseObject
 		// Set game over flag
 		void setGameOverFlag(bool gameOverFlag);
 
+		//Rerender minimal bet
+		void reRenderMinimalBet(SDL_Renderer* renderer, int bet);
+
+		//Rerender maximal bet
+		void reRenderMaximalBet(SDL_Renderer* renderer, int bet);
+
 	private:
 		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
 

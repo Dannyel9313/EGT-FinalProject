@@ -142,6 +142,8 @@ int main(int argc, char* args[])
 					
 		
 					game.getGameMode().renderGame(game.getKenoRenderer(), 255);
+					game.getGameMode().reRenderMinimalBet(game.getKenoRenderer(), game.getGameMode().getBet());
+					game.getGameMode().reRenderMaximalBet(game.getKenoRenderer(), game.getGameMode().getBet());
 					recoveryMode = false;
 					gameMode = true;
 					controlGameFlag = true;
