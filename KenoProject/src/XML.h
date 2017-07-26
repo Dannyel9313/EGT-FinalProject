@@ -16,11 +16,12 @@ class XML
 		void read(const char*);
 		
 		//Write in XML receive Credits(int), bonus, FlagsForPosition(int [][]);
-		void write(int, int, int*);
+		void write(int, int, int, int*);
 
 		//Get credits
 		int getCredits() const;
 		int getBonus() const;
+		int getBet() const;
 
 		int* getUserChoices();
 	private:
@@ -32,6 +33,9 @@ class XML
 
 		//Documents
 		pugi::xml_document doc;	
+
+		//Bet
+		int bet;
 
 		//Saved credits
 		int credits;

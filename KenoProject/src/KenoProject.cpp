@@ -136,7 +136,10 @@ int main(int argc, char* args[])
 					game.getGameMode().getBonusInGame().setBonus
 						(game.getGameMode().getXML().getBonus());
 					game.getGameMode().setBonus(game.getGameMode().getXML().
-											getBonus());
+						getBonus());
+					game.getGameMode().setBet(game.getGameMode().getXML().
+						getBet());
+					
 		
 					game.getGameMode().renderGame(game.getKenoRenderer(), 255);
 					recoveryMode = false;

@@ -103,7 +103,7 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha)
 	m_History.renderHistory(renderer);
 
 	//Render pay table
-	m_PayTable.renderPayTable(renderer, 0, 0);
+	m_PayTable.renderPayTable(renderer, mGrid.numbersClicked(), m_bet);
 
 	m_DrawAnimation.loadTextures(renderer);
 	m_DrawAnimation.drawPipe(renderer);
@@ -112,9 +112,9 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha)
 
 	m_infoButton.renderInfoButton(renderer);
 
-        m_Recovery.write(m_creditInGame.getGameCredit(),
+        m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
                                 getBonus(),
-                                NULL);
+                         	mGrid.getClickedNumbers());
 
 }
 
@@ -138,13 +138,13 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 
 				mGrid.pickRandomNumbers(renderer, e);
 
-				m_Recovery.write(m_creditInGame.getGameCredit(),
+				m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
                                 	getBonus(),
                                         mGrid.getClickedNumbers());
 
 
-//				drawAnimation(renderer, mGrid.getRandomNumbers(),
-//						mGrid.getNumberRects());
+				drawAnimation(renderer, mGrid.getRandomNumbers(),
+						mGrid.getNumberRects());
 
 				// Render game after animation
 				renderAfterAnimationGame(renderer,150);
@@ -158,11 +158,9 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 				bonusToCredits(mGrid.numberOfHits(), renderer);
 
 				if(mGrid.numberOfHits() == 10)
-								{
-
-									m_bigWinFlag = true;
-
-								}
+				{
+					m_bigWinFlag = true;
+				}
 
 				m_History.renderHits(renderer, mGrid.numberOfHits(), 0);
 
@@ -209,7 +207,7 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 					m_gameOverFlag = true;
 				}
 				//Save data
-                                m_Recovery.write(m_creditInGame.getGameCredit(),
+                                m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
                                         getBonus(),
                                         mGrid.getClickedNumbers());
 
@@ -239,6 +237,10 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 		cropFromRenderTo(renderer, &payTableRect, &payTableRect);
 		mGrid.pickRandomChoices(renderer);
 		m_PayTable.renderPayTable(renderer, mGrid.numbersClicked(), m_bet);
+		//Save data
+		m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
+                	getBonus(),
+                        mGrid.getClickedNumbers());
 		if(mBetButton.buttonCondition(mGrid.numbersClicked()))
 		{
 			mBetButton.renderButton(renderer);
@@ -325,7 +327,7 @@ void Game::changeColorOfClickedNumbers(SDL_Renderer* renderer,
 					PAYTABLE_HEIGHT};
 		cropFromRenderTo(renderer, &payTableRect, &payTableRect);
 		m_PayTable.renderPayTable(renderer, mGrid.numbersClicked(), m_bet);
-		m_Recovery.write(m_creditInGame.getGameCredit(),
+		m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
                 	getBonus(),
                         mGrid.getClickedNumbers());
 
@@ -354,7 +356,7 @@ void Game::drawAnimation(SDL_Renderer* renderer, int* numbers,
 	colors.clear();
 	for (int i = 0; i < 80; i++) {
 		if (numbers[i] == 1) {
-//			getDrawAnimation().playSoundEffect(0, 80);
+			getDrawAnimation().playSoundEffect(0, 80);
 			int r = rand();
 			int g = rand();
 			int b = rand();
@@ -403,7 +405,7 @@ void Game::drawAnimation(SDL_Renderer* renderer, int* numbers,
 				drawAnimationReRender(renderer, rects);
 				SDL_RenderPresent(renderer);
 			}
-//			getDrawAnimation().playSoundEffect(1, 128);
+			getDrawAnimation().playSoundEffect(1, 128);
 			int timeout = SDL_GetTicks() + 100;
 			while (!(SDL_TICKS_PASSED(SDL_GetTicks(), timeout)))
 				;
@@ -572,9 +574,9 @@ void Game::cashOutButtonPushed(bool* outroMode, bool* gameMode, const SDL_Event&
 	{
 		*outroMode = true;
 		*gameMode = false;
-		m_Recovery.write(m_creditInGame.getGameCredit(),
+		m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
 				getBonus(),
-                        mGrid.getClickedNumbers());
+       		                mGrid.getClickedNumbers());
 	}
 }
 
@@ -901,9 +903,9 @@ void Game::resetVariables()
 	getBonusInGame().setBonus(0);
 	getWinInGame().setWinCredits(0);
 	m_bet = 0;	
-        m_Recovery.write(m_creditInGame.getGameCredit(),
+        m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
                                 getBonus(),
-                                NULL);
+                                mGrid.getClickedNumbers());
 }
 
 

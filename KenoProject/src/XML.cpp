@@ -23,7 +23,7 @@ int XML::toInt(char char_val)
 	return number;
 }
 
-void XML::write(int credits, int bonus, int* choices)
+void XML::write(int bet, int credits, int bonus, int* choices)
 {
 	//Main node
 	pugi::xml_node node = doc.append_child("Recovery");
@@ -35,6 +35,10 @@ void XML::write(int credits, int bonus, int* choices)
 	//Bonus
 	pugi::xml_node bonusNode = node.append_child("Bonus");
 	bonusNode.append_child(pugi::node_pcdata).set_value(ToString(bonus));
+
+	//Bet
+	pugi::xml_node betNode = node.append_child("Bet");
+	betNode.append_child(pugi::node_pcdata).set_value(ToString(bet));
 
 	//Flags
 	pugi::xml_node choicesFlags = node.append_child("UserChoices");
@@ -63,6 +67,7 @@ void XML::read(const char* file)
 	pugi::xml_node i = doc.last_child();
 	credits = i.child("Credits").text().as_int();
 	bonus = i.child("Bonus").text().as_int();
+	bet = i.child("Bet").text().as_int();
 	temp_one = i.child("UserChoices").text().as_string();
 	if(!temp_one.empty())
 	{
@@ -86,4 +91,9 @@ int* XML::getUserChoices()
 int XML::getBonus() const
 {
 	return this->bonus;
+}
+
+int XML::getBet() const
+{
+	return this->bet;
 }
