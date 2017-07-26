@@ -11,9 +11,10 @@ XML::~XML()
 	userChoices = NULL;
 }
 
-const char* XML::ToString(int in_val)
+template <typename T>
+const char* XML::ToString(T in_val)
 {
-	std::string s = boost::lexical_cast<std::string> (in_val);
+	std::string s = boost::lexical_cast <std::string> (in_val);
 	return s.c_str();
 }
 
@@ -23,7 +24,7 @@ int XML::toInt(char char_val)
 	return number;
 }
 
-void XML::write(int bet, int credits, int bonus, int* choices)
+void XML::write(int bet, int credits, int bonus, int* choices, bool minBetF, bool maxBetF)
 {
 	//Main node
 	pugi::xml_node node = doc.append_child("Recovery");
@@ -51,6 +52,14 @@ void XML::write(int bet, int credits, int bonus, int* choices)
 		}
 	}
 
+	//Min bet flag
+	pugi::xml_node minBetFlagNode = node.append_child("minBetFlag");
+	minBetFlagNode.append_child(pugi::node_pcdata).set_value(ToString(minBetF));
+
+	//Max bet flag
+	pugi::xml_node maxBetFlagNode = node.append_child("maxBetFlag");
+	maxBetFlagNode.append_child(pugi::node_pcdata).set_value(ToString(maxBetF));
+
 	doc.save_file("Recovery.xml");
 }
 
@@ -76,6 +85,8 @@ void XML::read(const char* file)
 			userChoices[i] = toInt(temp_one[i]);
 		}
 	}
+	minBetFlag = i.child("minBetFlag").text().as_bool();
+	maxBetFlag = i.child("maxBetFlag").text().as_bool();
 }
 
 int XML::getCredits() const
@@ -96,4 +107,14 @@ int XML::getBonus() const
 int XML::getBet() const
 {
 	return this->bet;
+}
+
+bool XML::getMinBetFlag() const
+{
+	return this->minBetFlag;
+}
+
+bool XML::getMaxBetFlag() const
+{
+	return this->maxBetFlag;
 }

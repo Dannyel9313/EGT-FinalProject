@@ -126,7 +126,7 @@ int main(int argc, char* args[])
 				        //Initialize game state
                        	 	        game.getGameMode().initializeGameState();
 		
-                                        //Recovery
+                                        //Set recovery values
                                         game.getGameMode().getCreditInGame().
                                        		 setGameCredit(game.getGameMode().
                                          	 getXML().getCredits());
@@ -139,11 +139,15 @@ int main(int argc, char* args[])
 						getBonus());
 					game.getGameMode().setBet(game.getGameMode().getXML().
 						getBet());
-					
+					game.getGameMode().setMinBetFlag(game.getGameMode().getXML().
+						getMinBetFlag());
+					game.getGameMode().setMaxBetFlag(game.getGameMode().getXML().
+						getMaxBetFlag());
 		
 					game.getGameMode().renderGame(game.getKenoRenderer(), 255);
 					game.getGameMode().reRenderMinimalBet(game.getKenoRenderer(), game.getGameMode().getBet());
 					game.getGameMode().reRenderMaximalBet(game.getKenoRenderer(), game.getGameMode().getBet());
+
 					recoveryMode = false;
 					gameMode = true;
 					controlGameFlag = true;

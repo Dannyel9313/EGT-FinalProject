@@ -174,6 +174,14 @@ class Game: public BaseObject
 		//Rerender maximal bet
 		void reRenderMaximalBet(SDL_Renderer* renderer, int bet);
 
+		//Get min-max bet flag
+		bool getMinBetFlag();
+		bool getMaxBetFlag();
+		
+		//Set min-max bet flag
+		void setMinBetFlag(bool);
+		void setMaxBetFlag(bool);
+
 	private:
 		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
 

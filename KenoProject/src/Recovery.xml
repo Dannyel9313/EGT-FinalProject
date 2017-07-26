@@ -1,476 +1,617 @@
 <?xml version="1.0"?>
 <Recovery>
-	<Credits>60</Credits>
+	<Credits>0</Credits>
 	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>55</Credits>
-	<Bonus>1</Bonus>
-	<UserChoices>00001110010001100100010010000000000000000000000001000000000000000000000000000000</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>55</Credits>
-	<Bonus>1</Bonus>
+	<Bet>0</Bet>
 	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>55</Credits>
-	<Bonus>2</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000010000000000000000000000000000000000000</UserChoices>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>55</Credits>
-	<Bonus>2</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000010000000001000000000000000000000000000</UserChoices>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>0</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>55</Credits>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>10</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>0</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>10</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>0</Credits>
+	<Bonus>0</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>10</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>10</Bet>
+	<UserChoices>01100000000000100001000000000000000000000000000000010010000000011000100100000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>10</Bet>
+	<UserChoices>01100000000000100001000000000000000000000000000000010010000000011000100100000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>10</Bet>
+	<UserChoices>01100000000000100001000000000000000000000000000000010010000000011000100100000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>10</Bet>
+	<UserChoices>01100000000000100001000000000000000000000000000000010010000000011000100100000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>10</Bet>
+	<UserChoices>01100000000000100001000000000000000000000000000000010010000000011000100100000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>60</Credits>
+	<Bonus>1</Bonus>
+	<Bet>10</Bet>
+	<UserChoices>01100000000000100001000000000000000000000000000000010010000000011000100100000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>1</Bonus>
+	<Bet>10</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>1</Bonus>
+	<Bet>10</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>1</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>0</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>1</Bonus>
+	<Bet>10</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>0</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>1</Bonus>
+	<Bet>5</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>0</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>0</Credits>
+	<Bonus>0</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>0</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>5</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>0</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>5</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>0</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>5</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>0</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>5</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>0</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>5</Bet>
+	<UserChoices>01000100001000000000000010100000000000000000000000000000001011000110000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>0</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>70</Credits>
+	<Bonus>0</Bonus>
+	<Bet>5</Bet>
+	<UserChoices>01000100001000000000000010100000000000000000000000000000001011000110000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>0</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>65</Credits>
+	<Bonus>0</Bonus>
+	<Bet>5</Bet>
+	<UserChoices>01000100001000000000000010100000000000000000000000000000001011000110000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>0</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>75</Credits>
+	<Bonus>0</Bonus>
+	<Bet>5</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>0</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>75</Credits>
+	<Bonus>0</Bonus>
+	<Bet>5</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>0</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>75</Credits>
+	<Bonus>0</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>75</Credits>
+	<Bonus>0</Bonus>
+	<Bet>30</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>75</Credits>
+	<Bonus>0</Bonus>
+	<Bet>30</Bet>
+	<UserChoices>00001000010011001100100000000000000000001000000000000000000010000000000010000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>75</Credits>
+	<Bonus>0</Bonus>
+	<Bet>30</Bet>
+	<UserChoices>00001000010011001100100000000000000000001000000000000000000010000000000010000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>45</Credits>
 	<Bonus>3</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000010000000001100000000000000000000000000</UserChoices>
+	<Bet>30</Bet>
+	<UserChoices>00001000010011001100100000000000000000001000000000000000000010000000000010000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>55</Credits>
+	<Credits>45</Credits>
 	<Bonus>3</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000010000000001110000000000000000000000000</UserChoices>
+	<Bet>30</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>55</Credits>
-	<Bonus>4</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000010000000001111000000000000000000000000</UserChoices>
+	<Credits>45</Credits>
+	<Bonus>3</Bonus>
+	<Bet>30</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>55</Credits>
-	<Bonus>4</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000010000000001111100000000000000000000000</UserChoices>
+	<Credits>45</Credits>
+	<Bonus>3</Bonus>
+	<Bet>30</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>45</Credits>
+	<Bonus>3</Bonus>
+	<Bet>30</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>45</Credits>
+	<Bonus>3</Bonus>
+	<Bet>30</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>45</Credits>
+	<Bonus>3</Bonus>
+	<Bet>30</Bet>
+	<UserChoices>10000000000100000010000000000000000000000000100000110010001000000100010000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>45</Credits>
+	<Bonus>3</Bonus>
+	<Bet>30</Bet>
+	<UserChoices>10000000000100000010000000000000000000000000100000110010001000000100010000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>15</Credits>
+	<Bonus>6</Bonus>
+	<Bet>30</Bet>
+	<UserChoices>10000000000100000010000000000000000000000000100000110010001000000100010000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
 	<Credits>45</Credits>
 	<Bonus>6</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000010000000001111100000000000000000000000</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>55</Credits>
-	<Bonus>7</Bonus>
+	<Bet>30</Bet>
 	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>0</Credits>
-	<Bonus>8</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>40</Credits>
-	<Bonus>4</Bonus>
-	<UserChoices>00000010000010010010000000001000010000000000001000000000000000001001000000100000</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
+	<Credits>45</Credits>
 	<Bonus>6</Bonus>
+	<Bet>30</Bet>
 	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>0</Credits>
-	<Bonus>8</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>0</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>0</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>0</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>0</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>0</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>40</Credits>
-	<Bonus>2</Bonus>
-	<UserChoices>00000000000100000000100100000000110100010000000000000000000001000000001000100000</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>40</Credits>
-	<Bonus>3</Bonus>
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>0</Bet>
 	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>0</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001000000000</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001100000000</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001110000000</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001111000000</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001111100000</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001111110000</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001111111000</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001111111100</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001111111110</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001111111111</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>0</Credits>
-	<Bonus>0</Bonus>
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>5</Bet>
 	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>70</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>70</Credits>
-	<Bonus>0</Bonus>
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>5</Bet>
 	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>5</Bet>
 	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000001000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000001000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000011000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000011000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000001000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000001000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>0</Bet>
 	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>0</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>70</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>70</Credits>
-	<Bonus>0</Bonus>
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>0</Bet>
 	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>0</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000001000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>0</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000001000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000011000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000011000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000011000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
+</Recovery>
+<Recovery>
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>0</Bet>
 	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>0</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001000000000</UserChoices>
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001100000000</UserChoices>
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>1</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001110000000</UserChoices>
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>0</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001111000000</UserChoices>
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>10</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001111100000</UserChoices>
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>10</Bet>
+	<UserChoices>00000000000000000100000000000010100000101000000000000000000010001000000000011001</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001111110000</UserChoices>
+	<Credits>45</Credits>
+	<Bonus>6</Bonus>
+	<Bet>10</Bet>
+	<UserChoices>00000000000000000100000000000010100000101000000000000000000010001000000000011001</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001111111000</UserChoices>
+	<Credits>35</Credits>
+	<Bonus>7</Bonus>
+	<Bet>10</Bet>
+	<UserChoices>00000000000000000100000000000010100000101000000000000000000010001000000000011001</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001111111100</UserChoices>
+	<Credits>35</Credits>
+	<Bonus>7</Bonus>
+	<Bet>10</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>
 <Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001111111110</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001111111111</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001111111110</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001111111111</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001111111111</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>0</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>50</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>50</Credits>
-	<Bonus>1</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000001111111111</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>0</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>80</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000010</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000011</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000111</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000001111</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000011111</UserChoices>
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
-</Recovery>
-<Recovery>
-	<Credits>60</Credits>
-	<Bonus>0</Bonus>
-	<UserChoices />
+	<Credits>35</Credits>
+	<Bonus>7</Bonus>
+	<Bet>10</Bet>
+	<UserChoices>00000000000000000000000000000000000000000000000000000000000000000000000000000000</UserChoices>
+	<minBetFlag>0</minBetFlag>
+	<maxBetFlag>1</maxBetFlag>
 </Recovery>

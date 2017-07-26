@@ -16,17 +16,27 @@ class XML
 		void read(const char*);
 		
 		//Write in XML receive Credits(int), bonus, FlagsForPosition(int [][]);
-		void write(int, int, int, int*);
+		void write(int, int, int, int*, bool, bool);
 
 		//Get credits
 		int getCredits() const;
+	
+		//Get bonus
 		int getBonus() const;
+
+		//Get bet
 		int getBet() const;
+
+		//Get min-max bet flag
+		bool getMinBetFlag() const;
+		bool getMaxBetFlag() const;
+		
 
 		int* getUserChoices();
 	private:
 		//Utility function to convert int to string
-		const char* ToString(int);
+		template <typename T>
+		const char* ToString(T);
 
 		//Utility function to convert int to string
 		int toInt(char);
@@ -45,6 +55,10 @@ class XML
 
 		//Saved user choices
 		int* userChoices;	
+	
+		//Bet flags
+		bool minBetFlag;
+		bool maxBetFlag;
 };
 
 #endif //XML.h

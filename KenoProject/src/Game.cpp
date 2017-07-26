@@ -114,7 +114,8 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha)
 
         m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
                                 getBonus(),
-                         	mGrid.getClickedNumbers());
+                         	mGrid.getClickedNumbers(),
+				m_minBetFlag, m_maxBetFlag);
 
 }
 
@@ -140,7 +141,8 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 
 				m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
                                 	getBonus(),
-                                        mGrid.getClickedNumbers());
+                                        mGrid.getClickedNumbers(),
+					m_minBetFlag, m_maxBetFlag);
 
 
 				drawAnimation(renderer, mGrid.getRandomNumbers(),
@@ -209,7 +211,8 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 				//Save data
                                 m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
                                         getBonus(),
-                                        mGrid.getClickedNumbers());
+                                        mGrid.getClickedNumbers(),
+					m_minBetFlag, m_maxBetFlag);
 
                 if(m_bigWinFlag == true)
                 {
@@ -242,7 +245,8 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 		//Save data
 		m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
                 	getBonus(),
-                        mGrid.getClickedNumbers());
+                        mGrid.getClickedNumbers(),
+			m_minBetFlag, m_maxBetFlag);
 		if(mBetButton.buttonCondition(mGrid.numbersClicked()))
 		{
 			mBetButton.renderButton(renderer);
@@ -333,7 +337,8 @@ void Game::changeColorOfClickedNumbers(SDL_Renderer* renderer,
 		m_PayTable.renderPayTable(renderer, mGrid.numbersClicked(), m_bet);
 		m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
                 	getBonus(),
-                        mGrid.getClickedNumbers());
+                        mGrid.getClickedNumbers(),
+			m_minBetFlag, m_maxBetFlag);
 
 	}
 	mGrid.printNumbers(renderer);
@@ -361,9 +366,9 @@ void Game::drawAnimation(SDL_Renderer* renderer, int* numbers,
 	for (int i = 0; i < 80; i++) {
 		if (numbers[i] == 1) {
 			getDrawAnimation().playSoundEffect(0, 80);
-			int r = rand();
-			int g = rand();
-			int b = rand();
+			int r = rand()%155;
+			int g = rand()%50;
+			int b = rand()%50;
 			SDL_Color color = { r, g, b };
 			colors.push_back(color);
 			for (int k = 115; k <= rects[i].y + 20; k += 15) {
@@ -580,7 +585,8 @@ void Game::cashOutButtonPushed(bool* outroMode, bool* gameMode, const SDL_Event&
 		*gameMode = false;
 		m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
 				getBonus(),
-       		                mGrid.getClickedNumbers());
+       		                mGrid.getClickedNumbers(),
+				m_minBetFlag, m_maxBetFlag);
 	}
 }
 
@@ -914,8 +920,10 @@ void Game::reRenderMinimalBet(SDL_Renderer* renderer, int bet)
 
 						m_maxBetButton.deactivateMaxButton(renderer);
 		}
-
-
+		m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
+				getBonus(),
+       		                mGrid.getClickedNumbers(),
+				m_minBetFlag, m_maxBetFlag);
 }
 
 void Game::reRenderMaximalBet(SDL_Renderer* renderer, int bet)
@@ -1130,6 +1138,10 @@ void Game::reRenderMaximalBet(SDL_Renderer* renderer, int bet)
 
 						m_minBetButton.deactivateMinButton(renderer);
 		}
+		m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
+				getBonus(),
+       		                mGrid.getClickedNumbers(),
+				m_minBetFlag, m_maxBetFlag);
 
 }
 
@@ -1191,6 +1203,10 @@ void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e)
 		m_maxBetButton.betChoiceMax(renderer, e);
 		setBet(m_maxBetButton.getMaximalBet());
 	}
+	m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
+			getBonus(),
+       		        mGrid.getClickedNumbers(),
+			m_minBetFlag, m_maxBetFlag);
 
 }
 
@@ -1327,11 +1343,34 @@ void Game::resetVariables()
 	m_bet = 0;	
         m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
                                 getBonus(),
-                                mGrid.getClickedNumbers());
+                                mGrid.getClickedNumbers(),
+				m_minBetFlag, m_maxBetFlag);
 }
 
 
 XML& Game::getXML()
 {
 	return m_Recovery;
+}
+
+void Game::setMinBetFlag(bool flag)
+{
+	m_minBetFlag = flag;
+}
+
+
+bool Game::getMinBetFlag()
+{
+	return m_minBetFlag;
+}
+
+void Game::setMaxBetFlag(bool flag)
+{
+	m_maxBetFlag = flag;
+}
+
+
+bool Game::getMaxBetFlag()
+{
+	return m_maxBetFlag;
 }
