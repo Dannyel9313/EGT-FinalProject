@@ -61,6 +61,8 @@ class Game: public BaseObject
 		// Change credit
 		void changeCreditOnClickingBet(SDL_Renderer* renderer, const SDL_Event& e);
 
+		int calculateWinInGame();
+
 		// show win credit
 		void showWinInGame(SDL_Renderer* renderer);
 
@@ -153,7 +155,6 @@ class Game: public BaseObject
 		//loads chunk
 		void gameButtonsChunk();
 
-
 		//Get info button
 		InfoButton& getInfoButton();
 
@@ -182,6 +183,12 @@ class Game: public BaseObject
 		//Set min-max bet flag
 		void setMinBetFlag(bool);
 		void setMaxBetFlag(bool);
+
+		//Get set bet flag
+		bool getSetBetFlag();
+		
+		//Set set bet flag
+		void setSetBetFlag(bool);
 
 	private:
 		void setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e);
@@ -215,43 +222,43 @@ class Game: public BaseObject
 		Mix_Chunk* m_chunk;
 		XML m_Recovery;
 
+		// render minimal bet one
+		void reRenderMinimalBetNumOne(SDL_Renderer* renderer, int bet);
 
-			// render minimal bet one
-			void reRenderMinimalBetNumOne(SDL_Renderer* renderer, int bet);
+		// render minimal bet two
+		void reRenderMinimalBetNumTwo(SDL_Renderer* renderer, int bet);
 
-			// render minimal bet two
-			void reRenderMinimalBetNumTwo(SDL_Renderer* renderer, int bet);
+		// render minimal bet three
+		void reRenderMinimalBetNumThree(SDL_Renderer* renderer, int bet);
 
-			// render minimal bet three
-			void reRenderMinimalBetNumThree(SDL_Renderer* renderer, int bet);
+		// render minimal bet four
+		void reRenderMinimalBetNumFour(SDL_Renderer* renderer, int bet);
 
-			// render minimal bet four
-			void reRenderMinimalBetNumFour(SDL_Renderer* renderer, int bet);
+		// render minimal bet five
+		void reRenderMinimalBetNumFive(SDL_Renderer* renderer, int bet);
 
-			// render minimal bet five
-			void reRenderMinimalBetNumFive(SDL_Renderer* renderer, int bet);
+		// render minimal bet ten
+		void reRenderMinimalBetNumTen(SDL_Renderer* renderer, int bet);
 
-			// render minimal bet ten
-			void reRenderMinimalBetNumTen(SDL_Renderer* renderer, int bet);
+		// render maximal bet five
+		void reRenderMaximalBetNumFive(SDL_Renderer* renderer, int bet);
 
-			// render maximal bet five
-			void reRenderMaximalBetNumFive(SDL_Renderer* renderer, int bet);
+		// render maximal bet ten
+		void reRenderMaximalBetNumTen(SDL_Renderer* renderer, int bet);
 
-			// render maximal bet ten
-			void reRenderMaximalBetNumTen(SDL_Renderer* renderer, int bet);
+		// render maximal bet twenty
+		void reRenderMaximalBetNumTwenty(SDL_Renderer* renderer, int bet);
 
-			// render maximal bet twenty
-			void reRenderMaximalBetNumTwenty(SDL_Renderer* renderer, int bet);
+		// render maximal bet thirty
+		void reRenderMaximalBetNumThirty(SDL_Renderer* renderer, int bet);
 
-			// render maximal bet thirty
-			void reRenderMaximalBetNumThirty(SDL_Renderer* renderer, int bet);
+		// render maximal bet fourty
+		void reRenderMaximalBetNumFourty(SDL_Renderer* renderer, int bet);
 
-			// render maximal bet fourty
-			void reRenderMaximalBetNumFourty(SDL_Renderer* renderer, int bet);
+		// render maximal bet fifty
+		void reRenderMaximalBetNumFifty(SDL_Renderer* renderer, int bet);
 
-			// render maximal bet fifty
-			void reRenderMaximalBetNumFifty(SDL_Renderer* renderer, int bet);
 
 };
 
-#endif
+#endif	

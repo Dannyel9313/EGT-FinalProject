@@ -41,16 +41,16 @@ int main(int argc, char* args[])
 			Mix_PlayMusic(game.getMainMusic(),-1);
 			Mix_VolumeMusic(game.getIntroMode().getVolume().getVolumePoint());
 			game.getIntroMode().loadIntroScreen(game.getKenoRenderer(),game.getGameMode().
-          	       getXML().getCredits());
-//			game.getIntroMode().introScreenPresent(game.getKenoRenderer(),game.getGameMode().
-//          	       getXML().getCredits());
+	          	       getXML().getCredits());
+			//game.getIntroMode().introScreenPresent(game.getKenoRenderer(),game.getGameMode().
+        	  	       //getXML().getCredits());
 			while (!quit)
 			{
 
 				if (introMode)
 				{
 					game.getIntroMode().introScreenPresent(game.getKenoRenderer(),game.getGameMode().
-                  	       getXML().getCredits());
+                	  	       getXML().getCredits());
 				}
 
 
@@ -143,6 +143,8 @@ int main(int argc, char* args[])
 						getMinBetFlag());
 					game.getGameMode().setMaxBetFlag(game.getGameMode().getXML().
 						getMaxBetFlag());
+					game.getGameMode().setSetBetFlag(game.getGameMode().getXML().
+						getSetBetFlag());
 		
 					game.getGameMode().renderGame(game.getKenoRenderer(), 255);
 					game.getGameMode().reRenderMinimalBet(game.getKenoRenderer(), game.getGameMode().getBet());

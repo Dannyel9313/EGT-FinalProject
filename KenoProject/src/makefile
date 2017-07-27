@@ -31,7 +31,7 @@ Info.o: Info.cpp Font.h
 	$(CC) -c -g Info.cpp
 
 clean:
-	-rm KenoProject.o Game.o History.o BaseObject.o BetButton.o Bonus.o Font.o GameKeno.o Info.o InsertCredit.o IntroScreen.o NumbersGrid.o Outro.o Volume.o Win.o XML.o ClearButton.o CreditInGame.o MaxBet.o MinBet.o QuickPick.o PayTable.o 
+	-rm KenoProject.o Game.o History.o BaseObject.o BetButton.o Bonus.o Font.o GameKeno.o Info.o InsertCredit.o IntroScreen.o NumbersGrid.o Outro.o Volume.o Win.o XML.o ClearButton.o CreditInGame.o MaxBet.o MinBet.o QuickPick.o PayTable.o VolumeButton.o pugixml.o InfoButton.o CashOut.o 
 
 InsertCredit.o: InsertCredit.cpp Font.h
 	$(CC) -c -g InsertCredit.cpp

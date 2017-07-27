@@ -13,7 +13,7 @@ void PayTable::renderPayTable(SDL_Renderer* renderer, int hits, int bet)
 				5, RED.r, RED.g, RED.b, 150); 
 	renderHitsText(renderer);
 	renderPayText(renderer);
-	renderHits(renderer, hits);
+	renderHits(renderer, hits, bet);
 	renderPay(renderer, hits, bet);
 }
 
@@ -39,9 +39,9 @@ void PayTable::renderPayText(SDL_Renderer* renderer)
 	m_text.textRender(m_text.getKRect(), m_text.getKTexture(), renderer);
 }
 
-void PayTable::renderHits(SDL_Renderer* renderer, int number)
+void PayTable::renderHits(SDL_Renderer* renderer, int number, int bet)
 {
-	if(number >= 2)
+	if(number >= 2 && bet > 0)
 	{
 		for (int i = 0; i < number; i++)
 		{
@@ -58,6 +58,7 @@ void PayTable::renderHits(SDL_Renderer* renderer, int number)
 			{
 				m_text.LoadFromRenderedText(toString(i+1), renderer, WHITE);
 				m_text.textRender(&hitsRects[i], m_text.getKTexture(), renderer);
+		
 			}
 		}
 	}
@@ -65,7 +66,7 @@ void PayTable::renderHits(SDL_Renderer* renderer, int number)
 
 void PayTable::renderPay(SDL_Renderer* renderer, int numbers, int bet)
 {
-	if(numbers >= 2)
+	if(numbers >= 2 && bet > 0)
 	{
 		for (int j = 0; j < numbers; j++)
 		{

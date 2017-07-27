@@ -16,7 +16,7 @@ class XML
 		void read(const char*);
 		
 		//Write in XML receive Credits(int), bonus, FlagsForPosition(int [][]);
-		void write(int, int, int, int*, bool, bool);
+		void write(int, int, int, int*, bool, bool, bool);
 
 		//Get credits
 		int getCredits() const;
@@ -30,6 +30,7 @@ class XML
 		//Get min-max bet flag
 		bool getMinBetFlag() const;
 		bool getMaxBetFlag() const;
+		bool getSetBetFlag() const;
 		
 
 		int* getUserChoices();
@@ -59,6 +60,7 @@ class XML
 		//Bet flags
 		bool minBetFlag;
 		bool maxBetFlag;
+		bool setBetFlag;
 };
 
 #endif //XML.h

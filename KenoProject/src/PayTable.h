@@ -18,7 +18,7 @@ class PayTable: public BaseObject
 		//Get lines
 		const std::vector <SDL_Rect>& getLines();
 
-		void renderHits(SDL_Renderer*, int);
+		void renderHits(SDL_Renderer*, int, int);
 		void renderPay(SDL_Renderer*, int, int);
 		
 		//Reapply specific line

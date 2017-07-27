@@ -28,7 +28,7 @@ void BetButton::renderButton(SDL_Renderer* renderer)
 	render(renderer, getKRect());		
 }
 
-bool BetButton::buttonCondition(int condition)
+bool BetButton::buttonCondition(int condition, int bet)
 {
 	bool success = false;
 	//If less than 2 numbers clicked transperent button nothing happens if clicked
@@ -37,7 +37,7 @@ bool BetButton::buttonCondition(int condition)
 		setAlpha(100);
 		success = false;
 	}
-	else if (condition >= minimumSpots) 
+	else if (condition >= minimumSpots && bet > 0) 
 	{
 		setAlpha(255);
 		success = true;

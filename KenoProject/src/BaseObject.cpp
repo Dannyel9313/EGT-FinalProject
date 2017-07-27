@@ -155,11 +155,8 @@ void BaseObject::loadChunkEffect(std::string path)
 
 void BaseObject::playSoundEffect(int i, int volume)
 {
-//	Mix_VolumeMusic(volume);
 	Mix_PlayChannel(-1, m_SoundEffects[i], 0);
 }
-
-
 
 SDL_Rect* BaseObject::getKRect() 
 {

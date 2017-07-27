@@ -9,8 +9,14 @@ class NumbersGrid: public BaseObject
 		NumbersGrid();
 		~NumbersGrid();
 	
+		//Създава триъгълниците с помощта на gfx
 		void createRects(SDL_Renderer*, int);
+	
+		//Задава позицията и размерите на нъмбър грид
 		void setNumbersGridRect(int x, int y, int w, int h);		
+
+		//Load numbers in rectangles
+		void printNumbers(SDL_Renderer*);
 
 		//Function load TFF
 		void loadTTF();
@@ -60,9 +66,6 @@ class NumbersGrid: public BaseObject
 
 		//Render background of numbersGrid;
 		void renderBackground(SDL_Renderer*);
-
-		//Load numbers in rectangles
-		void printNumbers(SDL_Renderer*);
 
 		//Print only specific numbers
 		void printSpecificNumber(SDL_Renderer*, int);

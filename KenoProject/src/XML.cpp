@@ -29,7 +29,7 @@ int XML::toInt(char char_val)
 	return number;
 }
 
-void XML::write(int bet, int credits, int bonus, int* choices, bool minBetF, bool maxBetF)
+void XML::write(int bet, int credits, int bonus, int* choices, bool minBetF, bool maxBetF, bool setBetF)
 {
 	//Main node
 	pugi::xml_node node = doc.append_child("Recovery");
@@ -65,7 +65,14 @@ void XML::write(int bet, int credits, int bonus, int* choices, bool minBetF, boo
 	pugi::xml_node maxBetFlagNode = node.append_child("maxBetFlag");
 	maxBetFlagNode.append_child(pugi::node_pcdata).set_value(ToString(maxBetF));
 
+	//Set bet flag
+	pugi::xml_node setBetFlagNode = node.append_child("setBetFlag");
+	setBetFlagNode.append_child(pugi::node_pcdata).set_value(ToString(setBetF));
+
 	doc.save_file("Recovery.xml");
+
+	delete[] choices;
+	choices = NULL;
 }
 
 void XML::read(const char* file) 
@@ -77,7 +84,6 @@ void XML::read(const char* file)
 		std::cout << "Error" << std::endl;
 	}
 
-//	pugi::xml_node recovery = doc.child("Recovery");
 	pugi::xml_node i = doc.last_child();
 	credits = i.child("Credits").text().as_int();
 	bonus = i.child("Bonus").text().as_int();
@@ -92,6 +98,7 @@ void XML::read(const char* file)
 	}
 	minBetFlag = i.child("minBetFlag").text().as_bool();
 	maxBetFlag = i.child("maxBetFlag").text().as_bool();
+	setBetFlag = i.child("setBetFlag").text().as_bool();
 }
 
 int XML::getCredits() const
@@ -122,4 +129,9 @@ bool XML::getMinBetFlag() const
 bool XML::getMaxBetFlag() const
 {
 	return this->maxBetFlag;
+}
+
+bool XML::getSetBetFlag() const
+{
+	return this->setBetFlag;
 }

@@ -2,19 +2,18 @@
 
 
 
-Outro::Outro():font(NULL)
+Outro::Outro(): font(NULL)
 {
 
 }
 
 Outro::~Outro()
 {
-	if(font != NULL)
+	if (font != NULL)
 	{
-	TTF_CloseFont(font);
-	font = NULL;
+		TTF_CloseFont(font);
+		font = NULL;
 	}
-
 }
 
 void Outro::loadFireworksPictures(SDL_Renderer* renderer)
@@ -50,14 +49,12 @@ void Outro::loadFireworksPictures(SDL_Renderer* renderer)
 
 void Outro::loadFromTTF()
 {
-
-	if(font != NULL)
-		{
+	if (font != NULL)
+	{
 		TTF_CloseFont(font);
 		font = NULL;
-		}
+	}
 	font = TTF_OpenFont("Resources/Fonts/Candles_.TTF", 24);
-
 }
 
 

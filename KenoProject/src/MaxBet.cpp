@@ -7,17 +7,17 @@
 
 #include "MaxBet.h"
 
-MaxBet::MaxBet():m_maximalBet(0),m_chunk(NULL)
+MaxBet::MaxBet():m_maximalBet(0), m_chunk(NULL)
 {
 }
 
 MaxBet::~MaxBet()
 {
 	if (m_chunk != NULL)
-	        {
-	                Mix_FreeChunk(m_chunk);
-	                m_chunk = NULL;
-	        }
+	{
+		Mix_FreeChunk(m_chunk);
+		m_chunk = NULL;
+	}
 }
 
 
@@ -190,7 +190,7 @@ void MaxBet::choiceNumberFourty(SDL_Renderer* renderer, const SDL_Event& e)
 {
 	if(m_numFourtyMax.isClicked(e,m_numFourtyMax.getKRect()))
 				{
-					maxBetChunk();
+
 					m_buttonRectMax.render(renderer,m_buttonRectMax.getKRect());
 
 					m_buttonStartCircleMax.render(renderer,m_buttonStartCircleMax.getKRect());
@@ -246,7 +246,7 @@ void MaxBet::choiceNumberFifty(SDL_Renderer* renderer, const SDL_Event& e)
 {
 	if(m_numFiftyMax.isClicked(e,m_numFiftyMax.getKRect()))
 				{
-					maxBetChunk();
+
 					m_buttonRectMax.render(renderer,m_buttonRectMax.getKRect());
 
 					m_buttonStartCircleMax.render(renderer,m_buttonStartCircleMax.getKRect());
@@ -448,10 +448,11 @@ void MaxBet::deactivateMaxButton(SDL_Renderer* renderer) {
 
 void MaxBet::maxBetChunk()
 {
-	m_chunk = Mix_LoadWAV("Resources/Sounds/button-click-version-sound-effect-13.mp3");
-	 	if(m_chunk == NULL)
-	 	{
-	 		std::cerr << "Could not load music chunk!" << std::endl;
-	 	}
-	 	Mix_PlayChannel(-1, m_chunk, 0);
+        m_chunk = Mix_LoadWAV("Resources/Sounds/button-click-version-sound-effect-13.mp3");
+                if(m_chunk == NULL)
+                {
+                        std::cerr << "Could not load music chunk!" << std::endl;
+                }
+                Mix_PlayChannel(-1, m_chunk, 0);
 }
+

@@ -13,7 +13,7 @@ class BetButton: public BaseObject
 		void betText(SDL_Renderer*);
 
 		//Condition to make bet button clickable
-		bool buttonCondition(int);
+		bool buttonCondition(int, int);
 
 		//Render
 		void renderButton(SDL_Renderer*);

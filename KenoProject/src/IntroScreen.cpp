@@ -8,9 +8,8 @@ IntroScreen::~IntroScreen()
 {
 	if(m_chunk != NULL)
 	{
-	 Mix_FreeChunk(m_chunk);
-
-	 m_chunk = NULL;
+		Mix_FreeChunk(m_chunk);
+	 	m_chunk = NULL;
 	}
 }
 
@@ -46,14 +45,12 @@ void IntroScreen::loadIntroScreen(SDL_Renderer* renderer,double bonus)
 	moveResumeGame(110, renderer);
 
 	moveInfoGame(190, renderer);
-
 }
 
 Volume& IntroScreen::getVolume()
 {
 	return m_volume;
 }
-
 
 
 InsertCredit& IntroScreen::getInsertCredit()
