@@ -2,6 +2,11 @@
 
 XML::XML() 
 {
+	this->bet = 0;
+	this->bonus = 0;
+	this->credits = 0;
+	this->maxBetFlag = false;
+	this->minBetFlag = false;
 	userChoices = new int[80];
 }
 
@@ -72,7 +77,7 @@ void XML::read(const char* file)
 		std::cout << "Error" << std::endl;
 	}
 
-	pugi::xml_node recovery = doc.child("Recovery");
+//	pugi::xml_node recovery = doc.child("Recovery");
 	pugi::xml_node i = doc.last_child();
 	credits = i.child("Credits").text().as_int();
 	bonus = i.child("Bonus").text().as_int();

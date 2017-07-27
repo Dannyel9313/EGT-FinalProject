@@ -42,8 +42,8 @@ int main(int argc, char* args[])
 			Mix_VolumeMusic(game.getIntroMode().getVolume().getVolumePoint());
 			game.getIntroMode().loadIntroScreen(game.getKenoRenderer(),game.getGameMode().
           	       getXML().getCredits());
-			game.getIntroMode().introScreenPresent(game.getKenoRenderer(),game.getGameMode().
-          	       getXML().getCredits());
+//			game.getIntroMode().introScreenPresent(game.getKenoRenderer(),game.getGameMode().
+//          	       getXML().getCredits());
 			while (!quit)
 			{
 

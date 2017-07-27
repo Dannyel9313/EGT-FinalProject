@@ -36,16 +36,22 @@ Font& IntroScreen::getStartNewGameButton()
 
 void IntroScreen::loadIntroScreen(SDL_Renderer* renderer,double bonus)
 {
-
-
-
-m_background.loadTextureFromFile("Resources/Images/InfoBackground.jpg",renderer);
+	m_background.loadTextureFromFile("Resources/Images/InfoBackground.jpg",renderer);
 
 	loadIntroElements(renderer, bonus);
+
 	moveStarNewGame(30, renderer);
+
 	moveResumeGame(110, renderer);
+
 	moveInfoGame(190, renderer);
 
+	m_volume.LoadVolumeElements(renderer);
+
+	m_insertCredit.loadCreditElements(renderer);
+
+
+	SDL_RenderPresent(renderer);
 }
 
 Volume& IntroScreen::getVolume()

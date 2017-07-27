@@ -153,6 +153,7 @@ class Game: public BaseObject
 		//loads chunk
 		void gameButtonsChunk();
 
+
 		//Get info button
 		InfoButton& getInfoButton();
 
@@ -213,6 +214,43 @@ class Game: public BaseObject
 		InfoButton m_infoButton;
 		Mix_Chunk* m_chunk;
 		XML m_Recovery;
+
+
+			// render minimal bet one
+			void reRenderMinimalBetNumOne(SDL_Renderer* renderer, int bet);
+
+			// render minimal bet two
+			void reRenderMinimalBetNumTwo(SDL_Renderer* renderer, int bet);
+
+			// render minimal bet three
+			void reRenderMinimalBetNumThree(SDL_Renderer* renderer, int bet);
+
+			// render minimal bet four
+			void reRenderMinimalBetNumFour(SDL_Renderer* renderer, int bet);
+
+			// render minimal bet five
+			void reRenderMinimalBetNumFive(SDL_Renderer* renderer, int bet);
+
+			// render minimal bet ten
+			void reRenderMinimalBetNumTen(SDL_Renderer* renderer, int bet);
+
+			// render maximal bet five
+			void reRenderMaximalBetNumFive(SDL_Renderer* renderer, int bet);
+
+			// render maximal bet ten
+			void reRenderMaximalBetNumTen(SDL_Renderer* renderer, int bet);
+
+			// render maximal bet twenty
+			void reRenderMaximalBetNumTwenty(SDL_Renderer* renderer, int bet);
+
+			// render maximal bet thirty
+			void reRenderMaximalBetNumThirty(SDL_Renderer* renderer, int bet);
+
+			// render maximal bet fourty
+			void reRenderMaximalBetNumFourty(SDL_Renderer* renderer, int bet);
+
+			// render maximal bet fifty
+			void reRenderMaximalBetNumFifty(SDL_Renderer* renderer, int bet);
 
 };
 
