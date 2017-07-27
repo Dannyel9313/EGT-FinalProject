@@ -31,14 +31,34 @@ public:
 	// Bet choice max
 	void betChoiceMax(SDL_Renderer* renderer, const SDL_Event& e);
 
+	// Load chunk
+	void maxBetChunk();
+
+	//Get button rect
 	BaseObject& getButtonRectMax();
+
+	//Get button circle
 	BaseObject& getButtonStartCircleMax();
+
+	// Get max bet text
 	Font& getMaxBet();
+
+	// Get number fifty
 	Font& getNumFiftyMax();
+
+	//	Get number five
 	Font& getNumFiveMax();
+
+	// Get number fourty
 	Font& getNumFourtyMax();
+
+	// Get number ten
 	Font& getNumTenMax();
+
+	// Get number thirty
 	Font& getNumThirtyMax();
+
+	// Get number twenty
 	Font& getNumTwentyMax();
 
 	// Set and Get maximal bet
@@ -59,6 +79,8 @@ private:
 
 	BaseObject m_buttonRectMax;
 	BaseObject m_buttonStartCircleMax;
+
+	Mix_Chunk* m_chunk;
 
 	// Set numbers Color
 	void setNumbersColor();

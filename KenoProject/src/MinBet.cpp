@@ -1,46 +1,61 @@
 #include "MinBet.h"
 
-MinBet::MinBet() : m_MinimalBet(0)
+MinBet::MinBet() : m_MinimalBet(0),m_chunk(NULL)
 {
+
 }
 
-MinBet::~MinBet() {
-	// TODO Auto-generated destructor stub
+MinBet::~MinBet()
+{
+	if (m_chunk != NULL)
+	        {
+	                Mix_FreeChunk(m_chunk);
+	                m_chunk = NULL;
+	        }
 }
 
-Font& MinBet::getMinBet() {
+Font& MinBet::getMinBet()
+{
 	return m_minBet;
 }
 
-Font& MinBet::getNumFive() {
+Font& MinBet::getNumFive()
+{
 	return m_numFive;
 }
 
-Font& MinBet::getNumFour() {
+Font& MinBet::getNumFour()
+{
 	return m_numFour;
 }
 
-Font& MinBet::getNumOne() {
+Font& MinBet::getNumOne()
+{
 	return m_numOne;
 }
 
-Font& MinBet::getNumTen() {
+Font& MinBet::getNumTen()
+{
 	return m_numTen;
 }
 
-Font& MinBet::getNumThree() {
+Font& MinBet::getNumThree()
+{
 	return m_numThree;
 }
 
-Font& MinBet::getNumTwo() {
+Font& MinBet::getNumTwo()
+{
 	return m_numTwo;
 }
 
-BaseObject& MinBet::getButtonRect() {
+BaseObject& MinBet::getButtonRect()
+{
 	return m_buttonRect;
 }
 
-void MinBet::setNumbersColor() {
+void MinBet::setNumbersColor()
+{
 
 	m_numOne.setButtonColor(254, 254, 254);
 	m_numTwo.setButtonColor(254, 254, 254);
@@ -52,7 +67,8 @@ void MinBet::setNumbersColor() {
 
 }
 
-void MinBet::setElementsPositionDimension() {
+void MinBet::setElementsPositionDimension()
+{
 
 	m_buttonStartCircle.setPosition(20, 502, minMaxBetCircle_width,
 			minMaxBetCircle_height);
@@ -69,7 +85,8 @@ void MinBet::setElementsPositionDimension() {
 
 }
 
-void MinBet::activateMinButton(SDL_Renderer* renderer) {
+void MinBet::activateMinButton(SDL_Renderer* renderer)
+{
 	m_buttonRect.loadTextureFromFile("Resources/Images/minMaxNumberRect.png",
 					renderer);
 	m_buttonRect.setPosition(67, 513, minMaxBetRectangle_width,
@@ -92,7 +109,8 @@ m_numTen.render(renderer,m_numTen.getKRect());
 
 }
 
-void MinBet::deactivateMinButton(SDL_Renderer* renderer) {
+void MinBet::deactivateMinButton(SDL_Renderer* renderer)
+{
 
 	m_buttonRect.setPosition(66, 513, minMaxBetRectangleGrey_width,
 				minMaxBetRectangleGrey_height);
@@ -108,7 +126,8 @@ void MinBet::deactivateMinButton(SDL_Renderer* renderer) {
 
 }
 
-void MinBet::betChoiceMin(SDL_Renderer* renderer, const SDL_Event& e) {
+void MinBet::betChoiceMin(SDL_Renderer* renderer, const SDL_Event& e)
+{
 
 choiceNumberOne(renderer, e);
 choiceNumberTwo(renderer, e);
@@ -122,10 +141,11 @@ choiceNumberTen(renderer, e);
 
 }
 
-void MinBet::choiceNumberOne(SDL_Renderer* renderer, const SDL_Event& e) {
+void MinBet::choiceNumberOne(SDL_Renderer* renderer, const SDL_Event& e)
+{
 	if(m_numOne.isClicked(e,m_numOne.getKRect()))
 		{
-
+			minBetChunk();
 			m_buttonRect.render(renderer,m_buttonRect.getKRect());
 
 			m_buttonStartCircle.render(renderer,m_buttonStartCircle.getKRect());
@@ -158,10 +178,11 @@ void MinBet::choiceNumberOne(SDL_Renderer* renderer, const SDL_Event& e) {
 		}
 }
 
-void MinBet::choiceNumberTwo(SDL_Renderer* renderer, const SDL_Event& e) {
+void MinBet::choiceNumberTwo(SDL_Renderer* renderer, const SDL_Event& e)
+{
 	if(m_numTwo.isClicked(e,m_numTwo.getKRect()))
 		{
-			std::cout << m_numOne.isClicked(e,m_numOne.getKRect()) << std::endl;
+			minBetChunk();
 			m_buttonRect.render(renderer,m_buttonRect.getKRect());
 
 			m_buttonStartCircle.render(renderer,m_buttonStartCircle.getKRect());
@@ -197,7 +218,7 @@ void MinBet::choiceNumberTwo(SDL_Renderer* renderer, const SDL_Event& e) {
 void MinBet::choiceNumberThree(SDL_Renderer* renderer, const SDL_Event& e) {
 	if(m_numThree.isClicked(e,m_numThree.getKRect()))
 		{
-			std::cout << m_numOne.isClicked(e,m_numOne.getKRect()) << std::endl;
+			minBetChunk();
 			m_buttonRect.render(renderer,m_buttonRect.getKRect());
 
 			m_buttonStartCircle.render(renderer,m_buttonStartCircle.getKRect());
@@ -234,7 +255,7 @@ void MinBet::choiceNumberFour(SDL_Renderer* renderer, const SDL_Event& e)
 {
 	if(m_numFour.isClicked(e,m_numFour.getKRect()))
 		{
-			std::cout << m_numOne.isClicked(e,m_numOne.getKRect()) << std::endl;
+			minBetChunk();
 			m_buttonRect.render(renderer,m_buttonRect.getKRect());
 
 			m_buttonStartCircle.render(renderer,m_buttonStartCircle.getKRect());
@@ -272,7 +293,7 @@ void MinBet::choiceNumberFive(SDL_Renderer* renderer, const SDL_Event& e)
 {
 	if(m_numFive.isClicked(e,m_numFive.getKRect()))
 		{
-			std::cout << m_numOne.isClicked(e,m_numOne.getKRect()) << std::endl;
+			minBetChunk();
 			m_buttonRect.render(renderer,m_buttonRect.getKRect());
 
 			m_buttonStartCircle.render(renderer,m_buttonStartCircle.getKRect());
@@ -305,11 +326,13 @@ void MinBet::choiceNumberFive(SDL_Renderer* renderer, const SDL_Event& e)
 		}
 }
 
-int MinBet::getMinimalBet() const {
+int MinBet::getMinimalBet() const
+{
 	return m_MinimalBet;
 }
 
-void MinBet::setMinimalBet(int minimalBet) {
+void MinBet::setMinimalBet(int minimalBet)
+{
 	m_MinimalBet = minimalBet;
 }
 
@@ -317,7 +340,7 @@ void MinBet::choiceNumberTen(SDL_Renderer* renderer, const SDL_Event& e)
 {
 	if(m_numTen.isClicked(e,m_numTen.getKRect()))
 		{
-			std::cout << m_numOne.isClicked(e,m_numOne.getKRect()) << std::endl;
+			minBetChunk();
 			m_buttonRect.render(renderer,m_buttonRect.getKRect());
 
 			m_buttonStartCircle.render(renderer,m_buttonStartCircle.getKRect());
@@ -350,7 +373,8 @@ void MinBet::choiceNumberTen(SDL_Renderer* renderer, const SDL_Event& e)
 		}
 }
 
-void MinBet::loadElements(SDL_Renderer* renderer) {
+void MinBet::loadElements(SDL_Renderer* renderer)
+{
 
 	setNumbersColor();
 
@@ -370,7 +394,8 @@ void MinBet::loadElements(SDL_Renderer* renderer) {
 
 }
 
-void MinBet::setFont() {
+void MinBet::setFont()
+{
 
 	m_numOne.setFont(TTF_OpenFont("Resources/Fonts/Candles_.TTF", 30));
 	m_numTwo.setFont(TTF_OpenFont("Resources/Fonts/Candles_.TTF", 30));
@@ -382,7 +407,8 @@ void MinBet::setFont() {
 
 }
 
-void MinBet::renderMinBet(SDL_Renderer* renderer) {
+void MinBet::renderMinBet(SDL_Renderer* renderer)
+{
 
 	setFont();
 	loadElements(renderer);
@@ -428,4 +454,12 @@ void MinBet::changeColorOnMouseOver(SDL_Renderer* renderer)
 
 }
 
-
+void MinBet::minBetChunk()
+{
+ 	m_chunk = Mix_LoadWAV("Resources/Sounds/button-click-version-sound-effect-13.mp3");
+ 	if(m_chunk == NULL)
+ 	{
+ 		std::cerr << "Could not load music chunk!" << std::endl;
+ 	}
+ 	Mix_PlayChannel(-1, m_chunk, 0);
+}

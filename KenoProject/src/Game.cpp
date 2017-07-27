@@ -183,8 +183,9 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 
 				if(m_bonusFlag == true)
 				{
+					Mix_PauseMusic();
 					showBonusLogo(renderer);
-
+					Mix_ResumeMusic();
 				}
 
 				History::currentRound++;
@@ -1397,8 +1398,13 @@ void Game::gameButtonsChunk()
  }
 void Game::showBonusLogo(SDL_Renderer* renderer)
 {
+	m_chunk = Mix_LoadWAV("Resources/Sounds/156891__lawnjelly__coins.wav");
+			if(m_chunk == NULL){
+		  		std::cerr << "Music file could not be loaded" << std::endl;
+		  	}
+			Mix_PlayChannel(-1, m_chunk, 0);
 	SDL_Rect rectToCrop;
-	for(int i = -120; i < 350; i += 5 )
+	for(int i = -120; i < 350; i += 3 )
 	{
 
 rectToCrop = {570, i, extraBonusLogo_width,extraBonusLogo_height};

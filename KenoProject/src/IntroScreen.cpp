@@ -2,15 +2,16 @@
 
 IntroScreen::IntroScreen():m_chunk(NULL)
 {
-	// TODO Auto-generated constructor stub
-
 }
 
 IntroScreen::~IntroScreen()
 {
+	if(m_chunk != NULL)
+	{
 	 Mix_FreeChunk(m_chunk);
 
 	 m_chunk = NULL;
+	}
 }
 
 BaseObject& IntroScreen::getBackground()
@@ -46,12 +47,6 @@ void IntroScreen::loadIntroScreen(SDL_Renderer* renderer,double bonus)
 
 	moveInfoGame(190, renderer);
 
-	m_volume.LoadVolumeElements(renderer);
-
-	m_insertCredit.loadCreditElements(renderer);
-
-
-	SDL_RenderPresent(renderer);
 }
 
 Volume& IntroScreen::getVolume()

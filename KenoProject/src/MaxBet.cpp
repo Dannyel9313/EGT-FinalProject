@@ -7,15 +7,17 @@
 
 #include "MaxBet.h"
 
-MaxBet::MaxBet():m_maximalBet(0)
+MaxBet::MaxBet():m_maximalBet(0),m_chunk(NULL)
 {
-	// TODO Auto-generated constructor stub
-
 }
 
 MaxBet::~MaxBet()
 {
-	// TODO Auto-generated destructor stub
+	if (m_chunk != NULL)
+	        {
+	                Mix_FreeChunk(m_chunk);
+	                m_chunk = NULL;
+	        }
 }
 
 
@@ -75,7 +77,7 @@ void MaxBet::choiceNumberFive(SDL_Renderer* renderer, const SDL_Event& e)
 {
 	if(m_numFiveMax.isClicked(e,m_numFiveMax.getKRect()))
 			{
-
+				maxBetChunk();
 				m_buttonRectMax.render(renderer,m_buttonRectMax.getKRect());
 
 				m_buttonStartCircleMax.render(renderer,m_buttonStartCircleMax.getKRect());
@@ -114,7 +116,7 @@ void MaxBet::choiceNumberTwenty(SDL_Renderer* renderer, const SDL_Event& e)
 {
 	if(m_numTwentyMax.isClicked(e,m_numTwentyMax.getKRect()))
 			{
-
+				maxBetChunk();
 				m_buttonRectMax.render(renderer,m_buttonRectMax.getKRect());
 
 				m_buttonStartCircleMax.render(renderer,m_buttonStartCircleMax.getKRect());
@@ -151,7 +153,7 @@ void MaxBet::choiceNumberThirty(SDL_Renderer* renderer, const SDL_Event& e)
 {
 	if(m_numThirtyMax.isClicked(e,m_numThirtyMax.getKRect()))
 				{
-
+					maxBetChunk();
 					m_buttonRectMax.render(renderer,m_buttonRectMax.getKRect());
 
 					m_buttonStartCircleMax.render(renderer,m_buttonStartCircleMax.getKRect());
@@ -188,7 +190,7 @@ void MaxBet::choiceNumberFourty(SDL_Renderer* renderer, const SDL_Event& e)
 {
 	if(m_numFourtyMax.isClicked(e,m_numFourtyMax.getKRect()))
 				{
-
+					maxBetChunk();
 					m_buttonRectMax.render(renderer,m_buttonRectMax.getKRect());
 
 					m_buttonStartCircleMax.render(renderer,m_buttonStartCircleMax.getKRect());
@@ -244,7 +246,7 @@ void MaxBet::choiceNumberFifty(SDL_Renderer* renderer, const SDL_Event& e)
 {
 	if(m_numFiftyMax.isClicked(e,m_numFiftyMax.getKRect()))
 				{
-
+					maxBetChunk();
 					m_buttonRectMax.render(renderer,m_buttonRectMax.getKRect());
 
 					m_buttonStartCircleMax.render(renderer,m_buttonStartCircleMax.getKRect());
@@ -281,7 +283,7 @@ void MaxBet::choiceNumberTen(SDL_Renderer* renderer, const SDL_Event& e)
 {
 	if(m_numTenMax.isClicked(e,m_numTenMax.getKRect()))
 				{
-
+					maxBetChunk();
 					m_buttonRectMax.render(renderer,m_buttonRectMax.getKRect());
 
 					m_buttonStartCircleMax.render(renderer,m_buttonStartCircleMax.getKRect());
@@ -442,4 +444,14 @@ void MaxBet::deactivateMaxButton(SDL_Renderer* renderer) {
 		m_buttonStartCircleMax.render(renderer,m_buttonStartCircleMax.getKRect());
 		m_maxBet.textRender(m_maxBet.getKRect(),m_maxBet.getKTexture(),renderer);
 
+}
+
+void MaxBet::maxBetChunk()
+{
+	m_chunk = Mix_LoadWAV("Resources/Sounds/button-click-version-sound-effect-13.mp3");
+	 	if(m_chunk == NULL)
+	 	{
+	 		std::cerr << "Could not load music chunk!" << std::endl;
+	 	}
+	 	Mix_PlayChannel(-1, m_chunk, 0);
 }

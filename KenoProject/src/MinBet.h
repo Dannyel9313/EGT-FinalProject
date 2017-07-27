@@ -25,6 +25,9 @@ class MinBet
 		//Deactivate min bet
 		void deactivateMinButton(SDL_Renderer* renderer);
 
+		// Load chunk
+		void minBetChunk();
+
 		// Get minimal bet
 		Font& getMinBet();
 
@@ -72,6 +75,8 @@ class MinBet
 
 		BaseObject m_buttonRect;
 		BaseObject m_buttonStartCircle;
+
+		Mix_Chunk* m_chunk;
 
 		//Set font
 		void setFont();
