@@ -32,7 +32,7 @@ bool BetButton::buttonCondition(int condition, int bet)
 {
 	bool success = false;
 	//If less than 2 numbers clicked transperent button nothing happens if clicked
-	if (condition < minimumSpots) 
+	if (condition < minimumSpots || bet <= 0) 
 	{
 		setAlpha(100);
 		success = false;
