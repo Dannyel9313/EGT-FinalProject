@@ -227,15 +227,17 @@ void IntroScreen::introScreenPresent(SDL_Renderer* renderer, double bonus)
 
 }
 
-void IntroScreen::startNewGameClicked(bool* gameMode,bool* controlGameFlag,bool* introMode, const SDL_Event& e)
+void IntroScreen::startNewGameClicked(bool* gameMode,bool* controlGameFlag,bool* introMode,bool* infoMode, const SDL_Event& e)
 {
 	if(m_insertCredit.getCredit() > 0)
 	{
 		if(m_startNewGameButton.isClicked(e, m_startNewGameButton.getKRect())) 
 		{
+			Mix_PlayChannel(-1, m_chunk, 0);
 			*gameMode = true;
 			*controlGameFlag = true;
 			*introMode = false;
+			*infoMode = false;
 		}	
 	}
 }
@@ -245,6 +247,7 @@ void IntroScreen::startInfoClicked(bool* infoMode,bool* controlInfo,bool* introM
 
 	if(m_infoButton.isClicked(e,m_infoButton.getKRect()))
 	{
+		Mix_PlayChannel(-1, m_chunk, 0);
 		*infoMode = true;
 		*controlInfo = true;
 		*introMode = false;
@@ -252,32 +255,26 @@ void IntroScreen::startInfoClicked(bool* infoMode,bool* controlInfo,bool* introM
 }
 
 void IntroScreen::resumeGameClicked(bool* gameMode, bool* controlGameFlag, bool* introMode,
-					bool* recoveryMode, const SDL_Event& e)
+					bool* recoveryMode,bool* infoMode, const SDL_Event& e, double bonus)
 {
+	if(bonus > 0)
+	{
 	if (m_resumeGameButton.isClicked(e, m_resumeGameButton.getKRect()))
 	{
+		m_chunk = Mix_LoadWAV("Resources/Sounds/blop.wav");
+		Mix_PlayChannel(-1, m_chunk, 0);
 		*recoveryMode = true;
 		*introMode = false;
+		*infoMode = false;
 	}
 }
-
+}
 void IntroScreen::introButtonsChunk(const SDL_Event& e)
 {
 
 	m_chunk = Mix_LoadWAV("Resources/Sounds/blop.wav");
 	if(m_chunk == NULL){
 		std::cerr << "Chunk file could not be loaded" << std::endl;
-	}
-	if(m_startNewGameButton.isClicked(e, m_startNewGameButton.getKRect()))
-	{
-		Mix_PlayChannel(-1, m_chunk, 0);
-	}
-	if(m_resumeGameButton.isClicked(e, m_resumeGameButton.getKRect()))
-	{
-		Mix_PlayChannel(-1, m_chunk, 0);
-	}
-	if(m_infoButton.isClicked(e, m_infoButton.getKRect())){
-		Mix_PlayChannel(-1, m_chunk, 0);
 	}
 	if(m_volume.getFontPlus().isClicked(e, m_volume.getFontPlus().getKRect())){
 		Mix_PlayChannel(-1, m_chunk, 0);

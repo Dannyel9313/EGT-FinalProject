@@ -66,13 +66,14 @@ int main(int argc, char* args[])
 						{
 							game.getIntroMode().getVolume().moveVolumeDot(&e);
 							game.getIntroMode().getInsertCredit().setCreditToGame(&e);
-							game.getIntroMode().startNewGameClicked(&gameMode,&controlGameFlag,&introMode, e);
+							game.getIntroMode().startNewGameClicked(&gameMode,&controlGameFlag,&introMode,&infoMode, e);
 							game.getIntroMode().startInfoClicked(&infoMode,&controlInfoFlag,&introMode, e);
                                                         //If resume game clicked
 
                                                         game.getIntroMode().resumeGameClicked
                                                                 (&gameMode, &controlGameFlag, &introMode,
-                                                                        &recoveryMode, e);
+                                                                        &recoveryMode,&infoMode, e,game.getGameMode().
+                                                         	  	       getXML().getCredits());
 							game.getIntroMode().introButtonsChunk(e);
 						}
 					}
@@ -169,7 +170,8 @@ int main(int argc, char* args[])
 					game.getInfoMode().renderInfoScreen(game.getKenoRenderer());
 					quit = false;
 				}
-
+			if(infoMode)
+			{
 				while(SDL_PollEvent(&e) != 0)
 				{
 					if(e.type == SDL_QUIT)
@@ -179,12 +181,13 @@ int main(int argc, char* args[])
 					else if(e.type == SDL_MOUSEBUTTONDOWN)
 					{
 						game.getInfoMode().renderButtonDown(game.getKenoRenderer(), e);
-						game.getInfoMode().buttonReturn(&introMode, e);
+						game.getInfoMode().buttonReturn(&introMode,& infoMode, e);
 					}else if(e.type == SDL_MOUSEMOTION)
 					{
 						game.getInfoMode().renderOnMauseOver(game.getKenoRenderer(), e);
 					}
 				}
+			}
 				if(game.getGameMode().isGameOverFlag() == true)
 				{
 				gameMode = false;
@@ -211,6 +214,7 @@ int main(int argc, char* args[])
 				controlInfoFlag = false;
 				outroMode = false;
 				recoveryMode = false;
+
 				game.getGameMode().setGameOverFlag(false);
 			}
 		}

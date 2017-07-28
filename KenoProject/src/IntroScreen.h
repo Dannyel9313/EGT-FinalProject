@@ -42,13 +42,13 @@ public:
 	InsertCredit& getInsertCredit();
 
 	//Start new game button
-	void startNewGameClicked(bool*,bool*,bool*, const SDL_Event&);
+	void startNewGameClicked(bool*,bool*,bool*,bool*, const SDL_Event&);
 
 	//start info screen
 	void startInfoClicked(bool*,bool*,bool*, const SDL_Event&);
 
 	//resume game
-	void resumeGameClicked(bool*, bool*, bool*, bool*, const SDL_Event&);
+	void resumeGameClicked(bool*, bool*, bool*, bool*,bool*, const SDL_Event&,double);
 
 	//loads chunk if button is clicked
 	void introButtonsChunk(const SDL_Event&);

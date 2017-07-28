@@ -16,17 +16,7 @@ public:
 	// change button on mause over
 	void renderOnMauseOver(SDL_Renderer* renderer, const SDL_Event& e);
 
-	// change button return on mause over
-	void renderButtonReturnOnMouseOver(SDL_Renderer* renderer, const SDL_Event& e);
-
-	// change button back on mause over
-	void renderButtonBackOnMauseOver(SDL_Renderer* renderer, const SDL_Event& e);
-
-	// change button next on mause over
-	void renderButtonNextOnMauseOver(SDL_Renderer* renderer, const SDL_Event& e);
-
-
-	void buttonReturn(bool* introMode, const SDL_Event& e);
+	void buttonReturn(bool* introMode,bool* infoMode, const SDL_Event& e);
 
 	// Get background
 	Font& getBackgroundInfo();
@@ -81,6 +71,15 @@ private:
 
 	// Load info elements
 	void loadInfoElements(SDL_Renderer* renderer);
+
+	// change button return on mause over
+		void renderButtonReturnOnMouseOver(SDL_Renderer* renderer, const SDL_Event& e);
+
+		// change button back on mause over
+		void renderButtonBackOnMauseOver(SDL_Renderer* renderer, const SDL_Event& e);
+
+		// change button next on mause over
+		void renderButtonNextOnMauseOver(SDL_Renderer* renderer, const SDL_Event& e);
 
 };
 
