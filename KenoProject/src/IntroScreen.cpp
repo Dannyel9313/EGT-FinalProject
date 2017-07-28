@@ -45,6 +45,8 @@ void IntroScreen::loadIntroScreen(SDL_Renderer* renderer,double bonus)
 	moveResumeGame(110, renderer);
 
 	moveInfoGame(190, renderer);
+
+
 }
 
 Volume& IntroScreen::getVolume()

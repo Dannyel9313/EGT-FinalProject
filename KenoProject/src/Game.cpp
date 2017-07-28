@@ -328,6 +328,9 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 
 void Game::mouseOnButtonRender(SDL_Renderer* renderer, const SDL_Event& e)
 {
+
+	if(m_infoGameMode == false)
+	{
 	//Mouse over stuff	
 	m_clearButton.changeColorOnMouseOver(renderer);
 
@@ -338,7 +341,7 @@ void Game::mouseOnButtonRender(SDL_Renderer* renderer, const SDL_Event& e)
 	m_maxBetButton.changeColorOnMouseOver(renderer);
 
 	m_cashOutButton.changeColorOnMouseOver(renderer);
-
+	}
 }
 
 void Game::changeColorOfClickedNumbers(SDL_Renderer* renderer,

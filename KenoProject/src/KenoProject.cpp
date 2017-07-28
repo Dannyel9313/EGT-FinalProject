@@ -180,6 +180,9 @@ int main(int argc, char* args[])
 					{
 						game.getInfoMode().renderButtonDown(game.getKenoRenderer(), e);
 						game.getInfoMode().buttonReturn(&introMode, e);
+					}else if(e.type == SDL_MOUSEMOTION)
+					{
+						game.getInfoMode().renderOnMauseOver(game.getKenoRenderer(), e);
 					}
 				}
 				if(game.getGameMode().isGameOverFlag() == true)

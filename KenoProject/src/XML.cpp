@@ -7,6 +7,7 @@ XML::XML()
 	this->credits = 0;
 	this->maxBetFlag = false;
 	this->minBetFlag = false;
+	this->setBetFlag = false;
 	userChoices = new int[80];
 }
 

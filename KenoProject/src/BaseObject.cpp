@@ -3,7 +3,7 @@
 BaseObject::BaseObject() 
 {
 	this->m_KTexture = NULL;
-        for (int i = 0; i < m_SoundEffects.size(); i++)
+        for (unsigned int i = 0; i < m_SoundEffects.size(); i++)
         {
                 m_SoundEffects[i] = NULL;
         }
