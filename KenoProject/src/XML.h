@@ -16,7 +16,7 @@ class XML
 		void read(const char*);
 		
 		//Write in XML receive Credits(int), bonus, FlagsForPosition(int [][]);
-		void write(int, int, int, int*, bool, bool, bool);
+		void write(int, int, int, std::vector <bool>&, bool, bool, bool);
 
 		//Get credits
 		int getCredits() const;
@@ -33,14 +33,14 @@ class XML
 		bool getSetBetFlag() const;
 		
 
-		int* getUserChoices();
+		std::vector <bool>& getUserChoices();
 	private:
 		//Utility function to convert int to string
 		template <typename T>
 		const char* ToString(T);
 
 		//Utility function to convert int to string
-		int toInt(char);
+		bool toBool(char);
 
 		//Documents
 		pugi::xml_document doc;	
@@ -55,7 +55,7 @@ class XML
 		int bonus;
 
 		//Saved user choices
-		int* userChoices;	
+		std::vector <bool> userChoices;	
 	
 		//Bet flags
 		bool minBetFlag;

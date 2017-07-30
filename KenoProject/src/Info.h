@@ -16,7 +16,7 @@ public:
 	// change button on mause over
 	void renderOnMauseOver(SDL_Renderer* renderer, const SDL_Event& e);
 
-	void buttonReturn(bool* introMode,bool* infoMode, const SDL_Event& e);
+	bool buttonReturn(const SDL_Event& e);
 
 	// Get background
 	Font& getBackgroundInfo();

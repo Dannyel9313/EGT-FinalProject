@@ -18,10 +18,10 @@ Game::Game()
 Game::~Game()
 {
 	if (m_chunk != NULL)
-        {
-                Mix_FreeChunk(m_chunk);
-                m_chunk = NULL;
-        }
+	{
+		Mix_FreeChunk(m_chunk);
+		m_chunk = NULL;
+	}
 
 }
 
@@ -47,14 +47,14 @@ PayTable& Game::getPayTable()
 
 void Game::initializeGameState()
 {
-        //Sets pay table lines
-        m_PayTable.setLines();
+	//Sets pay table lines
+	m_PayTable.setLines();
 
-        //Sets pay table hit rects
-        m_PayTable.setHitsRects();
+	//Sets pay table hit rects
+	m_PayTable.setHitsRects();
 
-        //Set pay table pay rects
-        m_PayTable.setPayRects();
+	//Set pay table pay rects
+	m_PayTable.setPayRects();
 
 }
 
@@ -119,10 +119,13 @@ void Game::renderGame(SDL_Renderer* renderer, int alpha)
 
 	m_infoButton.renderInfoButton(renderer);
 
-        m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
-                                getBonus(),
-                         	mGrid.getClickedNumbers(),
-				m_minBetFlag, m_maxBetFlag, m_setBetFlag);
+	reRenderMinimalBet(renderer, m_bet);
+	reRenderMaximalBet(renderer, m_bet);
+
+	m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
+			getBonus(),
+			mGrid.getClickedNumbers(),
+			m_minBetFlag, m_maxBetFlag, m_setBetFlag);
 
 }
 
@@ -146,14 +149,14 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 					//Pick 10 random numbers
 					changeCreditOnClickingBet(renderer, e);
 
-					mGrid.pickRandomNumbers(renderer, e);
+					mGrid.pickRandomNumbers(renderer);
 
 					//Calculates win and saves is
 					calculateWinInGame();
 					m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
-                                		getBonus(),
-                                      	 	mGrid.getClickedNumbers(),
-						m_minBetFlag, m_maxBetFlag, m_setBetFlag);
+							getBonus(),
+							mGrid.getClickedNumbers(),
+							m_minBetFlag, m_maxBetFlag, m_setBetFlag);
 
 
 					drawAnimation(renderer, mGrid.getRandomNumbers(),
@@ -194,14 +197,14 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 
 					History::currentRound++;
 
-		               		if (History::currentRound == 10)
-                               		{
-                                	        SDL_Rect tempRect = {HISTORY_BOTTOM_LEFT.x,
-                                        	        HISTORY_TOP_RIGHT.y, HISTORY_WIDTH, HISTORY_HEIGHT};
+					if (History::currentRound == 10)
+					{
+						SDL_Rect tempRect = {HISTORY_BOTTOM_LEFT.x,
+							HISTORY_TOP_RIGHT.y, HISTORY_WIDTH, HISTORY_HEIGHT};
 
-                                      	 	cropFromRenderTo(renderer, &tempRect, &tempRect);
-                                      		 m_History.renderHistory(renderer);
-                               		}
+						cropFromRenderTo(renderer, &tempRect, &tempRect);
+						m_History.renderHistory(renderer);
+					}
 
 
 					m_History.renderHits(renderer, mGrid.numberOfHits(), 1);
@@ -221,21 +224,21 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 						m_gameOverFlag = true;
 					}
 					//Save data
-                               		m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
-                                	        getBonus(),
-                                	        mGrid.getClickedNumbers(),
-						m_minBetFlag, m_maxBetFlag, m_setBetFlag);
+					m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
+							getBonus(),
+							mGrid.getClickedNumbers(),
+							m_minBetFlag, m_maxBetFlag, m_setBetFlag);
 
-	               			if(m_bigWinFlag == true)
-       		       			{
-                				Mix_PauseMusic();
-                				m_winInGame.bigWin(renderer,m_winInGame.getWinCredits());
-                				renderGame(renderer,255);
-                				Mix_ResumeMusic();
-                				reRenderMinimalBet(renderer,m_bet);
-                				reRenderMaximalBet(renderer,m_bet);
-                				m_bigWinFlag = false;
-               				}
+					if(m_bigWinFlag == true)
+					{
+						Mix_PauseMusic();
+						m_winInGame.bigWin(renderer,m_winInGame.getWinCredits());
+						renderGame(renderer,255);
+						Mix_ResumeMusic();
+						reRenderMinimalBet(renderer,m_bet);
+						reRenderMaximalBet(renderer,m_bet);
+						m_bigWinFlag = false;
+					}
 
 				}
 			}
@@ -243,22 +246,22 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 	}
 
 	if (m_quickPickButton.getQuickPickText().isClicked(e,
-			m_quickPickButton.getQuickPickText().getKRect()))
+				m_quickPickButton.getQuickPickText().getKRect()))
 	{
 		gameButtonsChunk();
 		mGrid.resetNumbersGrid(renderer);
 		mGrid.resetIsClicked();
 		SDL_Rect payTableRect = {PAYTABLE_BOTTOM_LEFT.x,
-				PAYTABLE_TOP_RIGHT.y, PAYTABLE_WIDTH,
-					PAYTABLE_HEIGHT};
+			PAYTABLE_TOP_RIGHT.y, PAYTABLE_WIDTH,
+			PAYTABLE_HEIGHT};
 		cropFromRenderTo(renderer, &payTableRect, &payTableRect);
 		mGrid.pickRandomChoices(renderer);
 		m_PayTable.renderPayTable(renderer, mGrid.numbersClicked(), m_bet);
 		//Save data
 		m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
-                	getBonus(),
-                        mGrid.getClickedNumbers(),
-			m_minBetFlag, m_maxBetFlag, m_setBetFlag);
+				getBonus(),
+				mGrid.getClickedNumbers(),
+				m_minBetFlag, m_maxBetFlag, m_setBetFlag);
 		if(mBetButton.buttonCondition(mGrid.numbersClicked(), getBet()))
 		{
 			mBetButton.renderButton(renderer);
@@ -270,13 +273,13 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 
 
 	if (m_clearButton.getButtonRect().isClicked(e,
-			m_clearButton.getButtonRect().getKRect())) 
+				m_clearButton.getButtonRect().getKRect())) 
 	{
 		setBet(0);
 		gameButtonsChunk();
 		SDL_Rect payTableRect = {PAYTABLE_BOTTOM_LEFT.x,
-				PAYTABLE_TOP_RIGHT.y, PAYTABLE_WIDTH,
-					PAYTABLE_HEIGHT};
+			PAYTABLE_TOP_RIGHT.y, PAYTABLE_WIDTH,
+			PAYTABLE_HEIGHT};
 		cropFromRenderTo(renderer, &payTableRect, &payTableRect);
 		m_PayTable.renderPayTable(renderer, 0, m_bet);
 		mGrid.resetNumbersGrid(renderer);
@@ -303,8 +306,8 @@ void Game::mouseButtonDownRender(SDL_Renderer* renderer, const SDL_Event& e)
 			reRenderMaximalBet(renderer,m_bet);
 			if(m_bonusInGame.getBonus() > 1)
 			{
-			m_bonusInGame.getBonusRectangle().render(renderer,m_bonusInGame.getBonusRectangle().getKRect());
-		                	m_bonusInGame.getBonusText().render(renderer,m_bonusInGame.getBonusText().getKRect());
+				m_bonusInGame.getBonusRectangle().render(renderer,m_bonusInGame.getBonusRectangle().getKRect());
+				m_bonusInGame.getBonusText().render(renderer,m_bonusInGame.getBonusText().getKRect());
 			}
 			m_infoGameMode = false;
 		}
@@ -331,16 +334,16 @@ void Game::mouseOnButtonRender(SDL_Renderer* renderer, const SDL_Event& e)
 
 	if(m_infoGameMode == false)
 	{
-	//Mouse over stuff	
-	m_clearButton.changeColorOnMouseOver(renderer);
+		//Mouse over stuff	
+		m_clearButton.changeColorOnMouseOver(renderer);
 
-	m_quickPickButton.changeColorOnMouseOver(renderer);
+		m_quickPickButton.changeColorOnMouseOver(renderer);
 
-	m_minBetButton.changeColorOnMouseOver(renderer);
+		m_minBetButton.changeColorOnMouseOver(renderer);
 
-	m_maxBetButton.changeColorOnMouseOver(renderer);
+		m_maxBetButton.changeColorOnMouseOver(renderer);
 
-	m_cashOutButton.changeColorOnMouseOver(renderer);
+		m_cashOutButton.changeColorOnMouseOver(renderer);
 	}
 }
 
@@ -351,14 +354,14 @@ void Game::changeColorOfClickedNumbers(SDL_Renderer* renderer,
 	mGrid.reRenderClickedNumbers(renderer, 255);
 	if (mGrid.doIfClicked(renderer, e)) {
 		SDL_Rect payTableRect = {PAYTABLE_BOTTOM_LEFT.x,
-				PAYTABLE_TOP_RIGHT.y, PAYTABLE_WIDTH,
-					PAYTABLE_HEIGHT};
+			PAYTABLE_TOP_RIGHT.y, PAYTABLE_WIDTH,
+			PAYTABLE_HEIGHT};
 		cropFromRenderTo(renderer, &payTableRect, &payTableRect);
 		m_PayTable.renderPayTable(renderer, mGrid.numbersClicked(), m_bet);
 		m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
-                	getBonus(),
-                        mGrid.getClickedNumbers(),
-			m_minBetFlag, m_maxBetFlag, m_setBetFlag);
+				getBonus(),
+				mGrid.getClickedNumbers(),
+				m_minBetFlag, m_maxBetFlag, m_setBetFlag);
 
 	}
 	mGrid.printNumbers(renderer);
@@ -378,13 +381,13 @@ void Game::drawAnimationReRender(SDL_Renderer* renderer, SDL_Rect* rects)
 	}
 }
 
-void Game::drawAnimation(SDL_Renderer* renderer, int* numbers,
+void Game::drawAnimation(SDL_Renderer* renderer,const std::vector<bool>& numbers,
 		SDL_Rect* rects)
 {
 	SDL_Rect test = { 500, 95, 80, 350 };
 	colors.clear();
 	for (int i = 0; i < 80; i++) {
-		if (numbers[i] == 1) {
+		if (numbers[i] == true) {
 			getDrawAnimation().playSoundEffect(0, 80);
 			Uint8 r = rand()%155;
 			Uint8 g = rand()%155;
@@ -453,9 +456,6 @@ void Game::drawAnimation(SDL_Renderer* renderer, int* numbers,
 
 	SDL_RenderPresent(renderer);
 	flags.reset();
-	delete[] numbers;
-	delete[] rects;
-
 }
 
 MinBet& Game::getMinBetButton()
@@ -570,8 +570,8 @@ void Game::renderAfterAnimationGame(SDL_Renderer* renderer, int alpha)
 	//Render history
 	reRenderHistory(renderer);	
 
-//	m_PayTable.renderPayTable(renderer);
-//	m_PayTable.renderHitsText(renderer);
+	//	m_PayTable.renderPayTable(renderer);
+	//	m_PayTable.renderHitsText(renderer);
 
 	m_DrawAnimation.loadTextures(renderer);
 	m_DrawAnimation.drawPipe(renderer);
@@ -592,32 +592,33 @@ double Game::calculateCreditsInMoney()
 	resultDenom = tempBonus % 10;
 
 	if(resultDenom > 5)
-		{
-			bonus = m_bonus + 1;
+	{
+		bonus = m_bonus + 1;
 
-		}
-		else
-		{
-			bonus = m_bonus;
+	}
+	else
+	{
+		bonus = m_bonus;
 
-		}
+	}
 
 	money = denomination * (m_creditInGame.getGameCredit() + bonus);
 
 	return money;
 }
 
-void Game::cashOutButtonPushed(bool* outroMode, bool* gameMode, const SDL_Event& e)
+bool Game::cashOutButtonPushed(const SDL_Event& e)
 {
+	bool success = false;
 	if(m_cashOutButton.getCashOutRect().isClicked(e, m_cashOutButton.getCashOutRect().getKRect()))
 	{
-		*outroMode = true;
-		*gameMode = false;
 		m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
 				getBonus(),
-       		                mGrid.getClickedNumbers(),
+				mGrid.getClickedNumbers(),
 				m_minBetFlag, m_maxBetFlag, m_setBetFlag);
+		success = true;
 	}
+	return success;
 }
 
 // Play/pause music
@@ -626,33 +627,33 @@ void Game::playPauseMusic(SDL_Renderer* renderer, const SDL_Event& e,
 
 {
 	if(m_volumeButton.getButtonRect().isClicked(e,
-		 			m_volumeButton.getButtonRect().getKRect()))
-		 	{
-			SDL_Rect cropRect = {VOLUME_BUTTON_POSITION_X, VOLUME_BUTTON_POSITION_Y,
-					VOLUME_BUTTON_WIDTH, VOLUME_BUTTON_HEIGHT};
+				m_volumeButton.getButtonRect().getKRect()))
+	{
+		SDL_Rect cropRect = {VOLUME_BUTTON_POSITION_X, VOLUME_BUTTON_POSITION_Y,
+			VOLUME_BUTTON_WIDTH, VOLUME_BUTTON_HEIGHT};
 
-			if(Mix_PlayingMusic() == 0)
-			 	{
-			 		Mix_PlayMusic(mainMusic, -1);
+		if(Mix_PlayingMusic() == 0)
+		{
+			Mix_PlayMusic(mainMusic, -1);
 
-			 	}
-			 	else
-			 	{
-			 		if( Mix_PausedMusic() == 1 )
-			 		{
-			 			Mix_ResumeMusic();
-			 			cropFromRenderTo(renderer, &cropRect, &cropRect);
-			 						 		m_volumeButton.renderVolumeButton(renderer);
-			 		}
-			 		else
-			 		{
-			 		Mix_PauseMusic();
-			 		cropFromRenderTo(renderer, &cropRect, &cropRect);
-			 		m_volumeButton.getButtonRectPushed().render
-			 				(renderer,m_volumeButton.getButtonRectPushed().getKRect());
-			 		}
-			 	}
-		 	}
+		}
+		else
+		{
+			if( Mix_PausedMusic() == 1 )
+			{
+				Mix_ResumeMusic();
+				cropFromRenderTo(renderer, &cropRect, &cropRect);
+				m_volumeButton.renderVolumeButton(renderer);
+			}
+			else
+			{
+				Mix_PauseMusic();
+				cropFromRenderTo(renderer, &cropRect, &cropRect);
+				m_volumeButton.getButtonRectPushed().render
+					(renderer,m_volumeButton.getButtonRectPushed().getKRect());
+			}
+		}
+	}
 
 }
 
@@ -698,29 +699,29 @@ void Game::bonusToCredits(int match, SDL_Renderer* renderer)
 	if(match > 5)
 	{
 
-	tempBonus = m_bonus * 10;
+		tempBonus = m_bonus * 10;
 
-	resultDenom = tempBonus % 10;
-
-
-	if(resultDenom > 5)
-	{
-		bonus = m_bonus + 1;
-
-	}
-	else
-	{
-		bonus = m_bonus;
-
-	}
-	setBonus(0);
+		resultDenom = tempBonus % 10;
 
 
-	m_creditInGame.setGameCredit((m_creditInGame.getGameCredit() + bonus));
+		if(resultDenom > 5)
+		{
+			bonus = m_bonus + 1;
+
+		}
+		else
+		{
+			bonus = m_bonus;
+
+		}
+		setBonus(0);
+
+
+		m_creditInGame.setGameCredit((m_creditInGame.getGameCredit() + bonus));
 
 
 
-	m_bonusFlag = true;
+		m_bonusFlag = true;
 
 	}
 
@@ -751,492 +752,492 @@ void Game::reRenderMinimalBet(SDL_Renderer* renderer, int bet)
 	reRenderMinimalBetNumFive(renderer, bet);
 	reRenderMinimalBetNumTen(renderer, bet);
 
-		m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
-				getBonus(),
-       		                mGrid.getClickedNumbers(),
-				m_minBetFlag, m_maxBetFlag, m_setBetFlag);
+	m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
+			getBonus(),
+			mGrid.getClickedNumbers(),
+			m_minBetFlag, m_maxBetFlag, m_setBetFlag);
 }
 
 void Game::reRenderMaximalBet(SDL_Renderer* renderer, int bet)
 {
 
-		reRenderMaximalBetNumFive(renderer, bet);
-		reRenderMaximalBetNumTen(renderer, bet);
-		reRenderMaximalBetNumTwenty(renderer, bet);
-		reRenderMaximalBetNumThirty(renderer, bet);
-		reRenderMaximalBetNumFourty(renderer, bet);
-		reRenderMaximalBetNumFifty(renderer, bet);
+	reRenderMaximalBetNumFive(renderer, bet);
+	reRenderMaximalBetNumTen(renderer, bet);
+	reRenderMaximalBetNumTwenty(renderer, bet);
+	reRenderMaximalBetNumThirty(renderer, bet);
+	reRenderMaximalBetNumFourty(renderer, bet);
+	reRenderMaximalBetNumFifty(renderer, bet);
 
 
-		m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
-				getBonus(),
-       		                mGrid.getClickedNumbers(),
-				m_minBetFlag, m_maxBetFlag, m_setBetFlag);
+	m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
+			getBonus(),
+			mGrid.getClickedNumbers(),
+			m_minBetFlag, m_maxBetFlag, m_setBetFlag);
 
 }
 
 void Game::reRenderMinimalBetNumOne(SDL_Renderer* renderer, int bet)
 {
 	if(bet == 1)
-		{
+	{
 
-			m_minBetButton.getButtonRect().render(renderer,m_minBetButton.getButtonRect().getKRect());
+		m_minBetButton.getButtonRect().render(renderer,m_minBetButton.getButtonRect().getKRect());
 
-			m_minBetButton.getButtonStartCircle().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
-					m_minBetButton.getButtonStartCircle().render(renderer,m_minBetButton.getButtonStartCircle().getKRect());
+		m_minBetButton.getButtonStartCircle().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
+		m_minBetButton.getButtonStartCircle().render(renderer,m_minBetButton.getButtonStartCircle().getKRect());
 
-						m_minBetButton.getMinBet().render(renderer,m_minBetButton.getMinBet().getKRect());
-						m_minBetButton.getNumOne().setButtonColor(251, 211, 72);
-						m_minBetButton.getNumOne().LoadFromRenderedText("1", renderer, m_minBetButton.getNumOne().getButtonColor());
-						m_minBetButton.getNumOne().render(renderer,m_minBetButton.getNumOne().getKRect());
+		m_minBetButton.getMinBet().render(renderer,m_minBetButton.getMinBet().getKRect());
+		m_minBetButton.getNumOne().setButtonColor(251, 211, 72);
+		m_minBetButton.getNumOne().LoadFromRenderedText("1", renderer, m_minBetButton.getNumOne().getButtonColor());
+		m_minBetButton.getNumOne().render(renderer,m_minBetButton.getNumOne().getKRect());
 
-						m_minBetButton.getNumTwo().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumTwo().LoadFromRenderedText("2",renderer,m_minBetButton.getNumTwo().getButtonColor());
-						m_minBetButton.getNumTwo().render(renderer,m_minBetButton.getNumTwo().getKRect());
+		m_minBetButton.getNumTwo().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumTwo().LoadFromRenderedText("2",renderer,m_minBetButton.getNumTwo().getButtonColor());
+		m_minBetButton.getNumTwo().render(renderer,m_minBetButton.getNumTwo().getKRect());
 
-						m_minBetButton.getNumThree().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumThree().LoadFromRenderedText("3", renderer, m_minBetButton.getNumThree().getButtonColor());
-						m_minBetButton.getNumThree().render(renderer, m_minBetButton.getNumThree().getKRect());
+		m_minBetButton.getNumThree().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumThree().LoadFromRenderedText("3", renderer, m_minBetButton.getNumThree().getButtonColor());
+		m_minBetButton.getNumThree().render(renderer, m_minBetButton.getNumThree().getKRect());
 
-						m_minBetButton.getNumFour().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumFour().LoadFromRenderedText("4",renderer,m_minBetButton.getNumFour().getButtonColor());
-						m_minBetButton.getNumFour().render(renderer, m_minBetButton.getNumFour().getKRect());
+		m_minBetButton.getNumFour().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumFour().LoadFromRenderedText("4",renderer,m_minBetButton.getNumFour().getButtonColor());
+		m_minBetButton.getNumFour().render(renderer, m_minBetButton.getNumFour().getKRect());
 
-						m_minBetButton.getNumFive().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumFive().LoadFromRenderedText("5",renderer,m_minBetButton.getNumFive().getButtonColor());
-						m_minBetButton.getNumFive().render(renderer,m_minBetButton.getNumFive().getKRect());
+		m_minBetButton.getNumFive().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumFive().LoadFromRenderedText("5",renderer,m_minBetButton.getNumFive().getButtonColor());
+		m_minBetButton.getNumFive().render(renderer,m_minBetButton.getNumFive().getKRect());
 
-						m_minBetButton.getNumTen().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumTen().LoadFromRenderedText("10",renderer,m_minBetButton.getNumTen().getButtonColor());
-						m_minBetButton.getNumTen().render(renderer,m_minBetButton.getNumTen().getKRect());
+		m_minBetButton.getNumTen().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumTen().LoadFromRenderedText("10",renderer,m_minBetButton.getNumTen().getButtonColor());
+		m_minBetButton.getNumTen().render(renderer,m_minBetButton.getNumTen().getKRect());
 
-						m_maxBetButton.deactivateMaxButton(renderer);
-		}
+		m_maxBetButton.deactivateMaxButton(renderer);
+	}
 }
 
 void Game::reRenderMinimalBetNumTwo(SDL_Renderer* renderer, int bet)
 {
 	if(bet == 2)
-		{
-			m_minBetButton.getButtonRect().render(renderer,m_minBetButton.getButtonRect().getKRect());
+	{
+		m_minBetButton.getButtonRect().render(renderer,m_minBetButton.getButtonRect().getKRect());
 
-			m_minBetButton.getButtonStartCircle().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
-					m_minBetButton.getButtonStartCircle().render(renderer,m_minBetButton.getButtonStartCircle().getKRect());
+		m_minBetButton.getButtonStartCircle().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
+		m_minBetButton.getButtonStartCircle().render(renderer,m_minBetButton.getButtonStartCircle().getKRect());
 
-						m_minBetButton.getMinBet().render(renderer,m_minBetButton.getMinBet().getKRect());
-						m_minBetButton.getNumOne().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumOne().LoadFromRenderedText("1", renderer, m_minBetButton.getNumOne().getButtonColor());
-						m_minBetButton.getNumOne().render(renderer,m_minBetButton.getNumOne().getKRect());
+		m_minBetButton.getMinBet().render(renderer,m_minBetButton.getMinBet().getKRect());
+		m_minBetButton.getNumOne().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumOne().LoadFromRenderedText("1", renderer, m_minBetButton.getNumOne().getButtonColor());
+		m_minBetButton.getNumOne().render(renderer,m_minBetButton.getNumOne().getKRect());
 
-						m_minBetButton.getNumTwo().setButtonColor(251, 211, 72);
-						m_minBetButton.getNumTwo().LoadFromRenderedText("2",renderer,m_minBetButton.getNumTwo().getButtonColor());
-						m_minBetButton.getNumTwo().render(renderer,m_minBetButton.getNumTwo().getKRect());
+		m_minBetButton.getNumTwo().setButtonColor(251, 211, 72);
+		m_minBetButton.getNumTwo().LoadFromRenderedText("2",renderer,m_minBetButton.getNumTwo().getButtonColor());
+		m_minBetButton.getNumTwo().render(renderer,m_minBetButton.getNumTwo().getKRect());
 
-						m_minBetButton.getNumThree().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumThree().LoadFromRenderedText("3", renderer, m_minBetButton.getNumThree().getButtonColor());
-						m_minBetButton.getNumThree().render(renderer, m_minBetButton.getNumThree().getKRect());
+		m_minBetButton.getNumThree().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumThree().LoadFromRenderedText("3", renderer, m_minBetButton.getNumThree().getButtonColor());
+		m_minBetButton.getNumThree().render(renderer, m_minBetButton.getNumThree().getKRect());
 
-						m_minBetButton.getNumFour().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumFour().LoadFromRenderedText("4",renderer,m_minBetButton.getNumFour().getButtonColor());
-						m_minBetButton.getNumFour().render(renderer, m_minBetButton.getNumFour().getKRect());
+		m_minBetButton.getNumFour().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumFour().LoadFromRenderedText("4",renderer,m_minBetButton.getNumFour().getButtonColor());
+		m_minBetButton.getNumFour().render(renderer, m_minBetButton.getNumFour().getKRect());
 
-						m_minBetButton.getNumFive().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumFive().LoadFromRenderedText("5",renderer,m_minBetButton.getNumFive().getButtonColor());
-						m_minBetButton.getNumFive().render(renderer,m_minBetButton.getNumFive().getKRect());
+		m_minBetButton.getNumFive().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumFive().LoadFromRenderedText("5",renderer,m_minBetButton.getNumFive().getButtonColor());
+		m_minBetButton.getNumFive().render(renderer,m_minBetButton.getNumFive().getKRect());
 
-						m_minBetButton.getNumTen().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumTen().LoadFromRenderedText("10",renderer,m_minBetButton.getNumTen().getButtonColor());
-						m_minBetButton.getNumTen().render(renderer,m_minBetButton.getNumTen().getKRect());
+		m_minBetButton.getNumTen().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumTen().LoadFromRenderedText("10",renderer,m_minBetButton.getNumTen().getButtonColor());
+		m_minBetButton.getNumTen().render(renderer,m_minBetButton.getNumTen().getKRect());
 
-						m_maxBetButton.deactivateMaxButton(renderer);
-		}
+		m_maxBetButton.deactivateMaxButton(renderer);
+	}
 }
 
 void Game::reRenderMinimalBetNumThree(SDL_Renderer* renderer, int bet)
 {
 	if(bet == 3)
-		{
-			m_minBetButton.getButtonRect().render(renderer,m_minBetButton.getButtonRect().getKRect());
+	{
+		m_minBetButton.getButtonRect().render(renderer,m_minBetButton.getButtonRect().getKRect());
 
-			m_minBetButton.getButtonStartCircle().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
-					m_minBetButton.getButtonStartCircle().render(renderer,m_minBetButton.getButtonStartCircle().getKRect());
+		m_minBetButton.getButtonStartCircle().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
+		m_minBetButton.getButtonStartCircle().render(renderer,m_minBetButton.getButtonStartCircle().getKRect());
 
-						m_minBetButton.getMinBet().render(renderer,m_minBetButton.getMinBet().getKRect());
-						m_minBetButton.getNumOne().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumOne().LoadFromRenderedText("1", renderer, m_minBetButton.getNumOne().getButtonColor());
-						m_minBetButton.getNumOne().render(renderer,m_minBetButton.getNumOne().getKRect());
+		m_minBetButton.getMinBet().render(renderer,m_minBetButton.getMinBet().getKRect());
+		m_minBetButton.getNumOne().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumOne().LoadFromRenderedText("1", renderer, m_minBetButton.getNumOne().getButtonColor());
+		m_minBetButton.getNumOne().render(renderer,m_minBetButton.getNumOne().getKRect());
 
-						m_minBetButton.getNumTwo().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumTwo().LoadFromRenderedText("2",renderer,m_minBetButton.getNumTwo().getButtonColor());
-						m_minBetButton.getNumTwo().render(renderer,m_minBetButton.getNumTwo().getKRect());
+		m_minBetButton.getNumTwo().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumTwo().LoadFromRenderedText("2",renderer,m_minBetButton.getNumTwo().getButtonColor());
+		m_minBetButton.getNumTwo().render(renderer,m_minBetButton.getNumTwo().getKRect());
 
-						m_minBetButton.getNumThree().setButtonColor(251, 211, 72);
-						m_minBetButton.getNumThree().LoadFromRenderedText("3", renderer, m_minBetButton.getNumThree().getButtonColor());
-						m_minBetButton.getNumThree().render(renderer, m_minBetButton.getNumThree().getKRect());
+		m_minBetButton.getNumThree().setButtonColor(251, 211, 72);
+		m_minBetButton.getNumThree().LoadFromRenderedText("3", renderer, m_minBetButton.getNumThree().getButtonColor());
+		m_minBetButton.getNumThree().render(renderer, m_minBetButton.getNumThree().getKRect());
 
-						m_minBetButton.getNumFour().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumFour().LoadFromRenderedText("4",renderer,m_minBetButton.getNumFour().getButtonColor());
-						m_minBetButton.getNumFour().render(renderer, m_minBetButton.getNumFour().getKRect());
+		m_minBetButton.getNumFour().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumFour().LoadFromRenderedText("4",renderer,m_minBetButton.getNumFour().getButtonColor());
+		m_minBetButton.getNumFour().render(renderer, m_minBetButton.getNumFour().getKRect());
 
-						m_minBetButton.getNumFive().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumFive().LoadFromRenderedText("5",renderer,m_minBetButton.getNumFive().getButtonColor());
-						m_minBetButton.getNumFive().render(renderer,m_minBetButton.getNumFive().getKRect());
+		m_minBetButton.getNumFive().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumFive().LoadFromRenderedText("5",renderer,m_minBetButton.getNumFive().getButtonColor());
+		m_minBetButton.getNumFive().render(renderer,m_minBetButton.getNumFive().getKRect());
 
-						m_minBetButton.getNumTen().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumTen().LoadFromRenderedText("10",renderer,m_minBetButton.getNumTen().getButtonColor());
-						m_minBetButton.getNumTen().render(renderer,m_minBetButton.getNumTen().getKRect());
+		m_minBetButton.getNumTen().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumTen().LoadFromRenderedText("10",renderer,m_minBetButton.getNumTen().getButtonColor());
+		m_minBetButton.getNumTen().render(renderer,m_minBetButton.getNumTen().getKRect());
 
-						m_maxBetButton.deactivateMaxButton(renderer);
-		}
+		m_maxBetButton.deactivateMaxButton(renderer);
+	}
 }
 
 void Game::reRenderMinimalBetNumFour(SDL_Renderer* renderer, int bet)
 {
 	if(bet == 4)
-		{
-			m_minBetButton.getButtonRect().render(renderer,m_minBetButton.getButtonRect().getKRect());
+	{
+		m_minBetButton.getButtonRect().render(renderer,m_minBetButton.getButtonRect().getKRect());
 
-			m_minBetButton.getButtonStartCircle().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
-					m_minBetButton.getButtonStartCircle().render(renderer,m_minBetButton.getButtonStartCircle().getKRect());
+		m_minBetButton.getButtonStartCircle().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
+		m_minBetButton.getButtonStartCircle().render(renderer,m_minBetButton.getButtonStartCircle().getKRect());
 
-						m_minBetButton.getMinBet().render(renderer,m_minBetButton.getMinBet().getKRect());
-						m_minBetButton.getNumOne().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumOne().LoadFromRenderedText("1", renderer, m_minBetButton.getNumOne().getButtonColor());
-						m_minBetButton.getNumOne().render(renderer,m_minBetButton.getNumOne().getKRect());
+		m_minBetButton.getMinBet().render(renderer,m_minBetButton.getMinBet().getKRect());
+		m_minBetButton.getNumOne().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumOne().LoadFromRenderedText("1", renderer, m_minBetButton.getNumOne().getButtonColor());
+		m_minBetButton.getNumOne().render(renderer,m_minBetButton.getNumOne().getKRect());
 
-						m_minBetButton.getNumTwo().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumTwo().LoadFromRenderedText("2",renderer,m_minBetButton.getNumTwo().getButtonColor());
-						m_minBetButton.getNumTwo().render(renderer,m_minBetButton.getNumTwo().getKRect());
+		m_minBetButton.getNumTwo().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumTwo().LoadFromRenderedText("2",renderer,m_minBetButton.getNumTwo().getButtonColor());
+		m_minBetButton.getNumTwo().render(renderer,m_minBetButton.getNumTwo().getKRect());
 
-						m_minBetButton.getNumThree().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumThree().LoadFromRenderedText("3", renderer, m_minBetButton.getNumThree().getButtonColor());
-						m_minBetButton.getNumThree().render(renderer, m_minBetButton.getNumThree().getKRect());
+		m_minBetButton.getNumThree().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumThree().LoadFromRenderedText("3", renderer, m_minBetButton.getNumThree().getButtonColor());
+		m_minBetButton.getNumThree().render(renderer, m_minBetButton.getNumThree().getKRect());
 
-						m_minBetButton.getNumFour().setButtonColor(251, 211, 72);
-						m_minBetButton.getNumFour().LoadFromRenderedText("4",renderer,m_minBetButton.getNumFour().getButtonColor());
-						m_minBetButton.getNumFour().render(renderer, m_minBetButton.getNumFour().getKRect());
+		m_minBetButton.getNumFour().setButtonColor(251, 211, 72);
+		m_minBetButton.getNumFour().LoadFromRenderedText("4",renderer,m_minBetButton.getNumFour().getButtonColor());
+		m_minBetButton.getNumFour().render(renderer, m_minBetButton.getNumFour().getKRect());
 
-						m_minBetButton.getNumFive().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumFive().LoadFromRenderedText("5",renderer,m_minBetButton.getNumFive().getButtonColor());
-						m_minBetButton.getNumFive().render(renderer,m_minBetButton.getNumFive().getKRect());
+		m_minBetButton.getNumFive().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumFive().LoadFromRenderedText("5",renderer,m_minBetButton.getNumFive().getButtonColor());
+		m_minBetButton.getNumFive().render(renderer,m_minBetButton.getNumFive().getKRect());
 
-						m_minBetButton.getNumTen().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumTen().LoadFromRenderedText("10",renderer,m_minBetButton.getNumTen().getButtonColor());
-						m_minBetButton.getNumTen().render(renderer,m_minBetButton.getNumTen().getKRect());
+		m_minBetButton.getNumTen().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumTen().LoadFromRenderedText("10",renderer,m_minBetButton.getNumTen().getButtonColor());
+		m_minBetButton.getNumTen().render(renderer,m_minBetButton.getNumTen().getKRect());
 
-						m_maxBetButton.deactivateMaxButton(renderer);
-		}
+		m_maxBetButton.deactivateMaxButton(renderer);
+	}
 }
 
 void Game::reRenderMinimalBetNumFive(SDL_Renderer* renderer, int bet)
 {
-	 if(bet == 5 && m_minBetFlag == true)
-		{
-			m_minBetButton.getButtonRect().render(renderer,m_minBetButton.getButtonRect().getKRect());
+	if(bet == 5 && m_minBetFlag == true)
+	{
+		m_minBetButton.getButtonRect().render(renderer,m_minBetButton.getButtonRect().getKRect());
 
-			m_minBetButton.getButtonStartCircle().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
-					m_minBetButton.getButtonStartCircle().render(renderer,m_minBetButton.getButtonStartCircle().getKRect());
+		m_minBetButton.getButtonStartCircle().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
+		m_minBetButton.getButtonStartCircle().render(renderer,m_minBetButton.getButtonStartCircle().getKRect());
 
-						m_minBetButton.getMinBet().render(renderer,m_minBetButton.getMinBet().getKRect());
-						m_minBetButton.getNumOne().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumOne().LoadFromRenderedText("1", renderer, m_minBetButton.getNumOne().getButtonColor());
-						m_minBetButton.getNumOne().render(renderer,m_minBetButton.getNumOne().getKRect());
+		m_minBetButton.getMinBet().render(renderer,m_minBetButton.getMinBet().getKRect());
+		m_minBetButton.getNumOne().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumOne().LoadFromRenderedText("1", renderer, m_minBetButton.getNumOne().getButtonColor());
+		m_minBetButton.getNumOne().render(renderer,m_minBetButton.getNumOne().getKRect());
 
-						m_minBetButton.getNumTwo().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumTwo().LoadFromRenderedText("2",renderer,m_minBetButton.getNumTwo().getButtonColor());
-						m_minBetButton.getNumTwo().render(renderer,m_minBetButton.getNumTwo().getKRect());
+		m_minBetButton.getNumTwo().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumTwo().LoadFromRenderedText("2",renderer,m_minBetButton.getNumTwo().getButtonColor());
+		m_minBetButton.getNumTwo().render(renderer,m_minBetButton.getNumTwo().getKRect());
 
-						m_minBetButton.getNumThree().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumThree().LoadFromRenderedText("3", renderer, m_minBetButton.getNumThree().getButtonColor());
-						m_minBetButton.getNumThree().render(renderer, m_minBetButton.getNumThree().getKRect());
+		m_minBetButton.getNumThree().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumThree().LoadFromRenderedText("3", renderer, m_minBetButton.getNumThree().getButtonColor());
+		m_minBetButton.getNumThree().render(renderer, m_minBetButton.getNumThree().getKRect());
 
-						m_minBetButton.getNumFour().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumFour().LoadFromRenderedText("4",renderer,m_minBetButton.getNumFour().getButtonColor());
-						m_minBetButton.getNumFour().render(renderer, m_minBetButton.getNumFour().getKRect());
+		m_minBetButton.getNumFour().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumFour().LoadFromRenderedText("4",renderer,m_minBetButton.getNumFour().getButtonColor());
+		m_minBetButton.getNumFour().render(renderer, m_minBetButton.getNumFour().getKRect());
 
-						m_minBetButton.getNumFive().setButtonColor(251, 211, 72);
-						m_minBetButton.getNumFive().LoadFromRenderedText("5",renderer,m_minBetButton.getNumFive().getButtonColor());
-						m_minBetButton.getNumFive().render(renderer,m_minBetButton.getNumFive().getKRect());
+		m_minBetButton.getNumFive().setButtonColor(251, 211, 72);
+		m_minBetButton.getNumFive().LoadFromRenderedText("5",renderer,m_minBetButton.getNumFive().getButtonColor());
+		m_minBetButton.getNumFive().render(renderer,m_minBetButton.getNumFive().getKRect());
 
-						m_minBetButton.getNumTen().setButtonColor(254, 254, 254);
-						m_minBetButton.getNumTen().LoadFromRenderedText("10",renderer,m_minBetButton.getNumTen().getButtonColor());
-						m_minBetButton.getNumTen().render(renderer,m_minBetButton.getNumTen().getKRect());
+		m_minBetButton.getNumTen().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumTen().LoadFromRenderedText("10",renderer,m_minBetButton.getNumTen().getButtonColor());
+		m_minBetButton.getNumTen().render(renderer,m_minBetButton.getNumTen().getKRect());
 
-						m_maxBetButton.deactivateMaxButton(renderer);
-		}
+		m_maxBetButton.deactivateMaxButton(renderer);
+	}
 }
 
 void Game::reRenderMaximalBetNumFive(SDL_Renderer* renderer, int bet)
 {
 	if(bet == 5 && m_maxBetFlag == true)
-			{
+	{
 
-				m_maxBetButton.getButtonRectMax().render(renderer, m_maxBetButton.getButtonRectMax().getKRect());
+		m_maxBetButton.getButtonRectMax().render(renderer, m_maxBetButton.getButtonRectMax().getKRect());
 
-				m_maxBetButton.getButtonStartCircleMax().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
-				m_maxBetButton.getButtonStartCircleMax().render(renderer,m_maxBetButton.getButtonStartCircleMax().getKRect());
+		m_maxBetButton.getButtonStartCircleMax().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
+		m_maxBetButton.getButtonStartCircleMax().render(renderer,m_maxBetButton.getButtonStartCircleMax().getKRect());
 
-							m_maxBetButton.getMaxBet().render(renderer,m_maxBetButton.getMaxBet().getKRect());
-							m_maxBetButton.getNumFiveMax().setButtonColor(251, 211, 72);
-							m_maxBetButton.getNumFiveMax().LoadFromRenderedText("5", renderer, m_maxBetButton.getNumFiveMax().getButtonColor());
-							m_maxBetButton.getNumFiveMax().render(renderer,m_maxBetButton.getNumFiveMax().getKRect());
+		m_maxBetButton.getMaxBet().render(renderer,m_maxBetButton.getMaxBet().getKRect());
+		m_maxBetButton.getNumFiveMax().setButtonColor(251, 211, 72);
+		m_maxBetButton.getNumFiveMax().LoadFromRenderedText("5", renderer, m_maxBetButton.getNumFiveMax().getButtonColor());
+		m_maxBetButton.getNumFiveMax().render(renderer,m_maxBetButton.getNumFiveMax().getKRect());
 
-							m_maxBetButton.getNumTenMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumTenMax().LoadFromRenderedText("10",renderer,m_maxBetButton.getNumTenMax().getButtonColor());
-							m_maxBetButton.getNumTenMax().render(renderer,m_maxBetButton.getNumTenMax().getKRect());
+		m_maxBetButton.getNumTenMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumTenMax().LoadFromRenderedText("10",renderer,m_maxBetButton.getNumTenMax().getButtonColor());
+		m_maxBetButton.getNumTenMax().render(renderer,m_maxBetButton.getNumTenMax().getKRect());
 
-							m_maxBetButton.getNumTwentyMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumTwentyMax().LoadFromRenderedText("20", renderer, m_maxBetButton.getNumTwentyMax().getButtonColor());
-							m_maxBetButton.getNumTwentyMax().render(renderer, m_maxBetButton.getNumTwentyMax().getKRect());
+		m_maxBetButton.getNumTwentyMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumTwentyMax().LoadFromRenderedText("20", renderer, m_maxBetButton.getNumTwentyMax().getButtonColor());
+		m_maxBetButton.getNumTwentyMax().render(renderer, m_maxBetButton.getNumTwentyMax().getKRect());
 
-							m_maxBetButton.getNumThirtyMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumThirtyMax().LoadFromRenderedText("30",renderer, m_maxBetButton.getNumThirtyMax().getButtonColor());
-							m_maxBetButton.getNumThirtyMax().render(renderer, m_maxBetButton.getNumThirtyMax().getKRect());
+		m_maxBetButton.getNumThirtyMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumThirtyMax().LoadFromRenderedText("30",renderer, m_maxBetButton.getNumThirtyMax().getButtonColor());
+		m_maxBetButton.getNumThirtyMax().render(renderer, m_maxBetButton.getNumThirtyMax().getKRect());
 
-							m_maxBetButton.getNumFourtyMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumFourtyMax().LoadFromRenderedText("40",renderer, m_maxBetButton.getNumFourtyMax().getButtonColor());
-							m_maxBetButton.getNumFourtyMax().render(renderer, m_maxBetButton.getNumFourtyMax().getKRect());
+		m_maxBetButton.getNumFourtyMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumFourtyMax().LoadFromRenderedText("40",renderer, m_maxBetButton.getNumFourtyMax().getButtonColor());
+		m_maxBetButton.getNumFourtyMax().render(renderer, m_maxBetButton.getNumFourtyMax().getKRect());
 
-							m_maxBetButton.getNumFiftyMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumFiftyMax().LoadFromRenderedText("50",renderer, m_maxBetButton.getNumFiftyMax().getButtonColor());
-							m_maxBetButton.getNumFiftyMax().render(renderer, m_maxBetButton.getNumFiftyMax().getKRect());
+		m_maxBetButton.getNumFiftyMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumFiftyMax().LoadFromRenderedText("50",renderer, m_maxBetButton.getNumFiftyMax().getButtonColor());
+		m_maxBetButton.getNumFiftyMax().render(renderer, m_maxBetButton.getNumFiftyMax().getKRect());
 
-							m_minBetButton.deactivateMinButton(renderer);
-			}
+		m_minBetButton.deactivateMinButton(renderer);
+	}
 }
 
 void Game::reRenderMaximalBetNumTen(SDL_Renderer* renderer, int bet)
 {
 	if(bet == 10 && m_maxBetFlag == true)
-		{
+	{
 
-			m_maxBetButton.getButtonRectMax().render(renderer, m_maxBetButton.getButtonRectMax().getKRect());
+		m_maxBetButton.getButtonRectMax().render(renderer, m_maxBetButton.getButtonRectMax().getKRect());
 
-			m_maxBetButton.getButtonStartCircleMax().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
-			m_maxBetButton.getButtonStartCircleMax().render(renderer,m_maxBetButton.getButtonStartCircleMax().getKRect());
+		m_maxBetButton.getButtonStartCircleMax().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
+		m_maxBetButton.getButtonStartCircleMax().render(renderer,m_maxBetButton.getButtonStartCircleMax().getKRect());
 
-						m_maxBetButton.getMaxBet().render(renderer,m_maxBetButton.getMaxBet().getKRect());
-						m_maxBetButton.getNumFiveMax().setButtonColor(254, 254,	254);
-						m_maxBetButton.getNumFiveMax().LoadFromRenderedText("5", renderer, m_maxBetButton.getNumFiveMax().getButtonColor());
-						m_maxBetButton.getNumFiveMax().render(renderer,m_maxBetButton.getNumFiveMax().getKRect());
+		m_maxBetButton.getMaxBet().render(renderer,m_maxBetButton.getMaxBet().getKRect());
+		m_maxBetButton.getNumFiveMax().setButtonColor(254, 254,	254);
+		m_maxBetButton.getNumFiveMax().LoadFromRenderedText("5", renderer, m_maxBetButton.getNumFiveMax().getButtonColor());
+		m_maxBetButton.getNumFiveMax().render(renderer,m_maxBetButton.getNumFiveMax().getKRect());
 
-						m_maxBetButton.getNumTenMax().setButtonColor(251, 211, 72);
-						m_maxBetButton.getNumTenMax().LoadFromRenderedText("10",renderer,m_maxBetButton.getNumTenMax().getButtonColor());
-						m_maxBetButton.getNumTenMax().render(renderer,m_maxBetButton.getNumTenMax().getKRect());
+		m_maxBetButton.getNumTenMax().setButtonColor(251, 211, 72);
+		m_maxBetButton.getNumTenMax().LoadFromRenderedText("10",renderer,m_maxBetButton.getNumTenMax().getButtonColor());
+		m_maxBetButton.getNumTenMax().render(renderer,m_maxBetButton.getNumTenMax().getKRect());
 
-						m_maxBetButton.getNumTwentyMax().setButtonColor(254, 254, 254);
-						m_maxBetButton.getNumTwentyMax().LoadFromRenderedText("20", renderer, m_maxBetButton.getNumTwentyMax().getButtonColor());
-						m_maxBetButton.getNumTwentyMax().render(renderer, m_maxBetButton.getNumTwentyMax().getKRect());
+		m_maxBetButton.getNumTwentyMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumTwentyMax().LoadFromRenderedText("20", renderer, m_maxBetButton.getNumTwentyMax().getButtonColor());
+		m_maxBetButton.getNumTwentyMax().render(renderer, m_maxBetButton.getNumTwentyMax().getKRect());
 
-						m_maxBetButton.getNumThirtyMax().setButtonColor(254, 254, 254);
-						m_maxBetButton.getNumThirtyMax().LoadFromRenderedText("30",renderer, m_maxBetButton.getNumThirtyMax().getButtonColor());
-						m_maxBetButton.getNumThirtyMax().render(renderer, m_maxBetButton.getNumThirtyMax().getKRect());
+		m_maxBetButton.getNumThirtyMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumThirtyMax().LoadFromRenderedText("30",renderer, m_maxBetButton.getNumThirtyMax().getButtonColor());
+		m_maxBetButton.getNumThirtyMax().render(renderer, m_maxBetButton.getNumThirtyMax().getKRect());
 
-						m_maxBetButton.getNumFourtyMax().setButtonColor(254, 254, 254);
-						m_maxBetButton.getNumFourtyMax().LoadFromRenderedText("40",renderer, m_maxBetButton.getNumFourtyMax().getButtonColor());
-						m_maxBetButton.getNumFourtyMax().render(renderer, m_maxBetButton.getNumFourtyMax().getKRect());
+		m_maxBetButton.getNumFourtyMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumFourtyMax().LoadFromRenderedText("40",renderer, m_maxBetButton.getNumFourtyMax().getButtonColor());
+		m_maxBetButton.getNumFourtyMax().render(renderer, m_maxBetButton.getNumFourtyMax().getKRect());
 
-						m_maxBetButton.getNumFiftyMax().setButtonColor(254, 254, 254);
-						m_maxBetButton.getNumFiftyMax().LoadFromRenderedText("50",renderer, m_maxBetButton.getNumFiftyMax().getButtonColor());
-						m_maxBetButton.getNumFiftyMax().render(renderer, m_maxBetButton.getNumFiftyMax().getKRect());
+		m_maxBetButton.getNumFiftyMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumFiftyMax().LoadFromRenderedText("50",renderer, m_maxBetButton.getNumFiftyMax().getButtonColor());
+		m_maxBetButton.getNumFiftyMax().render(renderer, m_maxBetButton.getNumFiftyMax().getKRect());
 
-						m_minBetButton.deactivateMinButton(renderer);
-		}
+		m_minBetButton.deactivateMinButton(renderer);
+	}
 }
 
 void Game::reRenderMaximalBetNumTwenty(SDL_Renderer* renderer, int bet)
 {
-	 if(bet == 20)
-			{
+	if(bet == 20)
+	{
 
-				m_maxBetButton.getButtonRectMax().render(renderer, m_maxBetButton.getButtonRectMax().getKRect());
+		m_maxBetButton.getButtonRectMax().render(renderer, m_maxBetButton.getButtonRectMax().getKRect());
 
-				m_maxBetButton.getButtonStartCircleMax().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
-				m_maxBetButton.getButtonStartCircleMax().render(renderer,m_maxBetButton.getButtonStartCircleMax().getKRect());
+		m_maxBetButton.getButtonStartCircleMax().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
+		m_maxBetButton.getButtonStartCircleMax().render(renderer,m_maxBetButton.getButtonStartCircleMax().getKRect());
 
-							m_maxBetButton.getMaxBet().render(renderer,m_maxBetButton.getMaxBet().getKRect());
-							m_maxBetButton.getNumFiveMax().setButtonColor(254, 254,	254);
-							m_maxBetButton.getNumFiveMax().LoadFromRenderedText("5", renderer, m_maxBetButton.getNumFiveMax().getButtonColor());
-							m_maxBetButton.getNumFiveMax().render(renderer,m_maxBetButton.getNumFiveMax().getKRect());
+		m_maxBetButton.getMaxBet().render(renderer,m_maxBetButton.getMaxBet().getKRect());
+		m_maxBetButton.getNumFiveMax().setButtonColor(254, 254,	254);
+		m_maxBetButton.getNumFiveMax().LoadFromRenderedText("5", renderer, m_maxBetButton.getNumFiveMax().getButtonColor());
+		m_maxBetButton.getNumFiveMax().render(renderer,m_maxBetButton.getNumFiveMax().getKRect());
 
-							m_maxBetButton.getNumTenMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumTenMax().LoadFromRenderedText("10",renderer,m_maxBetButton.getNumTenMax().getButtonColor());
-							m_maxBetButton.getNumTenMax().render(renderer,m_maxBetButton.getNumTenMax().getKRect());
+		m_maxBetButton.getNumTenMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumTenMax().LoadFromRenderedText("10",renderer,m_maxBetButton.getNumTenMax().getButtonColor());
+		m_maxBetButton.getNumTenMax().render(renderer,m_maxBetButton.getNumTenMax().getKRect());
 
-							m_maxBetButton.getNumTwentyMax().setButtonColor(251, 211, 72);
-							m_maxBetButton.getNumTwentyMax().LoadFromRenderedText("20", renderer, m_maxBetButton.getNumTwentyMax().getButtonColor());
-							m_maxBetButton.getNumTwentyMax().render(renderer, m_maxBetButton.getNumTwentyMax().getKRect());
+		m_maxBetButton.getNumTwentyMax().setButtonColor(251, 211, 72);
+		m_maxBetButton.getNumTwentyMax().LoadFromRenderedText("20", renderer, m_maxBetButton.getNumTwentyMax().getButtonColor());
+		m_maxBetButton.getNumTwentyMax().render(renderer, m_maxBetButton.getNumTwentyMax().getKRect());
 
-							m_maxBetButton.getNumThirtyMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumThirtyMax().LoadFromRenderedText("30",renderer, m_maxBetButton.getNumThirtyMax().getButtonColor());
-							m_maxBetButton.getNumThirtyMax().render(renderer, m_maxBetButton.getNumThirtyMax().getKRect());
+		m_maxBetButton.getNumThirtyMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumThirtyMax().LoadFromRenderedText("30",renderer, m_maxBetButton.getNumThirtyMax().getButtonColor());
+		m_maxBetButton.getNumThirtyMax().render(renderer, m_maxBetButton.getNumThirtyMax().getKRect());
 
-							m_maxBetButton.getNumFourtyMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumFourtyMax().LoadFromRenderedText("40",renderer, m_maxBetButton.getNumFourtyMax().getButtonColor());
-							m_maxBetButton.getNumFourtyMax().render(renderer, m_maxBetButton.getNumFourtyMax().getKRect());
+		m_maxBetButton.getNumFourtyMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumFourtyMax().LoadFromRenderedText("40",renderer, m_maxBetButton.getNumFourtyMax().getButtonColor());
+		m_maxBetButton.getNumFourtyMax().render(renderer, m_maxBetButton.getNumFourtyMax().getKRect());
 
-							m_maxBetButton.getNumFiftyMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumFiftyMax().LoadFromRenderedText("50",renderer, m_maxBetButton.getNumFiftyMax().getButtonColor());
-							m_maxBetButton.getNumFiftyMax().render(renderer, m_maxBetButton.getNumFiftyMax().getKRect());
+		m_maxBetButton.getNumFiftyMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumFiftyMax().LoadFromRenderedText("50",renderer, m_maxBetButton.getNumFiftyMax().getButtonColor());
+		m_maxBetButton.getNumFiftyMax().render(renderer, m_maxBetButton.getNumFiftyMax().getKRect());
 
-							m_minBetButton.deactivateMinButton(renderer);
-			}
+		m_minBetButton.deactivateMinButton(renderer);
+	}
 }
 
 void Game::reRenderMaximalBetNumThirty(SDL_Renderer* renderer, int bet)
 {
 	if(bet == 30)
-			{
+	{
 
-				m_maxBetButton.getButtonRectMax().render(renderer, m_maxBetButton.getButtonRectMax().getKRect());
+		m_maxBetButton.getButtonRectMax().render(renderer, m_maxBetButton.getButtonRectMax().getKRect());
 
-				m_maxBetButton.getButtonStartCircleMax().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
-				m_maxBetButton.getButtonStartCircleMax().render(renderer,m_maxBetButton.getButtonStartCircleMax().getKRect());
+		m_maxBetButton.getButtonStartCircleMax().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
+		m_maxBetButton.getButtonStartCircleMax().render(renderer,m_maxBetButton.getButtonStartCircleMax().getKRect());
 
-							m_maxBetButton.getMaxBet().render(renderer,m_maxBetButton.getMaxBet().getKRect());
-							m_maxBetButton.getNumFiveMax().setButtonColor(254, 254,	254);
-							m_maxBetButton.getNumFiveMax().LoadFromRenderedText("5", renderer, m_maxBetButton.getNumFiveMax().getButtonColor());
-							m_maxBetButton.getNumFiveMax().render(renderer,m_maxBetButton.getNumFiveMax().getKRect());
+		m_maxBetButton.getMaxBet().render(renderer,m_maxBetButton.getMaxBet().getKRect());
+		m_maxBetButton.getNumFiveMax().setButtonColor(254, 254,	254);
+		m_maxBetButton.getNumFiveMax().LoadFromRenderedText("5", renderer, m_maxBetButton.getNumFiveMax().getButtonColor());
+		m_maxBetButton.getNumFiveMax().render(renderer,m_maxBetButton.getNumFiveMax().getKRect());
 
-							m_maxBetButton.getNumTenMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumTenMax().LoadFromRenderedText("10",renderer,m_maxBetButton.getNumTenMax().getButtonColor());
-							m_maxBetButton.getNumTenMax().render(renderer,m_maxBetButton.getNumTenMax().getKRect());
+		m_maxBetButton.getNumTenMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumTenMax().LoadFromRenderedText("10",renderer,m_maxBetButton.getNumTenMax().getButtonColor());
+		m_maxBetButton.getNumTenMax().render(renderer,m_maxBetButton.getNumTenMax().getKRect());
 
-							m_maxBetButton.getNumTwentyMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumTwentyMax().LoadFromRenderedText("20", renderer, m_maxBetButton.getNumTwentyMax().getButtonColor());
-							m_maxBetButton.getNumTwentyMax().render(renderer, m_maxBetButton.getNumTwentyMax().getKRect());
+		m_maxBetButton.getNumTwentyMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumTwentyMax().LoadFromRenderedText("20", renderer, m_maxBetButton.getNumTwentyMax().getButtonColor());
+		m_maxBetButton.getNumTwentyMax().render(renderer, m_maxBetButton.getNumTwentyMax().getKRect());
 
-							m_maxBetButton.getNumThirtyMax().setButtonColor(251, 211, 72);
-							m_maxBetButton.getNumThirtyMax().LoadFromRenderedText("30",renderer, m_maxBetButton.getNumThirtyMax().getButtonColor());
-							m_maxBetButton.getNumThirtyMax().render(renderer, m_maxBetButton.getNumThirtyMax().getKRect());
+		m_maxBetButton.getNumThirtyMax().setButtonColor(251, 211, 72);
+		m_maxBetButton.getNumThirtyMax().LoadFromRenderedText("30",renderer, m_maxBetButton.getNumThirtyMax().getButtonColor());
+		m_maxBetButton.getNumThirtyMax().render(renderer, m_maxBetButton.getNumThirtyMax().getKRect());
 
-							m_maxBetButton.getNumFourtyMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumFourtyMax().LoadFromRenderedText("40",renderer, m_maxBetButton.getNumFourtyMax().getButtonColor());
-							m_maxBetButton.getNumFourtyMax().render(renderer, m_maxBetButton.getNumFourtyMax().getKRect());
+		m_maxBetButton.getNumFourtyMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumFourtyMax().LoadFromRenderedText("40",renderer, m_maxBetButton.getNumFourtyMax().getButtonColor());
+		m_maxBetButton.getNumFourtyMax().render(renderer, m_maxBetButton.getNumFourtyMax().getKRect());
 
-							m_maxBetButton.getNumFiftyMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumFiftyMax().LoadFromRenderedText("50",renderer, m_maxBetButton.getNumFiftyMax().getButtonColor());
-							m_maxBetButton.getNumFiftyMax().render(renderer, m_maxBetButton.getNumFiftyMax().getKRect());
+		m_maxBetButton.getNumFiftyMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumFiftyMax().LoadFromRenderedText("50",renderer, m_maxBetButton.getNumFiftyMax().getButtonColor());
+		m_maxBetButton.getNumFiftyMax().render(renderer, m_maxBetButton.getNumFiftyMax().getKRect());
 
-							m_minBetButton.deactivateMinButton(renderer);
-			}
+		m_minBetButton.deactivateMinButton(renderer);
+	}
 }
 
 void Game::reRenderMaximalBetNumFourty(SDL_Renderer* renderer, int bet)
 {
 	if(bet == 40)
-			{
+	{
 
-				m_maxBetButton.getButtonRectMax().render(renderer, m_maxBetButton.getButtonRectMax().getKRect());
+		m_maxBetButton.getButtonRectMax().render(renderer, m_maxBetButton.getButtonRectMax().getKRect());
 
-				m_maxBetButton.getButtonStartCircleMax().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
-				m_maxBetButton.getButtonStartCircleMax().render(renderer,m_maxBetButton.getButtonStartCircleMax().getKRect());
+		m_maxBetButton.getButtonStartCircleMax().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
+		m_maxBetButton.getButtonStartCircleMax().render(renderer,m_maxBetButton.getButtonStartCircleMax().getKRect());
 
-							m_maxBetButton.getMaxBet().render(renderer,m_maxBetButton.getMaxBet().getKRect());
-							m_maxBetButton.getNumFiveMax().setButtonColor(254, 254,	254);
-							m_maxBetButton.getNumFiveMax().LoadFromRenderedText("5", renderer, m_maxBetButton.getNumFiveMax().getButtonColor());
-							m_maxBetButton.getNumFiveMax().render(renderer,m_maxBetButton.getNumFiveMax().getKRect());
+		m_maxBetButton.getMaxBet().render(renderer,m_maxBetButton.getMaxBet().getKRect());
+		m_maxBetButton.getNumFiveMax().setButtonColor(254, 254,	254);
+		m_maxBetButton.getNumFiveMax().LoadFromRenderedText("5", renderer, m_maxBetButton.getNumFiveMax().getButtonColor());
+		m_maxBetButton.getNumFiveMax().render(renderer,m_maxBetButton.getNumFiveMax().getKRect());
 
-							m_maxBetButton.getNumTenMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumTenMax().LoadFromRenderedText("10",renderer,m_maxBetButton.getNumTenMax().getButtonColor());
-							m_maxBetButton.getNumTenMax().render(renderer,m_maxBetButton.getNumTenMax().getKRect());
+		m_maxBetButton.getNumTenMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumTenMax().LoadFromRenderedText("10",renderer,m_maxBetButton.getNumTenMax().getButtonColor());
+		m_maxBetButton.getNumTenMax().render(renderer,m_maxBetButton.getNumTenMax().getKRect());
 
-							m_maxBetButton.getNumTwentyMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumTwentyMax().LoadFromRenderedText("20", renderer, m_maxBetButton.getNumTwentyMax().getButtonColor());
-							m_maxBetButton.getNumTwentyMax().render(renderer, m_maxBetButton.getNumTwentyMax().getKRect());
+		m_maxBetButton.getNumTwentyMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumTwentyMax().LoadFromRenderedText("20", renderer, m_maxBetButton.getNumTwentyMax().getButtonColor());
+		m_maxBetButton.getNumTwentyMax().render(renderer, m_maxBetButton.getNumTwentyMax().getKRect());
 
-							m_maxBetButton.getNumThirtyMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumThirtyMax().LoadFromRenderedText("30",renderer, m_maxBetButton.getNumThirtyMax().getButtonColor());
-							m_maxBetButton.getNumThirtyMax().render(renderer, m_maxBetButton.getNumThirtyMax().getKRect());
+		m_maxBetButton.getNumThirtyMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumThirtyMax().LoadFromRenderedText("30",renderer, m_maxBetButton.getNumThirtyMax().getButtonColor());
+		m_maxBetButton.getNumThirtyMax().render(renderer, m_maxBetButton.getNumThirtyMax().getKRect());
 
-							m_maxBetButton.getNumFourtyMax().setButtonColor(251, 211, 72);
-							m_maxBetButton.getNumFourtyMax().LoadFromRenderedText("40",renderer, m_maxBetButton.getNumFourtyMax().getButtonColor());
-							m_maxBetButton.getNumFourtyMax().render(renderer, m_maxBetButton.getNumFourtyMax().getKRect());
+		m_maxBetButton.getNumFourtyMax().setButtonColor(251, 211, 72);
+		m_maxBetButton.getNumFourtyMax().LoadFromRenderedText("40",renderer, m_maxBetButton.getNumFourtyMax().getButtonColor());
+		m_maxBetButton.getNumFourtyMax().render(renderer, m_maxBetButton.getNumFourtyMax().getKRect());
 
-							m_maxBetButton.getNumFiftyMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumFiftyMax().LoadFromRenderedText("50",renderer, m_maxBetButton.getNumFiftyMax().getButtonColor());
-							m_maxBetButton.getNumFiftyMax().render(renderer, m_maxBetButton.getNumFiftyMax().getKRect());
+		m_maxBetButton.getNumFiftyMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumFiftyMax().LoadFromRenderedText("50",renderer, m_maxBetButton.getNumFiftyMax().getButtonColor());
+		m_maxBetButton.getNumFiftyMax().render(renderer, m_maxBetButton.getNumFiftyMax().getKRect());
 
-							m_minBetButton.deactivateMinButton(renderer);
-			}
+		m_minBetButton.deactivateMinButton(renderer);
+	}
 }
 
 void Game::reRenderMaximalBetNumFifty(SDL_Renderer* renderer, int bet)
 {
-	 if(bet == 50)
-			{
+	if(bet == 50)
+	{
 
-				m_maxBetButton.getButtonRectMax().render(renderer, m_maxBetButton.getButtonRectMax().getKRect());
+		m_maxBetButton.getButtonRectMax().render(renderer, m_maxBetButton.getButtonRectMax().getKRect());
 
-				m_maxBetButton.getButtonStartCircleMax().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
-				m_maxBetButton.getButtonStartCircleMax().render(renderer,m_maxBetButton.getButtonStartCircleMax().getKRect());
+		m_maxBetButton.getButtonStartCircleMax().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
+		m_maxBetButton.getButtonStartCircleMax().render(renderer,m_maxBetButton.getButtonStartCircleMax().getKRect());
 
-							m_maxBetButton.getMaxBet().render(renderer,m_maxBetButton.getMaxBet().getKRect());
-							m_maxBetButton.getNumFiveMax().setButtonColor(254, 254,	254);
-							m_maxBetButton.getNumFiveMax().LoadFromRenderedText("5", renderer, m_maxBetButton.getNumFiveMax().getButtonColor());
-							m_maxBetButton.getNumFiveMax().render(renderer,m_maxBetButton.getNumFiveMax().getKRect());
+		m_maxBetButton.getMaxBet().render(renderer,m_maxBetButton.getMaxBet().getKRect());
+		m_maxBetButton.getNumFiveMax().setButtonColor(254, 254,	254);
+		m_maxBetButton.getNumFiveMax().LoadFromRenderedText("5", renderer, m_maxBetButton.getNumFiveMax().getButtonColor());
+		m_maxBetButton.getNumFiveMax().render(renderer,m_maxBetButton.getNumFiveMax().getKRect());
 
-							m_maxBetButton.getNumTenMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumTenMax().LoadFromRenderedText("10",renderer,m_maxBetButton.getNumTenMax().getButtonColor());
-							m_maxBetButton.getNumTenMax().render(renderer,m_maxBetButton.getNumTenMax().getKRect());
+		m_maxBetButton.getNumTenMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumTenMax().LoadFromRenderedText("10",renderer,m_maxBetButton.getNumTenMax().getButtonColor());
+		m_maxBetButton.getNumTenMax().render(renderer,m_maxBetButton.getNumTenMax().getKRect());
 
-							m_maxBetButton.getNumTwentyMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumTwentyMax().LoadFromRenderedText("20", renderer, m_maxBetButton.getNumTwentyMax().getButtonColor());
-							m_maxBetButton.getNumTwentyMax().render(renderer, m_maxBetButton.getNumTwentyMax().getKRect());
+		m_maxBetButton.getNumTwentyMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumTwentyMax().LoadFromRenderedText("20", renderer, m_maxBetButton.getNumTwentyMax().getButtonColor());
+		m_maxBetButton.getNumTwentyMax().render(renderer, m_maxBetButton.getNumTwentyMax().getKRect());
 
-							m_maxBetButton.getNumThirtyMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumThirtyMax().LoadFromRenderedText("30",renderer, m_maxBetButton.getNumThirtyMax().getButtonColor());
-							m_maxBetButton.getNumThirtyMax().render(renderer, m_maxBetButton.getNumThirtyMax().getKRect());
+		m_maxBetButton.getNumThirtyMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumThirtyMax().LoadFromRenderedText("30",renderer, m_maxBetButton.getNumThirtyMax().getButtonColor());
+		m_maxBetButton.getNumThirtyMax().render(renderer, m_maxBetButton.getNumThirtyMax().getKRect());
 
-							m_maxBetButton.getNumFourtyMax().setButtonColor(254, 254, 254);
-							m_maxBetButton.getNumFourtyMax().LoadFromRenderedText("40",renderer, m_maxBetButton.getNumFourtyMax().getButtonColor());
-							m_maxBetButton.getNumFourtyMax().render(renderer, m_maxBetButton.getNumFourtyMax().getKRect());
+		m_maxBetButton.getNumFourtyMax().setButtonColor(254, 254, 254);
+		m_maxBetButton.getNumFourtyMax().LoadFromRenderedText("40",renderer, m_maxBetButton.getNumFourtyMax().getButtonColor());
+		m_maxBetButton.getNumFourtyMax().render(renderer, m_maxBetButton.getNumFourtyMax().getKRect());
 
-							m_maxBetButton.getNumFiftyMax().setButtonColor(251, 211, 72);
-							m_maxBetButton.getNumFiftyMax().LoadFromRenderedText("50",renderer, m_maxBetButton.getNumFiftyMax().getButtonColor());
-							m_maxBetButton.getNumFiftyMax().render(renderer, m_maxBetButton.getNumFiftyMax().getKRect());
+		m_maxBetButton.getNumFiftyMax().setButtonColor(251, 211, 72);
+		m_maxBetButton.getNumFiftyMax().LoadFromRenderedText("50",renderer, m_maxBetButton.getNumFiftyMax().getButtonColor());
+		m_maxBetButton.getNumFiftyMax().render(renderer, m_maxBetButton.getNumFiftyMax().getKRect());
 
-							m_minBetButton.deactivateMinButton(renderer);
-			}
+		m_minBetButton.deactivateMinButton(renderer);
+	}
 }
 
 void Game::reRenderMinimalBetNumTen(SDL_Renderer* renderer, int bet)
 {
 	if(bet == 10 && m_minBetFlag == true)
-			{
-				m_minBetButton.getButtonRect().render(renderer,m_minBetButton.getButtonRect().getKRect());
+	{
+		m_minBetButton.getButtonRect().render(renderer,m_minBetButton.getButtonRect().getKRect());
 
-				m_minBetButton.getButtonStartCircle().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
+		m_minBetButton.getButtonStartCircle().loadTextureFromFile("Resources/Images/maxMinBettPushedGreen.png",renderer);
 
-						m_minBetButton.getButtonStartCircle().render(renderer,m_minBetButton.getButtonStartCircle().getKRect());
+		m_minBetButton.getButtonStartCircle().render(renderer,m_minBetButton.getButtonStartCircle().getKRect());
 
-							m_minBetButton.getMinBet().render(renderer,m_minBetButton.getMinBet().getKRect());
-							m_minBetButton.getNumOne().setButtonColor(254, 254, 254);
-							m_minBetButton.getNumOne().LoadFromRenderedText("1", renderer, m_minBetButton.getNumOne().getButtonColor());
-							m_minBetButton.getNumOne().render(renderer,m_minBetButton.getNumOne().getKRect());
+		m_minBetButton.getMinBet().render(renderer,m_minBetButton.getMinBet().getKRect());
+		m_minBetButton.getNumOne().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumOne().LoadFromRenderedText("1", renderer, m_minBetButton.getNumOne().getButtonColor());
+		m_minBetButton.getNumOne().render(renderer,m_minBetButton.getNumOne().getKRect());
 
-							m_minBetButton.getNumTwo().setButtonColor(254, 254, 254);
-							m_minBetButton.getNumTwo().LoadFromRenderedText("2",renderer,m_minBetButton.getNumTwo().getButtonColor());
-							m_minBetButton.getNumTwo().render(renderer,m_minBetButton.getNumTwo().getKRect());
+		m_minBetButton.getNumTwo().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumTwo().LoadFromRenderedText("2",renderer,m_minBetButton.getNumTwo().getButtonColor());
+		m_minBetButton.getNumTwo().render(renderer,m_minBetButton.getNumTwo().getKRect());
 
-							m_minBetButton.getNumThree().setButtonColor(254, 254, 254);
-							m_minBetButton.getNumThree().LoadFromRenderedText("3", renderer, m_minBetButton.getNumThree().getButtonColor());
-							m_minBetButton.getNumThree().render(renderer, m_minBetButton.getNumThree().getKRect());
+		m_minBetButton.getNumThree().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumThree().LoadFromRenderedText("3", renderer, m_minBetButton.getNumThree().getButtonColor());
+		m_minBetButton.getNumThree().render(renderer, m_minBetButton.getNumThree().getKRect());
 
-							m_minBetButton.getNumFour().setButtonColor(254, 254, 254);
-							m_minBetButton.getNumFour().LoadFromRenderedText("4",renderer,m_minBetButton.getNumFour().getButtonColor());
-							m_minBetButton.getNumFour().render(renderer, m_minBetButton.getNumFour().getKRect());
+		m_minBetButton.getNumFour().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumFour().LoadFromRenderedText("4",renderer,m_minBetButton.getNumFour().getButtonColor());
+		m_minBetButton.getNumFour().render(renderer, m_minBetButton.getNumFour().getKRect());
 
-							m_minBetButton.getNumFive().setButtonColor(254, 254, 254);
-							m_minBetButton.getNumFive().LoadFromRenderedText("5",renderer,m_minBetButton.getNumFive().getButtonColor());
-							m_minBetButton.getNumFive().render(renderer,m_minBetButton.getNumFive().getKRect());
+		m_minBetButton.getNumFive().setButtonColor(254, 254, 254);
+		m_minBetButton.getNumFive().LoadFromRenderedText("5",renderer,m_minBetButton.getNumFive().getButtonColor());
+		m_minBetButton.getNumFive().render(renderer,m_minBetButton.getNumFive().getKRect());
 
-							m_minBetButton.getNumTen().setButtonColor(251, 211, 72);
-							m_minBetButton.getNumTen().LoadFromRenderedText("10",renderer,m_minBetButton.getNumTen().getButtonColor());
-							m_minBetButton.getNumTen().render(renderer,m_minBetButton.getNumTen().getKRect());
+		m_minBetButton.getNumTen().setButtonColor(251, 211, 72);
+		m_minBetButton.getNumTen().LoadFromRenderedText("10",renderer,m_minBetButton.getNumTen().getButtonColor());
+		m_minBetButton.getNumTen().render(renderer,m_minBetButton.getNumTen().getKRect());
 
-							m_maxBetButton.deactivateMaxButton(renderer);
-			}
+		m_maxBetButton.deactivateMaxButton(renderer);
+	}
 }
 
 void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e)
@@ -1244,11 +1245,11 @@ void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e)
 
 
 	if (m_maxBetButton.getMaxBet().isClicked(e,
-			m_maxBetButton.getMaxBet().getKRect())
+				m_maxBetButton.getMaxBet().getKRect())
 			|| m_minBetButton.getMinBet().isClicked(e,
-					m_minBetButton.getMinBet().getKRect()))
+				m_minBetButton.getMinBet().getKRect()))
 	{
-	m_setBetFlag = true;
+		m_setBetFlag = true;
 	}
 
 
@@ -1256,7 +1257,6 @@ void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e)
 				m_maxBetButton.getMaxBet().getKRect()))
 	{
 		gameButtonsChunk();
-		setBet(0);
 		m_maxBetButton.activateMaxButton(renderer);
 		m_minBetButton.deactivateMinButton(renderer);
 		m_maxBetFlag = true;
@@ -1267,7 +1267,6 @@ void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e)
 				m_minBetButton.getMinBet().getKRect()) )
 	{
 		gameButtonsChunk();
-		setBet(0);
 		m_minBetButton.activateMinButton(renderer);
 		m_maxBetButton.deactivateMaxButton(renderer);
 		m_minBetFlag = true;
@@ -1299,7 +1298,7 @@ void Game::setMinMaxBet(SDL_Renderer* renderer, const SDL_Event& e)
 	}
 	m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
 			getBonus(),
-       		        mGrid.getClickedNumbers(),
+			mGrid.getClickedNumbers(),
 			m_minBetFlag, m_maxBetFlag, m_setBetFlag);
 
 }
@@ -1313,10 +1312,10 @@ int Game::calculateWin(int spots, int match, int bet)
 	int result = 0;
 	if (match > 0) {
 		int arrayQueficient[9][10] = { 1, 9, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 16,
-						0, 0, 0, 0, 0, 0, 0, 0, 2, 6, 12, 0, 0, 0, 0, 0, 0, 0, 1, 3, 15,
-						50, 0, 0, 0, 0, 0, 0, 1, 2, 3, 30, 75, 0, 0, 0, 0, 0, 0, 1, 6,
-						12, 36, 100, 0, 0, 0, 0, 0, 1, 3, 6, 19, 90, 720, 0, 0, 0, 0, 1,
-						2, 4, 8, 20, 80, 1200, 0, 0, 0, 1, 2, 3, 5, 10, 30, 600, 1800 };
+			0, 0, 0, 0, 0, 0, 0, 0, 2, 6, 12, 0, 0, 0, 0, 0, 0, 0, 1, 3, 15,
+			50, 0, 0, 0, 0, 0, 0, 1, 2, 3, 30, 75, 0, 0, 0, 0, 0, 0, 1, 6,
+			12, 36, 100, 0, 0, 0, 0, 0, 1, 3, 6, 19, 90, 720, 0, 0, 0, 0, 1,
+			2, 4, 8, 20, 80, 1200, 0, 0, 0, 1, 2, 3, 5, 10, 30, 600, 1800 };
 
 		result = arrayQueficient[spots - 2][match - 1] * bet;
 	}
@@ -1325,47 +1324,47 @@ int Game::calculateWin(int spots, int match, int bet)
 
 VolumeButton& Game::getVolumeButton()
 {
- 	return m_volumeButton;
+	return m_volumeButton;
 }
 
 void Game::payTableAnimation(SDL_Renderer* renderer)
 {
 	SDL_Rect payTableRect = {PAYTABLE_BOTTOM_LEFT.x,
-				PAYTABLE_TOP_RIGHT.y, PAYTABLE_WIDTH,
-					PAYTABLE_HEIGHT};
+		PAYTABLE_TOP_RIGHT.y, PAYTABLE_WIDTH,
+		PAYTABLE_HEIGHT};
 	if(mGrid.numberOfHits() > 0)
-        {
-                for (int i = 1; i < 9; i++)
-                {
-                        if (i % 2 != 0)
-                        {  
-                                SDL_SetRenderDrawColor(renderer, LIME.r, LIME.g,
-                                        LIME.b, 150);
-                                SDL_RenderFillRect(renderer, 
-					&m_PayTable.getLines()
-					[mGrid.numberOfHits()-1]);
+	{
+		for (int i = 1; i < 9; i++)
+		{
+			if (i % 2 != 0)
+			{  
+				SDL_SetRenderDrawColor(renderer, LIME.r, LIME.g,
+						LIME.b, 150);
+				SDL_RenderFillRect(renderer, 
+						&m_PayTable.getLines()
+						[mGrid.numberOfHits()-1]);
 				m_PayTable.reApplyLine(renderer, 
-					mGrid.numberOfHits(),
-					mGrid.numbersClicked(),
-					m_bet);
-                        }
-                        else
-                        {
-                                SDL_SetRenderDrawColor(renderer, RED.r, RED.g,
-                                        RED.b, 150);
-                                SDL_RenderFillRect(renderer, 
-					&m_PayTable.getLines()
-					[mGrid.numberOfHits()-1]);
+						mGrid.numberOfHits(),
+						mGrid.numbersClicked(),
+						m_bet);
+			}
+			else
+			{
+				SDL_SetRenderDrawColor(renderer, RED.r, RED.g,
+						RED.b, 150);
+				SDL_RenderFillRect(renderer, 
+						&m_PayTable.getLines()
+						[mGrid.numberOfHits()-1]);
 				m_PayTable.reApplyLine(renderer, 
-					mGrid.numberOfHits(),
-					mGrid.numbersClicked(),
-					m_bet);
-                        }
-                        SDL_RenderPresent(renderer);
-                       	int timeout = SDL_GetTicks() + HALF_SECOND_MS;
-                       	while(!SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {}
-                }
-        }
+						mGrid.numberOfHits(),
+						mGrid.numbersClicked(),
+						m_bet);
+			}
+			SDL_RenderPresent(renderer);
+			int timeout = SDL_GetTicks() + HALF_SECOND_MS;
+			while(!SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {}
+		}
+	}
 	//Returns pay table to normal condition
 	cropFromRenderTo(renderer, &payTableRect, &payTableRect);
 	m_PayTable.renderPayTable(renderer, 0, m_bet);
@@ -1395,20 +1394,20 @@ void Game::reRenderHistory(SDL_Renderer* renderer)
 
 void Game::loadGameOverScreen(SDL_Renderer* renderer)
 {
- 	if (m_creditInGame.getGameCredit() == 0)
- 	{
- 		m_winInGame.writeOnScreen(renderer);
- 	}
- }
+	if (m_creditInGame.getGameCredit() == 0)
+	{
+		m_winInGame.writeOnScreen(renderer);
+	}
+}
 
 void Game::gameButtonsChunk()
- {
- 	m_chunk = Mix_LoadWAV("Resources/Sounds/button-click-version-sound-effect-13.mp3");
- 	if(m_chunk == NULL)
- 	{
- 		std::cerr << "Could not load music chunk!" << std::endl;
- 	}
- 	Mix_PlayChannel(-1, m_chunk, 0);
+{
+	m_chunk = Mix_LoadWAV("Resources/Sounds/button-click-version-sound-effect-13.mp3");
+	if(m_chunk == NULL)
+	{
+		std::cerr << "Could not load music chunk!" << std::endl;
+	}
+	Mix_PlayChannel(-1, m_chunk, 0);
 }
 
 void Game::showBonusLogo(SDL_Renderer* renderer)
@@ -1436,10 +1435,10 @@ void Game::resetVariables()
 	getWinInGame().setWinCredits(0);
 	m_bet = 0;	
 	mGrid.resetFlags();
-        m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
-                                getBonus(),
-                                mGrid.getClickedNumbers(),
-				m_minBetFlag, m_maxBetFlag, m_setBetFlag);
+	m_Recovery.write(getBet(), m_creditInGame.getGameCredit(),
+			getBonus(),
+			mGrid.getClickedNumbers(),
+			m_minBetFlag, m_maxBetFlag, m_setBetFlag);
 }
 
 

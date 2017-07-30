@@ -27,7 +27,7 @@ class NumbersGrid: public BaseObject
 		//Raise the flag of 10 numbers to be clicked
 		void pickRandomChoices(SDL_Renderer*);
 
-		void pickRandomNumbers(SDL_Renderer*, const SDL_Event&);
+		void pickRandomNumbers(SDL_Renderer*);
 
 		void resetRandFlags();
 
@@ -59,7 +59,7 @@ class NumbersGrid: public BaseObject
 		void resetIsClicked();
 
 		//Get random numbers
-		int* getRandomNumbers();
+		std::vector <bool>& getRandomNumbers();
 
 		//Get number rects
 		SDL_Rect* getNumberRects();
@@ -71,18 +71,18 @@ class NumbersGrid: public BaseObject
 		void printSpecificNumber(SDL_Renderer*, int);
 
 		//Get clicked numbers
-		int* getClickedNumbers();
+		std::vector <bool>& getClickedNumbers();
 
 		//Raise clicked flags
-		void raiseClickedFlags(int*);
+		void raiseClickedFlags(const std::vector <bool>&);
 	private:
 		const char* toString(int);
 
-		SDL_Rect m_numbers[8][10];
+		SDL_Rect m_numbers[80];
 		TTF_Font* m_font;
-		int isClickedFlags[8][10];
-		int randomNumbersFlags[8][10];
-		int numberOfHitsFlags[8][10];
+		std::vector <bool> isClickedFlags;
+		std::vector <bool> randomNumbersFlags;
+		std::vector <bool> numberOfHitsFlags;
 
 		//Variable for sound effect
 		Mix_Chunk* m_ClickEffect;

@@ -21,8 +21,6 @@
 class Game: public BaseObject
 {
 	public:
-
-
 		Game();
 
 		~Game();
@@ -78,8 +76,7 @@ class Game: public BaseObject
 		// Show Bonus logo when you get bonus
 		void showBonusLogo(SDL_Renderer* renderer);
 
-
-		void cashOutButtonPushed(bool* outroMode,bool* gameMode, const SDL_Event& e);
+		bool cashOutButtonPushed(const SDL_Event& e);
 
 		//Get min bet button
 		MinBet& getMinBetButton();
@@ -117,7 +114,7 @@ class Game: public BaseObject
 		//Changes color of clicked numbers
 		void changeColorOfClickedNumbers(SDL_Renderer*, const SDL_Event&);
 
-		void drawAnimation(SDL_Renderer*, int*, SDL_Rect*);		
+		void drawAnimation(SDL_Renderer*, const std::vector <bool>&, SDL_Rect*);		
 		void drawAnimationReRender(SDL_Renderer*, SDL_Rect*);
 
 		//Calculate win credits

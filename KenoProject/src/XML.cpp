@@ -8,13 +8,14 @@ XML::XML()
 	this->maxBetFlag = false;
 	this->minBetFlag = false;
 	this->setBetFlag = false;
-	userChoices = new int[80];
+	for (int i = 0; i < 80; i++)
+	{
+		userChoices.push_back(false);
+	}
 }
 
 XML::~XML()
 {
-	delete[] userChoices;
-	userChoices = NULL;
 }
 
 template <typename T>
@@ -24,13 +25,13 @@ const char* XML::ToString(T in_val)
 	return s.c_str();
 }
 
-int XML::toInt(char char_val)
+bool XML::toBool(char char_val)
 {
-	int number = boost::lexical_cast<int> (char_val);
-	return number;
+	bool boolean = boost::lexical_cast<bool> (char_val);
+	return boolean;
 }
 
-void XML::write(int bet, int credits, int bonus, int* choices, bool minBetF, bool maxBetF, bool setBetF)
+void XML::write(int bet, int credits, int bonus, std::vector <bool>& choices, bool minBetF, bool maxBetF, bool setBetF)
 {
 	//Main node
 	pugi::xml_node node = doc.append_child("Recovery");
@@ -49,7 +50,7 @@ void XML::write(int bet, int credits, int bonus, int* choices, bool minBetF, boo
 
 	//Flags
 	pugi::xml_node choicesFlags = node.append_child("UserChoices");
-	if(choices != NULL)
+	if(!choices.empty())
 	{
 		for (int i = 0; i < 80; i++) 
 		{
@@ -71,9 +72,6 @@ void XML::write(int bet, int credits, int bonus, int* choices, bool minBetF, boo
 	setBetFlagNode.append_child(pugi::node_pcdata).set_value(ToString(setBetF));
 
 	doc.save_file("Recovery.xml");
-
-	delete[] choices;
-	choices = NULL;
 }
 
 void XML::read(const char* file) 
@@ -94,7 +92,7 @@ void XML::read(const char* file)
 	{
 		for (int i = 0; i < 80; i++)
 		{
-			userChoices[i] = toInt(temp_one[i]);
+			userChoices[i] = toBool(temp_one[i]);
 		}
 	}
 	minBetFlag = i.child("minBetFlag").text().as_bool();
@@ -107,7 +105,7 @@ int XML::getCredits() const
 	return this->credits;
 }
 
-int* XML::getUserChoices() 
+std::vector <bool>& XML::getUserChoices() 
 {
 	return this->userChoices;
 }

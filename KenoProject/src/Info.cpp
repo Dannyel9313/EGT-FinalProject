@@ -130,7 +130,7 @@ void Info::renderButtonDown(SDL_Renderer* renderer, const SDL_Event& e)
 	{
 		setInfoPage(1);
 		m_backgroundInfo.loadTextureFromFile(
-					"Resources/Images/kenoInformationBackground.png", renderer);
+				"Resources/Images/kenoInformationBackground.png", renderer);
 		m_backgroundInfo.render(renderer, NULL);
 		SDL_SetTextureAlphaMod(m_buttonBack.getKTexture(),100);
 		m_buttonBack.render(renderer, m_buttonBack.getKRect());
@@ -144,13 +144,12 @@ void Info::renderButtonDown(SDL_Renderer* renderer, const SDL_Event& e)
 
 }
 
-void Info::buttonReturn(bool* introMode,bool* infoMode, const SDL_Event& e)
-{
-
+bool Info::buttonReturn(const SDL_Event& e)
+{	
+	bool success = false;
 	if (m_buttonReturn.isClicked(e, m_buttonReturn.getKRect()))
 	{
-		*introMode = true;
-		*infoMode = false;
+		success = true;
 	}
 
 }
@@ -167,13 +166,13 @@ void Info::renderButtonReturnOnMouseOver(SDL_Renderer* renderer,
 	else
 	{
 		SDL_SetTextureAlphaMod(m_buttonReturn.getKTexture(),100);
-					m_backgroundInfo.render(renderer,NULL);
-					m_buttonBack.render(renderer, m_buttonBack.getKRect());
-					m_buttonBackText.render(renderer,m_buttonBackText.getKRect());
-					m_buttonNext.render(renderer, m_buttonNext.getKRect());
-					m_buttonNextText.render(renderer,m_buttonNextText.getKRect());
-					m_buttonReturn.render(renderer, m_buttonReturn.getKRect());
-					m_buttonReturnText.render(renderer, m_buttonReturnText.getKRect());
+		m_backgroundInfo.render(renderer,NULL);
+		m_buttonBack.render(renderer, m_buttonBack.getKRect());
+		m_buttonBackText.render(renderer,m_buttonBackText.getKRect());
+		m_buttonNext.render(renderer, m_buttonNext.getKRect());
+		m_buttonNextText.render(renderer,m_buttonNextText.getKRect());
+		m_buttonReturn.render(renderer, m_buttonReturn.getKRect());
+		m_buttonReturnText.render(renderer, m_buttonReturnText.getKRect());
 	}
 
 
@@ -183,9 +182,9 @@ void Info::renderButtonReturnOnMouseOver(SDL_Renderer* renderer,
 void Info::renderButtonBackOnMauseOver(SDL_Renderer* renderer,
 		const SDL_Event& e)
 {
-if(m_infoPage == 2)
-{
-	if(m_buttonBack.onMouseOver(m_buttonBack.getKRect()))
+	if(m_infoPage == 2)
+	{
+		if(m_buttonBack.onMouseOver(m_buttonBack.getKRect()))
 		{
 
 
@@ -206,7 +205,7 @@ if(m_infoPage == 2)
 			m_buttonReturn.render(renderer, m_buttonReturn.getKRect());
 			m_buttonReturnText.render(renderer, m_buttonReturnText.getKRect());
 		}
-}
+	}
 }
 
 void Info::renderButtonNextOnMauseOver(SDL_Renderer* renderer,
@@ -214,23 +213,23 @@ void Info::renderButtonNextOnMauseOver(SDL_Renderer* renderer,
 {
 	if(m_infoPage == 1)
 	{
-	if(m_buttonNext.onMouseOver(m_buttonNext.getKRect()))
-			{
+		if(m_buttonNext.onMouseOver(m_buttonNext.getKRect()))
+		{
 
 			SDL_SetTextureAlphaMod(m_buttonNext.getKTexture(),255);
 			m_buttonNext.render(renderer, m_buttonNext.getKRect());
-			}
-			else
-			{
-				SDL_SetTextureAlphaMod(m_buttonNext.getKTexture(),100);
-				m_backgroundInfo.render(renderer,NULL);
-							m_buttonBack.render(renderer, m_buttonBack.getKRect());
-							m_buttonBackText.render(renderer,m_buttonBackText.getKRect());
-							m_buttonNext.render(renderer, m_buttonNext.getKRect());
-							m_buttonNextText.render(renderer,m_buttonNextText.getKRect());
-							m_buttonReturn.render(renderer, m_buttonReturn.getKRect());
-							m_buttonReturnText.render(renderer, m_buttonReturnText.getKRect());
-			}
+		}
+		else
+		{
+			SDL_SetTextureAlphaMod(m_buttonNext.getKTexture(),100);
+			m_backgroundInfo.render(renderer,NULL);
+			m_buttonBack.render(renderer, m_buttonBack.getKRect());
+			m_buttonBackText.render(renderer,m_buttonBackText.getKRect());
+			m_buttonNext.render(renderer, m_buttonNext.getKRect());
+			m_buttonNextText.render(renderer,m_buttonNextText.getKRect());
+			m_buttonReturn.render(renderer, m_buttonReturn.getKRect());
+			m_buttonReturnText.render(renderer, m_buttonReturnText.getKRect());
+		}
 	}
 }
 

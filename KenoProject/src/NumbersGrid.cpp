@@ -6,14 +6,11 @@ NumbersGrid::NumbersGrid()
 	m_ClickEffect = NULL;
 	setPosition(numbersGrid_x, numbersGrid_y);
 	setDimensions(numbersGrid_width, numbersGrid_height);
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 80; i++)
 	{
-		for (int j = 0; j < 10; j++)
-		{
-			isClickedFlags[i][j] = 0;
-			randomNumbersFlags[i][j] = 0;
-			numberOfHitsFlags[i][j] = 0;
-		}
+		randomNumbersFlags.push_back(false);
+		isClickedFlags.push_back(false);
+		numberOfHitsFlags.push_back(false);
 	}
 }
 
@@ -43,28 +40,28 @@ void NumbersGrid::createRects(SDL_Renderer* renderer, int alpha)
 {
 	int xPos = getKRect()->x, yPos = getKRect()->y;
 	SDL_Rect tempRect = {xPos, yPos, numbersRect_width, numbersRect_height};
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 80; i++)
 	{
-		for (int j = 0; j < 10; j++)
-		{
-			//Set new rect
-			m_numbers[i][j] = tempRect;
+		//Set new rect
+		m_numbers[i] = tempRect;
 
-			roundedBoxRGBA(renderer, 
-				m_numbers[i][j].x, 
-				m_numbers[i][j].y, 
-				m_numbers[i][j].x+numbersRect_width, 
-				m_numbers[i][j].y+numbersRect_height, 
+		roundedBoxRGBA(renderer, 
+				m_numbers[i].x, 
+				m_numbers[i].y, 
+				m_numbers[i].x+numbersRect_width, 
+				m_numbers[i].y+numbersRect_height, 
 				5, 225, 16, 16, alpha);
 
-			//Set new position
-			xPos += numbersRect_width + 2;
+		//Set new position
+		xPos += numbersRect_width + 2;
+		tempRect.x = xPos;
+		if ((i+1)%10 == 0)
+		{
+			xPos = getKRect()->x;
+			yPos += numbersRect_height + 3;
+			tempRect.y = yPos;
 			tempRect.x = xPos;
 		}
-		xPos = getKRect()->x;
-		yPos += numbersRect_height + 3;
-		tempRect.y = yPos;
-		tempRect.x = xPos;
 	}
 }
 
@@ -85,32 +82,75 @@ void NumbersGrid::printNumbers(SDL_Renderer * renderer)
 	SDL_Rect dst_rect = {0, 0, 0, 0};
 	SDL_Color white = {255, 255, 255};
 	int number = 1;
-	for (int i = 0; i < 8; i++) 
+	for (int i = 0; i < 80; i++) 
 	{
-		for (int j = 0; j < 10; j++)
+		//1-digit numbers require specific spacing
+		if(number < 10) 
+		{
+			//Set the destination rect
+			dst_rect.x = m_numbers[i].x+oneDigit_xIndent;
+			dst_rect.y = m_numbers[i].y+oneDigit_yIndent;	
+			dst_rect.w = oneDigit_width;	
+			dst_rect.h = oneDigit_height;
+
+			//Load text from font
+			loadTextureFromTTF(toString(number), 
+					renderer, m_font, white);
+
+			//Render
+			render(renderer, &dst_rect);  
+
+		}
+		else 
+		{
+			//Set destination rect	
+			dst_rect.x = m_numbers[i].x+twoDigit_xIndent;
+			dst_rect.y = m_numbers[i].y+twoDigit_yIndent;	
+			dst_rect.w = twoDigit_width;	
+			dst_rect.h = twoDigit_height;
+
+			//Load number from font
+			loadTextureFromTTF(toString(number), renderer, m_font, white);
+
+			//Render
+			render(renderer, &dst_rect);  
+
+		}
+		number++;			
+	}	
+}
+
+void NumbersGrid::printSpecificNumber(SDL_Renderer* renderer, int num)
+{
+	SDL_Rect dst_rect = {0, 0, 0, 0};
+	SDL_Color white = {255, 255, 255};
+	int number = 0;
+	for (int i = 0; i < 80; i++) 
+	{
+		number++;			
+		if (num == number)
 		{
 			//1-digit numbers require specific spacing
 			if(number < 10) 
 			{
 				//Set the destination rect
-				dst_rect.x = m_numbers[i][j].x+oneDigit_xIndent;
-				dst_rect.y = m_numbers[i][j].y+oneDigit_yIndent;	
+				dst_rect.x = m_numbers[i].x+oneDigit_xIndent;
+				dst_rect.y = m_numbers[i].y+oneDigit_yIndent;	
 				dst_rect.w = oneDigit_width;	
 				dst_rect.h = oneDigit_height;
 
 				//Load text from font
 				loadTextureFromTTF(toString(number), 
-					renderer, m_font, white);
-				
+						renderer, m_font, white);
+
 				//Render
-				render(renderer, &dst_rect);  
-				
+				render(renderer, &dst_rect);  	
 			}
 			else 
 			{
 				//Set destination rect	
-				dst_rect.x = m_numbers[i][j].x+twoDigit_xIndent;
-				dst_rect.y = m_numbers[i][j].y+twoDigit_yIndent;	
+				dst_rect.x = m_numbers[i].x+twoDigit_xIndent;
+				dst_rect.y = m_numbers[i].y+twoDigit_yIndent;	
 				dst_rect.w = twoDigit_width;	
 				dst_rect.h = twoDigit_height;
 
@@ -121,141 +161,106 @@ void NumbersGrid::printNumbers(SDL_Renderer * renderer)
 				render(renderer, &dst_rect);  
 
 			}
-			number++;			
 		}
 	}	
-}
-
-void NumbersGrid::printSpecificNumber(SDL_Renderer* renderer, int num)
-{
-	SDL_Rect dst_rect = {0, 0, 0, 0};
-	SDL_Color white = {255, 255, 255};
-	int number = 0;
-	for (int i = 0; i < 8; i++) 
-	{
-		for (int j = 0; j < 10; j++)
-		{
-			number++;			
-			if (num == number)
-			{
-				//1-digit numbers require specific spacing
-				if(number < 10) 
-				{
-					//Set the destination rect
-					dst_rect.x = m_numbers[i][j].x+oneDigit_xIndent;
-					dst_rect.y = m_numbers[i][j].y+oneDigit_yIndent;	
-					dst_rect.w = oneDigit_width;	
-					dst_rect.h = oneDigit_height;
-
-					//Load text from font
-					loadTextureFromTTF(toString(number), 
-						renderer, m_font, white);
-				
-					//Render
-					render(renderer, &dst_rect);  	
-				}
-				else 
-				{
-					//Set destination rect	
-					dst_rect.x = m_numbers[i][j].x+twoDigit_xIndent;
-					dst_rect.y = m_numbers[i][j].y+twoDigit_yIndent;	
-					dst_rect.w = twoDigit_width;	
-					dst_rect.h = twoDigit_height;
-
-					//Load number from font
-					loadTextureFromTTF(toString(number), renderer, m_font, white);
-
-					//Render
-					render(renderer, &dst_rect);  
-
-				}
-			}
-		}	
-	}
 }
 
 bool NumbersGrid::doIfClicked(SDL_Renderer * renderer, const SDL_Event & e) 
 {
 	bool success = false;
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 80; i++)
 	{
-		for (int j = 0; j < 10; j++)
-		{
-			if(isClickedFlags[i][j] == 0 && 
-				isClicked(e, &m_numbers[i][j]) 
+		if(isClickedFlags[i] == 0 && 
+				isClicked(e, &m_numbers[i]) 
 				&& numbersClicked() < 10) 
-			{
-				success = true;
-			
-				//Draw and fill rect
-				isClickedFlags[i][j] = 1;
-				roundedBoxRGBA(renderer, 
-				m_numbers[i][j].x, 
-				m_numbers[i][j].y, 
-				m_numbers[i][j].x+numbersRect_width, 
-				m_numbers[i][j].y+numbersRect_height, 
-				5, 200, 200, 0, 255);
+		{
+			success = true;
 
-				//Play sound effect
-				Mix_PlayChannel(-1, m_ClickEffect, 0);
-			}
-			else if (isClickedFlags[i][j] == 1 && 
-					isClicked(e, &m_numbers[i][j]))
-			{
-				success = true;
+			//Draw and fill rect
+			isClickedFlags[i] = 1;
+			roundedBoxRGBA(renderer, 
+					m_numbers[i].x, 
+					m_numbers[i].y, 
+					m_numbers[i].x+numbersRect_width, 
+					m_numbers[i].y+numbersRect_height, 
+					5, 200, 200, 0, 255);
 
-				//Draw and fill rect
-				isClickedFlags[i][j] = 0;
-				roundedBoxRGBA(renderer,
-					m_numbers[i][j].x, 
-					m_numbers[i][j].y,
-					m_numbers[i][j].x+numbersRect_width,
-					m_numbers[i][j].y+numbersRect_height, 
+			//Play sound effect
+			Mix_PlayChannel(-1, m_ClickEffect, 0);
+		}
+		else if (isClickedFlags[i] == 1 && 
+				isClicked(e, &m_numbers[i]))
+		{
+			success = true;
+
+			//Draw and fill rect
+			isClickedFlags[i] = 0;
+			roundedBoxRGBA(renderer,
+					m_numbers[i].x, 
+					m_numbers[i].y,
+					m_numbers[i].x+numbersRect_width,
+					m_numbers[i].y+numbersRect_height, 
 					5, 225, 16, 16, 255);
 
-				//Play sound effect
-				Mix_PlayChannel(-1, m_ClickEffect, 0);
-			}	
-		}
+			//Play sound effect
+			Mix_PlayChannel(-1, m_ClickEffect, 0);
+		}	
 	}
 	return success;
 }
 
 void NumbersGrid::pickRandomChoices(SDL_Renderer* renderer)
 {	
-	int rand_1;
-	int rand_2;
-	srand(SDL_GetTicks());
-	for (int i = 0; i < 10; i++)
-	{
-		rand_1 = rand()%8;
-		rand_2 = rand()%10;
-		if (isClickedFlags[rand_1][rand_2] == 0) 
-		{
-			isClickedFlags[rand_1][rand_2] = 1;
-		}
-		//If already flag up increase loop by 1 time
-		else	
-		{
-			i--;
-		}			
-	}
-	for (int i = 0; i < 8; i++)
-	{
-		for (int j = 0; j < 10; j++)
-		{
-			if (isClickedFlags[i][j] == 1) 
-			{
-				roundedBoxRGBA(renderer, 
-				m_numbers[i][j].x, 
-				m_numbers[i][j].y, 
-				m_numbers[i][j].x+numbersRect_width, 
-				m_numbers[i][j].y+numbersRect_height, 
-				5, 200, 200, 0, 255);
+	std::vector <int> vec;
+        int randNum;
 
-				//Play sound effect
-				Mix_PlayChannel(-1, m_ClickEffect, 0);
-			}
+        for (int i = 0; i < 80; i++)
+        {
+                vec.push_back(i);
+        }
+
+        for (int i = 0; i < 10; i++)
+        {
+                //Get iterator to the beginning of the vector
+                std::vector <int>::iterator it = vec.begin();
+
+                //Feed srand with the current clock cycle
+                srand(SDL_GetTicks());
+
+                //Generate random number evenly distributed
+                do
+                {       
+                        randNum = rand();
+                } while (randNum >= (RAND_MAX - RAND_MAX % vec.size()));
+
+                //Get rand num in the given range
+                randNum %= vec.size();
+                
+                //Advance the iterator rand number of times
+                advance(it, randNum);
+
+                //Raise the flag
+		if (isClickedFlags[*it] == false)
+		{
+               		isClickedFlags[*it] = true;
+		}
+
+                //Erase the element
+                vec.erase(it);
+	}
+	for (int i = 0; i < 80; i++)
+	{
+		if (isClickedFlags[i] == true) 
+		{
+			roundedBoxRGBA(renderer, 
+					m_numbers[i].x, 
+					m_numbers[i].y, 
+					m_numbers[i].x+numbersRect_width, 
+					m_numbers[i].y+numbersRect_height, 
+					5, 200, 200, 0, 255);
+
+			//Play sound effect
+			Mix_PlayChannel(-1, m_ClickEffect, 0);
 		}
 	}
 	printNumbers(renderer);
@@ -268,36 +273,49 @@ const char* NumbersGrid::toString(int in_val)
 }
 
 
-void NumbersGrid::pickRandomNumbers(SDL_Renderer* renderer, 
-					const SDL_Event& e)
+void NumbersGrid::pickRandomNumbers(SDL_Renderer* renderer)
 {
-	int rand_1;
-	int rand_2;
-	srand(SDL_GetTicks());
-	for (int i = 0; i < 20; i++)
-	{
-		rand_1 = rand()%8;
-		rand_2 = rand()%10;
-		if (randomNumbersFlags[rand_1][rand_2] == 0) 
-		{
-			randomNumbersFlags[rand_1][rand_2] = 1;
-		}
-		//If already flag up increase loop by 1 time
-		else	
-		{
-			i--;
-		}			
+	std::vector <int> vec;
+        int randNum;
+
+        for (int i = 0; i < 80; i++)
+        {
+                vec.push_back(i);
+        }
+
+        for (int i = 0; i < 20; i++)
+        {
+                //Get iterator to the beginning of the vector
+                std::vector <int>::iterator it = vec.begin();
+
+                //Feed srand with the current clock cycle
+                srand(SDL_GetTicks());
+
+                //Generate random number evenly distributed
+                do
+                {       
+                        randNum = rand();
+                } while (randNum >= (RAND_MAX - RAND_MAX % vec.size()));
+
+                //Get rand num in the given range
+                randNum %= vec.size();
+                
+                //Advance the iterator rand number of times
+                advance(it, randNum);
+
+                //Raise the flag
+                randomNumbersFlags[*it] = true;
+
+                //Erase the element
+                vec.erase(it);
 	}
 }
 
 void NumbersGrid::resetRandFlags()
 {	
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 80; i++)
 	{
-		for (int j = 0; j < 10; j++)
-		{
-			randomNumbersFlags[i][j] = 0;
-		}
+		randomNumbersFlags[i] = false;
 	}
 }
 
@@ -319,16 +337,13 @@ bool NumbersGrid::loadSoundEffect(std::string path)
 int NumbersGrid::numberOfHits()
 {
 	int count = 0;
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 80; i++)
 	{
-		for (int j = 0; j < 10; j++)
+		if (isClickedFlags[i] == true && 
+				isClickedFlags[i] == randomNumbersFlags[i])
 		{
-			if (isClickedFlags[i][j] == 1 && 
-				isClickedFlags[i][j] == randomNumbersFlags[i][j])
-			{
-				numberOfHitsFlags[i][j] = 1;
-				count++;
-			}
+			numberOfHitsFlags[i] = true;
+			count++;
 		}
 	}
 	return count;		
@@ -337,100 +352,88 @@ int NumbersGrid::numberOfHits()
 int NumbersGrid::numbersClicked()
 {
 	int sum = 0;
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 80; i++)
 	{
-		for (int j = 0; j < 10; j++)
-		{
-			sum += isClickedFlags[i][j];
-		}
+		sum += isClickedFlags[i];
 	}
 	return sum;
 }
 
 void NumbersGrid::reRenderClickedNumbers(SDL_Renderer* renderer, int alpha)
 {
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 80; i++)
 	{
-		for (int j = 0; j < 10; j++)
+		if(isClickedFlags[i] == true)
 		{
-			if(isClickedFlags[i][j]==1)
-			{
-				roundedBoxRGBA(renderer,
-					m_numbers[i][j].x, 
-					m_numbers[i][j].y,
-					m_numbers[i][j].x+numbersRect_width,
-					m_numbers[i][j].y+numbersRect_height, 
+			roundedBoxRGBA(renderer,
+					m_numbers[i].x, 
+					m_numbers[i].y,
+					m_numbers[i].x+numbersRect_width,
+					m_numbers[i].y+numbersRect_height, 
 					5, 200, 200, 0, alpha);	
-			}
 		}
 	}
 }
 
 void NumbersGrid::blinkingSuccessHits(SDL_Renderer* renderer)
 {
-	int flag = 0;
-	for (int k = 0; k < 8; k++) 
+	bool flag = false;
+	for (int i = 0; i < 8; i++) 
 	{
-		for (int i = 0; i < 8; i++)
+		for (int j = 0; j < 80; j++)
 		{
-			for (int j = 0; j < 10; j++)
+			if(numberOfHitsFlags[j] == true)
 			{
-				if(numberOfHitsFlags[i][j] == 1)
+				if(flag == false)
 				{
-					if(flag == 0)
-					{
-						roundedBoxRGBA(renderer,
-							m_numbers[i][j].x, 
-							m_numbers[i][j].y,
-							m_numbers[i][j].x+numbersRect_width,
-							m_numbers[i][j].y+numbersRect_height, 
+					roundedBoxRGBA(renderer,
+							m_numbers[j].x, 
+							m_numbers[j].y,
+							m_numbers[j].x+numbersRect_width,
+							m_numbers[j].y+numbersRect_height, 
 							5, 225, 16, 16, 255);
-					}
-					else if (flag == 1)
-					{
-						roundedBoxRGBA(renderer,
-							m_numbers[i][j].x, 
-							m_numbers[i][j].y,
-							m_numbers[i][j].x+numbersRect_width,
-							m_numbers[i][j].y+numbersRect_height, 
+				}
+				else if (flag == true)
+				{
+					roundedBoxRGBA(renderer,
+							m_numbers[j].x, 
+							m_numbers[j].y,
+							m_numbers[j].x+numbersRect_width,
+							m_numbers[j].y+numbersRect_height, 
 							5, 200, 200, 0, 255);
-					}
 				}
 			}
 		}
-		if (flag == 0) 
+		if (flag == false) 
 		{
-			flag = 1;
+			flag = true;
 		}
-		else if (flag == 1)
+		else if (flag == true)
 		{
-			flag = 0;
+			flag = false;
 		}
 		//Reapply numbers in rects
 		printNumbers(renderer);
 		SDL_RenderPresent(renderer);	
 		int timeout = SDL_GetTicks() + 500;
-		while(!SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {};
-	}	
+		while(!SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {};	
+	}
 }
 
 void NumbersGrid::renderRandomNumbers(SDL_Renderer* renderer)
 {	
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 80; i++)
 	{
-		for (int j = 0; j < 10; j++)
+		if(randomNumbersFlags[i] == true)
 		{
-			if(randomNumbersFlags[i][j] == 1)
+			//Draw diagonal lines
+			if(filledCircleRGBA(renderer, 
+						m_numbers[i].x+circle_xIndent,
+						m_numbers[i].y+circle_yIndent,
+						radiusOfCircle, 0, 0, 0, 255)!=0) 
 			{
-				//Draw diagonal lines
-				if(filledCircleRGBA(renderer, 
-					m_numbers[i][j].x+circle_xIndent,
-					m_numbers[i][j].y+circle_yIndent,
-					radiusOfCircle, 0, 0, 0, 255)!=0) 
-				{
-					std::cout << "Error drawing circle" 
-						<< std::endl;
-				}
+				std::cout << "Error drawing circle" 
+					<< std::endl;
 			}
 		}
 	}
@@ -445,94 +448,44 @@ void NumbersGrid::resetNumbersGrid(SDL_Renderer* renderer)
 
 void NumbersGrid::resetFlags()
 {
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 80; i++)
 	{
-		for (int j = 0; j < 10; j++)
-		{
-			isClickedFlags[i][j] = 0;
-			randomNumbersFlags[i][j] = 0;
-			numberOfHitsFlags[i][j] = 0;
-		}
+		isClickedFlags[i] = 0;
+		randomNumbersFlags[i] = 0;
+		numberOfHitsFlags[i] = 0;
 	}
 }
 
 void NumbersGrid::resetIsClicked()
 {
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 80; i++)
 	{
-		for (int j = 0; j < 10; j++)
-		{
-			isClickedFlags[i][j] = 0;
-			randomNumbersFlags[i][j] = 0;
-			numberOfHitsFlags[i][j] = 0;
-		}
+		isClickedFlags[i] = 0;
 	}
 }
 
-int* NumbersGrid::getRandomNumbers()
+std::vector <bool>& NumbersGrid::getRandomNumbers()
 {
-	int* tempArray = new int[80];
-	int number = 0;	
-
-	for (int i = 0; i < 8; i++)
-	{
-		for (int j = 0; j < 10; j++)
-		{
-			tempArray[number] = randomNumbersFlags[i][j];
-			number++;
-		}
-	}
-	
-	return tempArray;
+	return randomNumbersFlags;
 }
 
 SDL_Rect* NumbersGrid::getNumberRects()
 {
-	SDL_Rect* tempArray = new SDL_Rect[80];
-	int number = 0;
-
-	for (int i = 0; i < 8; i++)
-	{
-		for (int j = 0; j < 10; j++)
-		{
-			tempArray[number] = m_numbers[i][j];
-			number++;
-		}
-	}
-
-	return tempArray;	
+	return m_numbers;	
 }
 
-int* NumbersGrid::getClickedNumbers()
+std::vector <bool>& NumbersGrid::getClickedNumbers()
 {
-	int* tempArray = new int[80];
-	int number = 0;
-
-	for (int i = 0; i < 8; i++)
-	{
-		for (int j = 0; j < 10; j++)
-		{
-			tempArray[number] = isClickedFlags[i][j];
-			number++;
-		}
-	}
-
-	return tempArray;	
+	return isClickedFlags;	
 }
 
-void NumbersGrid::raiseClickedFlags(int* clickedNumbers)
+void NumbersGrid::raiseClickedFlags(const std::vector <bool>& clickedNumbers)
 {
-	int number = 0;
-
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 80; i++)
 	{
-		for (int j = 0; j < 10; j++)
+		if(clickedNumbers[i] == 1)
 		{
-			if(clickedNumbers[number] == 1)
-			{
-				isClickedFlags[i][j] = 1;
-			}
-			number++;
+			isClickedFlags[i] = 1;
 		}
 	}
 }
